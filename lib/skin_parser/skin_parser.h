@@ -180,4 +180,8 @@ void skin_free_tree(struct skin_element* root);
 }
 #endif
 
+/* Y1 Wheel: coordinate scaling for themes made for a smaller screen */
+extern int skin_scale_num, skin_scale_den;
+int skin_scale_value(int v);
+
 #endif /* GENERIC_PARSER_H */

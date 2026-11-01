@@ -174,7 +174,7 @@ bool skin_backdrops_preload(void)
                 buf_size = REMOTE_LCD_BACKDROP_BYTES;
             else
 #endif
-                buf_size = LCD_BACKDROP_BYTES;
+                buf_size = LCD_BACKDROP_ALLOC;
 
             filename = backdrops[i].name;
             if (screen == SCREEN_MAIN && global_settings.backdrop_file[0] &&

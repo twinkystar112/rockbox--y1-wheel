@@ -17169,3 +17169,2929 @@
     touchscreen: "Atajos del Flick Tactil"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_MUSIC
+  desc: Main menu: music library
+  user: core
+  <source>
+    *: "Music"
+  </source>
+  <dest>
+    *: "Música"
+  </dest>
+  <voice>
+    *: "Música"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW
+  desc: Main menu: album art browser
+  user: core
+  <source>
+    *: "Cover Flow"
+  </source>
+  <dest>
+    *: "Cover Flow"
+  </dest>
+  <voice>
+    *: "Cover Flow"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE_SONGS
+  desc: Main menu: play every song shuffled
+  user: core
+  <source>
+    *: "Shuffle Songs"
+  </source>
+  <dest>
+    *: "Canciones aleatorias"
+  </dest>
+  <voice>
+    *: "Canciones aleatorias"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EXTRAS
+  desc: Main menu: files, plugins and tools
+  user: core
+  <source>
+    *: "Extras"
+  </source>
+  <dest>
+    *: "Extras"
+  </dest>
+  <voice>
+    *: "Extras"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW_MISSING
+  desc: Splash: pictureflow plugin missing
+  user: core
+  <source>
+    *: "Cover Flow plugin not installed"
+  </source>
+  <dest>
+    *: "Falta el plugin Cover Flow"
+  </dest>
+  <voice>
+    *: "Falta el plugin Cover Flow"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_SONGS
+  desc: Splash: no audio files found for shuffle
+  user: core
+  <source>
+    *: "No songs found in the Music folder"
+  </source>
+  <dest>
+    *: "No hay canciones en la carpeta Music"
+  </dest>
+  <voice>
+    *: "No hay canciones en la carpeta Music"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connected"
+  </source>
+  <dest>
+    *: "Conectado"
+  </dest>
+  <voice>
+    *: "Conectado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTING
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connecting…"
+  </source>
+  <dest>
+    *: "Conectando…"
+  </dest>
+  <voice>
+    *: "Conectando…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAIRING
+  desc: Bluetooth device state / splash
+  user: core
+  <source>
+    *: "Pairing…"
+  </source>
+  <dest>
+    *: "Emparejando…"
+  </dest>
+  <voice>
+    *: "Emparejando…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NOT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Not Connected"
+  </source>
+  <dest>
+    *: "No conectado"
+  </dest>
+  <voice>
+    *: "No conectado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH
+  desc: Bluetooth: start device discovery
+  user: core
+  <source>
+    *: "Search for Devices"
+  </source>
+  <dest>
+    *: "Buscar dispositivos"
+  </dest>
+  <voice>
+    *: "Buscar dispositivos"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCHING
+  desc: Bluetooth: discovery running
+  user: core
+  <source>
+    *: "Searching…"
+  </source>
+  <dest>
+    *: "Buscando…"
+  </dest>
+  <voice>
+    *: "Buscando…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH_AGAIN
+  desc: Bluetooth: restart discovery
+  user: core
+  <source>
+    *: "Search Again"
+  </source>
+  <dest>
+    *: "Buscar de nuevo"
+  </dest>
+  <voice>
+    *: "Buscar de nuevo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NONE_FOUND
+  desc: Bluetooth: discovery found nothing
+  user: core
+  <source>
+    *: "No devices found"
+  </source>
+  <dest>
+    *: "No se encontraron dispositivos"
+  </dest>
+  <voice>
+    *: "No se encontraron dispositivos"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_AUTORECONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Auto-Reconnect"
+  </source>
+  <dest>
+    *: "Reconexión automática"
+  </dest>
+  <voice>
+    *: "Reconexión automática"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAUSE_ON_LOSS
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Pause When Disconnected"
+  </source>
+  <dest>
+    *: "Pausar al desconectar"
+  </dest>
+  <voice>
+    *: "Pausar al desconectar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESUME_ON_CONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Resume When Reconnected"
+  </source>
+  <dest>
+    *: "Reanudar al reconectar"
+  </dest>
+  <voice>
+    *: "Reanudar al reconectar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SYSTEM
+  desc: Bluetooth: open Android settings
+  user: core
+  <source>
+    *: "Advanced (Android)"
+  </source>
+  <dest>
+    *: "Avanzado (Android)"
+  </dest>
+  <voice>
+    *: "Avanzado (Android)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_OFF_HINT
+  desc: Bluetooth: radio is off
+  user: core
+  <source>
+    *: "Turn on Bluetooth to see devices"
+  </source>
+  <dest>
+    *: "Activa Bluetooth para ver dispositivos"
+  </dest>
+  <voice>
+    *: "Activa Bluetooth para ver dispositivos"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FAILED
+  desc: Bluetooth: operation failed
+  user: core
+  <source>
+    *: "Couldn't connect"
+  </source>
+  <dest>
+    *: "No se pudo conectar"
+  </dest>
+  <voice>
+    *: "No se pudo conectar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Connect"
+  </source>
+  <dest>
+    *: "Conectar"
+  </dest>
+  <voice>
+    *: "Conectar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_DISCONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Disconnect"
+  </source>
+  <dest>
+    *: "Desconectar"
+  </dest>
+  <voice>
+    *: "Desconectar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FORGET
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Forget This Device"
+  </source>
+  <dest>
+    *: "Olvidar este dispositivo"
+  </dest>
+  <voice>
+    *: "Olvidar este dispositivo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURNING_ON
+  desc: Bluetooth: radio starting
+  user: core
+  <source>
+    *: "Turning on Bluetooth…"
+  </source>
+  <dest>
+    *: "Activando Bluetooth…"
+  </dest>
+  <voice>
+    *: "Activando Bluetooth…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_UNAVAILABLE
+  desc: Bluetooth: no radio on this player
+  user: core
+  <source>
+    *: "Bluetooth is not available on this player"
+  </source>
+  <dest>
+    *: "Este reproductor no tiene Bluetooth"
+  </dest>
+  <voice>
+    *: "Este reproductor no tiene Bluetooth"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SCROBBLING
+  desc: Last.fm: enable
+  user: core
+  <source>
+    *: "Scrobbling"
+  </source>
+  <dest>
+    *: "Scrobbling"
+  </dest>
+  <voice>
+    *: "Scrobbling"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ACCOUNT
+  desc: Last.fm: account row
+  user: core
+  <source>
+    *: "Account"
+  </source>
+  <dest>
+    *: "Cuenta"
+  </dest>
+  <voice>
+    *: "Cuenta"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOT_SIGNED_IN
+  desc: Last.fm: no session
+  user: core
+  <source>
+    *: "Not signed in"
+  </source>
+  <dest>
+    *: "Sin iniciar sesión"
+  </dest>
+  <voice>
+    *: "Sin iniciar sesión"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_PENDING
+  desc: Last.fm: queue size
+  user: core
+  <source>
+    *: "Waiting to Send"
+  </source>
+  <dest>
+    *: "Pendientes"
+  </dest>
+  <voice>
+    *: "Pendientes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SENT
+  desc: Last.fm: accepted scrobbles
+  user: core
+  <source>
+    *: "Scrobbled"
+  </source>
+  <dest>
+    *: "Enviados"
+  </dest>
+  <voice>
+    *: "Enviados"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LAST_SYNC
+  desc: Last.fm: last successful submit
+  user: core
+  <source>
+    *: "Last Sync"
+  </source>
+  <dest>
+    *: "Última sincronización"
+  </dest>
+  <voice>
+    *: "Última sincronización"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ERROR
+  desc: Last.fm: last error
+  user: core
+  <source>
+    *: "Error"
+  </source>
+  <dest>
+    *: "Error"
+  </dest>
+  <voice>
+    *: "Error"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NEVER
+  desc: Last.fm: never synced
+  user: core
+  <source>
+    *: "Never"
+  </source>
+  <dest>
+    *: "Nunca"
+  </dest>
+  <voice>
+    *: "Nunca"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_JUST_NOW
+  desc: Last.fm: synced < 1 min ago
+  user: core
+  <source>
+    *: "Just now"
+  </source>
+  <dest>
+    *: "Ahora mismo"
+  </dest>
+  <voice>
+    *: "Ahora mismo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE_SUFFIX
+  desc: Last.fm: appended when no network
+  user: core
+  <source>
+    *: " (offline)"
+  </source>
+  <dest>
+    *: " (sin conexión)"
+  </dest>
+  <voice>
+    *: " (sin conexión)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SEND_NOW
+  desc: Last.fm: flush queue
+  user: core
+  <source>
+    *: "Send Scrobbles Now"
+  </source>
+  <dest>
+    *: "Enviar scrobbles ahora"
+  </dest>
+  <voice>
+    *: "Enviar scrobbles ahora"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOWPLAYING
+  desc: Last.fm: now playing updates
+  user: core
+  <source>
+    *: "Now Playing Updates"
+  </source>
+  <dest>
+    *: "Mostrar «Escuchando ahora»"
+  </dest>
+  <voice>
+    *: "Mostrar «Escuchando ahora»"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LOG
+  desc: Last.fm: offline .scrobbler.log
+  user: core
+  <source>
+    *: "Offline Log File"
+  </source>
+  <dest>
+    *: "Archivo de registro offline"
+  </dest>
+  <voice>
+    *: "Archivo de registro offline"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SIGN_OUT
+  desc: Last.fm: confirm sign out
+  user: core
+  <source>
+    *: "Sign out of Last.fm?"
+  </source>
+  <dest>
+    *: "¿Cerrar sesión en Last.fm?"
+  </dest>
+  <voice>
+    *: "¿Cerrar sesión en Last.fm?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SETUP_HINT
+  desc: Last.fm: how to sign in
+  user: core
+  <source>
+    *: "Copy lastfm.cfg into the .rockbox folder"
+  </source>
+  <dest>
+    *: "Copia lastfm.cfg en la carpeta .rockbox"
+  </dest>
+  <voice>
+    *: "Copia lastfm.cfg en la carpeta .rockbox"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE
+  desc: Last.fm: no network
+  user: core
+  <source>
+    *: "No connection. Scrobbles are kept safe."
+  </source>
+  <dest>
+    *: "Sin conexión. Los scrobbles se guardan."
+  </dest>
+  <voice>
+    *: "Sin conexión. Los scrobbles se guardan."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_UNAVAILABLE
+  desc: Last.fm: not supported on this platform
+  user: core
+  <source>
+    *: "Not available on this player"
+  </source>
+  <dest>
+    *: "No disponible en este reproductor"
+  </dest>
+  <voice>
+    *: "No disponible en este reproductor"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_READY
+  desc: DB scan finished, restart needed
+  user: core
+  <source>
+    *: "Your music library is ready"
+  </source>
+  <dest>
+    *: "Tu biblioteca de música está lista"
+  </dest>
+  <voice>
+    *: "Tu biblioteca de música está lista"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RESTART_NOW
+  desc: Ask to restart Rockbox now
+  user: core
+  <source>
+    *: "Restart Rockbox now to finish?"
+  </source>
+  <dest>
+    *: "¿Reiniciar Rockbox ahora para terminar?"
+  </dest>
+  <voice>
+    *: "¿Reiniciar Rockbox ahora para terminar?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BATTERY_PERCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Battery Percentage"
+  </source>
+  <dest>
+    *: "Porcentaje de batería"
+  </dest>
+  <voice>
+    *: "Porcentaje de batería"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_APPEARANCE
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Appearance"
+  </source>
+  <dest>
+    *: "Apariencia"
+  </dest>
+  <voice>
+    *: "Apariencia"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIGHT
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Light"
+  </source>
+  <dest>
+    *: "Claro"
+  </dest>
+  <voice>
+    *: "Claro"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DARK
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Dark"
+  </source>
+  <dest>
+    *: "Oscuro"
+  </dest>
+  <voice>
+    *: "Oscuro"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Accent Colour"
+  </source>
+  <dest>
+    *: "Color de acento"
+  </dest>
+  <voice>
+    *: "Color de acento"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_BLUE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Blue"
+  </source>
+  <dest>
+    *: "Azul"
+  </dest>
+  <voice>
+    *: "Azul"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PINK
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Pink"
+  </source>
+  <dest>
+    *: "Rosa"
+  </dest>
+  <voice>
+    *: "Rosa"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PURPLE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Purple"
+  </source>
+  <dest>
+    *: "Morado"
+  </dest>
+  <voice>
+    *: "Morado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GREEN
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Green"
+  </source>
+  <dest>
+    *: "Verde"
+  </dest>
+  <voice>
+    *: "Verde"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_ORANGE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Orange"
+  </source>
+  <dest>
+    *: "Naranja"
+  </dest>
+  <voice>
+    *: "Naranja"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_RED
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Red"
+  </source>
+  <dest>
+    *: "Rojo"
+  </dest>
+  <voice>
+    *: "Rojo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GRAPHITE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Graphite"
+  </source>
+  <dest>
+    *: "Grafito"
+  </dest>
+  <voice>
+    *: "Grafito"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LETTER_JUMP
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Letter Jump"
+  </source>
+  <dest>
+    *: "Salto por letras"
+  </dest>
+  <voice>
+    *: "Salto por letras"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICKER
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Clicker"
+  </source>
+  <dest>
+    *: "Clic de la rueda"
+  </dest>
+  <voice>
+    *: "Clic de la rueda"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_HINT
+  desc: Y1 Wheel keyboard title when empty
+  user: core
+  <source>
+    *: "Type with the wheel"
+  </source>
+  <dest>
+    *: "Escribe con la rueda"
+  </dest>
+  <voice>
+    *: "Escribe con la rueda"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DONE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Done"
+  </source>
+  <dest>
+    *: "Listo"
+  </dest>
+  <voice>
+    *: "Listo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DELETE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "Borrar"
+  </dest>
+  <voice>
+    *: "Borrar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_SPACE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Space"
+  </source>
+  <dest>
+    *: "Espacio"
+  </dest>
+  <voice>
+    *: "Espacio"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_CASE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Letters"
+  </source>
+  <dest>
+    *: "Letras"
+  </dest>
+  <voice>
+    *: "Letras"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP1
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Scan with your phone"
+  </source>
+  <dest>
+    *: "Escanéalo con el móvil"
+  </dest>
+  <voice>
+    *: "Escanéalo con el móvil"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP2
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Allow access"
+  </source>
+  <dest>
+    *: "Permite el acceso"
+  </dest>
+  <voice>
+    *: "Permite el acceso"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP3
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Wait here a moment"
+  </source>
+  <dest>
+    *: "Espera aquí un momento"
+  </dest>
+  <voice>
+    *: "Espera aquí un momento"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_NEEDS
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Needs internet (Wi-Fi if your ROM has it, or Bluetooth > your phone > Use Phone's Internet) and a Last.fm API key"
+  </source>
+  <dest>
+    *: "Necesita internet (Wi-Fi si tu ROM lo tiene, o Bluetooth > tu móvil > Usar internet del móvil) y una API key de Last.fm"
+  </dest>
+  <voice>
+    *: "Necesita internet (Wi-Fi si tu ROM lo tiene, o Bluetooth > tu móvil > Usar internet del móvil) y una API key de Last.fm"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_SCANNING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Building your library…"
+  </source>
+  <dest>
+    *: "Preparando tu biblioteca…"
+  </dest>
+  <voice>
+    *: "Preparando tu biblioteca…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_FINISHING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Finishing your library…"
+  </source>
+  <dest>
+    *: "Terminando tu biblioteca…"
+  </dest>
+  <voice>
+    *: "Terminando tu biblioteca…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ALBUM
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Album"
+  </source>
+  <dest>
+    *: "Ir al álbum"
+  </dest>
+  <voice>
+    *: "Ir al álbum"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ARTIST
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Artist"
+  </source>
+  <dest>
+    *: "Ir al artista"
+  </dest>
+  <voice>
+    *: "Ir al artista"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_UP_NEXT
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Up Next"
+  </source>
+  <dest>
+    *: "A continuación"
+  </dest>
+  <voice>
+    *: "A continuación"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVE
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Love on Last.fm"
+  </source>
+  <dest>
+    *: "Me gusta en Last.fm"
+  </dest>
+  <voice>
+    *: "Me gusta en Last.fm"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVED
+  desc: Y1 Wheel splash
+  user: core
+  <source>
+    *: "Loved"
+  </source>
+  <dest>
+    *: "Te gusta"
+  </dest>
+  <voice>
+    *: "Te gusta"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_NEXT
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Next"
+  </source>
+  <dest>
+    *: "Reproducir a continuación"
+  </dest>
+  <voice>
+    *: "Reproducir a continuación"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_LATER
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Later"
+  </source>
+  <dest>
+    *: "Reproducir después"
+  </dest>
+  <voice>
+    *: "Reproducir después"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_OF
+  desc: Y1 Wheel '3 of 12' in Now Playing
+  user: core
+  <source>
+    *: "of"
+  </source>
+  <dest>
+    *: "de"
+  </dest>
+  <voice>
+    *: "de"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SCRUBBING
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Scrubbing"
+  </source>
+  <dest>
+    *: "Buscando en la canción"
+  </dest>
+  <voice>
+    *: "Buscando en la canción"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "Letra"
+  </dest>
+  <voice>
+    *: "Letra"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "No lyrics for this song"
+  </source>
+  <dest>
+    *: "Esta canción no tiene letra"
+  </dest>
+  <voice>
+    *: "Esta canción no tiene letra"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS_SEARCHING
+  desc: Y1 Wheel lyrics
+  user: core
+  <source>
+    *: "Looking for lyrics…"
+  </source>
+  <dest>
+    *: "Buscando la letra…"
+  </dest>
+  <voice>
+    *: "Buscando la letra…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_NEXT
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Playing next"
+  </source>
+  <dest>
+    *: "Se reproducirá a continuación"
+  </dest>
+  <voice>
+    *: "Se reproducirá a continuación"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Added to Up Next"
+  </source>
+  <dest>
+    *: "Añadida a la cola"
+  </dest>
+  <voice>
+    *: "Añadida a la cola"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ANY
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Any"
+  </source>
+  <dest>
+    *: "Cualquiera"
+  </dest>
+  <voice>
+    *: "Cualquiera"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send via Bluetooth"
+  </source>
+  <dest>
+    *: "Enviar por Bluetooth"
+  </dest>
+  <voice>
+    *: "Enviar por Bluetooth"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ALL
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send whole list via Bluetooth"
+  </source>
+  <dest>
+    *: "Enviar toda la lista por Bluetooth"
+  </dest>
+  <voice>
+    *: "Enviar toda la lista por Bluetooth"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_1
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending… %d%%"
+  </source>
+  <dest>
+    *: "Enviando… %d%%"
+  </dest>
+  <voice>
+    *: "Enviando… %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_N
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending %d of %d · %d%%"
+  </source>
+  <dest>
+    *: "Enviando %d de %d · %d%%"
+  </dest>
+  <voice>
+    *: "Enviando %d de %d · %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ACCEPT
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Accept the file on the other device"
+  </source>
+  <dest>
+    *: "Acepta el archivo en el otro dispositivo"
+  </dest>
+  <voice>
+    *: "Acepta el archivo en el otro dispositivo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_DONE
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sent"
+  </source>
+  <dest>
+    *: "Enviado"
+  </dest>
+  <voice>
+    *: "Enviado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_FAILED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Couldn't send. Is Bluetooth on and the device close?"
+  </source>
+  <dest>
+    *: "No se pudo enviar. ¿Tiene el Bluetooth activado y está cerca?"
+  </dest>
+  <voice>
+    *: "No se pudo enviar. ¿Tiene el Bluetooth activado y está cerca?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_NO_TARGETS
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Pair your phone or computer first (Bluetooth)"
+  </source>
+  <dest>
+    *: "Empareja antes tu móvil u ordenador (Bluetooth)"
+  </dest>
+  <voice>
+    *: "Empareja antes tu móvil u ordenador (Bluetooth)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_REJECTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "The other device declined"
+  </source>
+  <dest>
+    *: "El otro dispositivo lo rechazó"
+  </dest>
+  <voice>
+    *: "El otro dispositivo lo rechazó"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_TO
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send to"
+  </source>
+  <dest>
+    *: "Enviar a"
+  </dest>
+  <voice>
+    *: "Enviar a"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_UNSUPPORTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "This player can't send files over Bluetooth"
+  </source>
+  <dest>
+    *: "Este reproductor no puede enviar archivos por Bluetooth"
+  </dest>
+  <voice>
+    *: "Este reproductor no puede enviar archivos por Bluetooth"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURN_ON
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Turn on Bluetooth?"
+  </source>
+  <dest>
+    *: "¿Activar el Bluetooth?"
+  </dest>
+  <voice>
+    *: "¿Activar el Bluetooth?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CONTINUE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Continue Listening"
+  </source>
+  <dest>
+    *: "Seguir escuchando"
+  </dest>
+  <voice>
+    *: "Seguir escuchando"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CREATE_LIST
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Create List"
+  </source>
+  <dest>
+    *: "Crear lista"
+  </dest>
+  <voice>
+    *: "Crear lista"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DAILY_MIX
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Daily Mix"
+  </source>
+  <dest>
+    *: "Tu mix diario"
+  </dest>
+  <voice>
+    *: "Tu mix diario"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Decade"
+  </source>
+  <dest>
+    *: "Década"
+  </dest>
+  <voice>
+    *: "Década"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Decades"
+  </source>
+  <dest>
+    *: "Décadas"
+  </dest>
+  <voice>
+    *: "Décadas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EQ_FINE_TUNE
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Fine Tune…"
+  </source>
+  <dest>
+    *: "Ajuste fino…"
+  </dest>
+  <voice>
+    *: "Ajuste fino…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_AMBIENT
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Ambient & Chill"
+  </source>
+  <dest>
+    *: "Ambient y chill"
+  </dest>
+  <voice>
+    *: "Ambient y chill"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_CLASSICAL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Classical"
+  </source>
+  <dest>
+    *: "Clásica"
+  </dest>
+  <voice>
+    *: "Clásica"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_DANCE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Dance"
+  </source>
+  <dest>
+    *: "Dance"
+  </dest>
+  <voice>
+    *: "Dance"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ELECTRONIC
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Electronic"
+  </source>
+  <dest>
+    *: "Electrónica"
+  </dest>
+  <voice>
+    *: "Electrónica"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_FOLK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Folk & Acoustic"
+  </source>
+  <dest>
+    *: "Folk y acústica"
+  </dest>
+  <voice>
+    *: "Folk y acústica"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HARD
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Metal & Punk"
+  </source>
+  <dest>
+    *: "Metal y punk"
+  </dest>
+  <voice>
+    *: "Metal y punk"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HIPHOP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Hip-Hop"
+  </source>
+  <dest>
+    *: "Hip-hop"
+  </dest>
+  <voice>
+    *: "Hip-hop"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_INDIE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Indie & Alternative"
+  </source>
+  <dest>
+    *: "Indie y alternativa"
+  </dest>
+  <voice>
+    *: "Indie y alternativa"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_JAZZ
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Jazz"
+  </source>
+  <dest>
+    *: "Jazz"
+  </dest>
+  <voice>
+    *: "Jazz"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_LATIN
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Latin"
+  </source>
+  <dest>
+    *: "Latina"
+  </dest>
+  <voice>
+    *: "Latina"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_OTHER
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Other"
+  </source>
+  <dest>
+    *: "Otros"
+  </dest>
+  <voice>
+    *: "Otros"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_POP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Pop"
+  </source>
+  <dest>
+    *: "Pop"
+  </dest>
+  <voice>
+    *: "Pop"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ROCK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Rock"
+  </source>
+  <dest>
+    *: "Rock"
+  </dest>
+  <voice>
+    *: "Rock"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soul, R&B & Blues"
+  </source>
+  <dest>
+    *: "Soul, R&B y blues"
+  </dest>
+  <voice>
+    *: "Soul, R&B y blues"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUNDTRACK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soundtracks"
+  </source>
+  <dest>
+    *: "Bandas sonoras"
+  </dest>
+  <voice>
+    *: "Bandas sonoras"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAVOURITES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Favourites"
+  </source>
+  <dest>
+    *: "Tus favoritas"
+  </dest>
+  <voice>
+    *: "Tus favoritas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FORGOTTEN
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Forgotten Gems"
+  </source>
+  <dest>
+    *: "Joyas olvidadas"
+  </dest>
+  <voice>
+    *: "Joyas olvidadas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FOR_YOU
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "For You"
+  </source>
+  <dest>
+    *: "Para ti"
+  </dest>
+  <voice>
+    *: "Para ti"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GENRE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Genre"
+  </source>
+  <dest>
+    *: "Género"
+  </dest>
+  <voice>
+    *: "Género"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LENGTH
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Length"
+  </source>
+  <dest>
+    *: "Duración"
+  </dest>
+  <voice>
+    *: "Duración"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIST_EMPTY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Nothing here yet"
+  </source>
+  <dest>
+    *: "Aquí no hay nada todavía"
+  </dest>
+  <voice>
+    *: "Aquí no hay nada todavía"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LONG_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Long (6 min +)"
+  </source>
+  <dest>
+    *: "Largas (más de 6 min)"
+  </dest>
+  <voice>
+    *: "Largas (más de 6 min)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MAKING_MIX
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Making your mix…"
+  </source>
+  <dest>
+    *: "Creando tu mix…"
+  </dest>
+  <voice>
+    *: "Creando tu mix…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MIXTAPE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Mixtape"
+  </source>
+  <dest>
+    *: "Mixtape"
+  </dest>
+  <voice>
+    *: "Mixtape"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOODS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Moods"
+  </source>
+  <dest>
+    *: "Estados de ánimo"
+  </dest>
+  <voice>
+    *: "Estados de ánimo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_CALM
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Calm"
+  </source>
+  <dest>
+    *: "Calma"
+  </dest>
+  <voice>
+    *: "Calma"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_ENERGY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Energy"
+  </source>
+  <dest>
+    *: "Energía"
+  </dest>
+  <voice>
+    *: "Energía"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_FOCUS
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Focus"
+  </source>
+  <dest>
+    *: "Concentración"
+  </dest>
+  <voice>
+    *: "Concentración"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_MELANCHOLY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Melancholy"
+  </source>
+  <dest>
+    *: "Melancolía"
+  </dest>
+  <voice>
+    *: "Melancolía"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_PARTY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Party"
+  </source>
+  <dest>
+    *: "Fiesta"
+  </dest>
+  <voice>
+    *: "Fiesta"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_DOWN
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Down"
+  </source>
+  <dest>
+    *: "Bajar"
+  </dest>
+  <voice>
+    *: "Bajar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_UP
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Up"
+  </source>
+  <dest>
+    *: "Subir"
+  </dest>
+  <voice>
+    *: "Subir"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEED_LIBRARY
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Your library is still being prepared"
+  </source>
+  <dest>
+    *: "Tu biblioteca aún se está preparando"
+  </dest>
+  <voice>
+    *: "Tu biblioteca aún se está preparando"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEVER_PLAYED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Never Played"
+  </source>
+  <dest>
+    *: "Nunca escuchadas"
+  </dest>
+  <voice>
+    *: "Nunca escuchadas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOTHING_PLAYING
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Nothing is playing"
+  </source>
+  <dest>
+    *: "No se está reproduciendo nada"
+  </dest>
+  <voice>
+    *: "No se está reproduciendo nada"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOW_PLAYING
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Now Playing"
+  </source>
+  <dest>
+    *: "Ahora suena"
+  </dest>
+  <voice>
+    *: "Ahora suena"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_PLAYLISTS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "No playlists yet. Save one from any mix."
+  </source>
+  <dest>
+    *: "Aún no hay playlists. Guarda una desde cualquier mix."
+  </dest>
+  <voice>
+    *: "Aún no hay playlists. Guarda una desde cualquier mix."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PICKS_TODAY
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picked for today"
+  </source>
+  <dest>
+    *: "Elegidas para hoy"
+  </dest>
+  <voice>
+    *: "Elegidas para hoy"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Play"
+  </source>
+  <dest>
+    *: "Reproducir"
+  </dest>
+  <voice>
+    *: "Reproducir"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAYLIST_SAVED
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Saved to Playlists"
+  </source>
+  <dest>
+    *: "Guardada en Playlists"
+  </dest>
+  <voice>
+    *: "Guardada en Playlists"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PREPARING_PICKS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picking songs for you…"
+  </source>
+  <dest>
+    *: "Eligiendo canciones para ti…"
+  </dest>
+  <voice>
+    *: "Eligiendo canciones para ti…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Queue"
+  </source>
+  <dest>
+    *: "Cola"
+  </dest>
+  <voice>
+    *: "Cola"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENTLY_ADDED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Added"
+  </source>
+  <dest>
+    *: "Añadidas recientemente"
+  </dest>
+  <voice>
+    *: "Añadidas recientemente"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENT_ALBUMS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Played Albums"
+  </source>
+  <dest>
+    *: "Álbumes escuchados hace poco"
+  </dest>
+  <voice>
+    *: "Álbumes escuchados hace poco"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REMOVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Remove"
+  </source>
+  <dest>
+    *: "Quitar"
+  </dest>
+  <voice>
+    *: "Quitar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REPLACE_PLAYLIST
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Replace the playlist with that name?"
+  </source>
+  <dest>
+    *: "¿Reemplazar la playlist con ese nombre?"
+  </dest>
+  <voice>
+    *: "¿Reemplazar la playlist con ese nombre?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SAVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Save"
+  </source>
+  <dest>
+    *: "Guardar"
+  </dest>
+  <voice>
+    *: "Guardar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHORT_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Short (under 3:30)"
+  </source>
+  <dest>
+    *: "Cortas (menos de 3:30)"
+  </dest>
+  <voice>
+    *: "Cortas (menos de 3:30)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Shuffle"
+  </source>
+  <dest>
+    *: "Aleatorio"
+  </dest>
+  <voice>
+    *: "Aleatorio"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Similar Songs"
+  </source>
+  <dest>
+    *: "Canciones parecidas"
+  </dest>
+  <voice>
+    *: "Canciones parecidas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR_TO
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Similar To"
+  </source>
+  <dest>
+    *: "Parecidas a"
+  </dest>
+  <voice>
+    *: "Parecidas a"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_OFF
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Sleep timer off"
+  </source>
+  <dest>
+    *: "Temporizador desactivado"
+  </dest>
+  <voice>
+    *: "Temporizador desactivado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_SET
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Music stops in %d min"
+  </source>
+  <dest>
+    *: "La música se parará en %d min"
+  </dest>
+  <voice>
+    *: "La música se parará en %d min"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SMART_LIST
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Smart List"
+  </source>
+  <dest>
+    *: "Lista inteligente"
+  </dest>
+  <voice>
+    *: "Lista inteligente"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONG
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "song"
+  </source>
+  <dest>
+    *: "canción"
+  </dest>
+  <voice>
+    *: "canción"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONGS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "songs"
+  </source>
+  <dest>
+    *: "canciones"
+  </dest>
+  <voice>
+    *: "canciones"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SOUND
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Sound"
+  </source>
+  <dest>
+    *: "Sonido"
+  </dest>
+  <voice>
+    *: "Sonido"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WHICH_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Songs"
+  </source>
+  <dest>
+    *: "Canciones"
+  </dest>
+  <voice>
+    *: "Canciones"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Stats"
+  </source>
+  <dest>
+    *: "Tus estadísticas"
+  </dest>
+  <voice>
+    *: "Tus estadísticas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ALLTIME
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "All Time"
+  </source>
+  <dest>
+    *: "Desde siempre"
+  </dest>
+  <voice>
+    *: "Desde siempre"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ARTISTS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "artists"
+  </source>
+  <dest>
+    *: "artistas"
+  </dest>
+  <voice>
+    *: "artistas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_BY_MONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Month by Month"
+  </source>
+  <dest>
+    *: "Mes a mes"
+  </dest>
+  <voice>
+    *: "Mes a mes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_EMPTY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Play some music and your stats will appear here"
+  </source>
+  <dest>
+    *: "Escucha algo de música y aquí aparecerán tus estadísticas"
+  </dest>
+  <voice>
+    *: "Escucha algo de música y aquí aparecerán tus estadísticas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_HISTORY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Recently Played"
+  </source>
+  <dest>
+    *: "Escuchado recientemente"
+  </dest>
+  <voice>
+    *: "Escuchado recientemente"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_MINUTES
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Time Listened"
+  </source>
+  <dest>
+    *: "Tiempo escuchado"
+  </dest>
+  <voice>
+    *: "Tiempo escuchado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PERIOD
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Period"
+  </source>
+  <dest>
+    *: "Periodo"
+  </dest>
+  <voice>
+    *: "Periodo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Plays"
+  </source>
+  <dest>
+    *: "Reproducciones"
+  </dest>
+  <voice>
+    *: "Reproducciones"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "plays"
+  </source>
+  <dest>
+    *: "reproducciones"
+  </dest>
+  <voice>
+    *: "reproducciones"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_SUMMARY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Summary"
+  </source>
+  <dest>
+    *: "Tu resumen"
+  </dest>
+  <voice>
+    *: "Tu resumen"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISMONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Month"
+  </source>
+  <dest>
+    *: "Este mes"
+  </dest>
+  <voice>
+    *: "Este mes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISYEAR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Year"
+  </source>
+  <dest>
+    *: "Este año"
+  </dest>
+  <voice>
+    *: "Este año"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ALBUMS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Albums"
+  </source>
+  <dest>
+    *: "Álbumes más escuchados"
+  </dest>
+  <voice>
+    *: "Álbumes más escuchados"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ARTISTS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Artists"
+  </source>
+  <dest>
+    *: "Artistas más escuchados"
+  </dest>
+  <voice>
+    *: "Artistas más escuchados"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_SONGS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Songs"
+  </source>
+  <dest>
+    *: "Canciones más escuchadas"
+  </dest>
+  <voice>
+    *: "Canciones más escuchadas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_ARTIST
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your artist"
+  </source>
+  <dest>
+    *: "Tu artista"
+  </dest>
+  <voice>
+    *: "Tu artista"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_HOUR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your favourite hour"
+  </source>
+  <dest>
+    *: "Tu hora favorita"
+  </dest>
+  <voice>
+    *: "Tu hora favorita"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_SONG
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your song"
+  </source>
+  <dest>
+    *: "Tu canción"
+  </dest>
+  <voice>
+    *: "Tu canción"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOU_LISTENED
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "You listened to"
+  </source>
+  <dest>
+    *: "Has escuchado"
+  </dest>
+  <voice>
+    *: "Has escuchado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Theme"
+  </source>
+  <dest>
+    *: "Tema"
+  </dest>
+  <voice>
+    *: "Tema"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALL
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Install Theme from .zip…"
+  </source>
+  <dest>
+    *: "Instalar tema desde .zip…"
+  </dest>
+  <voice>
+    *: "Instalar tema desde .zip…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_SCALE
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Scale 320x240 Themes"
+  </source>
+  <dest>
+    *: "Escalar temas de 320x240"
+  </dest>
+  <voice>
+    *: "Escalar temas de 320x240"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_KEEP
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Keep this theme?"
+  </source>
+  <dest>
+    *: "¿Mantener este tema?"
+  </dest>
+  <voice>
+    *: "¿Mantener este tema?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_BROKEN
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "This theme couldn't be loaded"
+  </source>
+  <dest>
+    *: "No se pudo cargar este tema"
+  </dest>
+  <voice>
+    *: "No se pudo cargar este tema"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLING
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installing…"
+  </source>
+  <dest>
+    *: "Instalando…"
+  </dest>
+  <voice>
+    *: "Instalando…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NO_ZIPS
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Copy a theme .zip to the player (main folder, Download or Themes) first"
+  </source>
+  <dest>
+    *: "Copia antes el .zip del tema al reproductor (carpeta principal, Download o Themes)"
+  </dest>
+  <voice>
+    *: "Copia antes el .zip del tema al reproductor (carpeta principal, Download o Themes)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NOT_A_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "That .zip isn't a Rockbox theme"
+  </source>
+  <dest>
+    *: "Ese .zip no es un tema de Rockbox"
+  </dest>
+  <voice>
+    *: "Ese .zip no es un tema de Rockbox"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLED
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installed: %s"
+  </source>
+  <dest>
+    *: "Instalado: %s"
+  </dest>
+  <voice>
+    *: "Instalado: %s"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Use Phone's Internet"
+  </source>
+  <dest>
+    *: "Usar internet del móvil"
+  </dest>
+  <voice>
+    *: "Usar internet del móvil"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER_HINT
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Turn on Bluetooth tethering on the phone first"
+  </source>
+  <dest>
+    *: "Activa antes el anclaje por Bluetooth en el móvil"
+  </dest>
+  <voice>
+    *: "Activa antes el anclaje por Bluetooth en el móvil"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_INTERNET
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Internet"
+  </source>
+  <dest>
+    *: "Internet"
+  </dest>
+  <voice>
+    *: "Internet"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_GENRES
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Genres"
+  </source>
+  <dest>
+    *: "Géneros"
+  </dest>
+  <voice>
+    *: "Géneros"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_COMPOSERS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Composers"
+  </source>
+  <dest>
+    *: "Compositores"
+  </dest>
+  <voice>
+    *: "Compositores"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_YEARS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Years"
+  </source>
+  <dest>
+    *: "Años"
+  </dest>
+  <voice>
+    *: "Años"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_MORE
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "More"
+  </source>
+  <dest>
+    *: "Más"
+  </dest>
+  <voice>
+    *: "Más"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_TRACK_ARTISTS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Track Artists"
+  </source>
+  <dest>
+    *: "Artistas de las canciones"
+  </dest>
+  <voice>
+    *: "Artistas de las canciones"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESET_WARN
+  desc: Y1 Wheel Y1: confirm resetting the Bluetooth stack
+  user: core
+  <source>
+    *: "Forget all devices and restart Bluetooth?"
+  </source>
+  <dest>
+    *: "¿Olvidar todos los dispositivos y reiniciar Bluetooth?"
+  </dest>
+  <voice>
+    *: "¿Olvidar todos los dispositivos y reiniciar Bluetooth?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_WIFI_HINT
+  desc: Y1 Wheel Last.fm: Wi-Fi turns on by itself to send
+  user: core
+  <source>
+    *: "Wi-Fi switches on briefly to send (wifi.cfg)"
+  </source>
+  <dest>
+    *: "El Wi‑Fi se enciende un momento para enviar (wifi.cfg)"
+  </dest>
+  <voice>
+    *: "El Wi‑Fi se enciende un momento para enviar (wifi.cfg)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_DOUBLE_WARN
+  desc: Y1 Wheel Last.fm: warning when the plugin also uploads the same log
+  user: core
+  <source>
+    *: "The Last.fm Scrobbler plugin can also upload .scrobbler.log: use one or the other"
+  </source>
+  <dest>
+    *: "El plugin Last.fm Scrobbler también puede subir .scrobbler.log: usa solo uno"
+  </dest>
+  <voice>
+    *: "El plugin Last.fm Scrobbler también puede subir .scrobbler.log: usa solo uno"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_TAPTIC_ENGINE_MODE
+  desc: in keyclick settings menu
+  user: core
+  <source>
+    *: "Taptic Engine Mode"
+  </source>
+  <dest>
+    *: "Modo Taptic Engine"
+  </dest>
+  <voice>
+    *: "Modo Taptic Engine"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_VIBRATIONS
+  desc: wheel vibration settings 
+  user: core
+  <source>
+    *: "Wheel Vibration Intensity"
+  </source>
+  <dest>
+    *: "Intensidad de vibración de la rueda"
+  </dest>
+  <voice>
+    *: "Intensidad de vibración de la rueda"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_RESTART_ROCKBOX
+  desc: Main menu item to restart Rockbox on Android
+  user: core
+  <source>
+    *: "Restart Rockbox"
+  </source>
+  <dest>
+    *: "Reiniciar Rockbox"
+  </dest>
+  <voice>
+    *: "Reiniciar Rockbox"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_UPDATE_ROCKBOX
+  desc: Main menu item to update the firmware on Android
+  user: core
+  <source>
+    *: "Firmware Update"
+  </source>
+  <dest>
+    *: "Actualizar firmware"
+  </dest>
+  <voice>
+    *: "Actualizar firmware"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SYSTEM_SETTINGS
+  desc: Menu item to launch system settings
+  user: core
+  <source>
+    *: "Android System Settings"
+  </source>
+  <dest>
+    *: "Ajustes del sistema Android"
+  </dest>
+  <voice>
+    *: "Ajustes del sistema Android"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_SETTINGS
+  desc: Bluetooth menu item
+  user: core
+  <source>
+    *: "Bluetooth Settings"
+  </source>
+  <dest>
+    *: "Ajustes de Bluetooth"
+  </dest>
+  <voice>
+    *: "Ajustes de Bluetooth"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_RESET
+  desc: Reset Bluetooth menu item
+  user: core
+  <source>
+    *: "Reset Bluetooth Devices"
+  </source>
+  <dest>
+    *: "Restablecer dispositivos Bluetooth"
+  </dest>
+  <voice>
+    *: "Restablecer dispositivos Bluetooth"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SWITCH_FIRMWARE
+  desc: Switch to Stock item
+  user: core
+  <source>
+    *: "Switch to Stock Firmware"
+  </source>
+  <dest>
+    *: "Cambiar al firmware original"
+  </dest>
+  <voice>
+    *: "Cambiar al firmware original"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BLUETOOTH
+  desc: Y1 Wheel Bluetooth screen title and power row
+  user: core
+  <source>
+    *: "Bluetooth"
+  </source>
+  <dest>
+    *: "Bluetooth"
+  </dest>
+  <voice>
+    *: "Bluetooth"
+  </voice>
+</phrase>

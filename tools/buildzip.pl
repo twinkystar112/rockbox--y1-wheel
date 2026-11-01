@@ -398,6 +398,16 @@ sub buildzip {
         }
     }
 
+    # Y1 Wheel: the default theme needs its ready-made anti-aliased fonts
+    # (Inter + icon/row fonts), so ship them even in builds without fonts
+    if($bitmap && glob("$ROOT/fonts/prebuilt/*.fnt")) {
+        glob_mkdir("$temp_dir/fonts");
+        foreach my $fnt (glob("$ROOT/fonts/prebuilt/*.fnt")) {
+            copy($fnt, "$temp_dir/fonts/");
+        }
+        copy("$ROOT/fonts/prebuilt/LICENSE-Inter.txt", "$temp_dir/fonts/LICENSE-Inter.txt");
+    }
+
     # create the file so the database indexer skips this folder
     open(IGNORE, ">$temp_dir/database.ignore")  || die "can't open database.ignore";
     close(IGNORE);

@@ -63,6 +63,9 @@
 #include "playlist_viewer.h"
 #include "playlist_catalog.h"
 #include "menus/exported_menus.h"
+#include "wheel/wheel_screens.h"
+#include "wheel/wheel_connect.h"
+#include "wheel/wheel_listview.h"
 #ifdef HAVE_RTC_ALARM
 #include "rtc.h"
 #endif
@@ -130,7 +133,12 @@ static int browser(void* param)
     {
         case GO_TO_FILEBROWSER:
             filter = global_settings.dirfilter;
-            if (global_settings.browse_current &&
+            if (wheel_browse_target[0])
+            {   /* Y1 Wheel: "Go to Album/Artist" from Now Playing */
+                strcpy(folder, wheel_browse_target);
+                wheel_browse_target[0] = '\0';
+            }
+            else if (global_settings.browse_current &&
                     last_screen == GO_TO_WPS &&
                     current_track_path[0])
             {
@@ -214,13 +222,8 @@ static int browser(void* param)
                     if (!reinit_attempted && !stat->ready &&
                         stat->processed_entries == 0 && stat->commit_step == 0)
                     {
-                        /* Prompt the user */
+                        /* Y1 Wheel: no question, the library just builds */
                         reinit_attempted = true;
-                        static const char *lines[]={
-                            ID2P(LANG_TAGCACHE_BUSY), ID2P(LANG_TAGCACHE_FORCE_UPDATE)};
-                        static const struct text_message message={lines, 2};
-                        if(gui_syncyesno_run(&message, NULL, NULL) == YESNO_NO)
-                            break;
                         clear_screen_buffer(false);
 
                         /* Start initialisation */
@@ -410,6 +413,19 @@ static int radio(void* param)
 }
 #endif
 
+/* Y1 Wheel: like miscscrn() but lets screens picked inside Extras
+ * (Files, Shortcuts, ...) through to the root loop */
+static int extrasscrn(void * param)
+{
+    const struct menu_item_ex *menu = (const struct menu_item_ex*)param;
+    int result = do_menu(menu, NULL, NULL, false);
+    if (result >= 0 && result != GO_TO_WHEEL_EXTRAS)
+        return result;
+    if (result == GO_TO_PREVIOUS_MUSIC)
+        return result;
+    return GO_TO_ROOT;
+}
+
 static int miscscrn(void * param)
 {
     const struct menu_item_ex *menu = (const struct menu_item_ex*)param;
@@ -430,6 +446,11 @@ static int miscscrn(void * param)
 static int playlist_view_catalog(void * param)
 {
     (void)param;
+    /* Y1 Wheel: playlists with song counts / hours and the playlist view */
+    {
+        int r = wheel_playlists_screen();
+        return r ? r : GO_TO_ROOT;
+    }
     push_current_activity(ACTIVITY_PLAYLISTBROWSER);
     bool item_was_selected = catalog_view_playlists();
 
@@ -446,6 +467,9 @@ static int playlist_view(void * param)
 {
     (void)param;
     int val;
+    /* Y1 Wheel: "Up Next" is the playlist view of the queue */
+    if (playlist_amount() > 0)
+        return wheel_queue_view();
 
     val = playlist_viewer();
     switch (val)
@@ -483,6 +507,7 @@ extern struct menu_item_ex
 #ifdef INNIOASIS_Y1
 extern struct menu_item_ex fm_radio_app_item;
 #endif
+extern const struct menu_item_ex wheel_extras_menu;
 static const struct root_items items[] = {
     [GO_TO_FILEBROWSER] =   { browser, (void*)GO_TO_FILEBROWSER, &file_menu},
 #ifdef HAVE_TAGCACHE
@@ -507,6 +532,7 @@ static const struct root_items items[] = {
     [GO_TO_PLAYLIST_VIEWER] = { playlist_view, NULL, &playlist_options },
     [GO_TO_SYSTEM_SCREEN] = { miscscrn, &info_menu, &system_menu },
     [GO_TO_SHORTCUTMENU] = { do_shortcut_menu, NULL, NULL },
+    [GO_TO_WHEEL_EXTRAS] = { extrasscrn, (void*)&wheel_extras_menu, NULL },
 #ifdef INNIOASIS_Y1
     [GO_TO_FM_RADIO_APP] = { miscscrn, &fm_radio_app_item, NULL },
 #endif
@@ -558,12 +584,63 @@ MENUITEM_RETURNVALUE(playlists, ID2P(LANG_PLAYLISTS), GO_TO_PLAYLISTS_SCREEN,
 MENUITEM_RETURNVALUE(system_menu_, ID2P(LANG_SYSTEM), GO_TO_SYSTEM_SCREEN,
                      NULL, Icon_System_menu);
 
+/* ---- Y1 Wheel: music-first main menu ---- */
+#ifdef HAVE_TAGCACHE
+MENUITEM_RETURNVALUE(wheel_music, ID2P(LANG_WHEEL_MUSIC), GO_TO_DBBROWSER,
+                        NULL, Icon_Audio);
+#endif
+MENUITEM_FUNCTION(wheel_foryou_item, MENU_FUNC_CHECK_RETVAL,
+                  ID2P(LANG_WHEEL_FOR_YOU), wheel_foryou_screen, NULL, Icon_NOICON);
+MENUITEM_FUNCTION(wheel_coverflow_item, MENU_FUNC_CHECK_RETVAL,
+                  ID2P(LANG_WHEEL_COVERFLOW), wheel_coverflow, NULL, Icon_NOICON);
+MENUITEM_FUNCTION(wheel_shuffle_item, MENU_FUNC_CHECK_RETVAL,
+                  ID2P(LANG_WHEEL_SHUFFLE_SONGS), wheel_shuffle_songs, NULL, Icon_NOICON);
+static int wheel_bt_item_callback(int action, const struct menu_item_ex *this_item,
+                                  struct gui_synclist *this_list)
+{
+    (void)this_item; (void)this_list;
+    if (action == ACTION_REQUEST_MENUITEM && !wheel_bt_available())
+        return ACTION_EXIT_MENUITEM;
+    return action;
+}
+MENUITEM_FUNCTION(wheel_bt_item, 0, ID2P(LANG_WHEEL_BLUETOOTH),
+                  wheel_bluetooth_screen, wheel_bt_item_callback, Icon_NOICON);
+MENUITEM_FUNCTION(wheel_lastfm_item, 0, "Last.fm",
+                  wheel_lastfm_screen, NULL, Icon_NOICON);
+
+MAKE_MENU(wheel_extras_menu, ID2P(LANG_WHEEL_EXTRAS), NULL, Icon_NOICON,
+          &file_browser,
+          &wheel_lastfm_item,
+          &rocks_browser,
+          &shortcut_menu,
+          &bookmarks,
+#ifdef INNIOASIS_Y1
+          &fm_radio_app_item,
+#endif
+#ifdef HAVE_RECORDING
+          &rec,
+#endif
+#if CONFIG_TUNER
+          &fm,
+#endif
+          &system_menu_);
+MENUITEM_RETURNVALUE(wheel_extras_item, ID2P(LANG_WHEEL_EXTRAS), GO_TO_WHEEL_EXTRAS,
+                        NULL, Icon_NOICON);
+
 struct menu_item_ex root_menu_;
 static struct menu_callback_with_desc root_menu_desc = {
         item_callback, ID2P(LANG_ROCKBOX_TITLE), Icon_Rockbox };
 
 static struct menu_table menu_table[] = {
-    /* Order here represents the default ordering */
+#ifdef HAVE_TAGCACHE
+    { "music", &wheel_music },
+#endif
+    { "foryou", &wheel_foryou_item },
+    { "coverflow", &wheel_coverflow_item },
+    { "shuffle", &wheel_shuffle_item },
+    { "bluetooth", &wheel_bt_item },
+    { "extras", &wheel_extras_item },
+    { "lastfm", &wheel_lastfm_item },
     { "bookmarks", &bookmarks },
     { "files", &file_browser },
 #ifdef HAVE_TAGCACHE
@@ -586,6 +663,16 @@ static struct menu_table menu_table[] = {
     { "shortcuts", &shortcut_menu },
 };
 #define MAX_MENU_ITEMS (sizeof(menu_table) / sizeof(struct menu_table))
+
+/* Y1 Wheel default main menu: music first, tools tucked into Extras.
+ * Everything in menu_table can still be re-added with "root menu order". */
+static const char * const wheel_default_order[] = {
+#ifdef HAVE_TAGCACHE
+    "foryou", "music",
+#endif
+    "coverflow", "shuffle", "playlists", "wps",
+    "bluetooth", "settings", "extras",
+};
 static struct menu_item_ex *root_menu__[MAX_MENU_ITEMS];
 
 struct menu_table *root_menu_get_options(int *nb_options)
@@ -668,11 +755,19 @@ void root_menu_set_default(void* setting, void* defaultval)
     root_menu_.submenus = (const struct menu_item_ex **)&root_menu__;
     root_menu_.callback_and_desc = &root_menu_desc;
 
-    for (i=0; i<MAX_MENU_ITEMS; i++)
+    unsigned count = 0, j;
+    for (i = 0; i < ARRAYLEN(wheel_default_order); i++)
     {
-        root_menu__[i] = (struct menu_item_ex *)menu_table[i].item;
+        for (j = 0; j < MAX_MENU_ITEMS; j++)
+        {
+            if (!strcmp(wheel_default_order[i], menu_table[j].string))
+            {
+                root_menu__[count++] = (struct menu_item_ex *)menu_table[j].item;
+                break;
+            }
+        }
     }
-    root_menu_.flags |= MENU_ITEM_COUNT(MAX_MENU_ITEMS);
+    root_menu_.flags |= MENU_ITEM_COUNT(count);
     *(bool*)setting = false;
 }
 
@@ -691,6 +786,16 @@ static int item_callback(int action,
     {
         case ACTION_TREE_STOP:
             return ACTION_REDRAW;
+        case ACTION_NONE:
+            /* Y1 Wheel: once a second while the main menu is idle */
+            if (this_item == &root_menu_)
+            {
+                bool redraw = wheel_library_tick();
+                redraw |= wheel_appearance_check();
+                if (redraw)
+                    return ACTION_REDRAW;
+            }
+            break;
         case ACTION_REQUEST_MENUITEM:
 #if CONFIG_TUNER
             if (this_item == &fm)
@@ -713,10 +818,11 @@ static int item_callback(int action,
 static int get_selection(int last_screen)
 {
     int i;
-    int len = ARRAYLEN(root_menu__);
+    int len = MENU_GET_COUNT(root_menu_.flags); /* entries past count are NULL */
     for(i=0; i < len; i++)
     {
-        if (((root_menu__[i]->flags&MENU_TYPE_MASK) == MT_RETURN_VALUE) &&
+        if (root_menu__[i] &&
+            ((root_menu__[i]->flags&MENU_TYPE_MASK) == MT_RETURN_VALUE) &&
             (root_menu__[i]->value == last_screen))
         {
             return i;
@@ -743,7 +849,7 @@ static inline int load_screen(int screen)
         activity = ACTIVITY_PLUGINBROWSER;
     else if (screen == GO_TO_MAINMENU)
         activity = ACTIVITY_SETTINGS;
-    else if (screen == GO_TO_SYSTEM_SCREEN)
+    else if (screen == GO_TO_SYSTEM_SCREEN || screen == GO_TO_WHEEL_EXTRAS)
         activity =  ACTIVITY_SYSTEMSCREEN;
 
     if (activity != ACTIVITY_UNKNOWN)
@@ -863,7 +969,7 @@ static int load_plugin_screen(char *key)
 
 static void ignore_back_button_stub(bool ignore)
 {
-#if (defined(PLATFORM_ANDROID) || defined(INNIOASIS_Y1))
+#if (CONFIG_PLATFORM & PLATFORM_ANDROID)
     /* BACK button to be handled by Android instead of rockbox */
     android_ignore_back_button(ignore);
 #else
@@ -963,6 +1069,7 @@ void root_menu(void)
     int shortcut_origin = GO_TO_ROOT;
 
     push_current_activity(ACTIVITY_MAINMENU);
+    wheel_init(); /* Y1 Wheel: lyrics, appearance */
     next_screen = root_menu_setup_screens();
 
     while (true)

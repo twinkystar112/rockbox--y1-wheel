@@ -59,6 +59,18 @@ enum synclist_cursor
  */
 typedef enum themable_icons list_get_icon(int selected_item, void * data);
 /*
+ * Optional callback: does selecting this item open a submenu/folder?
+ *  - selected_item : an integer that tells the number of the item
+ *  - data : a void pointer to the data you gave to the list when you
+ *           initialized it
+ */
+typedef bool list_get_nav(int selected_item, void * data);
+
+/* Y1 Wheel: an item name may be "Label\x1fValue"; themes draw the value
+ * right-aligned (skin tag %Lv), the default renderer does the same. */
+#define LIST_VALUE_SEP '\x1f'
+#define LIST_VALUE_SEP_STR "\x1f"
+/*
  * Text callback
  *  - selected_item : an integer that tells the number of the item to display
  *  - data : a void pointer to the data you gave to the list when you
@@ -166,6 +178,9 @@ struct gui_synclist
     long scheduled_talk_tick, last_talked_tick, dirty_tick;
 
     list_get_icon *callback_get_item_icon;
+    /* Y1 Wheel: optional, returns true when selecting the item opens a
+     * deeper level (used by themes to draw a chevron) */
+    list_get_nav *callback_get_item_nav;
     list_get_name *callback_get_item_name;
     list_speak_item *callback_speak_item;
     list_draw_item *callback_draw_item;
@@ -239,6 +254,7 @@ extern void gui_synclist_init(
     );
 extern void gui_synclist_set_nb_items(struct gui_synclist * lists, int nb_items);
 extern void gui_synclist_set_icon_callback(struct gui_synclist * lists, list_get_icon icon_callback);
+extern void gui_synclist_set_nav_callback(struct gui_synclist * lists, list_get_nav nav_callback);
 extern void gui_synclist_set_voice_callback(struct gui_synclist * lists, list_speak_item voice_callback);
 extern void gui_synclist_set_viewport_defaults(struct viewport *vp, enum screen_type screen);
 #ifdef HAVE_LCD_COLOR
@@ -279,6 +295,8 @@ int skinlist_get_item_number(void);
 int skinlist_get_item_row(void);
 int skinlist_get_item_column(void);
 enum themable_icons skinlist_get_item_icon(int offset, bool wrap);
+bool skinlist_is_item_navigable(int offset, bool wrap);
+const char* skinlist_get_item_value(int offset, bool wrap, char* buf, size_t buf_size);
 bool skinlist_needs_scrollbar(enum screen_type screen);
 void skinlist_get_scrollbar(int* nb_item, int* first_shown, int* last_shown);
 int skinlist_get_line_count(enum screen_type screen, struct gui_synclist *list);

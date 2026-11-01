@@ -2640,6 +2640,22 @@ const struct settings_list settings[] = {
     ID2P(LANG_AUTO), ID2P(LANG_HEADPHONE), ID2P(LANG_LINEOUT)),
 #endif
     OFFON_SETTING(0, playback_log, LANG_LOGGING, false, "play log", NULL),
+    /* Y1 Wheel (changed from the Appearance screen, see apps/wheel) */
+    OFFON_SETTING(0, wheel_battery_percent, LANG_WHEEL_BATTERY_PERCENT, false,
+                  "battery percentage", NULL),
+    CHOICE_SETTING(0, wheel_appearance, LANG_WHEEL_APPEARANCE, 0, "appearance",
+                   "light,dark,auto", NULL, 3,
+                   ID2P(LANG_WHEEL_LIGHT), ID2P(LANG_WHEEL_DARK), ID2P(LANG_AUTO)),
+    CHOICE_SETTING(0, wheel_accent, LANG_WHEEL_ACCENT, 0, "accent colour",
+                   "blue,pink,purple,green,orange,red,graphite", NULL, 7,
+                   ID2P(LANG_WHEEL_ACCENT_BLUE), ID2P(LANG_WHEEL_ACCENT_PINK),
+                   ID2P(LANG_WHEEL_ACCENT_PURPLE), ID2P(LANG_WHEEL_ACCENT_GREEN),
+                   ID2P(LANG_WHEEL_ACCENT_ORANGE), ID2P(LANG_WHEEL_ACCENT_RED),
+                   ID2P(LANG_WHEEL_ACCENT_GRAPHITE)),
+    OFFON_SETTING(0, wheel_letter_jump, LANG_WHEEL_LETTER_JUMP, true,
+                  "letter jump", NULL),
+    OFFON_SETTING(0, wheel_theme_scale, LANG_WHEEL_THEME_SCALE, true,
+                  "theme scaling", NULL),
 #ifdef INNIOASIS_Y1
     CHOICE_SETTING(0, android_screen_timeout, LANG_TIMEOUT, -1,
                    "android screen timeout", "15,30,60,120,300,600,1800", android_screen_timeout_callback, 7,

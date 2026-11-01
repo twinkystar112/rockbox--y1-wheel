@@ -24,6 +24,7 @@
 */
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "config.h"
 #include "system.h"
 
@@ -158,9 +159,28 @@ static const char* get_menu_item_name(int selected_item,
     if ((type == MT_SETTING) || (type == MT_SETTING_W_TEXT))
     {
         const struct settings_list *v = find_setting(menu->variable);
-        if (v)
-            return str(v->lang_id);
-        else return "Not Done yet!";
+        if (!v)
+            return "Not Done yet!";
+        /* Y1 Wheel: show the current value on the right, like a click
+         * wheel player ("Shuffle      Songs") */
+        if (type == MT_SETTING && buffer && buffer_len > 8 &&
+            !(v->flags & (F_RGB|F_FILENAME)) &&
+            (v->flags & F_T_MASK) != F_T_CHARPTR &&
+            (v->flags & F_T_MASK) != F_T_UCHARPTR)
+        {
+            char val[32];
+            intptr_t cur = ((v->flags & F_T_MASK) == F_T_BOOL) ?
+                            (intptr_t)*(bool *)v->setting :
+                            (intptr_t)*(int *)v->setting;
+            const char *vs = option_get_valuestring(v, val, sizeof(val), cur);
+            if (vs && *vs)
+            {
+                snprintf(buffer, buffer_len, "%s" LIST_VALUE_SEP_STR "%s",
+                         str(v->lang_id), vs);
+                return buffer;
+            }
+        }
+        return str(v->lang_id);
     }
     return P2STR(menu->callback_and_desc->desc);
 }
@@ -226,6 +246,27 @@ static char* init_title(const struct menu_item_ex *menu, int *icon,
     return title;
 }
 
+/* Y1 Wheel: tell list skins which rows lead somewhere (chevron) */
+static bool menu_get_nav(int selected_item, void * data)
+{
+    const struct menu_item_ex *menu = (const struct menu_item_ex *)data;
+    int type = (menu->flags&MENU_TYPE_MASK);
+    if (type != MT_MENU)
+        return false; /* MT_RETURN_ID option lists etc. */
+    selected_item = get_menu_selection(selected_item, menu);
+    menu = menu->submenus[selected_item];
+    switch (menu->flags&MENU_TYPE_MASK)
+    {
+        case MT_MENU:
+        case MT_RETURN_VALUE:
+        case MT_FUNCTION_CALL:
+        case MT_FUNCTION_CALL_W_PARAM:
+            return true;
+        default:
+            return false;
+    }
+}
+
 static int init_menu_lists(const struct menu_item_ex *menu,
                      struct gui_synclist *lists, int selected, bool callback,
                      struct viewport parent[NB_SCREENS], char* buf, size_t buf_sz)
@@ -268,6 +309,7 @@ static int init_menu_lists(const struct menu_item_ex *menu,
     title = init_title(menu, &icon, buf, buf_sz);
     gui_synclist_set_title(lists, title, icon);
     gui_synclist_set_icon_callback(lists, global_settings.show_icons?menu_get_icon:NULL);
+    gui_synclist_set_nav_callback(lists, menu_get_nav);
     if(global_settings.talk_menu)
         gui_synclist_set_voice_callback(lists, talk_menu_item);
     gui_synclist_set_nb_items(lists,current_subitems_count);

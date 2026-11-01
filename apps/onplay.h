@@ -36,6 +36,7 @@ enum onplay_return_code {
     ONPLAY_START_PLAY,
     ONPLAY_PLAYLIST,
     ONPLAY_PLUGIN,
+    ONPLAY_WHEEL_BROWSE, /* Y1 Wheel: open the file browser at wheel_browse_target */
     ONPLAY_FUNC_RETURN, /* for use in hotkey_assignment only */
 };
 

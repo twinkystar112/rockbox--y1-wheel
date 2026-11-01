@@ -36,6 +36,40 @@ int skin_line = 0;
 char* skin_start = 0;
 static int viewport_line = 0;
 
+/* Y1 Wheel: themes drawn for a smaller screen are scaled while parsing.
+ * apps/gui/skin_engine sets this before parsing a skin it detected as
+ * e.g. 320x240 on a 480x360 screen (3/2) and resets it afterwards. */
+int skin_scale_num = 1, skin_scale_den = 1;
+
+static bool skin_coord_param(const char *tag, int i, const struct skin_tag_parameter *params)
+{
+    if (skin_scale_num == skin_scale_den)
+        return false;
+    if (!strcmp(tag, "V") || !strcmp(tag, "pb") || !strcmp(tag, "pv") ||
+        !strcmp(tag, "bl") || !strcmp(tag, "Cl") || !strcmp(tag, "dr"))
+        return i <= 3;
+    if (!strcmp(tag, "Vl") || !strcmp(tag, "Vi"))
+        return i >= 1 && i <= 4;
+    if (!strcmp(tag, "x") || !strcmp(tag, "xl"))
+        return i == 2 || i == 3;
+    if (!strcmp(tag, "Lb"))
+        return i == 1 || i == 2;
+    if (!strcmp(tag, "T"))
+    {   /* optional label first */
+        bool label = params[0].type == STRING;
+        return label ? (i >= 1 && i <= 4) : (i <= 3);
+    }
+    return false;
+}
+
+int skin_scale_value(int v)
+{
+    /* round half away from zero so 1px lines stay visible */
+    int s = v * skin_scale_num;
+    return s >= 0 ? (s + skin_scale_den / 2) / skin_scale_den
+                  : -((-s + skin_scale_den / 2) / skin_scale_den);
+}
+
 #ifdef ROCKBOX
 static int empty_callback(struct skin_element* element, void* data);
 static skin_callback callback = &empty_callback;
@@ -711,6 +745,8 @@ static int skin_parse_tag(struct skin_element* element, const char** document)
 
             params[i].type = INTEGER;
             params[i].data.number = scan_int(&cursor);
+            if (skin_coord_param(tag->name, i, params))
+                params[i].data.number = skin_scale_value(params[i].data.number);
         }
         else if(tolower(type_code) == 'd' || tolower(type_code) == 'p')
         {

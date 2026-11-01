@@ -31,6 +31,7 @@
 #include "action.h"
 #include "screen_access.h"
 #include "list.h"
+#include "wheel/wheel_letterjump.h"
 #include "scrollbar.h"
 #include "lang.h"
 #include "sound.h"
@@ -154,6 +155,7 @@ void gui_synclist_init(struct gui_synclist * gui_list,
     )
 {
     gui_list->callback_get_item_icon = NULL;
+    gui_list->callback_get_item_nav = NULL;
     gui_list->callback_get_item_name = callback_get_item_name;
     gui_list->callback_speak_item = NULL;
     gui_list->callback_draw_item = NULL;
@@ -237,6 +239,8 @@ void gui_synclist_draw(struct gui_synclist *gui_list)
     {
         if (!skinlist_draw(&screens[i], gui_list))
             list_draw(&screens[i], gui_list);
+        /* Y1 Wheel: big initial while flying through a long list */
+        wheel_letterjump_draw(gui_list, &screens[i]);
         skin_mark_dirty(i);
     }
 }
@@ -460,6 +464,12 @@ int  gui_synclist_get_sel_pos(struct gui_synclist * lists)
 {
     return lists->selected_item;
 }
+void gui_synclist_set_nav_callback(struct gui_synclist * lists,
+                                   list_get_nav nav_callback)
+{
+    lists->callback_get_item_nav = nav_callback;
+}
+
 void gui_synclist_set_icon_callback(struct gui_synclist * lists,
                                     list_get_icon icon_callback)
 {
@@ -694,7 +704,13 @@ bool gui_synclist_do_button(struct gui_synclist * lists, int *actionptr)
             allow_wrap = false; /* Prevent list wraparound on repeating actions */
             /*Fallthrough*/
         case ACTION_STD_PREV:
-
+            if (wheel_letterjump_step(lists, -1))
+            {   /* Y1 Wheel: fast spin -> jump by initial */
+                gui_synclist_draw(lists);
+                yield();
+                *actionptr = ACTION_STD_PREV;
+                return true;
+            }
             gui_list_select_at_offset(lists, -next_item_modifier, allow_wrap);
 #ifndef HAVE_WHEEL_ACCELERATION
             if (button_queue_count() < FRAMEDROP_TRIGGER)
@@ -708,6 +724,13 @@ bool gui_synclist_do_button(struct gui_synclist * lists, int *actionptr)
             allow_wrap = false; /* Prevent list wraparound on repeating actions */
             /*Fallthrough*/
         case ACTION_STD_NEXT:
+            if (wheel_letterjump_step(lists, 1))
+            {   /* Y1 Wheel: fast spin -> jump by initial */
+                gui_synclist_draw(lists);
+                yield();
+                *actionptr = ACTION_STD_NEXT;
+                return true;
+            }
             gui_list_select_at_offset(lists, next_item_modifier, allow_wrap);
 #ifndef HAVE_WHEEL_ACCELERATION
             if (button_queue_count() < FRAMEDROP_TRIGGER)

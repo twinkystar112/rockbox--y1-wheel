@@ -40,6 +40,8 @@
 #include "playlist_viewer.h"
 #include "talk.h"
 #include "onplay.h"
+#include "wheel/wheel_connect.h"
+#include "wheel/wheel_screens.h"
 #include "filetypes.h"
 #include "fileop.h"
 #include "open_plugin.h"
@@ -1253,8 +1255,68 @@ static int onplaymenu_callback(int action,
                                struct gui_synclist *this_list);
 
 /* used when onplay() is called in the CONTEXT_WPS context */
+/* ---- Y1 Wheel: the actions people actually want on Now Playing ---- */
+#define WHEEL_EXIT_MENU (-100) /* any value do_menu() passes through */
+static int wheel_goto(void *param)
+{
+    struct mp3entry *id3 = audio_current_track();
+    if (!id3 || !id3->path[0])
+        return 0;
+    char path[MAX_PATH];
+    strmemccpy(path, id3->path, sizeof(path));
+    if ((intptr_t)param == 1)
+    {   /* artist: show the artist folder with this album selected */
+        char *slash = strrchr(path, '/');
+        if (slash && slash != path)
+            *slash = '\0';
+    }
+    strmemccpy(wheel_browse_target, path, MAX_PATH);
+    onplay_result = ONPLAY_WHEEL_BROWSE;
+    return WHEEL_EXIT_MENU;
+}
+MENUITEM_FUNCTION_W_PARAM(wheel_goto_album_item, MENU_FUNC_CHECK_RETVAL,
+                  ID2P(LANG_WHEEL_GOTO_ALBUM), wheel_goto, (void *)0, NULL, Icon_NOICON);
+MENUITEM_FUNCTION_W_PARAM(wheel_goto_artist_item, MENU_FUNC_CHECK_RETVAL,
+                  ID2P(LANG_WHEEL_GOTO_ARTIST), wheel_goto, (void *)1, NULL, Icon_NOICON);
+static int wheel_up_next(void)
+{
+    return GO_TO_PLAYLIST_VIEWER;
+}
+MENUITEM_FUNCTION(wheel_upnext_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_WHEEL_UP_NEXT),
+                  wheel_up_next, NULL, Icon_NOICON);
+static int wheel_love(void)
+{
+    splash(HZ, wheel_scrobble_love_current() ? ID2P(LANG_WHEEL_LOVED)
+                                             : ID2P(LANG_WHEEL_LFM_UNAVAILABLE));
+    return 0;
+}
+MENUITEM_FUNCTION(wheel_love_item, 0, ID2P(LANG_WHEEL_LOVE),
+                  wheel_love, NULL, Icon_NOICON);
+
+static int wheel_sound(void) { wheel_eq_screen(); return 0; }
+MENUITEM_FUNCTION(wheel_sound_item, 0, ID2P(LANG_WHEEL_SOUND),
+                  wheel_sound, NULL, Icon_NOICON);
+static int wheel_sleep(void) { wheel_sleep_screen(); return 0; }
+MENUITEM_FUNCTION(wheel_sleep_item, 0, ID2P(LANG_SLEEP_TIMER),
+                  wheel_sleep, NULL, Icon_NOICON);
+static int wheel_send_current(void)
+{
+    struct mp3entry *id3 = audio_current_track();
+    if (id3 && id3->path[0])
+    {
+        const char *p[1] = { id3->path };
+        wheel_bt_send_screen(p, 1);
+    }
+    return 0;
+}
+MENUITEM_FUNCTION(wheel_send_item, 0, ID2P(LANG_WHEEL_BT_SEND),
+                  wheel_send_current, NULL, Icon_NOICON);
+
 MAKE_ONPLAYMENU( wps_onplay_menu, ID2P(LANG_ONPLAY_MENU_TITLE),
            onplaymenu_callback, Icon_Audio,
+           &wheel_upnext_item, &wheel_sound_item, &wheel_sleep_item,
+           &wheel_goto_album_item, &wheel_goto_artist_item,
+           &wheel_love_item, &wheel_send_item,
            &wps_playlist_menu, &cat_playlist_menu,
            &sound_settings, &playback_settings,
 #ifdef HAVE_TAGCACHE
@@ -1292,9 +1354,43 @@ MENUITEM_FUNCTION(view_playlist_item, 0, ID2P(LANG_VIEW),
                   view_playlist,
                   onplaymenu_callback, Icon_Playlist);
 
+static int wheel_queue_callback(int action, const struct menu_item_ex *this_item,
+                                struct gui_synclist *this_list)
+{
+    (void)this_item; (void)this_list;
+    if (action == ACTION_REQUEST_MENUITEM)
+    {
+        int attr = selected_file.attr & FILE_ATTR_MASK;
+        if (!(audio_status() & AUDIO_STATUS_PLAY) ||
+            (attr != FILE_ATTR_AUDIO && attr != FILE_ATTR_M3U &&
+             !(selected_file.attr & ATTR_DIRECTORY)))
+            return ACTION_EXIT_MENUITEM;
+    }
+    return action;
+}
+MENUITEM_FUNCTION_W_PARAM(wheel_play_next_item, 0, ID2P(LANG_WHEEL_PLAY_NEXT),
+                  add_to_playlist, &addtopl_insert_first,
+                  wheel_queue_callback, Icon_Playlist);
+MENUITEM_FUNCTION_W_PARAM(wheel_play_later_item, 0, ID2P(LANG_WHEEL_PLAY_LATER),
+                  add_to_playlist, &addtopl_insert_last,
+                  wheel_queue_callback, Icon_Playlist);
+
+static int wheel_send_file(void)
+{
+    if ((selected_file.attr & FILE_ATTR_MASK) == FILE_ATTR_AUDIO)
+    {
+        const char *p[1] = { selected_file.path };
+        wheel_bt_send_screen(p, 1);
+    }
+    return 0;
+}
+MENUITEM_FUNCTION(wheel_send_file_item, 0, ID2P(LANG_WHEEL_BT_SEND),
+                  wheel_send_file, onplaymenu_callback, Icon_NOICON);
+
 /* used when onplay() is not called in the CONTEXT_WPS context */
 MAKE_ONPLAYMENU( tree_onplay_menu, ID2P(LANG_ONPLAY_MENU_TITLE),
            onplaymenu_callback, Icon_file_view_menu,
+           &wheel_play_next_item, &wheel_play_later_item, &wheel_send_file_item,
            &view_playlist_item, &tree_playlist_menu, &cat_playlist_menu,
            &rename_file_item, &clipboard_cut_item, &clipboard_copy_item,
            &clipboard_paste_item, &delete_file_item, &delete_dir_item,
@@ -1325,6 +1421,16 @@ static int onplaymenu_callback(int action,
             }
             break;
         case ACTION_REQUEST_MENUITEM:
+            if (this_item == &wheel_upnext_item || this_item == &wheel_goto_album_item ||
+                this_item == &wheel_goto_artist_item || this_item == &wheel_love_item ||
+                this_item == &wheel_sound_item || this_item == &wheel_sleep_item)
+                return action;
+            if (this_item == &wheel_send_item)
+                return wheel_bt_send_supported() ? action : ACTION_EXIT_MENUITEM;
+            if (this_item == &wheel_send_file_item)
+                return wheel_bt_send_supported() &&
+                       (selected_file.attr & FILE_ATTR_MASK) == FILE_ATTR_AUDIO
+                       ? action : ACTION_EXIT_MENUITEM;
             if (this_item == &view_playlist_item)
             {
                 if ((selected_file.attr & FILE_ATTR_MASK) == FILE_ATTR_M3U &&

@@ -20,6 +20,7 @@
 
 /* This file contains the code to draw the list widget on BITMAP LCDs. */
 
+#include <string.h>
 #include "config.h"
 #include "system.h"
 #include "lcd.h"
@@ -359,6 +360,21 @@ void list_draw(struct screen *display, struct gui_synclist *list)
         }
         line_indent += indent;
 
+        /* Y1 Wheel: "Label\x1fValue" -> label scrolls, value right-aligned */
+        static char wheel_label[MAX_PATH];
+        const char *wheel_value = NULL;
+        {
+            char *sep = strchr((char *)entry_name, LIST_VALUE_SEP);
+            if (sep)
+            {
+                size_t n = MIN((size_t)(sep - (char *)entry_name), sizeof(wheel_label) - 1);
+                memcpy(wheel_label, entry_name, n);
+                wheel_label[n] = '\0';
+                wheel_value = sep + 1;
+                entry_name = (unsigned char *)wheel_label;
+            }
+        }
+
         /* position the string at the correct offset place */
         int item_width,h;
         display->getstringsize(entry_name, &item_width, &h);
@@ -445,6 +461,26 @@ void list_draw(struct screen *display, struct gui_synclist *list)
         list_info.item_offset = item_offset;
 
         callback_draw_item(&list_info);
+        if (wheel_value && *wheel_value)
+        {
+            int vw, vh;
+            display->getstringsize(wheel_value, &vw, &vh);
+#ifdef HAVE_LCD_COLOR
+            /* on the selected row use the selection's text colour */
+            unsigned fg = display->get_foreground();
+            if (is_selected && (style & _STYLE_DECO_MASK) == STYLE_INVERT)
+                display->set_foreground(display->get_background());
+            else if (is_selected)
+                display->set_foreground(linedes.text_color);
+#endif
+            display->set_drawmode(DRMODE_FG);
+            display->putsxy(list_text_vp->width - vw - character_width,
+                            list_info.y + (linedes.height - vh) / 2, wheel_value);
+            display->set_drawmode(DRMODE_SOLID);
+#ifdef HAVE_LCD_COLOR
+            display->set_foreground(fg);
+#endif
+        }
     }
     display->set_viewport(last_vp);
 }

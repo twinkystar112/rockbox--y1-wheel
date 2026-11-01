@@ -945,6 +945,12 @@ struct user_settings
     int hp_lo_select; /* indicates automatic, headphone-only, or lineout-only operation */
 #endif
     bool playback_log; /* ROCKBOX_DIR/playback.log for tracks played */
+    /* Y1 Wheel */
+    bool wheel_battery_percent; /* show battery % in the status bar */
+    int  wheel_appearance;      /* 0 light, 1 dark, 2 automatic (night = dark) */
+    int  wheel_accent;          /* accent colour preset */
+    bool wheel_letter_jump;     /* fast wheel spin jumps by first letter */
+    bool wheel_theme_scale;     /* scale themes made for 320x240 */
 #ifdef INNIOASIS_Y1
     int android_screen_timeout; /* Android screen timeout in seconds (0=never) */
 #endif

@@ -100,10 +100,29 @@ gui/splash.c
 gui/statusbar.c
 gui/statusbar-skinned.c
 #if (CONFIG_PLATFORM&PLATFORM_ANDROID)||defined(INNIOASIS_Y1)
-hosted/android/yesno.c
 hosted/android/notification.c
+hosted/android/wheel_connect_android.c
 #else
-gui/yesno.c
+wheel/wheel_connect_stub.c
+#endif
+/* Y1 Wheel: yes/no and keyboard are drawn by Rockbox (wheel_yesno.c,
+ * wheel_keyboard.c) so they follow the theme and the wheel */
+wheel/wheel_screens.c
+wheel/wheel_appearance.c
+wheel/wheel_letterjump.c
+wheel/wheel_yesno.c
+wheel/wheel_keyboard.c
+wheel/wheel_lyrics.c
+wheel/wheel_art.c
+wheel/wheel_stats.c
+wheel/wheel_library.c
+wheel/wheel_listview.c
+wheel/wheel_foryou.c
+wheel/wheel_tools.c
+wheel/wheel_themes.c
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+wheel/wheel_qr.c
+wheel/qrcodegen.c
 #endif
 gui/viewport.c
 
@@ -123,13 +142,6 @@ gui/backdrop.c
 
 recorder/bmp.c
 recorder/icons.c
-#if (CONFIG_PLATFORM&PLATFORM_ANDROID)||defined(INNIOASIS_Y1)
-hosted/android/keyboard.c
-#elif defined(N3DS)
-hosted/3ds/keyboard.c
-#else
-recorder/keyboard.c
-#endif
 recorder/peakmeter.c
 #if defined(HAVE_ALBUMART) || defined(HAVE_JPEG)
 recorder/resize.c

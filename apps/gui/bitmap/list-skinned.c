@@ -18,6 +18,7 @@
  *
  ****************************************************************************/
 
+#include <string.h>
 #include "config.h"
 #include "system.h"
 #include "lcd.h"
@@ -46,6 +47,8 @@ static struct gui_synclist *current_list;
 static bool needs_scrollbar[NB_SCREENS];
 
 static int current_row;
+/* Y1 Wheel: true while list rows are rendered (parent already cleared) */
+bool skinlist_drawing_items = false;
 static int current_column;
 
 void skinlist_set_cfg(enum screen_type screen,
@@ -112,7 +115,32 @@ const char* skinlist_get_item_text(int offset, bool wrap, char* buf, size_t buf_
         return NULL;
     const char* ret = current_list->callback_get_item_name(
                     item, current_list->data, buf, buf_size);
-    return P2STR((unsigned char*)ret);
+    ret = P2STR((unsigned char*)ret);
+    const char *sep = ret ? strchr(ret, LIST_VALUE_SEP) : NULL;
+    if (sep)
+    {   /* Y1 Wheel: label only, the value is %Lv */
+        size_t n = MIN((size_t)(sep - ret), buf_size - 1);
+        if (ret != buf)
+            memmove(buf, ret, n);
+        buf[n] = '\0';
+        return buf;
+    }
+    return ret;
+}
+
+const char* skinlist_get_item_value(int offset, bool wrap, char* buf, size_t buf_size)
+{
+    int item = offset_to_item(offset, wrap);
+    if (item < 0 || !current_list)
+        return NULL;
+    const char* ret = current_list->callback_get_item_name(
+                    item, current_list->data, buf, buf_size);
+    ret = P2STR((unsigned char*)ret);
+    const char *sep = ret ? strchr(ret, LIST_VALUE_SEP) : NULL;
+    if (!sep || !sep[1])
+        return NULL;
+    memmove(buf, sep + 1, strlen(sep + 1) + 1);
+    return buf;
 }
 
 enum themable_icons skinlist_get_item_icon(int offset, bool wrap)
@@ -121,6 +149,14 @@ enum themable_icons skinlist_get_item_icon(int offset, bool wrap)
     if (item < 0 || !current_list || current_list->callback_get_item_icon == NULL)
         return Icon_NOICON;
     return current_list->callback_get_item_icon(item, current_list->data);
+}
+
+bool skinlist_is_item_navigable(int offset, bool wrap)
+{
+    int item = offset_to_item(offset, wrap);
+    if (item < 0 || !current_list || current_list->callback_get_item_nav == NULL)
+        return false;
+    return current_list->callback_get_item_nav(item, current_list->data);
 }
 
 static bool is_selected = false;
@@ -206,6 +242,7 @@ bool skinlist_draw(struct screen *display, struct gui_synclist *list)
     current_nbitems = list->nb_items;
     needs_scrollbar[screen] = list->nb_items > display_lines;
 
+    skinlist_drawing_items = true;
     for (cur_line = 0; cur_line < display_lines; cur_line++)
     {
         struct skin_element* viewport;
@@ -219,7 +256,7 @@ bool skinlist_draw(struct screen *display, struct gui_synclist *list)
              viewport;
              viewport = SKINOFFSETTOPTR(get_skin_buffer(wps.data), viewport->next))
         {
-            int original_x, original_y;
+            int original_x, original_y, original_w;
             skin_viewport = SKINOFFSETTOPTR(get_skin_buffer(wps.data), viewport->data);
             char *viewport_label = NULL;
             if (skin_viewport)
@@ -235,6 +272,7 @@ bool skinlist_draw(struct screen *display, struct gui_synclist *list)
             }
             original_x = skin_viewport->vp.x;
             original_y = skin_viewport->vp.y;
+            original_w = skin_viewport->vp.width;
             if (listcfg[screen]->tile)
             {
                 int cols = (parent->width / listcfg[screen]->width);
@@ -252,6 +290,12 @@ bool skinlist_draw(struct screen *display, struct gui_synclist *list)
                 skin_viewport->vp.y = parent->y + original_y +
                                    (listcfg[screen]->height*cur_line);
             }
+            /* Y1 Wheel: keep item viewports inside the UI viewport so one
+             * list skin works for both full-width and split-screen menus */
+            if (skin_viewport->vp.x + skin_viewport->vp.width > parent->x + parent->width)
+                skin_viewport->vp.width = parent->x + parent->width - skin_viewport->vp.x;
+            if (skin_viewport->vp.width < 1)
+                skin_viewport->vp.width = 1;
             display->set_viewport(&skin_viewport->vp);
             /* Set images to not to be displayed */
             struct skin_token_list *imglist = SKINOFFSETTOPTR(get_skin_buffer(wps.data), wps.data->images);
@@ -276,9 +320,11 @@ bool skinlist_draw(struct screen *display, struct gui_synclist *list)
                 display->scroll_stop_viewport(&skin_viewport->vp);
                 skin_viewport->vp.x = original_x;
                 skin_viewport->vp.y = original_y;
+                skin_viewport->vp.width = original_w;
             }
         }
     }
+    skinlist_drawing_items = false;
     current_column = -1;
     current_row = -1;
     current_drawing_line = list->selected_item;

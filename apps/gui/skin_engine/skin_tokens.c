@@ -56,6 +56,9 @@
 
 #include "wps_internals.h"
 #include "skin_engine.h"
+#include "wheel/wheel_lyrics.h"
+#include "wheel/wheel_connect.h"
+#include "wheel/wheel_screens.h"
 #include "statusbar-skinned.h"
 #include "root_menu.h"
 #ifdef HAVE_RECORDING
@@ -1330,6 +1333,36 @@ const char *get_token_value(struct gui_wps *gwps,
             goto gtv_ret_numeric_tag_info;
         case SKIN_TOKEN_LIST_ITEM_IS_SELECTED:
             return skinlist_is_selected_item()?"s":"";
+        case SKIN_TOKEN_LIST_ITEM_HAS_CHILDREN:
+            return skinlist_is_item_navigable(0, false)?"h":"";
+        case SKIN_TOKEN_LIST_ITEM_VALUE:
+            return skinlist_get_item_value(0, false, buf, buf_size);
+
+        /* Y1 Wheel */
+        case SKIN_TOKEN_WHEEL_BT_CONNECTED:
+            return wheel_bt_audio_connected() ? "b" : NULL;
+        case SKIN_TOKEN_WHEEL_SCROBBLES_PENDING:
+        {
+            int n = wheel_scrobble_pending_count();
+            if (n <= 0)
+                return NULL;
+            itoa_buf(buf, buf_size, n);
+            return buf;
+        }
+        case SKIN_TOKEN_WHEEL_WPS_MODE:
+            numeric_ret = wheel_wps_mode() + 1; /* %?Wm<normal|scrub|lyrics> */
+            itoa_buf(buf, buf_size, numeric_ret);
+            numeric_buf = buf;
+            goto gtv_ret_numeric_tag_info;
+        case SKIN_TOKEN_WHEEL_LYRIC_M2: return wheel_lyrics_line(-2);
+        case SKIN_TOKEN_WHEEL_LYRIC_M1: return wheel_lyrics_line(-1);
+        case SKIN_TOKEN_WHEEL_LYRIC_0:  return wheel_lyrics_line(0);
+        case SKIN_TOKEN_WHEEL_LYRIC_P1: return wheel_lyrics_line(1);
+        case SKIN_TOKEN_WHEEL_LYRIC_P2: return wheel_lyrics_line(2);
+        case SKIN_TOKEN_WHEEL_HAS_LYRICS:
+            return wheel_lyrics_available() ? "l" : NULL;
+        case SKIN_TOKEN_WHEEL_LIBRARY_STATUS:
+            return wheel_library_status(buf, buf_size);
         case SKIN_TOKEN_LIST_ITEM_ICON:
         {
             struct listitem *li = (struct listitem *)SKINOFFSETTOPTR(get_skin_buffer(data), token->value.data);

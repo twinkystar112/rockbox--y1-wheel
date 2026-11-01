@@ -3242,6 +3242,10 @@ fi
     boottool="cp "
     bmp2rb_mono="$rootdir/tools/bmp2rb -f 0"
     bmp2rb_native="$rootdir/tools/bmp2rb -f 9"
+    if [ "$ARG_LCDWIDTH" = "480" ] && [ "$ARG_LCDHEIGHT" = "360" ]; then
+        # Y1 Wheel: 480x360 desktop build = Innioasis Y1 simulator (RGB565)
+        bmp2rb_native="$rootdir/tools/bmp2rb -f 4"
+    fi
     output="rockbox"
     bootoutput="rockbox"
     appextra=""

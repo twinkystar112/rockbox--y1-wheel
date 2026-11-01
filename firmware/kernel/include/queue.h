@@ -71,6 +71,10 @@
 #define SYS_CALL_INCOMING         MAKE_SYS_EVENT(SYS_EVENT_CLS_MISC, 3)
 #define SYS_CALL_HUNG_UP          MAKE_SYS_EVENT(SYS_EVENT_CLS_MISC, 4)
 #define SYS_VOLUME_CHANGED        MAKE_SYS_EVENT(SYS_EVENT_CLS_MISC, 5)
+/* Y1 Wheel: the current audio output (e.g. Bluetooth headphones) went away */
+#define SYS_AUDIO_SINK_LOST       MAKE_SYS_EVENT(SYS_EVENT_CLS_MISC, 6)
+/* Y1 Wheel: that output came back (resume if we paused because of it) */
+#define SYS_AUDIO_SINK_BACK       MAKE_SYS_EVENT(SYS_EVENT_CLS_MISC, 7)
 
 #define IS_SYSEVENT(ev)           ((ev & SYS_EVENT) == SYS_EVENT)
 

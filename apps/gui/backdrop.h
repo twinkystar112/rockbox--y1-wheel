@@ -27,11 +27,18 @@
 #include "bmp.h"
 
 #define LCD_BACKDROP_BYTES (LCD_FBHEIGHT*LCD_FBWIDTH*sizeof(fb_data))
+/* room to scale a backdrop made for another screen size (Y1 Wheel) */
+#if defined(HAVE_LCD_COLOR) && defined(HAVE_BMP_SCALING)
+#define LCD_BACKDROP_ALLOC (LCD_BACKDROP_BYTES + 16 * 3 * LCD_WIDTH + 64)
+#else
+#define LCD_BACKDROP_ALLOC LCD_BACKDROP_BYTES
+#endif
 bool backdrop_load(const char *filename, char* backdrop_buffer);
 void backdrop_show(char* backdrop_buffer);
 
 #else
 #define LCD_BACKDROP_BYTES 0
+#define LCD_BACKDROP_ALLOC 0
 #endif
 
 #if defined(HAVE_REMOTE_LCD) 

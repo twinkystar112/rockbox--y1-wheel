@@ -648,6 +648,10 @@ static void lo_unplug_change(bool inserted)
 }
 #endif /*HAVE_LINEOUT_DETECTION*/
 
+#if CONFIG_PLATFORM & (PLATFORM_ANDROID)
+static bool paused_by_sink_loss = false; /* Y1 Wheel */
+#endif
+
 long default_event_handler_ex(long event, void (*callback)(void *), void *parameter)
 {
 #if CONFIG_PLATFORM & (PLATFORM_ANDROID)
@@ -765,6 +769,21 @@ long default_event_handler_ex(long event, void (*callback)(void *), void *parame
             }
             resume = false;
             return SYS_CALL_HUNG_UP;
+        /* Y1 Wheel: Bluetooth headphones disconnected -> pause, never
+         * blast music through the speaker / wired output */
+        case SYS_AUDIO_SINK_LOST:
+            if (audio_status() == AUDIO_STATUS_PLAY)
+            {
+                audio_pause();
+                paused_by_sink_loss = true;
+            }
+            return SYS_AUDIO_SINK_LOST;
+        case SYS_AUDIO_SINK_BACK:
+            if (paused_by_sink_loss &&
+                audio_status() == (AUDIO_STATUS_PLAY | AUDIO_STATUS_PAUSE))
+                audio_resume();
+            paused_by_sink_loss = false;
+            return SYS_AUDIO_SINK_BACK;
 #endif
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(PLATFORM_HAS_VOLUME_CHANGE)
         case SYS_VOLUME_CHANGED:
@@ -1786,6 +1805,11 @@ bool parse_color(enum screen_type screen, char *text, int *value)
 #ifdef HAVE_LCD_COLOR
     if (screens[screen].depth > 2)
     {
+        /* Y1 Wheel: themes can follow the user's accent colour
+         * (the line selector colours) */
+        if (!strcmp(text, "accent"))      { *value = global_settings.lse_color; return true; }
+        if (!strcmp(text, "accent2"))     { *value = global_settings.lss_color; return true; }
+        if (!strcmp(text, "accenttext"))  { *value = global_settings.lst_color; return true; }
         if (hex_to_rgb(text, value) < 0)
             return false;
         else
@@ -1913,6 +1937,13 @@ int core_load_bmp(const char * filename, struct bitmap *bm, const int bmformat,
     }
 
     buf_size = read_bmp_fd(fd, bm, 0, bmformat|FORMAT_RETURN_SIZE, NULL);
+#ifdef HAVE_BMP_SCALING
+    /* the size estimate leaves too little room for the scaler's row
+     * buffers on wide images (it falls back to a small stack buffer):
+     * add them, they are given back by core_shrink() below */
+    if (buf_size > 0 && (bmformat & FORMAT_RESIZE))
+        buf_size += 16 * 3 * bm->width + 16;
+#endif
 
     if (buf_size > 0)
     {

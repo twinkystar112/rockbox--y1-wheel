@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Y1 Wheel: optional Last.fm API key compiled into the APK.
+     The CI workflow fills these from the LASTFM_API_KEY / LASTFM_API_SECRET
+     repository secrets; when empty, .rockbox/lastfm.cfg is used instead. -->
+<resources>
+    <string name="wheel_lastfm_api_key" translatable="false"></string>
+    <string name="wheel_lastfm_api_secret" translatable="false"></string>
+</resources>

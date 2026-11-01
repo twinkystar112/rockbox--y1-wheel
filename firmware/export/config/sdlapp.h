@@ -45,8 +45,15 @@
 #define LCD_HEIGHT 480
 #endif
 
+#if (LCD_WIDTH == 480) && (LCD_HEIGHT == 360)
+/* Y1 Wheel: the desktop build doubles as the Innioasis Y1 simulator,
+ * so match its 16-bit screen exactly */
+#define LCD_DEPTH  16
+#define LCD_PIXELFORMAT RGB565
+#else
 #define LCD_DEPTH  24
 #define LCD_PIXELFORMAT RGB888
+#endif
 
 /* define this to indicate your device's keypad */
 #define HAVE_TOUCHSCREEN
@@ -59,7 +66,8 @@
 #define CODEC_SIZE 0x80000
 
 /* The number of bytes reserved for loadable plugins */
-#define PLUGIN_BUFFER_SIZE 0x80000
+/* Y1 Wheel: same as the Innioasis Y1 target (innioasisy1.h) */
+#define PLUGIN_BUFFER_SIZE 0x200000
 
 #define AB_REPEAT_ENABLE
 

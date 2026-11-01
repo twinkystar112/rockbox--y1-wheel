@@ -28,6 +28,8 @@
 #include "lib/helper.h"
 
 static void thread_create(void);
+static bool wheel_auto;
+static volatile bool wheel_commit_done;
 static void thread(void); /* the thread running commit*/
 static void allocate_tempbuf(void);
 static void free_tempbuf(void);
@@ -850,9 +852,31 @@ static int commit_menu(void)
 /******* plugin_start *******                                                  */
 /*-----------------------------------------------------------------------------*/
 
+/* Y1 Wheel: friendly progress instead of the technical log */
+
+static void wheel_progress(void)
+{
+    char line[64];
+    rb->lcd_clear_display();
+    rb->lcd_setfont(FONT_UI);
+    int w, h;
+    const char *t = rb->str(LANG_WHEEL_LIBRARY_FINISHING);
+    rb->lcd_getstringsize(t, &w, &h);
+    rb->lcd_putsxy((LCD_WIDTH - w) / 2, LCD_HEIGHT / 2 - h - 6, t);
+    int steps = 9; /* string tags in the index */
+    int step = tc_stat.commit_step > 0 ? tc_stat.commit_step : 0;
+    snprintf(line, sizeof(line), "%d %%", MIN(100, step * 100 / steps));
+    rb->lcd_getstringsize(line, &w, &h);
+    rb->lcd_putsxy((LCD_WIDTH - w) / 2, LCD_HEIGHT / 2 + 6, line);
+    int bw = LCD_WIDTH * 2 / 3, bx = (LCD_WIDTH - bw) / 2, by = LCD_HEIGHT / 2 + 6 + h + 12;
+    rb->lcd_drawrect(bx, by, bw, 6);
+    rb->lcd_fillrect(bx, by, bw * MIN(steps, step) / steps, 6);
+    rb->lcd_update();
+}
+
 enum plugin_status plugin_start(const void* parameter)
 {
-    (void) parameter;
+    wheel_auto = parameter && !strcmp((const char *)parameter, "wheel:auto");
 
     /* Turn off backlight timeout */
     backlight_ignore_timeout();
@@ -871,7 +895,13 @@ enum plugin_status plugin_start(const void* parameter)
 
     logf("started");
 
-    int result = commit_menu();
+    int result = 0;
+    if (wheel_auto)
+    {   /* started by the main menu once the scan is done: just commit */
+        gStatus.do_commit = true;
+    }
+    else
+        result = commit_menu();
 
     if (!gStatus.do_commit)
     {
@@ -882,15 +912,28 @@ enum plugin_status plugin_start(const void* parameter)
 
     logdump(false);
     allocate_tempbuf();
-    if (gStatus.db_exists && !gStatus.have_backup && !prompt_backup_restore(true))
+    if (!wheel_auto && gStatus.db_exists && !gStatus.have_backup && !prompt_backup_restore(true))
         rb->splash(HZ, "Backup failed!");
     thread_create();
     gThread.user_index = 0;
-    logdisplay(); /* get something on the screen while user waits */
+    if (wheel_auto)
+        wheel_progress();
+    else
+        logdisplay(); /* get something on the screen while user waits */
 
     while (!gThread.exiting)
     {
-        logdisplay();
+        if (wheel_auto)
+        {
+            wheel_progress();
+            if (wheel_commit_done)
+            {   /* done: leave without waiting for a key */
+                rb->queue_remove_from_head(&gThread.queue, EV_EXIT);
+                rb->queue_post(&gThread.queue, EV_EXIT, 0);
+            }
+        }
+        else
+            logdisplay();
 
         int action = rb->get_action(CONTEXT_STD, HZ/20);
 
@@ -992,7 +1035,10 @@ static void thread(void)
                 cpu_boost(false);
                 logdump(true);
                 gThread.user_index++;
-                logdisplay();
+                if (wheel_auto)
+                    wheel_commit_done = true;
+                else
+                    logdisplay();
                 break;
             case EV_EXIT:
                 gThread.exiting = true;

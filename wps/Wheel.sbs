@@ -1,0 +1,67 @@
+# Wheel - status bar + menus for 480x360 (Innioasis Y1)
+# Original design for the Rockbox Y1 Wheel edition. GPLv2+.
+# Fonts: Inter (SIL OFL) and the generated Wheel-Icons / Wheel-Row fonts.
+#
+%Fl(2,40-Wheel-Row.fnt)
+%Fl(3,40-Wheel-RowSel.fnt)
+%Fl(4,22-Wheel-Icons.fnt)
+%Fl(5,110-Wheel-Icons.fnt)
+%Fl(6,18-Inter-Regular.fnt)
+%Fl(7,18-Inter-Medium.fnt)
+%Fl(8,22-Inter-SemiBold.fnt)
+#
+# ---------- UI viewport: split screen on the main menu ----------
+%Vi(full,0,38,480,322,2)
+%Vi(half,0,38,264,322,2)
+%?cs<%VI(half)|%VI(full)>
+#
+# ---------- list rows (40px). Values sit on the right, then the chevron ----------
+%Lb(item,480,40)
+%Vl(item,0,0,-,40,2)%Vf(141416)%Vb(ffffff)
+%?Lc<|   %LT%ar%?Lv<%Lv  |>%?Lh<›  |>>
+%Vl(item,0,0,-,40,3)%Vg(accent2,accent,accenttext)
+%?Lc<%Vs(gradient)   %LT%ar%?Lv<%Lv  |>%?Lh<›  |>|>
+#
+# ---------- right pane: what's playing (main menu only) ----------
+%Vl(pane,264,38,216,322,-)%Vb(f2f2f5)
+%dr(0,0,1,-,d1d1d6)
+#
+%Cl(0,0,184,184,c,c)
+%Vl(art,280,56,184,184,-)%Vb(f2f2f5)
+%Cd
+%Vl(tile,280,56,184,184,-)%Vb(cfcfd6)
+%Vl(note,280,92,184,112,5)%Vb(cfcfd6)%Vf(ffffff)
+%acO
+#
+%Vl(cap1,272,252,200,24,7)%Vf(141416)%Vb(f2f2f5)
+%ac%s%?it<%it|%fn>
+%Vl(cap2,272,276,200,24,6)%Vf(6e6e73)%Vb(f2f2f5)
+%ac%s%?ia<%ia|%?iA<%iA|>>
+%Vl(mini,292,314,160,4,-)%Vf(accent)%Vb(d6d6dc)
+%pb(0,0,160,4,noborder)
+#
+# library being built on the first start
+%Vl(lib,272,252,200,48,6)%Vf(6e6e73)%Vb(f2f2f5)
+%ac%Wd
+#
+# ---------- top bar ----------
+%V(0,0,480,38,-)%Vb(f7f7f9)
+%dr(0,37,-,1,c8c8ce)
+%?cs<%Vd(pane)|>
+%?cs<%?C<%Vd(art)|%Vd(tile)%Vd(note)>|>
+%?cs<%?mp<%?Wd<%Vd(lib)|>|%Vd(cap1)%Vd(cap2)%Vd(mini)>|>
+%?St(battery percentage)<%Vd(pct)%Vd(icons_pct)|%Vd(icons)>
+%V(16,7,300,26,8)%Vf(141416)%Vb(f7f7f9)
+%s%?Lt<%Lt|Rockbox>
+#
+# status icons: scrobbles waiting, Bluetooth headphones, play state
+%Vl(icons,300,7,124,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
+%Vl(icons_pct,250,7,124,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
+%Vl(pct,376,9,50,22,7)%Vf(3a3a3f)%Vb(f7f7f9)
+%ar%?if(%bl,>,-1)<%bl%%|>
+#
+# battery (charging bolt while on the charger)
+%V(426,7,46,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%ar%?bc<N|%?bl<I|J|K|L|M>>

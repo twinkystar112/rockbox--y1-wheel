@@ -590,6 +590,13 @@ void write_line(struct screen *display, struct align_pos *format_align,
     int scroll_width;
     int viewport_width = display->getwidth();
 
+    extern bool skinlist_drawing_items;
+    if (skinlist_drawing_items &&
+        (!format_align->left   || !*format_align->left) &&
+        (!format_align->center || !*format_align->center) &&
+        (!format_align->right  || !*format_align->right))
+        return;
+
     /* calculate different string sizes and positions */
     display->getstringsize((unsigned char *)" ", &space_width, &string_height);
     if (format_align->left != 0) {
@@ -695,6 +702,11 @@ void write_line(struct screen *display, struct align_pos *format_align,
         }
     } /* (center_width == 0 && right_width != 0)*/
 
+    /* Y1 Wheel: %Vs(none) lines are drawn on top of what is there */
+    bool transparent = (linedes->style & _STYLE_DECO_MASK) == STYLE_NONE;
+    if (transparent)
+        scroll = false;
+
     if (scroll && ((left_width > scroll_width) ||
                    (center_width > scroll_width) ||
                    (right_width > scroll_width)))
@@ -707,14 +719,20 @@ void write_line(struct screen *display, struct align_pos *format_align,
     else
     {
         linedes->scroll = false;
-        /* clear the line first */
-        display->set_drawmode(DRMODE_SOLID|DRMODE_INVERSEVID);
-        display->fillrect(0, line*string_height, viewport_width, string_height);
-        display->set_drawmode(DRMODE_SOLID);
+        if (transparent)
+            display->set_drawmode(DRMODE_FG);
+        else
+        {
+            /* clear the line first */
+            display->set_drawmode(DRMODE_SOLID|DRMODE_INVERSEVID);
+            display->fillrect(0, line*string_height, viewport_width, string_height);
+            display->set_drawmode(DRMODE_SOLID);
+        }
 
         /* Nasty hack: we output an empty scrolling string,
         which will reset the scroller for that line */
-        display->puts_scroll(0, line, (unsigned char *)"");
+        if (!transparent)
+            display->puts_scroll(0, line, (unsigned char *)"");
         line *= string_height;
         center_xpos = (viewport_width-center_width)/2;
         right_xpos = viewport_width-right_width;
@@ -727,6 +745,8 @@ void write_line(struct screen *display, struct align_pos *format_align,
         display->put_line(0, line, linedes, "$t$*s$t$*s$t", left_width == 0 ? "" : left ,
                 center_xpos - left_width, center_width == 0 ? "" : center,
                 right_xpos - center_xpos - center_width, right_width == 0 ? "" : right);
+        if (transparent)
+            display->set_drawmode(DRMODE_SOLID);
     }
 }
 

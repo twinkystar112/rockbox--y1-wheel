@@ -130,6 +130,10 @@ public class RockboxService extends Service
 
         loadConfig();
         Connectivity.setContext(this);
+        /* Y1 Wheel: Bluetooth audio, Last.fm, AVRCP metadata */
+        org.rockbox.Helper.WheelMedia.init(this);
+        org.rockbox.Helper.WheelBluetooth.init(this);
+        org.rockbox.Helper.WheelScrobbler.init(this);
     }
 
     public static RockboxService getInstance()
@@ -357,7 +361,7 @@ public class RockboxService extends Service
                         strm.write("lang: /sdcard/.rockbox/langs/" + getString(R.string.rockbox_language_file) + "\n");
                         strm.write("wheel vibration intensity: 15\n");
                         strm.write("idle poweroff: 15\n");
-                        strm.write("font: /sdcard/.rockbox/fonts/24-Terminus-Bold.fnt\n");
+                        strm.write("font: /sdcard/.rockbox/fonts/22-Inter-Medium.fnt\n");
                         strm.write("timestretch enabled: on\n");
                         strm.write("Timestretch mode: on\n");
                         strm.write("volume adjustment mode: perceptual\n");
@@ -365,6 +369,24 @@ public class RockboxService extends Service
                         strm.write("qs left: shuffle\n");
                         strm.write("qs right: repeat\n");
                         strm.write("qs bottom: brightness\n");
+                        /* Y1 Wheel: the Wheel theme by default */
+                        strm.write("wps: /sdcard/.rockbox/wps/Wheel.wps\n");
+                        strm.write("sbs: /sdcard/.rockbox/wps/Wheel.sbs\n");
+                        strm.write("selector type: bar (gradient)\n");
+                        strm.write("line selector start color: 4a97fa\n");
+                        strm.write("line selector end color: 1c63d8\n");
+                        strm.write("line selector text color: ffffff\n");
+                        strm.write("statusbar: top\n");
+                        strm.write("scrollbar: off\n");
+                        strm.write("list separator height: 0\n");
+                        strm.write("show icons: off\n");
+                        strm.write("foreground color: 141416\n");
+                        strm.write("background color: ffffff\n");
+                        strm.write("backdrop: -\n");
+                        strm.write("iconset: -\n");
+                        strm.write("viewers iconset: -\n");
+                        strm.write("ui viewport: -\n");
+                        strm.write("pause on headphone unplug: pause\n");
                         strm.close();
                     } catch(Exception e) {
                         Log.d("RockboxService", "Exception when writing default config", e);

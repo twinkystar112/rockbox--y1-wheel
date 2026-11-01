@@ -156,4 +156,8 @@ void notification_init(void)
 
     add_event(PLAYBACK_EVENT_TRACK_CHANGE, track_changed_callback);
     add_event(PLAYBACK_EVENT_TRACK_FINISH, track_finished_callback);
+
+    /* Y1 Wheel: Bluetooth, Last.fm and AVRCP metadata */
+    extern void wheel_connect_init(void);
+    wheel_connect_init();
 }

@@ -24,6 +24,7 @@
 #include "config.h"
 #include "string.h"
 #include "lang.h"
+#include "wheel/wheel_screens.h"
 #include "action.h"
 #include "settings.h"
 #include "power.h"
@@ -586,8 +587,12 @@ MENUITEM_FUNCTION(main_menu_config_item, 0, ID2P(LANG_MAIN_MENU),
 /***********************************/
 /*    MAIN MENU                    */
 
+MENUITEM_FUNCTION(wheel_appearance_item, 0, ID2P(LANG_WHEEL_APPEARANCE),
+                  wheel_appearance_screen, NULL, Icon_NOICON);
+
 MAKE_MENU(main_menu_, ID2P(LANG_SETTINGS), NULL,
         Icon_Submenu_Entered,
+        &wheel_appearance_item,
 #ifdef INNIOASIS_Y1
         &bluetooth_menu,
         &system_menu_item,

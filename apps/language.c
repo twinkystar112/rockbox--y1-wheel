@@ -132,18 +132,21 @@ int lang_core_load(const char *filename)
                      LANG_LAST_INDEX_IN_ARRAY);
 }
 
+/* Y1 Wheel: the last match wins, so the music menu (tagnavi) picks up the
+ * newer Wheel phrases ("Music" -> "Música", not the file filter's
+ * "Archivos de música") when an English text exists twice */
 int lang_english_to_id(const char *english)
 {
-    int i;
+    int i, found = -1;
     unsigned char *ptr = (unsigned char *) core_language_builtin;
     size_t ptrlen, len = strlen(english);
     for (i = 0; i < LANG_LAST_INDEX_IN_ARRAY; i++) {
         ptrlen = strlen((char *)ptr);
         if ((ptrlen == len) && memcmp(ptr, english, ptrlen) == 0)
-            return i;
+            found = i;
         ptr += ptrlen + 1; /* advance pointer to next string */
     }
-    return -1;
+    return found;
 }
 
 const char * lang_id_to_english(int lang_id)

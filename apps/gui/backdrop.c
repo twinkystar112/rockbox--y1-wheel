@@ -25,16 +25,38 @@
 #include "lcd-remote.h"
 #endif
 #include "backdrop.h"
+#include <string.h>
+#include "file.h"
 
 bool backdrop_load(const char* filename, char *backdrop_buffer)
 {
     struct bitmap bm;
     int ret;
+    int format = FORMAT_NATIVE | FORMAT_DITHER;
+    int maxsize = LCD_BACKDROP_BYTES;
 
+#if defined(HAVE_LCD_COLOR) && defined(HAVE_BMP_SCALING)
+    /* Y1 Wheel: a backdrop made for another screen size is scaled to fit
+     * (the buffer has room for the scaler, see LCD_BACKDROP_ALLOC) */
+    int fd = open(filename, O_RDONLY);
+    if (fd >= 0)
+    {
+        struct bitmap probe;
+        memset(&probe, 0, sizeof(probe));
+        if (read_bmp_fd(fd, &probe, 0, FORMAT_NATIVE|FORMAT_RETURN_SIZE, NULL) > 0 &&
+            (probe.width != LCD_WIDTH || probe.height != LCD_HEIGHT))
+        {
+            format |= FORMAT_RESIZE;
+            maxsize = LCD_BACKDROP_ALLOC;
+        }
+        close(fd);
+    }
+    bm.width = LCD_WIDTH;
+    bm.height = LCD_HEIGHT;
+#endif
     /* load the image */
     bm.data = backdrop_buffer;
-    ret = read_bmp_file(filename, &bm, LCD_BACKDROP_BYTES,
-                        FORMAT_NATIVE | FORMAT_DITHER, NULL);
+    ret = read_bmp_file(filename, &bm, maxsize, format, NULL);
 
     return ((ret > 0)
             && (bm.width == LCD_WIDTH) && (bm.height == LCD_HEIGHT));

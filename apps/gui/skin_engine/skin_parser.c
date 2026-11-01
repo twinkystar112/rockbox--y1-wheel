@@ -80,6 +80,7 @@
 
 #include "backdrop.h"
 #include "statusbar-skinned.h"
+#include "wheel/wheel_themes.h"
 
 #define WPS_ERROR_INVALID_PARAM         -1
 
@@ -495,6 +496,13 @@ static int parse_font_load(struct skin_element *element,
     skinfonts[id-2].id = -1;
     skinfonts[id-2].name = filename;
     skinfonts[id-2].glyphs = glyphs;
+#ifndef __PCTOOL__
+    if (skin_scale_num != skin_scale_den)
+    {   /* Y1 Wheel: a bigger size of the same font, or the closest Inter */
+        static char scaled[MAXUSERFONTS][MAX_PATH];
+        skinfonts[id-2].name = (char *)wheel_scaled_font_name(filename, scaled[id-2], MAX_PATH);
+    }
+#endif
 
     return 0;
 }
@@ -614,7 +622,7 @@ static int parse_viewporttextstyle(struct skin_element *element,
     unsigned colour;
 
     static const char * const vp_options[] = { "invert", "color", "colour",
-                                 "clear", "gradient", NULL};
+                                 "clear", "gradient", "none", NULL};
 
     int vp_op = string_option(mode, vp_options, false);
 
@@ -648,6 +656,10 @@ static int parse_viewporttextstyle(struct skin_element *element,
     else if (vp_op == 3) /*clear*/
     {
         line->style = STYLE_DEFAULT;
+    }
+    else if (vp_op == 5) /*none: Y1 Wheel, draw text without a background */
+    {
+        line->style = STYLE_NONE;
     }
     else
         return 1;
@@ -2098,6 +2110,26 @@ static int load_skin_bmp(struct wps_data *wps_data, struct gui_img *img, char* b
         bmpformat = img->dither ? FORMAT_ANY|FORMAT_DITHER|FORMAT_TRANSPARENT :
                                   FORMAT_ANY|FORMAT_TRANSPARENT;
 
+    if (skin_scale_num != skin_scale_den)
+    {   /* Y1 Wheel: theme for a smaller screen: scale its images too,
+         * keeping every sub-image of a strip the same height */
+        int fd = open(img_path, O_RDONLY);
+        if (fd >= 0)
+        {
+            struct bitmap probe;
+            memset(&probe, 0, sizeof(probe));
+            if (read_bmp_fd(fd, &probe, 0, FORMAT_NATIVE|FORMAT_RETURN_SIZE, NULL) > 0 &&
+                probe.width > 0 && probe.height > 0)
+            {
+                int n = MAX(1, img->num_subimages);
+                bitmap->width = MAX(1, skin_scale_value(probe.width));
+                bitmap->height = MAX(1, skin_scale_value(probe.height / n)) * n;
+                bmpformat |= FORMAT_RESIZE;
+            }
+            close(fd);
+        }
+    }
+
     handle = core_load_bmp(img_path, bitmap, bmpformat, &buf_reqd, &buflib_ops);
     if (handle != CLB_ALOC_ERR)
     {
@@ -2639,9 +2671,54 @@ static int skin_element_callback(struct skin_element* element, void* data)
     return CALLBACK_OK;
 }
 
+static bool skin_data_load_inner(enum skinnable_screens skin, enum screen_type screen,
+                    struct wps_data *wps_data, const char *buf, bool isfile,
+                    struct skin_stats *stats);
+
+/* Y1 Wheel: themes drawn for 320x240 get scaled up on bigger 4:3 screens
+ * (detected from the skin itself, see wheel_skin_is_small()) */
+#if !defined(__PCTOOL__)
+static void wheel_detect_scale(const char *text)
+{
+    skin_scale_num = skin_scale_den = 1;
+    if (!global_settings.wheel_theme_scale ||
+        LCD_WIDTH <= 320 || LCD_WIDTH * 240 != LCD_HEIGHT * 320)
+        return;
+    if (wheel_skin_is_small(text, NULL, NULL))
+    {
+        skin_scale_num = LCD_WIDTH;
+        skin_scale_den = 320;
+    }
+}
+#endif
+
 /* Set up skin data from a format buffer (isfile = false)
                        or from skin file (isfile = true) */
 bool skin_data_load(enum skinnable_screens skin, enum screen_type screen,
+                    struct wps_data *wps_data, const char *buf, bool isfile,
+                    struct skin_stats *stats)
+{
+#if !defined(__PCTOOL__)
+    skin_scale_num = skin_scale_den = 1;
+    if (isfile && buf)
+    {   /* peek at the file to decide on scaling */
+        static char peek[8192];
+        int fd = open_utf8(buf, O_RDONLY);
+        if (fd >= 0)
+        {
+            ssize_t n = read(fd, peek, sizeof(peek) - 1);
+            close(fd);
+            peek[n > 0 ? n : 0] = '\0';
+            wheel_detect_scale(peek);
+        }
+    }
+#endif
+    bool ok = skin_data_load_inner(skin, screen, wps_data, buf, isfile, stats);
+    skin_scale_num = skin_scale_den = 1;
+    return ok;
+}
+
+static bool skin_data_load_inner(enum skinnable_screens skin, enum screen_type screen,
                     struct wps_data *wps_data, const char *buf, bool isfile,
                     struct skin_stats *stats)
 {

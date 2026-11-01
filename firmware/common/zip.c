@@ -29,6 +29,7 @@
 #include "pathfuncs.h"
 #include "crc32.h"
 #include "rbendian.h"
+#include "inflate.h"
 
 #define zip_core_alloc(N) core_alloc_ex((N),&buflib_ops_locked)
 
@@ -38,6 +39,7 @@ enum {
     ZIP_SIG_LF = 0x04034b50,
     ZIP_BIT_DD = 0x0008,
     ZIP_METHOD_STORE = 0x0000,
+    ZIP_METHOD_DEFLATE = 0x0008,
     ZIP_MAX_LENGTH = 0xffff,
     ZIP_BUFFER_SIZE = 4096,
 };
@@ -424,6 +426,74 @@ static int zip_read_store(struct zip* z, void* mem, uint32_t mem_size) {
     return 0;
 }
 
+/* deflated entries (what every zip tool makes by default): stream the
+ * compressed bytes through inflate() and hand each output block to the
+ * callback like zip_read_store() does */
+struct zip_inflate_ctx {
+    struct zip* z;
+    uint32_t left;      /* compressed bytes still to read */
+    uint32_t crc;
+    int rv;             /* callback result */
+};
+
+static uint32_t zip_inflate_reader(void* block, uint32_t block_size, void* ctx) {
+    struct zip_inflate_ctx* c = ctx;
+    uint32_t n = MIN(block_size, c->left);
+
+    if (n == 0)
+        return 0;
+
+    if (c->z->read(c->z, block, n) != (off_t) n)
+        return 0;
+
+    c->left -= n;
+    return n;
+}
+
+static uint32_t zip_inflate_writer(const void* block, uint32_t block_size, void* ctx) {
+    struct zip_inflate_ctx* c = ctx;
+    struct zip_args* args = &c->z->args;
+
+    args->block = (void*) block;
+    args->block_size = block_size;
+    args->read_size += block_size;
+    c->crc = crc_32r(block, block_size, c->crc);
+
+    if ((c->rv = c->z->cb(args, ZIP_PASS_DATA, c->z->ctx)) != 0)
+        return 0; /* stops inflate() */
+
+    return block_size;
+}
+
+static int zip_read_deflate(struct zip* z) {
+    const struct zip_lf* lf = &z->lf;
+    struct zip_inflate_ctx c = {
+        .z = z, .left = lf->compressed_size, .crc = 0xffffffff, .rv = 0,
+    };
+    int it_handle;
+    int rv;
+
+    if ((it_handle = zip_core_alloc(inflate_size + inflate_align)) < 0)
+        return -25;
+
+    void* it = (void*) ALIGN_UP((uintptr_t) core_get_data(it_handle), inflate_align);
+
+    z->args.read_size = 0;
+    rv = inflate(it, INFLATE_RAW, zip_inflate_reader, &c, zip_inflate_writer, &c);
+    core_free(it_handle);
+
+    if (c.rv != 0)
+        return (c.rv < 0) ? 0 : c.rv;
+
+    if (rv != 0)
+        return -26;
+
+    if (~c.crc != lf->crc)
+        return -24;
+
+    return 0;
+}
+
 static int zip_read_entry(struct zip* z, uint16_t i, void* mem, uint32_t mem_size) {
     const struct zip_lf* lf = &z->lf;
     struct zip_args* args = &z->args;
@@ -447,6 +517,9 @@ static int zip_read_entry(struct zip* z, uint16_t i, void* mem, uint32_t mem_siz
 
     if (lf->method == ZIP_METHOD_STORE) {
         if ((rv = zip_read_store(z, mem, mem_size)) != 0)
+            return rv;
+    } else if (lf->method == ZIP_METHOD_DEFLATE) {
+        if ((rv = zip_read_deflate(z)) != 0)
             return rv;
     } else {
         return -20;
@@ -486,7 +559,7 @@ static int zip_read_entries(struct zip* z) {
     args->name = lf->name;
 
     for (uint16_t i = 0; i < cd_entries; i++)
-        if ((rv = zip_read_entry(z, i, mem, mem_size)) > 0)
+        if ((rv = zip_read_entry(z, i, mem, mem_size)) != 0)
             goto bail;
 
     z->state = ZIP_STATE_LF_EXIT;

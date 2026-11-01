@@ -60,6 +60,7 @@
 #include "option_select.h"
 #include "playlist_viewer.h"
 #include "wps.h"
+#include "wheel/wheel_lyrics.h"
 #include "statusbar-skinned.h"
 #include "skin_engine/wps_internals.h"
 #include "open_plugin.h"
@@ -732,6 +733,7 @@ long gui_wps_show(void)
     struct wps_state *state = get_wps_state();
 
     ab_reset_markers();
+    wheel_wps_reset_mode(); /* Y1 Wheel: always open on the normal view */
 
     wps_state_init();
     while ( 1 )
@@ -814,6 +816,12 @@ long gui_wps_show(void)
         switch(button)
         {
 #ifdef HAVE_HOTKEY
+            case ACTION_WPS_CYCLE_MODE:
+                /* Y1 Wheel: centre button: lyrics -> scrubbing -> normal */
+                wheel_wps_cycle_mode();
+                skin_request_full_update(WPS);
+                update = true;
+                break;
             case ACTION_WPS_HOTKEY:
             {
                 hotkey = true;
@@ -852,6 +860,8 @@ long gui_wps_show(void)
                     return GO_TO_FILEBROWSER;
                 else if (retval == ONPLAY_PLAYLIST)
                     return GO_TO_PLAYLIST_VIEWER;
+                else if (retval == ONPLAY_WHEEL_BROWSE)
+                    return GO_TO_FILEBROWSER; /* Go to Album / Artist */
                 else if (retval == ONPLAY_PLUGIN)
                 {
                     restore_theme();
@@ -875,6 +885,14 @@ long gui_wps_show(void)
 
             case ACTION_WPS_VOLUP: /* fall through */
             case ACTION_WPS_VOLDOWN:
+                if (wheel_wps_mode() == WHEEL_MODE_SCRUB)
+                {   /* Y1 Wheel: the wheel seeks while scrubbing */
+                    wheel_wps_scrub(button == ACTION_WPS_VOLUP ? 1 : -1);
+                    FOR_NB_SCREENS(i)
+                        skin_update(WPS, i, SKIN_REFRESH_NON_STATIC);
+                    update = false;
+                    break;
+                }
                 if (button == ACTION_WPS_VOLUP)
                     adjust_volume(1);
                 else
@@ -1082,6 +1100,8 @@ long gui_wps_show(void)
                 skin_request_full_update(CUSTOM_STATUSBAR); /* if SBS is used */
                 break;
             case ACTION_NONE: /* Timeout, do a partial update */
+                if (wheel_wps_idle())
+                    skin_request_full_update(WPS);
                 update = true;
                 ffwd_rew(button, false); /* hopefully fix the ffw/rwd bug */
                 break;

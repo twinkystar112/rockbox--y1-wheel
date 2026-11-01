@@ -64,6 +64,7 @@ enum {
     GO_TO_PLAYLIST_VIEWER,
     GO_TO_SYSTEM_SCREEN,
     GO_TO_SHORTCUTMENU,
+    GO_TO_WHEEL_EXTRAS, /* Y1 Wheel: Extras (files, plugins, tools) */
 #ifdef INNIOASIS_Y1
     GO_TO_FM_RADIO_APP,
 #endif

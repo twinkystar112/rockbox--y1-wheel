@@ -203,6 +203,21 @@ static enum themable_icons tree_get_fileicon(int selected_item, void * data)
     }
 }
 
+/* Y1 Wheel: folders / database categories show a chevron */
+static bool tree_get_nav(int selected_item, void * data)
+{
+    struct tree_context * local_tc=(struct tree_context *)data;
+#ifdef HAVE_TAGCACHE
+    if (*(local_tc->dirfilter) == SHOW_ID3DB)
+    {
+        (void)selected_item;
+        return (tagtree_get_attr(local_tc) & ATTR_DIRECTORY) != 0;
+    }
+#endif
+    struct entry *entry = get_valid_entry(__func__, local_tc, selected_item);
+    return entry && (entry->attr & ATTR_DIRECTORY);
+}
+
 static int tree_voice_cb(int selected_item, void * data)
 {
     struct tree_context * local_tc=(struct tree_context *)data;
@@ -527,6 +542,7 @@ static int update_dir(void)
     {
         gui_synclist_set_voice_callback(list, &tree_voice_cb);
     }
+    gui_synclist_set_nav_callback(list, &tree_get_nav);
 #ifdef HAVE_LCD_COLOR
     gui_synclist_set_color_callback(list, &tree_get_filecolor);
 #endif

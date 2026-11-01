@@ -1,0 +1,24 @@
+# Rockbox Y1 Wheel - Last.fm sign-in
+#
+# 1. Get a free API key: https://www.last.fm/api/account/create
+#    (any application name works; leave the callback URL empty)
+# 2. Fill in the four lines below.
+# 3. Save this file as  .rockbox/lastfm.cfg  on the player's SD card.
+# 4. On the player: Extras > Last.fm > Account (or just restart Rockbox).
+#
+# After the first successful sign-in the password line is removed from this
+# file automatically; only a session key is kept on the player.
+
+api_key=
+api_secret=
+username=
+password=
+
+# Optional: if HTTPS can't be established on your firmware, allow plain
+# HTTP for scrobble submissions (never used for the sign-in itself).
+# allow_http=1
+
+# Optional: another Audioscrobbler-compatible service instead of Last.fm.
+# Libre.fm:
+# api_url=https://libre.fm/2.0/
+# auth_url=https://libre.fm/api/auth/

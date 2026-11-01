@@ -223,6 +223,7 @@ public class RockboxPCM extends AudioTrack
             Intent widgetUpdate = new Intent("org.rockbox.UpdateState");
             widgetUpdate.putExtra("state", "pause");
             service.sendBroadcast(widgetUpdate);
+            org.rockbox.Helper.WheelMedia.onPlayState(org.rockbox.Helper.WheelMedia.STATE_PAUSED);
             service.stopForeground();
             pause();
         }
@@ -231,6 +232,7 @@ public class RockboxPCM extends AudioTrack
             Intent widgetUpdate = new Intent("org.rockbox.UpdateState");
             widgetUpdate.putExtra("state", "play");
             service.sendBroadcast(widgetUpdate);
+            org.rockbox.Helper.WheelMedia.onPlayState(org.rockbox.Helper.WheelMedia.STATE_PLAYING);
             service.startForeground();
             if (getPlayState() == AudioTrack.PLAYSTATE_STOPPED)
             {
@@ -271,6 +273,7 @@ public class RockboxPCM extends AudioTrack
         Intent widgetUpdate = new Intent("org.rockbox.UpdateState");
         widgetUpdate.putExtra("state", "stop");
         RockboxService.getInstance().sendBroadcast(widgetUpdate);
+        org.rockbox.Helper.WheelMedia.onPlayState(org.rockbox.Helper.WheelMedia.STATE_STOPPED);
         RockboxService.getInstance().stopForeground();
     }
 
