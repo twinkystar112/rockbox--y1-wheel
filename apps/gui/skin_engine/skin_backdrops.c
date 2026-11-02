@@ -156,6 +156,23 @@ int skin_backdrop_assign(char* backdrop, char *bmpdir,
     return -1;
 }
 
+fb_data *skin_backdrop_next(const char *needle, int *iter, const char **name)
+{
+    for (; *iter < NB_BDROPS; (*iter)++)
+    {
+        int i = *iter;
+        if (backdrops[i].name[0] && backdrops[i].buffer && backdrops[i].loaded &&
+            strstr(backdrops[i].name, needle))
+        {
+            (*iter)++;
+            if (name)
+                *name = backdrops[i].name;
+            return (fb_data *)backdrops[i].buffer;
+        }
+    }
+    return NULL;
+}
+
 bool skin_backdrops_preload(void)
 {
     bool retval = true;
@@ -365,6 +382,11 @@ void skin_backdrop_unload(int backdrop_id)
 {
     (void)backdrop_id;
 }
+fb_data *skin_backdrop_next(const char *needle, int *iter, const char **name)
+{
+    (void)needle; (void)iter; (void)name;
+    return NULL;
+}
 #else
 static bool first_go = true;
 bool skin_backdrop_init(void)
@@ -376,6 +398,12 @@ bool skin_backdrop_init(void)
 
 void skin_backdrop_load_setting(void)
 {
+}
+
+fb_data *skin_backdrop_next(const char *needle, int *iter, const char **name)
+{
+    (void)needle; (void)iter; (void)name;
+    return NULL;
 }
 
 void skin_backdrop_show(int backdrop_id)

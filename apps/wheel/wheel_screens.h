@@ -36,6 +36,7 @@ int  wheel_sleep_screen(void);
 int  wheel_appearance_screen(void);
 void wheel_appearance_apply(bool force);
 bool wheel_appearance_check(void);
+bool wheel_is_night(void);
 void wheel_reload_skins(void);
 /* Settings > Appearance > Typography & Fonts (wheel_typo_ui.c) */
 int  wheel_typography_screen(void);

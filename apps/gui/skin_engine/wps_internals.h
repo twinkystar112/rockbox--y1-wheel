@@ -282,6 +282,7 @@ struct skin_albumart {
     unsigned char xalign; /* WPS_ALBUMART_ALIGN_LEFT, _CENTER, _RIGHT */
     unsigned char yalign; /* WPS_ALBUMART_ALIGN_TOP, _CENTER, _BOTTOM */
     unsigned char state; /* WPS_ALBUMART_NONE, _CHECK, _LOAD */
+    unsigned char round; /* Y1 Wheel: drawn as a circle ("o" in the alignment) */
 
     int draw_handle;
 };

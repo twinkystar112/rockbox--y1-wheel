@@ -21534,3 +21534,1179 @@
     *: "哑光"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_COVER
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "From the cover"
+  </source>
+  <dest>
+    *: "来自封面"
+  </dest>
+  <voice>
+    *: "来自封面"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_COVER_DESC
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Colours of the song that's playing"
+  </source>
+  <dest>
+    *: "正在播放歌曲的颜色"
+  </dest>
+  <voice>
+    *: "正在播放歌曲的颜色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_MINE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "My palette"
+  </source>
+  <dest>
+    *: "我的配色"
+  </dest>
+  <voice>
+    *: "我的配色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_MINE_DESC
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Your colours: press to edit"
+  </source>
+  <dest>
+    *: "你的颜色：按下编辑"
+  </dest>
+  <voice>
+    *: "你的颜色：按下编辑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_BAR
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Top bar"
+  </source>
+  <dest>
+    *: "顶栏"
+  </dest>
+  <voice>
+    *: "顶栏"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_BG
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Background"
+  </source>
+  <dest>
+    *: "背景"
+  </dest>
+  <voice>
+    *: "背景"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_ACCENT
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Accent"
+  </source>
+  <dest>
+    *: "强调色"
+  </dest>
+  <voice>
+    *: "强调色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_USE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Use this palette"
+  </source>
+  <dest>
+    *: "使用此配色"
+  </dest>
+  <voice>
+    *: "使用此配色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_HUE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Hue"
+  </source>
+  <dest>
+    *: "色相"
+  </dest>
+  <voice>
+    *: "色相"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SATURATION
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Saturation"
+  </source>
+  <dest>
+    *: "饱和度"
+  </dest>
+  <voice>
+    *: "饱和度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIGHTNESS
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Lightness"
+  </source>
+  <dest>
+    *: "亮度"
+  </dest>
+  <voice>
+    *: "亮度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Gloss"
+  </source>
+  <dest>
+    *: "光泽强度"
+  </dest>
+  <voice>
+    *: "光泽强度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_0
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Subtle"
+  </source>
+  <dest>
+    *: "柔和"
+  </dest>
+  <voice>
+    *: "柔和"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_1
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "iPod"
+  </source>
+  <dest>
+    *: "iPod"
+  </dest>
+  <voice>
+    *: "iPod"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_2
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Maximum"
+  </source>
+  <dest>
+    *: "最强"
+  </dest>
+  <voice>
+    *: "最强"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REFLECT
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Cover reflection"
+  </source>
+  <dest>
+    *: "封面倒影"
+  </dest>
+  <voice>
+    *: "封面倒影"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Corners"
+  </source>
+  <dest>
+    *: "圆角"
+  </dest>
+  <voice>
+    *: "圆角"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_0
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Square"
+  </source>
+  <dest>
+    *: "直角"
+  </dest>
+  <voice>
+    *: "直角"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_1
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Soft"
+  </source>
+  <dest>
+    *: "柔和"
+  </dest>
+  <voice>
+    *: "柔和"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_2
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Round"
+  </source>
+  <dest>
+    *: "圆润"
+  </dest>
+  <voice>
+    *: "圆润"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALLPAPER
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Background image"
+  </source>
+  <dest>
+    *: "背景图片"
+  </dest>
+  <voice>
+    *: "背景图片"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_NONE
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "None"
+  </source>
+  <dest>
+    *: "无"
+  </dest>
+  <voice>
+    *: "无"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_PICK
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Choose an image…"
+  </source>
+  <dest>
+    *: "选择图片…"
+  </dest>
+  <voice>
+    *: "选择图片…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_STRENGTH
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Visibility"
+  </source>
+  <dest>
+    *: "强度"
+  </dest>
+  <voice>
+    *: "强度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S0
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Soft"
+  </source>
+  <dest>
+    *: "淡"
+  </dest>
+  <voice>
+    *: "淡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S1
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Medium"
+  </source>
+  <dest>
+    *: "中"
+  </dest>
+  <voice>
+    *: "中"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S2
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Strong"
+  </source>
+  <dest>
+    *: "浓"
+  </dest>
+  <voice>
+    *: "浓"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_BLUR
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Blur"
+  </source>
+  <dest>
+    *: "模糊"
+  </dest>
+  <voice>
+    *: "模糊"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_BAD
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Couldn't open that image (JPEG or BMP)"
+  </source>
+  <dest>
+    *: "无法打开图片（JPEG 或 BMP）"
+  </dest>
+  <voice>
+    *: "无法打开图片（JPEG 或 BMP）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_REMOVE
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Remove image"
+  </source>
+  <dest>
+    *: "移除图片"
+  </dest>
+  <voice>
+    *: "移除图片"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_LAYOUT
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Layout"
+  </source>
+  <dest>
+    *: "布局"
+  </dest>
+  <voice>
+    *: "布局"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L0
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Classic"
+  </source>
+  <dest>
+    *: "经典"
+  </dest>
+  <voice>
+    *: "经典"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L1
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Big cover"
+  </source>
+  <dest>
+    *: "大封面"
+  </dest>
+  <voice>
+    *: "大封面"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L2
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Minimal"
+  </source>
+  <dest>
+    *: "极简"
+  </dest>
+  <voice>
+    *: "极简"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L3
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Vinyl"
+  </source>
+  <dest>
+    *: "黑胶"
+  </dest>
+  <voice>
+    *: "黑胶"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_ALBUM
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Show the album"
+  </source>
+  <dest>
+    *: "显示专辑"
+  </dest>
+  <voice>
+    *: "显示专辑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_DETAILS
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Year, format and bitrate"
+  </source>
+  <dest>
+    *: "年份、格式和码率"
+  </dest>
+  <voice>
+    *: "年份、格式和码率"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_NEXT
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Show the next song"
+  </source>
+  <dest>
+    *: "显示下一首"
+  </dest>
+  <voice>
+    *: "显示下一首"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Progress bar"
+  </source>
+  <dest>
+    *: "进度条"
+  </dest>
+  <voice>
+    *: "进度条"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR_0
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Thin"
+  </source>
+  <dest>
+    *: "细"
+  </dest>
+  <voice>
+    *: "细"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR_1
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Thick"
+  </source>
+  <dest>
+    *: "粗"
+  </dest>
+  <voice>
+    *: "粗"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MAIN_MENU
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Main menu"
+  </source>
+  <dest>
+    *: "主菜单"
+  </dest>
+  <voice>
+    *: "主菜单"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Right pane"
+  </source>
+  <dest>
+    *: "右侧面板"
+  </dest>
+  <voice>
+    *: "右侧面板"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_0
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Cover"
+  </source>
+  <dest>
+    *: "封面"
+  </dest>
+  <voice>
+    *: "封面"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_1
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Clock"
+  </source>
+  <dest>
+    *: "时钟"
+  </dest>
+  <voice>
+    *: "时钟"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_3
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "None"
+  </source>
+  <dest>
+    *: "无"
+  </dest>
+  <voice>
+    *: "无"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_ITEMS
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Items and order"
+  </source>
+  <dest>
+    *: "项目和顺序"
+  </dest>
+  <voice>
+    *: "项目和顺序"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_HINT
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "OK shows or hides · hold OK to move"
+  </source>
+  <dest>
+    *: "OK：显示或隐藏 · 长按 OK：移动"
+  </dest>
+  <voice>
+    *: "OK：显示或隐藏 · 长按 OK：移动"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_MOVING
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Turn to move it, OK to drop"
+  </source>
+  <dest>
+    *: "转动以移动，按 OK 放下"
+  </dest>
+  <voice>
+    *: "转动以移动，按 OK 放下"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_RESET
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Restore the original menu"
+  </source>
+  <dest>
+    *: "恢复原始菜单"
+  </dest>
+  <voice>
+    *: "恢复原始菜单"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOKS
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Looks"
+  </source>
+  <dest>
+    *: "造型"
+  </dest>
+  <voice>
+    *: "造型"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_SAVE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Save the current look…"
+  </source>
+  <dest>
+    *: "保存当前造型…"
+  </dest>
+  <voice>
+    *: "保存当前造型…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NAME
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Look name"
+  </source>
+  <dest>
+    *: "造型名称"
+  </dest>
+  <voice>
+    *: "造型名称"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_APPLY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Apply"
+  </source>
+  <dest>
+    *: "应用"
+  </dest>
+  <voice>
+    *: "应用"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_DELETE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "删除"
+  </dest>
+  <voice>
+    *: "删除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_SAVED
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Look saved"
+  </source>
+  <dest>
+    *: "造型已保存"
+  </dest>
+  <voice>
+    *: "造型已保存"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_AUTO
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day and night looks"
+  </source>
+  <dest>
+    *: "日间和夜间造型"
+  </dest>
+  <voice>
+    *: "日间和夜间造型"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_DAY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day look"
+  </source>
+  <dest>
+    *: "日间造型"
+  </dest>
+  <voice>
+    *: "日间造型"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NIGHT
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Night look"
+  </source>
+  <dest>
+    *: "夜间造型"
+  </dest>
+  <voice>
+    *: "夜间造型"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DAY_FROM
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day starts at"
+  </source>
+  <dest>
+    *: "白天开始于"
+  </dest>
+  <voice>
+    *: "白天开始于"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NIGHT_FROM
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Night starts at"
+  </source>
+  <dest>
+    *: "夜晚开始于"
+  </dest>
+  <voice>
+    *: "夜晚开始于"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NONE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "(none)"
+  </source>
+  <dest>
+    *: "（无）"
+  </dest>
+  <voice>
+    *: "（无）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_EMPTY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "No looks yet: save one first"
+  </source>
+  <dest>
+    *: "还没有造型：请先保存一个"
+  </dest>
+  <voice>
+    *: "还没有造型：请先保存一个"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WHEEL_CLICK
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wheel and click"
+  </source>
+  <dest>
+    *: "滚轮和点击声"
+  </dest>
+  <voice>
+    *: "滚轮和点击声"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_SOUND
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Click sound"
+  </source>
+  <dest>
+    *: "点击声"
+  </dest>
+  <voice>
+    *: "点击声"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_0
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Tick"
+  </source>
+  <dest>
+    *: "嘀"
+  </dest>
+  <voice>
+    *: "嘀"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_1
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Clack"
+  </source>
+  <dest>
+    *: "咔"
+  </dest>
+  <voice>
+    *: "咔"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_2
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Bubble"
+  </source>
+  <dest>
+    *: "气泡"
+  </dest>
+  <voice>
+    *: "气泡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_3
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Drop"
+  </source>
+  <dest>
+    *: "水滴"
+  </dest>
+  <voice>
+    *: "水滴"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_4
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wood"
+  </source>
+  <dest>
+    *: "木头"
+  </dest>
+  <voice>
+    *: "木头"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_VOLUME
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Click volume"
+  </source>
+  <dest>
+    *: "点击音量"
+  </dest>
+  <voice>
+    *: "点击音量"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENSITIVITY
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wheel sensitivity"
+  </source>
+  <dest>
+    *: "滚轮灵敏度"
+  </dest>
+  <voice>
+    *: "滚轮灵敏度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_0
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Low"
+  </source>
+  <dest>
+    *: "低"
+  </dest>
+  <voice>
+    *: "低"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_1
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Normal"
+  </source>
+  <dest>
+    *: "正常"
+  </dest>
+  <voice>
+    *: "正常"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_2
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "High"
+  </source>
+  <dest>
+    *: "高"
+  </dest>
+  <voice>
+    *: "高"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCEL
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Acceleration"
+  </source>
+  <dest>
+    *: "加速"
+  </dest>
+  <voice>
+    *: "加速"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_IDLE
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Idle screen"
+  </source>
+  <dest>
+    *: "待机画面"
+  </dest>
+  <voice>
+    *: "待机画面"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_IDLE_BOOT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Idle and startup"
+  </source>
+  <dest>
+    *: "待机和启动"
+  </dest>
+  <voice>
+    *: "待机和启动"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_IMAGE
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Startup image"
+  </source>
+  <dest>
+    *: "启动图片"
+  </dest>
+  <voice>
+    *: "启动图片"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_DEFAULT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Rockbox logo"
+  </source>
+  <dest>
+    *: "Rockbox 标志"
+  </dest>
+  <voice>
+    *: "Rockbox 标志"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_TEXT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Startup text"
+  </source>
+  <dest>
+    *: "启动文字"
+  </dest>
+  <voice>
+    *: "启动文字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PREVIEW
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Preview"
+  </source>
+  <dest>
+    *: "预览"
+  </dest>
+  <voice>
+    *: "预览"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_SCREEN
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Gloss, reflection, corners"
+  </source>
+  <dest>
+    *: "光泽、倒影、圆角"
+  </dest>
+  <voice>
+    *: "光泽、倒影、圆角"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PICK_HINT
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Turn to adjust · OK: next · Back: done"
+  </source>
+  <dest>
+    *: "转动调节 · OK：下一项 · 返回：完成"
+  </dest>
+  <voice>
+    *: "转动调节 · OK：下一项 · 返回：完成"
+  </voice>
+</phrase>

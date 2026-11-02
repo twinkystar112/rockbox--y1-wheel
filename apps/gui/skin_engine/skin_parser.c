@@ -81,6 +81,7 @@
 #include "backdrop.h"
 #include "statusbar-skinned.h"
 #include "wheel/wheel_themes.h"
+#include "wheel/wheel_gel.h"
 
 #define WPS_ERROR_INVALID_PARAM         -1
 
@@ -766,9 +767,9 @@ static int parse_viewportcolour(struct skin_element *element,
     if (element->line == curr_viewport_element->line)
     {
         if (token->type == SKIN_TOKEN_VIEWPORT_FGCOLOUR)
-            curr_vp->vp.fg_pattern = colour->colour;
+            curr_vp->vp.fg_pattern = wheel_role_colour(colour->colour);
         else
-            curr_vp->vp.bg_pattern = colour->colour;
+            curr_vp->vp.bg_pattern = wheel_role_colour(colour->colour);
     }
     return 0;
 }
@@ -1487,6 +1488,7 @@ static int parse_albumart_load(struct skin_element* element,
     /* reset albumart info in wps */
     aa->xalign = WPS_ALBUMART_ALIGN_CENTER; /* default */
     aa->yalign = WPS_ALBUMART_ALIGN_CENTER; /* default */
+    aa->round = 0;
 
     aa->x = percent_parse_param(get_param(element, 0), curr_vp->vp.width);
     aa->y =  percent_parse_param(get_param(element, 1), curr_vp->vp.height);
@@ -1515,6 +1517,9 @@ static int parse_albumart_load(struct skin_element* element,
     if (0 <= albumart_slot)
         wps_data->playback_aa_slot = albumart_slot;
 
+    if (element->params_count > 4 && !isdefault(get_param(element, 4)) &&
+        strchr(get_param_text(element, 4), 'o'))
+        aa->round = 1; /* Y1 Wheel: "co" etc., a round cover */
     if (element->params_count > 4 && !isdefault(get_param(element, 4)))
     {
         switch (tolower(*get_param_text(element, 4)))

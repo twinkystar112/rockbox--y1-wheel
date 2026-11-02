@@ -1,0 +1,83 @@
+# Wheel - Now Playing, vinyl record for 480x360 (Innioasis Y1)
+# Original design for the Rockbox Y1 Wheel edition. GPLv2+.
+# "#@ old=new" lines adapt the line below them (Typography & Fonts settings).
+# A template only: Settings > Appearance > Now Playing writes the skin in use
+# (wps/Wheel-Pal.wps or Wheel-Aero.wps) from it, with the colours of the palette.
+%wd
+#@ Wheel-Secondary.fnt=${secondary}
+%Fl(2,Wheel-Secondary.fnt)
+#@ Wheel-Title.fnt=${title}
+%Fl(3,Wheel-Title.fnt)
+%Fl(4,22-Wheel-Icons.fnt)
+#@ Wheel-Display.fnt=${display}
+%Fl(5,Wheel-Display.fnt)
+#@ Wheel-Meta.fnt=${meta}
+%Fl(6,Wheel-Meta.fnt)
+%Fl(7,18-Wheel-Icons.fnt)
+%Fl(8,110-Wheel-Icons.fnt)
+#@ Wheel-Numeric.fnt=${numeric}
+%Fl(9,Wheel-Numeric.fnt)
+#
+# ---------- top bar ----------
+%V(0,0,480,38,-)%Vb(f7f7f9)
+%dr(0,37,-,1,c8c8ce)
+%V(16,2,280,32,3)%Vf(141415)%Vb(f7f7f9)
+%Sx(Now Playing)
+%V(300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>
+%V(426,7,46,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?bc<N|%?bl<I|J|K|L|M>>
+#
+#
+# ---------- the record (on the backdrop) and the cover as its label ----------
+# (the round "o" in %Cl's alignment: apps/gui/skin_engine/skin_display.c)
+%V(74,141,116,116,-)
+%Cl(0,0,116,116,co,c)
+%?C<%Vd(art)|>
+%Vl(art,74,141,116,116,-)
+%Cd
+#
+# ---------- track text ----------
+%V(296,58,172,22,6)%Vf(8e8e93)
+%pp %Sx(of) %pe
+%V(296,82,172,32,5)%Vf(141416)
+%s%?it<%it|%fn>
+%V(296,120,172,26,2)%Vf(accent)
+%s%?ia<%ia|%?iA<%iA|>>
+%V(296,148,172,26,2)%Vf(6e6e73)
+%s%?St(wheel np album)<%?id<%id|>|>
+%V(296,178,172,22,6)%Vf(8e8e93)
+%s%?St(wheel np details)<%?iy<%iy · |>%?fc<MP1|MP2|MP3|AIFF|WAV|Ogg|FLAC|MPC|AC3|WavPack|ALAC|AAC|SHN|SID|ADX|NSF|Speex|SPC|APE|WMA|Opus|> · %fb kbps|>
+%V(296,204,172,22,6)%Vf(8e8e93)
+%s%?St(wheel np next)<%?It<%Sx(Up Next): %It|>|>
+# (the %Vd switches sit on an always-visible line)
+%V(296,238,40,24,7)%Vf(accent)
+%?ps<E|>
+%V(330,238,40,24,7)%Vf(accent)
+%?mm<|F|G|E|F>%?Wm<%?mv(1.5)<%Vd(vol)|%?St(wheel np bar)<%Vd(prog)|%Vd(progt)>>|%Vd(scrub)>
+#
+# ---------- progress, volume while the wheel turns, or scrubbing ----------
+%Vl(prog,296,300,172,6,-)%Vf(accent)%Vb(dcdce1)
+%pb(0,0,172,6,noborder)
+%Vl(prog,296,312,86,22,9)%Vf(6e6e73)
+%pc
+%Vl(prog,382,312,86,22,9)%Vf(6e6e73)
+%ar-%pr
+%Vl(progt,296,298,172,12,-)%Vf(accent)%Vb(dcdce1)
+%pb(0,0,172,12,noborder)
+%Vl(progt,296,314,86,22,9)%Vf(6e6e73)
+%pc
+%Vl(progt,382,314,86,22,9)%Vf(6e6e73)
+%ar-%pr
+#
+%Vl(vol,296,312,172,22,9)%Vf(6e6e73)
+%ac%pv dB
+%Vl(vol,296,300,172,6,-)%Vf(accent)%Vb(dcdce1)
+%pv(0,0,172,6,noborder)
+#
+%Vl(scrub,296,298,172,12,-)%Vf(accent)%Vb(dcdce1)
+%pb(0,0,172,12,noborder)
+%Vl(scrub,296,314,86,22,9)%Vf(141416)
+%pc
+%Vl(scrub,382,314,86,22,9)%Vf(141416)
+%ar-%pr

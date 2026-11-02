@@ -21264,3 +21264,1179 @@
     *: "Mat"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_COVER
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "From the cover"
+  </source>
+  <dest>
+    *: "De la pochette"
+  </dest>
+  <voice>
+    *: "De la pochette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_COVER_DESC
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Colours of the song that's playing"
+  </source>
+  <dest>
+    *: "Les couleurs du morceau en cours"
+  </dest>
+  <voice>
+    *: "Les couleurs du morceau en cours"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_MINE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "My palette"
+  </source>
+  <dest>
+    *: "Ma palette"
+  </dest>
+  <voice>
+    *: "Ma palette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_MINE_DESC
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Your colours: press to edit"
+  </source>
+  <dest>
+    *: "Vos couleurs : appuyez pour modifier"
+  </dest>
+  <voice>
+    *: "Vos couleurs : appuyez pour modifier"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_BAR
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Top bar"
+  </source>
+  <dest>
+    *: "Barre du haut"
+  </dest>
+  <voice>
+    *: "Barre du haut"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_BG
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Background"
+  </source>
+  <dest>
+    *: "Fond"
+  </dest>
+  <voice>
+    *: "Fond"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_ACCENT
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Accent"
+  </source>
+  <dest>
+    *: "Accent"
+  </dest>
+  <voice>
+    *: "Accent"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_USE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Use this palette"
+  </source>
+  <dest>
+    *: "Utiliser cette palette"
+  </dest>
+  <voice>
+    *: "Utiliser cette palette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_HUE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Hue"
+  </source>
+  <dest>
+    *: "Teinte"
+  </dest>
+  <voice>
+    *: "Teinte"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SATURATION
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Saturation"
+  </source>
+  <dest>
+    *: "Saturation"
+  </dest>
+  <voice>
+    *: "Saturation"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIGHTNESS
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Lightness"
+  </source>
+  <dest>
+    *: "Luminosité"
+  </dest>
+  <voice>
+    *: "Luminosité"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Gloss"
+  </source>
+  <dest>
+    *: "Intensité du brillant"
+  </dest>
+  <voice>
+    *: "Intensité du brillant"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_0
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Subtle"
+  </source>
+  <dest>
+    *: "Subtil"
+  </dest>
+  <voice>
+    *: "Subtil"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_1
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "iPod"
+  </source>
+  <dest>
+    *: "iPod"
+  </dest>
+  <voice>
+    *: "iPod"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_2
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Maximum"
+  </source>
+  <dest>
+    *: "Maximum"
+  </dest>
+  <voice>
+    *: "Maximum"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REFLECT
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Cover reflection"
+  </source>
+  <dest>
+    *: "Reflet de la pochette"
+  </dest>
+  <voice>
+    *: "Reflet de la pochette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Corners"
+  </source>
+  <dest>
+    *: "Coins"
+  </dest>
+  <voice>
+    *: "Coins"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_0
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Square"
+  </source>
+  <dest>
+    *: "Droits"
+  </dest>
+  <voice>
+    *: "Droits"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_1
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Soft"
+  </source>
+  <dest>
+    *: "Doux"
+  </dest>
+  <voice>
+    *: "Doux"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_2
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Round"
+  </source>
+  <dest>
+    *: "Arrondis"
+  </dest>
+  <voice>
+    *: "Arrondis"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALLPAPER
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Background image"
+  </source>
+  <dest>
+    *: "Image de fond"
+  </dest>
+  <voice>
+    *: "Image de fond"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_NONE
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "None"
+  </source>
+  <dest>
+    *: "Aucune"
+  </dest>
+  <voice>
+    *: "Aucune"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_PICK
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Choose an image…"
+  </source>
+  <dest>
+    *: "Choisir une image…"
+  </dest>
+  <voice>
+    *: "Choisir une image…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_STRENGTH
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Visibility"
+  </source>
+  <dest>
+    *: "Intensité"
+  </dest>
+  <voice>
+    *: "Intensité"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S0
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Soft"
+  </source>
+  <dest>
+    *: "Douce"
+  </dest>
+  <voice>
+    *: "Douce"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S1
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Medium"
+  </source>
+  <dest>
+    *: "Moyenne"
+  </dest>
+  <voice>
+    *: "Moyenne"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S2
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Strong"
+  </source>
+  <dest>
+    *: "Forte"
+  </dest>
+  <voice>
+    *: "Forte"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_BLUR
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Blur"
+  </source>
+  <dest>
+    *: "Flou"
+  </dest>
+  <voice>
+    *: "Flou"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_BAD
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Couldn't open that image (JPEG or BMP)"
+  </source>
+  <dest>
+    *: "Impossible d'ouvrir l'image (JPEG ou BMP)"
+  </dest>
+  <voice>
+    *: "Impossible d'ouvrir l'image (JPEG ou BMP)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_REMOVE
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Remove image"
+  </source>
+  <dest>
+    *: "Retirer l'image"
+  </dest>
+  <voice>
+    *: "Retirer l'image"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_LAYOUT
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Layout"
+  </source>
+  <dest>
+    *: "Disposition"
+  </dest>
+  <voice>
+    *: "Disposition"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L0
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Classic"
+  </source>
+  <dest>
+    *: "Classique"
+  </dest>
+  <voice>
+    *: "Classique"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L1
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Big cover"
+  </source>
+  <dest>
+    *: "Grande pochette"
+  </dest>
+  <voice>
+    *: "Grande pochette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L2
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Minimal"
+  </source>
+  <dest>
+    *: "Minimaliste"
+  </dest>
+  <voice>
+    *: "Minimaliste"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L3
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Vinyl"
+  </source>
+  <dest>
+    *: "Vinyle"
+  </dest>
+  <voice>
+    *: "Vinyle"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_ALBUM
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Show the album"
+  </source>
+  <dest>
+    *: "Afficher l'album"
+  </dest>
+  <voice>
+    *: "Afficher l'album"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_DETAILS
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Year, format and bitrate"
+  </source>
+  <dest>
+    *: "Année, format et débit"
+  </dest>
+  <voice>
+    *: "Année, format et débit"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_NEXT
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Show the next song"
+  </source>
+  <dest>
+    *: "Afficher le morceau suivant"
+  </dest>
+  <voice>
+    *: "Afficher le morceau suivant"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Progress bar"
+  </source>
+  <dest>
+    *: "Barre de progression"
+  </dest>
+  <voice>
+    *: "Barre de progression"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR_0
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Thin"
+  </source>
+  <dest>
+    *: "Fine"
+  </dest>
+  <voice>
+    *: "Fine"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR_1
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Thick"
+  </source>
+  <dest>
+    *: "Épaisse"
+  </dest>
+  <voice>
+    *: "Épaisse"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MAIN_MENU
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Main menu"
+  </source>
+  <dest>
+    *: "Menu principal"
+  </dest>
+  <voice>
+    *: "Menu principal"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Right pane"
+  </source>
+  <dest>
+    *: "Panneau de droite"
+  </dest>
+  <voice>
+    *: "Panneau de droite"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_0
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Cover"
+  </source>
+  <dest>
+    *: "Pochette"
+  </dest>
+  <voice>
+    *: "Pochette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_1
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Clock"
+  </source>
+  <dest>
+    *: "Horloge"
+  </dest>
+  <voice>
+    *: "Horloge"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_3
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "None"
+  </source>
+  <dest>
+    *: "Aucun"
+  </dest>
+  <voice>
+    *: "Aucun"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_ITEMS
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Items and order"
+  </source>
+  <dest>
+    *: "Éléments et ordre"
+  </dest>
+  <voice>
+    *: "Éléments et ordre"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_HINT
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "OK shows or hides · hold OK to move"
+  </source>
+  <dest>
+    *: "OK affiche ou masque · maintenir OK pour déplacer"
+  </dest>
+  <voice>
+    *: "OK affiche ou masque · maintenir OK pour déplacer"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_MOVING
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Turn to move it, OK to drop"
+  </source>
+  <dest>
+    *: "Tournez pour déplacer, OK pour lâcher"
+  </dest>
+  <voice>
+    *: "Tournez pour déplacer, OK pour lâcher"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_RESET
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Restore the original menu"
+  </source>
+  <dest>
+    *: "Rétablir le menu d'origine"
+  </dest>
+  <voice>
+    *: "Rétablir le menu d'origine"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOKS
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Looks"
+  </source>
+  <dest>
+    *: "Looks"
+  </dest>
+  <voice>
+    *: "Looks"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_SAVE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Save the current look…"
+  </source>
+  <dest>
+    *: "Enregistrer le look actuel…"
+  </dest>
+  <voice>
+    *: "Enregistrer le look actuel…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NAME
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Look name"
+  </source>
+  <dest>
+    *: "Nom du look"
+  </dest>
+  <voice>
+    *: "Nom du look"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_APPLY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Apply"
+  </source>
+  <dest>
+    *: "Appliquer"
+  </dest>
+  <voice>
+    *: "Appliquer"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_DELETE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "Supprimer"
+  </dest>
+  <voice>
+    *: "Supprimer"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_SAVED
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Look saved"
+  </source>
+  <dest>
+    *: "Look enregistré"
+  </dest>
+  <voice>
+    *: "Look enregistré"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_AUTO
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day and night looks"
+  </source>
+  <dest>
+    *: "Looks de jour et de nuit"
+  </dest>
+  <voice>
+    *: "Looks de jour et de nuit"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_DAY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day look"
+  </source>
+  <dest>
+    *: "Look de jour"
+  </dest>
+  <voice>
+    *: "Look de jour"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NIGHT
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Night look"
+  </source>
+  <dest>
+    *: "Look de nuit"
+  </dest>
+  <voice>
+    *: "Look de nuit"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DAY_FROM
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day starts at"
+  </source>
+  <dest>
+    *: "Le jour commence à"
+  </dest>
+  <voice>
+    *: "Le jour commence à"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NIGHT_FROM
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Night starts at"
+  </source>
+  <dest>
+    *: "La nuit commence à"
+  </dest>
+  <voice>
+    *: "La nuit commence à"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NONE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "(none)"
+  </source>
+  <dest>
+    *: "(aucun)"
+  </dest>
+  <voice>
+    *: "(aucun)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_EMPTY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "No looks yet: save one first"
+  </source>
+  <dest>
+    *: "Pas encore de looks : enregistrez-en un"
+  </dest>
+  <voice>
+    *: "Pas encore de looks : enregistrez-en un"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WHEEL_CLICK
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wheel and click"
+  </source>
+  <dest>
+    *: "Molette et clic"
+  </dest>
+  <voice>
+    *: "Molette et clic"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_SOUND
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Click sound"
+  </source>
+  <dest>
+    *: "Son du clic"
+  </dest>
+  <voice>
+    *: "Son du clic"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_0
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Tick"
+  </source>
+  <dest>
+    *: "Tic"
+  </dest>
+  <voice>
+    *: "Tic"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_1
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Clack"
+  </source>
+  <dest>
+    *: "Clac"
+  </dest>
+  <voice>
+    *: "Clac"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_2
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Bubble"
+  </source>
+  <dest>
+    *: "Bulle"
+  </dest>
+  <voice>
+    *: "Bulle"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_3
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Drop"
+  </source>
+  <dest>
+    *: "Goutte"
+  </dest>
+  <voice>
+    *: "Goutte"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_4
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wood"
+  </source>
+  <dest>
+    *: "Bois"
+  </dest>
+  <voice>
+    *: "Bois"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_VOLUME
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Click volume"
+  </source>
+  <dest>
+    *: "Volume du clic"
+  </dest>
+  <voice>
+    *: "Volume du clic"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENSITIVITY
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wheel sensitivity"
+  </source>
+  <dest>
+    *: "Sensibilité de la molette"
+  </dest>
+  <voice>
+    *: "Sensibilité de la molette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_0
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Low"
+  </source>
+  <dest>
+    *: "Basse"
+  </dest>
+  <voice>
+    *: "Basse"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_1
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Normal"
+  </source>
+  <dest>
+    *: "Normale"
+  </dest>
+  <voice>
+    *: "Normale"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_2
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "High"
+  </source>
+  <dest>
+    *: "Haute"
+  </dest>
+  <voice>
+    *: "Haute"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCEL
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Acceleration"
+  </source>
+  <dest>
+    *: "Accélération"
+  </dest>
+  <voice>
+    *: "Accélération"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_IDLE
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Idle screen"
+  </source>
+  <dest>
+    *: "Écran de veille"
+  </dest>
+  <voice>
+    *: "Écran de veille"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_IDLE_BOOT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Idle and startup"
+  </source>
+  <dest>
+    *: "Veille et démarrage"
+  </dest>
+  <voice>
+    *: "Veille et démarrage"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_IMAGE
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Startup image"
+  </source>
+  <dest>
+    *: "Image de démarrage"
+  </dest>
+  <voice>
+    *: "Image de démarrage"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_DEFAULT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Rockbox logo"
+  </source>
+  <dest>
+    *: "Logo Rockbox"
+  </dest>
+  <voice>
+    *: "Logo Rockbox"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_TEXT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Startup text"
+  </source>
+  <dest>
+    *: "Texte de démarrage"
+  </dest>
+  <voice>
+    *: "Texte de démarrage"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PREVIEW
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Preview"
+  </source>
+  <dest>
+    *: "Aperçu"
+  </dest>
+  <voice>
+    *: "Aperçu"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_SCREEN
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Gloss, reflection, corners"
+  </source>
+  <dest>
+    *: "Brillant, reflet, coins"
+  </dest>
+  <voice>
+    *: "Brillant, reflet, coins"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PICK_HINT
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Turn to adjust · OK: next · Back: done"
+  </source>
+  <dest>
+    *: "Tournez pour régler · OK : suivant · Retour : terminé"
+  </dest>
+  <voice>
+    *: "Tournez pour régler · OK : suivant · Retour : terminé"
+  </voice>
+</phrase>

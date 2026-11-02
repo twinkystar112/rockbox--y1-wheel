@@ -64,6 +64,9 @@
 #include "statusbar-skinned.h"
 #include "skin_engine/wps_internals.h"
 #include "open_plugin.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "wheel/wheel_custom.h"
+#endif
 
 #ifdef USB_ENABLE_AUDIO
 #include "usbstack/usb_audio.h"
@@ -1102,6 +1105,12 @@ long gui_wps_show(void)
             case ACTION_NONE: /* Timeout, do a partial update */
                 if (wheel_wps_idle())
                     skin_request_full_update(WPS);
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(HAVE_LCD_COLOR)
+                /* Y1 Wheel: the idle screen after a while without buttons
+                 * (then the WPS comes back as on entering it: backdrop too) */
+                if (wheel_idle_maybe())
+                    restore = true;
+#endif
                 update = true;
                 ffwd_rew(button, false); /* hopefully fix the ffw/rwd bug */
                 break;

@@ -1,0 +1,80 @@
+# Wheel - Now Playing, big cover for 480x360 (Innioasis Y1)
+# Original design for the Rockbox Y1 Wheel edition. GPLv2+.
+# "#@ old=new" lines adapt the line below them (Typography & Fonts settings).
+# A template only: Settings > Appearance > Now Playing writes the skin in use
+# (wps/Wheel-Pal.wps or Wheel-Aero.wps) from it, with the colours of the palette.
+%wd
+#@ Wheel-Secondary.fnt=${secondary}
+%Fl(2,Wheel-Secondary.fnt)
+#@ Wheel-Title.fnt=${title}
+%Fl(3,Wheel-Title.fnt)
+%Fl(4,22-Wheel-Icons.fnt)
+#@ Wheel-Display.fnt=${display}
+%Fl(5,Wheel-Display.fnt)
+#@ Wheel-Meta.fnt=${meta}
+%Fl(6,Wheel-Meta.fnt)
+%Fl(7,18-Wheel-Icons.fnt)
+%Fl(8,110-Wheel-Icons.fnt)
+#@ Wheel-Numeric.fnt=${numeric}
+%Fl(9,Wheel-Numeric.fnt)
+#
+# ---------- top bar ----------
+%V(0,0,480,38,-)%Vb(f7f7f9)
+%dr(0,37,-,1,c8c8ce)
+%V(16,2,280,32,3)%Vf(141415)%Vb(f7f7f9)
+%Sx(Now Playing)
+%V(300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>
+%V(426,7,46,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?bc<N|%?bl<I|J|K|L|M>>
+#
+#
+# ---------- the cover, big and centred ----------
+%V(135,46,216,216,-)
+%dr(4,5,212,211,e6e6ea)
+%dr(2,3,212,211,d4d4da)
+%Cl(0,0,210,210,c,c)
+%?C<%Vd(art)|%Vd(tile)%Vd(note)>
+%Vl(tile,135,46,210,210,-)%Vb(cfcfd6)
+%dr(0,0,-,-,cfcfd6)
+%Vl(note,135,95,210,112,8)%Vb(cfcfd6)%Vf(fffffe)
+%Vs(none)%dr(0,0,-,-,cfcfd6)%acO
+%Vl(art,135,46,210,210,-)
+%Cd
+#
+# ---------- track text, centred ----------
+%V(16,262,448,32,5)%Vf(141416)
+%s%ac%?it<%it|%fn>
+%V(16,294,448,26,2)%Vf(accent)
+%s%ac%?ia<%ia|%?iA<%iA|>>%?St(wheel np album)<%?id< · %id|>|>
+# (the %Vd switches sit on an always-visible line)
+%V(16,48,40,24,7)%Vf(accent)
+%?ps<E|>
+%V(16,72,40,24,7)%Vf(accent)
+%?mm<|F|G|E|F>%?Wm<%?mv(1.5)<%Vd(vol)|%?St(wheel np bar)<%Vd(prog)|%Vd(progt)>>|%Vd(scrub)>
+#
+# ---------- progress, volume while the wheel turns, or scrubbing ----------
+%Vl(prog,90,340,300,6,-)%Vf(accent)%Vb(dcdce1)
+%pb(0,0,300,6,noborder)
+%Vl(prog,16,331,70,22,9)%Vf(6e6e73)
+%pc
+%Vl(prog,394,331,70,22,9)%Vf(6e6e73)
+%ar-%pr
+%Vl(progt,90,337,300,12,-)%Vf(accent)%Vb(dcdce1)
+%pb(0,0,300,12,noborder)
+%Vl(progt,16,331,70,22,9)%Vf(6e6e73)
+%pc
+%Vl(progt,394,331,70,22,9)%Vf(6e6e73)
+%ar-%pr
+#
+%Vl(vol,16,331,70,22,9)%Vf(6e6e73)
+%pv dB
+%Vl(vol,90,340,300,6,-)%Vf(accent)%Vb(dcdce1)
+%pv(0,0,300,6,noborder)
+#
+%Vl(scrub,90,337,300,12,-)%Vf(accent)%Vb(dcdce1)
+%pb(0,0,300,12,noborder)
+%Vl(scrub,16,331,70,22,9)%Vf(141416)
+%pc
+%Vl(scrub,394,331,70,22,9)%Vf(141416)
+%ar-%pr

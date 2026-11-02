@@ -32,6 +32,7 @@
 #include "rbunicode.h"
 #include "rbpaths.h"
 #include "wheel_letterjump.h"
+#include "action.h"
 
 #define MIN_ITEMS        40          /* only worth it in long lists */
 #define FAST_STEPS       5           /* this many steps ...           */
@@ -205,4 +206,39 @@ void wheel_letterjump_draw(struct gui_synclist *lists, struct screen *display)
 bool wheel_letterjump_active(void)
 {
     return overlay_letter[0] && TIME_BEFORE(current_tick, overlay_until);
+}
+
+/* ------------------- wheel sensitivity and acceleration ------------------- */
+int wheel_scroll_steps(int dir)
+{
+    static long last;
+    static int run, half, last_dir;
+    int b = action_last_button();
+    if (!(b & (BUTTON_SCROLL_FWD | BUTTON_SCROLL_BACK)))
+        return 1;               /* not the wheel (keys, the simulator) */
+    long now = current_tick;
+    bool quick = TIME_BEFORE(now, last + HZ / 16);   /* < ~60 ms apart */
+    last = now;
+    if (dir != last_dir)
+    {
+        run = 0;
+        half = 0;
+        last_dir = dir;
+    }
+    run = quick ? run + 1 : 0;
+    int steps = 1;
+    switch (global_settings.wheel_sensitivity)
+    {
+        case 0:                 /* low: two clicks per item */
+            half ^= 1;
+            if (half)
+                return 0;
+            break;
+        case 2:                 /* high: two items per click */
+            steps = 2;
+            break;
+    }
+    if (global_settings.wheel_accel)
+        steps *= run > 14 ? 4 : run > 6 ? 2 : 1;
+    return steps;
 }

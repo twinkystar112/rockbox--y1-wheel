@@ -223,6 +223,7 @@ enum current_activity {
 
 void beep_play(unsigned int frequency, unsigned int duration,
                unsigned int amplitude);
+void beep_play_click(int sound, unsigned int amplitude); /* Y1 Wheel */
 
 enum system_sound
 {

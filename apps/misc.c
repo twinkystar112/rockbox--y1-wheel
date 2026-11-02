@@ -25,6 +25,7 @@
 #include "string-extra.h"
 #include "config.h"
 #include "misc.h"
+#include "wheel/wheel_gel.h"
 #include "system.h"
 #include "lcd.h"
 #include "language.h" /* is_lang_rtl() */
@@ -1088,6 +1089,14 @@ void system_sound_play(enum system_sound sound)
 
     const struct beep_params *params = &beep_params[sound];
 
+    /* Y1 Wheel: the click sound chosen for the wheel */
+    if (sound == SOUND_KEYCLICK && global_settings.wheel_click_sound > 0 &&
+        global_settings.keyclick)
+    {
+        beep_play_click(global_settings.wheel_click_sound,
+                        params->amplitude * global_settings.keyclick);
+        return;
+    }
     if (*params->setting)
     {
         beep_play(params->frequency, params->duration,
@@ -1810,6 +1819,13 @@ bool parse_color(enum screen_type screen, char *text, int *value)
         if (!strcmp(text, "accent"))      { *value = global_settings.lse_color; return true; }
         if (!strcmp(text, "accent2"))     { *value = global_settings.lss_color; return true; }
         if (!strcmp(text, "accenttext"))  { *value = global_settings.lst_color; return true; }
+        /* "wr00".."wr19": colours set while the skin is shown (wheel_gel.h) */
+        if (text[0] == 'w' && text[1] == 'r' && isdigit(text[2]) && isdigit(text[3]) &&
+            !text[4] && (text[2] - '0') * 10 + text[3] - '0' < WHEEL_ROLES)
+        {
+            *value = WHEEL_ROLE_FLAG | ((text[2] - '0') * 10 + text[3] - '0');
+            return true;
+        }
         if (hex_to_rgb(text, value) < 0)
             return false;
         else

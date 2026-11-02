@@ -55,10 +55,14 @@
 %s%?ia<%ia|%?iA<%iA|>>
 #@ %V(248,150,=%V(248,${np4},
 %V(248,150,220,26,2)%Vf(6e6e73)
-%s%?id<%id|>
+%s%?St(wheel np album)<%?id<%id|>|>
 #@ %V(248,183,=%V(248,${np5},
 %V(248,183,220,22,6)%Vf(8e8e93)
-%s%?iy<%iy · |>%?fc<MP1|MP2|MP3|AIFF|WAV|Ogg|FLAC|MPC|AC3|WavPack|ALAC|AAC|SHN|SID|ADX|NSF|Speex|SPC|APE|WMA|Opus|> · %fb kbps
+%s%?St(wheel np details)<%?iy<%iy · |>%?fc<MP1|MP2|MP3|AIFF|WAV|Ogg|FLAC|MPC|AC3|WavPack|ALAC|AAC|SHN|SID|ADX|NSF|Speex|SPC|APE|WMA|Opus|> · %fb kbps|>
+#
+# the next song (Settings > Appearance > Now Playing)
+%V(248,258,220,22,6)%Vf(8e8e93)
+%s%?St(wheel np next)<%?It<%Sx(Up Next): %It|>|>
 #
 # shuffle / repeat state (accent colour when active) + lyrics hint
 %V(248,224,40,24,7)%Vf(accent)
@@ -66,7 +70,7 @@
 # (the %Vd switches sit on this always-visible line: a %Vd inside a
 #  labelled viewport only runs when that viewport is shown)
 %V(282,224,40,24,7)%Vf(accent)
-%?mm<|F|G|E|F>%?Wy<%Vd(lyr)|>%?Wm<%?mv(1.5)<%Vd(vol)|%Vd(prog)>|%Vd(scrub)>
+%?mm<|F|G|E|F>%?Wy<%Vd(lyr)|>%?Wm<%?mv(1.5)<%Vd(vol)|%?St(wheel np bar)<%Vd(prog)|%Vd(progt)>>|%Vd(scrub)>
 %Vl(lyr,322,223,146,22,6)%Vf(accent)
 %ar%Sx(Lyrics)
 #
@@ -77,6 +81,14 @@
 %Vl(prog,24,305,200,22,9)%Vf(6e6e73)
 %pc
 %Vl(prog,256,305,200,22,9)%Vf(6e6e73)
+%ar-%pr
+#
+# the thick progress bar
+%Vl(progt,24,290,432,12,-)%Vf(accent)%Vb(dcdce1)
+%pb(0,0,432,12,noborder)
+%Vl(progt,24,308,200,22,9)%Vf(6e6e73)
+%pc
+%Vl(progt,256,308,200,22,9)%Vf(6e6e73)
 %ar-%pr
 #
 %Vl(vol,24,286,30,24,7)%Vf(3a3a3f)

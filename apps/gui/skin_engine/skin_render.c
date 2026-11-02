@@ -33,6 +33,7 @@
 #endif
 #include "settings.h"
 #include "skin_display.h"
+#include "wheel/wheel_gel.h"
 #include "skin_engine.h"
 #include "skin_parser.h"
 #include "tag_table.h"
@@ -110,9 +111,9 @@ static bool do_non_text_tags(struct gui_wps *gwps, struct skin_draw_info *info,
             struct viewport_colour *col = SKINOFFSETTOPTR(skin_buffer, token->value.data);
             if (!col) return false;
             if (token->type == SKIN_TOKEN_VIEWPORT_FGCOLOUR)
-                skin_vp->vp.fg_pattern = col->colour;
+                skin_vp->vp.fg_pattern = wheel_role_colour(col->colour);
             else
-                skin_vp->vp.bg_pattern = col->colour;
+                skin_vp->vp.bg_pattern = wheel_role_colour(col->colour);
             skin_vp->fgbg_changed = true;
         }
         break;
@@ -136,6 +137,7 @@ static bool do_non_text_tags(struct gui_wps *gwps, struct skin_draw_info *info,
             }
             else
                 *linedes = *data;
+            linedes->text_color = wheel_role_colour(linedes->text_color);
         }
         break;
 #endif
@@ -145,9 +147,9 @@ static bool do_non_text_tags(struct gui_wps *gwps, struct skin_draw_info *info,
             struct gradient_config *cfg = SKINOFFSETTOPTR(skin_buffer, token->value.data);
             struct line_desc *linedes = &info->line_desc;
             if (!cfg || !linedes) return false;
-            linedes->text_color     = cfg->text;
-            linedes->line_color     = cfg->start;
-            linedes->line_end_color = cfg->end;
+            linedes->text_color     = wheel_role_colour(cfg->text);
+            linedes->line_color     = wheel_role_colour(cfg->start);
+            linedes->line_end_color = wheel_role_colour(cfg->end);
         }
         break;
 #endif
@@ -201,14 +203,15 @@ static bool do_non_text_tags(struct gui_wps *gwps, struct skin_draw_info *info,
                     gwps->display->screen_type == SCREEN_MAIN)
                 {
                     gwps->display->gradient_fillrect(rect->x, rect->y, rect->width,
-                        rect->height, rect->start_colour, rect->end_colour);
+                        rect->height, wheel_role_colour(rect->start_colour),
+                        wheel_role_colour(rect->end_colour));
                 }
                 else
 #endif
                 {
 #if LCD_DEPTH > 1
                     unsigned backup = skin_vp->vp.fg_pattern;
-                    skin_vp->vp.fg_pattern = rect->start_colour;
+                    skin_vp->vp.fg_pattern = wheel_role_colour(rect->start_colour);
 #endif
                     gwps->display->fillrect(rect->x, rect->y, rect->width,
                         rect->height);

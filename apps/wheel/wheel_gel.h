@@ -20,10 +20,29 @@
 #define WHEEL_GEL_H
 
 #include <stdbool.h>
+#ifdef __PCTOOL__
+#define wheel_role_colour(c) (c)
+#else
 #include "screen_access.h"
 
 /* glossy finish switched on and a Wheel theme in use */
 bool wheel_aero_on(void);
+
+/* colours that change while the skin is loaded ("wrNN" in a skin, see
+ * parse_color()): the palette that follows the cover sets them */
+#define WHEEL_ROLE_FLAG     0x7f000000u
+#define WHEEL_ROLE_ACCENT   17  /* the template's "accent" (lse) */
+#define WHEEL_ROLE_ACCENT2  18  /* "accent2" (lss) */
+#define WHEEL_ROLE_ACCENTTX 19  /* "accenttext" (lst) */
+#define WHEEL_ROLES         20
+/* c itself, or the current colour of the role it names */
+unsigned wheel_role_colour(unsigned c);
+void wheel_role_set(int role, unsigned lcd_colour);
+
+/* gloss strength of the finish setting (subtle / iPod / max), percent */
+int wheel_gloss_pct(void);
+/* corner radius of selections and covers (0 = square) */
+int wheel_corner_radius(void);
 
 /* the same maths on 0xRRGGBB colours (for generated images) */
 unsigned wheel_rgb_blend(unsigned a, unsigned b, int pct);
@@ -55,11 +74,25 @@ int wheel_gel_strength_for(unsigned base, unsigned text);
  * viewport has room (up to REFLECT_ROWS); clear just wipes that area */
 #define REFLECT_ROWS 24
 void wheel_reflect(struct screen *d, const fb_data *src, int stride,
-                   int x, int y, int w, int h, bool clear);
+                   int x, int y, int w, int h, bool clear, int radius);
+
+/* a Wheel theme is in use (corners and such only change those) */
+bool wheel_skin_is_wheel(void);
+
+/* rounds the corners of a picture just drawn at (x, y) of the current
+ * viewport (radius r; a circle when r >= w/2): what is outside the arc
+ * becomes the backdrop or background again, with soft edges */
+void wheel_round_mask(struct screen *d, int x, int y, int w, int h, int r);
+
+/* rows [offset, offset + h) of a selection bar total_h tall: gel or plain
+ * gradient, with rounded corners when the Corners setting asks for them */
+void wheel_selection_part(struct screen *d, int x, int y, int w, int h,
+                          unsigned top, unsigned bottom, int total_h, int offset);
 
 /* selection bar in the accent colours (gel, or the plain gradient) */
 void wheel_selection(struct screen *d, int x, int y, int w, int h);
 /* top bar of the screens drawn in C, in the theme's bar colour */
 void wheel_top_bar(struct screen *d, int w, int h, unsigned *text);
 
+#endif /* __PCTOOL__ */
 #endif

@@ -33,6 +33,9 @@
 #include "font.h"
 #include "file.h"
 #include "menu.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "wheel/wheel_custom.h"
+#endif
 #include "button.h"
 #include "kernel.h"
 #include "debug.h"
@@ -488,6 +491,11 @@ int do_menu(const struct menu_item_ex *start_menu, int *start_selected,
         else
             action = get_action(CONTEXT_MAINMENU|ALLOW_SOFTLOCK,
                                 list_do_action_timeout(&lists, HZ));
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(HAVE_LCD_COLOR)
+            /* Y1 Wheel: the idle screen after a while without buttons */
+            if (action == ACTION_NONE && wheel_idle_maybe())
+                action = ACTION_REDRAW;
+#endif
             /* HZ so the status bar redraws corectly */
 
         /* query audio status to see if it changed */

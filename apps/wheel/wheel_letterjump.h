@@ -8,4 +8,7 @@ bool wheel_letterjump_step(struct gui_synclist *lists, int dir);
 void wheel_letterjump_draw(struct gui_synclist *lists, struct screen *display);
 bool wheel_letterjump_active(void);
 extern bool wheel_letterjump_suppress;
+/* items to move for one step of the wheel (sensitivity, acceleration);
+ * 0: ignore this step */
+int wheel_scroll_steps(int dir);
 #endif

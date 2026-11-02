@@ -1264,6 +1264,18 @@ void action_wait_for_release(void)
     button_clear_pressed();
 }
 
+/* Y1 Wheel: when the last button was used (the idle screen) */
+long action_last_input_tick(void)
+{
+    return action_last.tick;
+}
+
+/* Y1 Wheel: the button of the last action (was it the wheel?) */
+int action_last_button(void)
+{
+    return action_last.button;
+}
+
 int get_action(int context, int timeout)
 {
     action_cur_t current;

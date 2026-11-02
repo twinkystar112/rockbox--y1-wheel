@@ -20,11 +20,14 @@
 %Fl(8,Wheel-Title.fnt)
 #@ Wheel-Numeric.fnt=${numeric}
 %Fl(9,Wheel-Numeric.fnt)
+#@ Wheel-Numeric.fnt=${jumbo}
+%Fl(10,Wheel-Numeric.fnt)
 #
 # ---------- UI viewport: split screen on the main menu ----------
 %Vi(full,0,38,480,322,2)
 %Vi(half,0,38,264,322,2)
-%?cs<%VI(half)|%VI(full)>
+# (Settings > Appearance > Main menu > Right pane: cover, clock, up next, none)
+%?cs<%?St(wheel pane)<%VI(half)|%VI(half)|%VI(half)|%VI(full)>|%VI(full)>
 #
 # ---------- list rows (40px). Values sit on the right, then the chevron ----------
 #@ 480,40)=480,${row_h})
@@ -63,12 +66,34 @@
 %Vl(lib,272,250,200,44,6)%Vf(6e6e73)%Vb(f2f2f5)
 %ac%Wd
 #
+# the clock pane
+%Vl(clock,272,86,200,76,10)%Vf(141416)%Vb(f2f2f5)
+%ac%?St(time format)<%cH:%cM|%cl:%cM>
+%Vl(clock,272,168,200,26,7)%Vf(6e6e73)%Vb(f2f2f5)
+%ac%ca %cd %cb
+#
+# the "up next" pane
+%Vl(next,272,56,200,22,6)%Vf(8e8e93)%Vb(f2f2f5)
+%ac%Sx(Now Playing)
+%Vl(next,272,80,200,26,7)%Vf(141416)%Vb(f2f2f5)
+%ac%s%?it<%it|%fn>
+%Vl(next,272,108,200,22,6)%Vf(accent)%Vb(f2f2f5)
+%ac%s%?ia<%ia|%?iA<%iA|>>
+%Vl(next,292,148,160,1,-)
+%dr(0,0,-,-,d1d1d6)
+%Vl(next,272,162,200,22,6)%Vf(8e8e93)%Vb(f2f2f5)
+%ac%Sx(Up Next)
+%Vl(next,272,186,200,26,7)%Vf(141416)%Vb(f2f2f5)
+%ac%s%?It<%It|%?Fn<%Fn|->>
+%Vl(next,272,214,200,22,6)%Vf(6e6e73)%Vb(f2f2f5)
+%ac%s%?Ia<%Ia|>
+#
 # ---------- top bar ----------
 %V(0,0,480,38,-)%Vb(f7f7f9)
 %dr(0,37,-,1,c8c8ce)
-%?cs<%Vd(pane)|>
-%?cs<%?C<%Vd(art)|%Vd(tile)%Vd(note)>|>
-%?cs<%?mp<%?Wd<%Vd(lib)|>|%Vd(cap1)%Vd(cap2)%Vd(mini)>|>
+%?cs<%?St(wheel pane)<%Vd(pane)|%Vd(pane)|%Vd(pane)|>|>
+%?cs<%?St(wheel pane)<%?C<%Vd(art)|%Vd(tile)%Vd(note)>|%Vd(clock)|%?mp<%Vd(clock)|%Vd(next)>|>|>
+%?cs<%?St(wheel pane)<%?mp<%?Wd<%Vd(lib)|>|%Vd(cap1)%Vd(cap2)%Vd(mini)>|%?mp<|%Vd(cap1)%Vd(cap2)%Vd(mini)>|%?mp<|%Vd(mini)>|>|>
 %?St(battery percentage)<%Vd(pct)%Vd(icons_pct)|%Vd(icons)>
 %V(16,2,300,32,8)%Vf(141415)%Vb(f7f7f9)
 %s%?Lt<%Lt|Rockbox>

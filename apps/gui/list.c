@@ -711,7 +711,15 @@ bool gui_synclist_do_button(struct gui_synclist * lists, int *actionptr)
                 *actionptr = ACTION_STD_PREV;
                 return true;
             }
-            gui_list_select_at_offset(lists, -next_item_modifier, allow_wrap);
+            {   /* Y1 Wheel: sensitivity and acceleration of the wheel */
+                int steps = wheel_scroll_steps(-1);
+                if (!steps)
+                {
+                    *actionptr = ACTION_NONE;
+                    return true;
+                }
+                gui_list_select_at_offset(lists, -next_item_modifier * steps, allow_wrap);
+            }
 #ifndef HAVE_WHEEL_ACCELERATION
             if (button_queue_count() < FRAMEDROP_TRIGGER)
 #endif
@@ -731,7 +739,15 @@ bool gui_synclist_do_button(struct gui_synclist * lists, int *actionptr)
                 *actionptr = ACTION_STD_NEXT;
                 return true;
             }
-            gui_list_select_at_offset(lists, next_item_modifier, allow_wrap);
+            {   /* Y1 Wheel: sensitivity and acceleration of the wheel */
+                int steps = wheel_scroll_steps(1);
+                if (!steps)
+                {
+                    *actionptr = ACTION_NONE;
+                    return true;
+                }
+                gui_list_select_at_offset(lists, next_item_modifier * steps, allow_wrap);
+            }
 #ifndef HAVE_WHEEL_ACCELERATION
             if (button_queue_count() < FRAMEDROP_TRIGGER)
 #endif

@@ -139,6 +139,9 @@
 #include "pathfuncs.h" /* for init_volume_names */
 #endif
 #endif
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "wheel/wheel_custom.h"
+#endif
 
 #if (CONFIG_PLATFORM & PLATFORM_SDL)
 #ifdef SIMULATOR
@@ -251,6 +254,16 @@ int main(void)
 int show_logo_boot( void ) INIT_ATTR;
 int show_logo_boot( void )
 {
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(HAVE_LCD_COLOR)
+    /* Y1 Wheel: the startup image chosen in Settings > Appearance */
+    if (wheel_boot_logo())
+    {
+#ifdef SIMULATOR
+        sleep(HZ);
+#endif
+        return 0;
+    }
+#endif
     unsigned char version[32];
     int font_h, ver_w;
     snprintf(version, sizeof(version), "Ver. %s", rbversion);

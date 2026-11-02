@@ -953,6 +953,31 @@ struct user_settings
     bool wheel_theme_scale;     /* scale themes made for 320x240 */
     int  wheel_palette;         /* colour palette, 0 = classic Wheel */
     bool wheel_aero;            /* glossy "Aero" finish (wheel_gel.c) */
+    int  wheel_gloss;           /* gloss strength: subtle, iPod, max */
+    int  wheel_corners;         /* square, soft, round selections/covers */
+    bool wheel_reflect;         /* cover reflection on Now Playing */
+    int  wheel_custom_bar;      /* "My palette": top bar, 0xRRGGBB */
+    int  wheel_custom_bg;       /*   page */
+    int  wheel_custom_accent;   /*   selection */
+    int  wheel_cover_seed;      /* last colour taken from a cover */
+    char wheel_wallpaper[MAX_PATH]; /* own background image */
+    int  wheel_wall_strength;   /* how much of it shows: soft, medium, strong */
+    bool wheel_wall_blur;       /* blurred (or sharp) */
+    int  wheel_np_layout;       /* Now Playing: classic, big cover, minimal, vinyl */
+    bool wheel_np_album;        /* Now Playing shows the album */
+    bool wheel_np_details;      /*   year, format, bitrate */
+    bool wheel_np_next;         /*   the next song */
+    int  wheel_np_bar;          /*   progress bar: thin, thick */
+    int  wheel_pane;            /* main menu pane: cover, clock, up next, none */
+    bool wheel_look_auto;       /* switch looks by the time of day */
+    char wheel_look_day[MAX_FILENAME+1];
+    char wheel_look_night[MAX_FILENAME+1];
+    int  wheel_day_hour;        /* day starts (automatic mode and looks) */
+    int  wheel_night_hour;      /* night starts */
+    int  wheel_click_sound;     /* tick, clack, bubble, drop, wood */
+    int  wheel_sensitivity;     /* wheel: low, normal, high */
+    bool wheel_accel;           /* faster spins move further */
+    int  wheel_idle;            /* idle screen after: off, 15 s, 30 s, 1 min, 2 min */
 #ifdef INNIOASIS_Y1
     int android_screen_timeout; /* Android screen timeout in seconds (0=never) */
 #endif

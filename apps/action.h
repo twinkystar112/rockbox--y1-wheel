@@ -399,6 +399,8 @@ int get_custom_action(int context,int timeout,
                       const struct button_mapping* (*get_context_map)(int));
 /* use if one of the standard CONTEXT_ mappings will work (ALL the core should be using this! */
 int get_action(int context, int timeout);
+long action_last_input_tick(void); /* Y1 Wheel */
+int action_last_button(void);      /* Y1 Wheel */
 
 /* call this if you need to check for ACTION_STD_CANCEL only (i.e user abort! */
 bool action_userabort(int timeout);

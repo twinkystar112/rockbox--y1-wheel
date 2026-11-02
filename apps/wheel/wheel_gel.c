@@ -64,6 +64,7 @@ unsigned wheel_rgb_gel(unsigned top, unsigned bottom, int k, int h, int strength
     const unsigned white = 0xffffff, black = 0;
     if (h < 2)
         return top;
+    strength = strength * wheel_gloss_pct() / 100;
     /* the colour underneath goes from top to bottom; the gel lights it */
     unsigned base = wheel_rgb_blend(top, bottom, k * 100 / (h - 1));
     int mid = (h * 45 + 50) / 100;
@@ -91,6 +92,38 @@ int wheel_rgb_strength_for(unsigned base, unsigned text)
 {
     /* light text on a dark bar: less sheen so the text keeps its contrast */
     return rgb_luma(text) > rgb_luma(base) + 40 ? 55 : 100;
+}
+
+static unsigned roles[WHEEL_ROLES];
+
+unsigned wheel_role_colour(unsigned c)
+{
+    if ((c & 0xff000000u) == WHEEL_ROLE_FLAG)
+    {
+        unsigned r = c & 0xff;
+        return r < WHEEL_ROLES ? roles[r] : 0;
+    }
+    return c;
+}
+
+void wheel_role_set(int role, unsigned lcd_colour)
+{
+    if (role >= 0 && role < WHEEL_ROLES)
+        roles[role] = lcd_colour;
+}
+
+int wheel_gloss_pct(void)
+{
+    static const int pct[3] = { 55, 100, 145 };
+    int g = global_settings.wheel_gloss;
+    return pct[g >= 0 && g < 3 ? g : 1];
+}
+
+int wheel_corner_radius(void)
+{
+    static const int r[3] = { 0, 6, 12 };
+    int c = global_settings.wheel_corners;
+    return r[c >= 0 && c < 3 ? c : 0];
 }
 
 #ifdef HAVE_LCD_COLOR
@@ -151,8 +184,137 @@ void wheel_gel_rect(struct screen *d, int x, int y, int w, int h,
     wheel_gel_part(d, x, y, w, h, top, bottom, h, 0, strength);
 }
 
+bool wheel_skin_is_wheel(void)
+{
+    return strstr((char *)global_settings.sbs_file, "Wheel") != NULL ||
+           global_settings.sbs_file[0] == '\0';
+}
+
+static int isqrt(unsigned v)
+{
+    unsigned r = 0, bit = 1u << 30;
+    while (bit > v)
+        bit >>= 2;
+    while (bit)
+    {
+        if (v >= r + bit)
+        {
+            v -= r + bit;
+            r = (r >> 1) + bit;
+        }
+        else
+            r >>= 1;
+        bit >>= 2;
+    }
+    return r;
+}
+
+/* how much of pixel (i, j) of a w x h box is inside its rounded corners,
+ * 0..100 */
+static int corner_cover(int i, int j, int w, int h, int r)
+{
+    if (r <= 0)
+        return 100;
+    int cx, cy; /* doubled coordinates of the corner circle's centre */
+    if (i < r) cx = 2 * r;
+    else if (i >= w - r) cx = 2 * (w - r);
+    else return 100;
+    if (j < r) cy = 2 * r;
+    else if (j >= h - r) cy = 2 * (h - r);
+    else return 100;
+    int dx = 2 * i + 1 - cx, dy = 2 * j + 1 - cy;
+    int d16 = isqrt((unsigned)(dx * dx + dy * dy) * 256);  /* 2 * distance, x16 */
+    int cov = ((2 * r) * 16 - d16 + 16) * 100 / 32;
+    return cov < 0 ? 0 : cov > 100 ? 100 : cov;
+}
+
+/* the colour under a screen position: the backdrop, or the background */
+static unsigned under_at(struct viewport *vp, int x, int y)
+{
+    fb_data *backdrop = lcd_get_backdrop();
+    if (backdrop)
+        return FB_UNPACK_SCALAR_LCD(backdrop[FBADDR(vp->x + x, vp->y + y) - FBADDR(0, 0)]);
+    return vp->bg_pattern;
+}
+
+void wheel_round_mask(struct screen *d, int x, int y, int w, int h, int r)
+{
+    struct viewport *vp = *d->current_viewport;
+    if (r <= 0 || !vp || d->screen_type != SCREEN_MAIN || d->depth < 16)
+        return;
+    r = MIN(r, MIN(w, h) / 2);
+    unsigned fg = d->get_foreground();
+    d->set_drawmode(DRMODE_SOLID);
+    for (int j = 0; j < h; j++)
+    {
+        if (j >= r && j < h - r)
+            continue;
+        for (int i = 0; i < w; i++)
+        {
+            if (i >= r && i < w - r)
+            {   /* (a circle: every row has its own span) */
+                if (2 * r < w)
+                    continue;
+            }
+            int cov = corner_cover(i, j, w, h, r);
+            if (cov >= 100)
+                continue;
+            int ax = vp->x + x + i, ay = vp->y + y + j;
+            unsigned pic = FB_UNPACK_SCALAR_LCD(*FBADDR(ax, ay));
+            d->set_foreground(wheel_blend(under_at(vp, x + i, y + j), pic, cov));
+            d->drawpixel(x + i, y + j);
+        }
+    }
+    d->set_foreground(fg);
+}
+
+void wheel_selection_part(struct screen *d, int x, int y, int w, int h,
+                          unsigned top, unsigned bottom, int total_h, int offset)
+{
+    int r = wheel_skin_is_wheel() ? wheel_corner_radius() : 0;
+    bool gel = wheel_aero_on();
+    if (r <= 0)
+    {
+        if (gel)
+            wheel_gel_part(d, x, y, w, h, top, bottom, total_h, offset, 100);
+        else
+            d->gradient_fillrect_part(x, y, w, h, top, bottom, total_h, offset);
+        return;
+    }
+    /* rounded: a little margin, the corners blended into what's behind */
+    struct viewport *vp = *d->current_viewport;
+    const int m = 6;
+    unsigned fg = d->get_foreground();
+    d->set_drawmode(DRMODE_SOLID | DRMODE_INVERSEVID);
+    d->fillrect(x, y, w, h);
+    d->set_drawmode(DRMODE_SOLID);
+    int bw = w - 2 * m;
+    r = MIN(r, total_h / 2);
+    for (int k = 0; k < h; k++)
+    {
+        int row = offset + k;
+        unsigned c = gel ? wheel_gel_row(top, bottom, row, total_h, 100)
+                         : wheel_blend(top, bottom, total_h > 1 ? row * 100 / (total_h - 1) : 0);
+        if (row >= r && row < total_h - r)
+        {
+            d->set_foreground(c);
+            d->hline(x + m, x + m + bw - 1, y + k);
+            continue;
+        }
+        for (int i = 0; i < bw; i++)
+        {
+            int cov = (i >= r && i < bw - r) ? 100 : corner_cover(i, row, bw, total_h, r);
+            if (cov <= 0)
+                continue;
+            d->set_foreground(cov >= 100 ? c : wheel_blend(under_at(vp, x + m + i, y + k), c, cov));
+            d->drawpixel(x + m + i, y + k);
+        }
+    }
+    d->set_foreground(fg);
+}
+
 void wheel_reflect(struct screen *d, const fb_data *src, int stride,
-                   int x, int y, int w, int h, bool clear)
+                   int x, int y, int w, int h, bool clear, int radius)
 {
     const int gap = 2;
     struct viewport *vp = *d->current_viewport;
@@ -185,7 +347,8 @@ void wheel_reflect(struct screen *d, const fb_data *src, int stride,
                 unsigned under = vp->bg_pattern;
                 if (backdrop)
                     under = FB_UNPACK_SCALAR_LCD(backdrop[FBADDR(vp->x + x + c, ay) - origin]);
-                d->set_foreground(wheel_blend(under, FB_UNPACK_SCALAR_LCD(line[c]), a));
+                int cov = corner_cover(c, h - 1 - r, w, h, radius);
+                d->set_foreground(wheel_blend(under, FB_UNPACK_SCALAR_LCD(line[c]), a * cov / 100));
                 d->drawpixel(x + c, top + r);
             }
         }
@@ -196,12 +359,8 @@ void wheel_reflect(struct screen *d, const fb_data *src, int stride,
 
 void wheel_selection(struct screen *d, int x, int y, int w, int h)
 {
-    unsigned top = global_settings.lss_color, bottom = global_settings.lse_color;
-    if (wheel_aero_on())
-        wheel_gel_rect(d, x, y, w, h, top, bottom,
-                       100);
-    else
-        d->gradient_fillrect(x, y, w, h, top, bottom);
+    wheel_selection_part(d, x, y, w, h, global_settings.lss_color,
+                         global_settings.lse_color, h, 0);
 }
 
 void wheel_top_bar(struct screen *d, int w, int h, unsigned *text)

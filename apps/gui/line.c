@@ -338,11 +338,12 @@ static void style_line(struct screen *display,
 #ifdef HAVE_LCD_COLOR
         case STYLE_GRADIENT:
             display->set_drawmode(DRMODE_FG);
-            if (display->screen_type == SCREEN_MAIN && wheel_aero_on())
-            {   /* Y1 Wheel: glossy selector */
-                wheel_gel_part(display, x, y, width - x, bar_height,
-                               line->line_color, line->line_end_color,
-                               height*line->nlines, height*line->line, 100);
+            if (display->screen_type == SCREEN_MAIN && wheel_skin_is_wheel())
+            {   /* Y1 Wheel: glossy and/or rounded selector */
+                wheel_selection_part(display, x, y, width - x, bar_height,
+                                     line->line_color, line->line_end_color,
+                                     height*line->nlines, height*line->line);
+                display->set_drawmode(DRMODE_FG);
                 break;
             }
             display->gradient_fillrect_part(x, y, width, bar_height,

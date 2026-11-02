@@ -20825,3 +20825,1179 @@
     *: "マット"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_COVER
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "From the cover"
+  </source>
+  <dest>
+    *: "ジャケットから"
+  </dest>
+  <voice>
+    *: "ジャケットから"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_COVER_DESC
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Colours of the song that's playing"
+  </source>
+  <dest>
+    *: "再生中の曲の色"
+  </dest>
+  <voice>
+    *: "再生中の曲の色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_MINE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "My palette"
+  </source>
+  <dest>
+    *: "マイパレット"
+  </dest>
+  <voice>
+    *: "マイパレット"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_MINE_DESC
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Your colours: press to edit"
+  </source>
+  <dest>
+    *: "あなたの色：押して編集"
+  </dest>
+  <voice>
+    *: "あなたの色：押して編集"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_BAR
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Top bar"
+  </source>
+  <dest>
+    *: "トップバー"
+  </dest>
+  <voice>
+    *: "トップバー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_BG
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Background"
+  </source>
+  <dest>
+    *: "背景"
+  </dest>
+  <voice>
+    *: "背景"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_ACCENT
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Accent"
+  </source>
+  <dest>
+    *: "アクセント"
+  </dest>
+  <voice>
+    *: "アクセント"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_USE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Use this palette"
+  </source>
+  <dest>
+    *: "このパレットを使う"
+  </dest>
+  <voice>
+    *: "このパレットを使う"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_HUE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Hue"
+  </source>
+  <dest>
+    *: "色相"
+  </dest>
+  <voice>
+    *: "色相"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SATURATION
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Saturation"
+  </source>
+  <dest>
+    *: "彩度"
+  </dest>
+  <voice>
+    *: "彩度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIGHTNESS
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Lightness"
+  </source>
+  <dest>
+    *: "明度"
+  </dest>
+  <voice>
+    *: "明度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Gloss"
+  </source>
+  <dest>
+    *: "光沢の強さ"
+  </dest>
+  <voice>
+    *: "光沢の強さ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_0
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Subtle"
+  </source>
+  <dest>
+    *: "控えめ"
+  </dest>
+  <voice>
+    *: "控えめ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_1
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "iPod"
+  </source>
+  <dest>
+    *: "iPod"
+  </dest>
+  <voice>
+    *: "iPod"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GLOSS_2
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Maximum"
+  </source>
+  <dest>
+    *: "最大"
+  </dest>
+  <voice>
+    *: "最大"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REFLECT
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Cover reflection"
+  </source>
+  <dest>
+    *: "ジャケットの反射"
+  </dest>
+  <voice>
+    *: "ジャケットの反射"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Corners"
+  </source>
+  <dest>
+    *: "角"
+  </dest>
+  <voice>
+    *: "角"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_0
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Square"
+  </source>
+  <dest>
+    *: "直角"
+  </dest>
+  <voice>
+    *: "直角"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_1
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Soft"
+  </source>
+  <dest>
+    *: "やわらか"
+  </dest>
+  <voice>
+    *: "やわらか"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CORNERS_2
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Round"
+  </source>
+  <dest>
+    *: "丸く"
+  </dest>
+  <voice>
+    *: "丸く"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALLPAPER
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Background image"
+  </source>
+  <dest>
+    *: "背景画像"
+  </dest>
+  <voice>
+    *: "背景画像"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_NONE
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "None"
+  </source>
+  <dest>
+    *: "なし"
+  </dest>
+  <voice>
+    *: "なし"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_PICK
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Choose an image…"
+  </source>
+  <dest>
+    *: "画像を選ぶ…"
+  </dest>
+  <voice>
+    *: "画像を選ぶ…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_STRENGTH
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Visibility"
+  </source>
+  <dest>
+    *: "強さ"
+  </dest>
+  <voice>
+    *: "強さ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S0
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Soft"
+  </source>
+  <dest>
+    *: "弱め"
+  </dest>
+  <voice>
+    *: "弱め"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S1
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Medium"
+  </source>
+  <dest>
+    *: "普通"
+  </dest>
+  <voice>
+    *: "普通"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_S2
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Strong"
+  </source>
+  <dest>
+    *: "強め"
+  </dest>
+  <voice>
+    *: "強め"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_BLUR
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Blur"
+  </source>
+  <dest>
+    *: "ぼかし"
+  </dest>
+  <voice>
+    *: "ぼかし"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_BAD
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Couldn't open that image (JPEG or BMP)"
+  </source>
+  <dest>
+    *: "画像を開けません（JPEG か BMP）"
+  </dest>
+  <voice>
+    *: "画像を開けません（JPEG か BMP）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WALL_REMOVE
+  desc: Y1 Wheel background
+  user: core
+  <source>
+    *: "Remove image"
+  </source>
+  <dest>
+    *: "画像を外す"
+  </dest>
+  <voice>
+    *: "画像を外す"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_LAYOUT
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Layout"
+  </source>
+  <dest>
+    *: "レイアウト"
+  </dest>
+  <voice>
+    *: "レイアウト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L0
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Classic"
+  </source>
+  <dest>
+    *: "クラシック"
+  </dest>
+  <voice>
+    *: "クラシック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L1
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Big cover"
+  </source>
+  <dest>
+    *: "大きなジャケット"
+  </dest>
+  <voice>
+    *: "大きなジャケット"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L2
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Minimal"
+  </source>
+  <dest>
+    *: "ミニマル"
+  </dest>
+  <voice>
+    *: "ミニマル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L3
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Vinyl"
+  </source>
+  <dest>
+    *: "レコード"
+  </dest>
+  <voice>
+    *: "レコード"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_ALBUM
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Show the album"
+  </source>
+  <dest>
+    *: "アルバムを表示"
+  </dest>
+  <voice>
+    *: "アルバムを表示"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_DETAILS
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Year, format and bitrate"
+  </source>
+  <dest>
+    *: "年・形式・ビットレート"
+  </dest>
+  <voice>
+    *: "年・形式・ビットレート"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_NEXT
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Show the next song"
+  </source>
+  <dest>
+    *: "次の曲を表示"
+  </dest>
+  <voice>
+    *: "次の曲を表示"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Progress bar"
+  </source>
+  <dest>
+    *: "プログレスバー"
+  </dest>
+  <voice>
+    *: "プログレスバー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR_0
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Thin"
+  </source>
+  <dest>
+    *: "細い"
+  </dest>
+  <voice>
+    *: "細い"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BAR_1
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Thick"
+  </source>
+  <dest>
+    *: "太い"
+  </dest>
+  <voice>
+    *: "太い"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MAIN_MENU
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Main menu"
+  </source>
+  <dest>
+    *: "メインメニュー"
+  </dest>
+  <voice>
+    *: "メインメニュー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Right pane"
+  </source>
+  <dest>
+    *: "右パネル"
+  </dest>
+  <voice>
+    *: "右パネル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_0
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Cover"
+  </source>
+  <dest>
+    *: "ジャケット"
+  </dest>
+  <voice>
+    *: "ジャケット"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_1
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Clock"
+  </source>
+  <dest>
+    *: "時計"
+  </dest>
+  <voice>
+    *: "時計"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PANE_3
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "None"
+  </source>
+  <dest>
+    *: "なし"
+  </dest>
+  <voice>
+    *: "なし"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_ITEMS
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Items and order"
+  </source>
+  <dest>
+    *: "項目と順番"
+  </dest>
+  <voice>
+    *: "項目と順番"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_HINT
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "OK shows or hides · hold OK to move"
+  </source>
+  <dest>
+    *: "OK：表示/非表示 · OK長押し：移動"
+  </dest>
+  <voice>
+    *: "OK：表示/非表示 · OK長押し：移動"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_MOVING
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Turn to move it, OK to drop"
+  </source>
+  <dest>
+    *: "回して移動、OKで確定"
+  </dest>
+  <voice>
+    *: "回して移動、OKで確定"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MENU_RESET
+  desc: Y1 Wheel main menu
+  user: core
+  <source>
+    *: "Restore the original menu"
+  </source>
+  <dest>
+    *: "元のメニューに戻す"
+  </dest>
+  <voice>
+    *: "元のメニューに戻す"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOKS
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Looks"
+  </source>
+  <dest>
+    *: "ルック"
+  </dest>
+  <voice>
+    *: "ルック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_SAVE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Save the current look…"
+  </source>
+  <dest>
+    *: "今のルックを保存…"
+  </dest>
+  <voice>
+    *: "今のルックを保存…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NAME
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Look name"
+  </source>
+  <dest>
+    *: "ルックの名前"
+  </dest>
+  <voice>
+    *: "ルックの名前"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_APPLY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Apply"
+  </source>
+  <dest>
+    *: "適用"
+  </dest>
+  <voice>
+    *: "適用"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_DELETE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "削除"
+  </dest>
+  <voice>
+    *: "削除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_SAVED
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Look saved"
+  </source>
+  <dest>
+    *: "ルックを保存しました"
+  </dest>
+  <voice>
+    *: "ルックを保存しました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_AUTO
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day and night looks"
+  </source>
+  <dest>
+    *: "昼と夜のルック"
+  </dest>
+  <voice>
+    *: "昼と夜のルック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_DAY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day look"
+  </source>
+  <dest>
+    *: "昼のルック"
+  </dest>
+  <voice>
+    *: "昼のルック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NIGHT
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Night look"
+  </source>
+  <dest>
+    *: "夜のルック"
+  </dest>
+  <voice>
+    *: "夜のルック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DAY_FROM
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Day starts at"
+  </source>
+  <dest>
+    *: "昼の開始"
+  </dest>
+  <voice>
+    *: "昼の開始"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NIGHT_FROM
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "Night starts at"
+  </source>
+  <dest>
+    *: "夜の開始"
+  </dest>
+  <voice>
+    *: "夜の開始"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_NONE
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "(none)"
+  </source>
+  <dest>
+    *: "（なし）"
+  </dest>
+  <voice>
+    *: "（なし）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOOK_EMPTY
+  desc: Y1 Wheel looks
+  user: core
+  <source>
+    *: "No looks yet: save one first"
+  </source>
+  <dest>
+    *: "ルックがありません：まず保存してください"
+  </dest>
+  <voice>
+    *: "ルックがありません：まず保存してください"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WHEEL_CLICK
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wheel and click"
+  </source>
+  <dest>
+    *: "ホイールとクリック"
+  </dest>
+  <voice>
+    *: "ホイールとクリック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_SOUND
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Click sound"
+  </source>
+  <dest>
+    *: "クリック音"
+  </dest>
+  <voice>
+    *: "クリック音"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_0
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Tick"
+  </source>
+  <dest>
+    *: "チッ"
+  </dest>
+  <voice>
+    *: "チッ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_1
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Clack"
+  </source>
+  <dest>
+    *: "カチ"
+  </dest>
+  <voice>
+    *: "カチ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_2
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Bubble"
+  </source>
+  <dest>
+    *: "泡"
+  </dest>
+  <voice>
+    *: "泡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_3
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Drop"
+  </source>
+  <dest>
+    *: "しずく"
+  </dest>
+  <voice>
+    *: "しずく"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_4
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wood"
+  </source>
+  <dest>
+    *: "木"
+  </dest>
+  <voice>
+    *: "木"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICK_VOLUME
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Click volume"
+  </source>
+  <dest>
+    *: "クリックの音量"
+  </dest>
+  <voice>
+    *: "クリックの音量"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENSITIVITY
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Wheel sensitivity"
+  </source>
+  <dest>
+    *: "ホイールの感度"
+  </dest>
+  <voice>
+    *: "ホイールの感度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_0
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Low"
+  </source>
+  <dest>
+    *: "低"
+  </dest>
+  <voice>
+    *: "低"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_1
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Normal"
+  </source>
+  <dest>
+    *: "標準"
+  </dest>
+  <voice>
+    *: "標準"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SENS_2
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "High"
+  </source>
+  <dest>
+    *: "高"
+  </dest>
+  <voice>
+    *: "高"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCEL
+  desc: Y1 Wheel wheel
+  user: core
+  <source>
+    *: "Acceleration"
+  </source>
+  <dest>
+    *: "加速"
+  </dest>
+  <voice>
+    *: "加速"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_IDLE
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Idle screen"
+  </source>
+  <dest>
+    *: "待機画面"
+  </dest>
+  <voice>
+    *: "待機画面"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_IDLE_BOOT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Idle and startup"
+  </source>
+  <dest>
+    *: "待機と起動"
+  </dest>
+  <voice>
+    *: "待機と起動"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_IMAGE
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Startup image"
+  </source>
+  <dest>
+    *: "起動画像"
+  </dest>
+  <voice>
+    *: "起動画像"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_DEFAULT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Rockbox logo"
+  </source>
+  <dest>
+    *: "Rockbox ロゴ"
+  </dest>
+  <voice>
+    *: "Rockbox ロゴ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BOOT_TEXT
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Startup text"
+  </source>
+  <dest>
+    *: "起動テキスト"
+  </dest>
+  <voice>
+    *: "起動テキスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PREVIEW
+  desc: Y1 Wheel idle
+  user: core
+  <source>
+    *: "Preview"
+  </source>
+  <dest>
+    *: "プレビュー"
+  </dest>
+  <voice>
+    *: "プレビュー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_SCREEN
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Gloss, reflection, corners"
+  </source>
+  <dest>
+    *: "光沢・反射・角"
+  </dest>
+  <voice>
+    *: "光沢・反射・角"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PICK_HINT
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Turn to adjust · OK: next · Back: done"
+  </source>
+  <dest>
+    *: "回して調整 · OK：次へ · 戻る：完了"
+  </dest>
+  <voice>
+    *: "回して調整 · OK：次へ · 戻る：完了"
+  </voice>
+</phrase>

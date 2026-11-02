@@ -129,6 +129,7 @@ wheel/wheel_fontforge.c
 wheel/wheel_typo.c
 wheel/wheel_typo_ui.c
 wheel/wheel_palette.c
+wheel/wheel_custom.c
 #endif
 gui/viewport.c
 

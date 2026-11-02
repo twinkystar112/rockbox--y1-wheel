@@ -86,8 +86,8 @@ Ajustes › Apariencia:
   carpeta principal, `Download` o `Themes`, y se instala desde el propio Y1.
 * **Escalar temas de 320×240**: los temas hechos para 320×240 se amplían 1,5× (posiciones,
   imágenes, fondos y fuentes) en lugar de verse en una esquina.
-* **Apariencia** clara / oscura / automática (oscura de 21:00 a 7:00), **color de acento**
-  (7), **% de batería**, **clic de la rueda** y **salto por letras**.
+* **Apariencia** clara / oscura / automática (oscura de noche; las horas se ajustan en Looks),
+  **color de acento** (7), **% de batería** y **salto por letras**.
 
 ### Paletas
 Ajustes › Apariencia › **Paleta** abre "Elige una paleta": cada una con su miniatura en degradado
@@ -103,8 +103,12 @@ reserva, barra de progreso, sombras y las pantallas dibujadas en C):
 | **Midnight Iris** | violeta oscuro para la noche (paleta oscura) |
 | **Citrus Sunset** | coral, tomate maduro y un poco de cielo |
 | **Rose Chai** | rosa suave, palo rosa y vainilla |
+| **De la portada** | los colores de la canción que suena: cambian con cada canción, en claro u oscuro según el modo |
+| **Mi paleta** | la tuya: eliges barra superior, fondo y acento (tono, saturación y luminosidad con la rueda) y el resto se calcula, con vista previa |
 
-**Acabado** (justo debajo): **Brillo Aero** (por defecto) o **Mate**. El brillo Aero da a la
+**Acabado** (justo debajo): **Brillo Aero** (por defecto) o **Mate**, **intensidad del brillo**
+(sutil / iPod / máximo), **reflejo de la portada** y **esquinas** (rectas / suaves / redondeadas,
+en la selección y en las portadas). El brillo Aero da a la
 interfaz el aire gel/cristal de los reproductores de mediados de los 2000, dibujado con los
 colores de cada paleta, sin imágenes copiadas: barra de selección con reflejo superior, línea de
 "flotación" y fondo que se ilumina hacia abajo; barra superior acristalada con una sombra suave
@@ -115,6 +119,28 @@ Vale para la Wheel clásica (barra plateada en el modo claro, grafito en el oscu
 cambia entre las dos) y para todas las paletas: los temas `Wheel-Aero`, `Wheel-Dark-Aero` y
 `Wheel-Pal` se generan con sus fondos (`wps/<tema>/aero-*.bmp`). Con "Mate" vuelve el aspecto
 plano de siempre.
+
+### Más personalización (Ajustes › Apariencia)
+* **Imagen de fondo**: una foto o dibujo tuyo (JPEG o BMP de `Pictures`, `DCIM`, `Download`…)
+  detrás de menús y Ahora suena, recortada para llenar la pantalla, desenfocada o nítida y con
+  intensidad suave / media / fuerte para que el texto siempre se lea; la barra superior se vuelve
+  de cristal sobre ella.
+* **Ahora suena**: diseño **Clásico**, **Portada grande** (centrada, estilo nano),
+  **Minimalista** (solo texto) o **Vinilo** (la portada es la etiqueta redonda de un disco);
+  mostrar u ocultar álbum, "año · formato · bitrate" y la **siguiente canción**; barra de
+  progreso fina o gruesa.
+* **Menú principal**: **panel derecho** con la portada, un **reloj** grande, **"A
+  continuación"** (lo que suena y lo siguiente) o ninguno (lista a todo el ancho); **elementos y
+  orden**: OK muestra u oculta, mantener OK levanta el elemento y se mueve girando la rueda.
+* **Looks**: guarda la combinación actual (paleta, acabado, imagen, diseño de Ahora suena, panel,
+  modo, acento y tipografía) con un nombre y aplícala cuando quieras; **looks de día y de
+  noche** con la hora a la que empieza cada uno (también la usa el modo automático).
+* **Rueda y clic**: volumen del clic, **sonido** (tic, clac, burbuja, gota, madera; se generan en
+  el reproductor), **sensibilidad** (baja = dos clics por elemento, alta = dos elementos por clic) y
+  **aceleración** al girar rápido.
+* **Reposo y arranque**: **pantalla de reposo** tras 15 s – 2 min sin tocar nada (reloj grande
+  sobre la portada difuminada, la canción y su progreso; cualquier botón la quita) e **imagen y
+  texto de arranque** (se componen una vez y se guardan en `.rockbox/wheel/boot.bmp`).
 
 Los colores están inspirados en las capturas de referencia, con nombres propios. Funciona junto
 con la tipografía: el tema `Wheel-Pal` se genera desde las plantillas `Wheel.sbs/.wps` con tu
@@ -223,5 +249,7 @@ primera vez.
 | Etiquetas de skin nuevas | `%Lh %Lv %Wb %Wq %Wm %Wy %Wd %Wa..%Wo` en `lib/skin_parser/tag_table.*`, `apps/gui/skin_engine/skin_tokens.c` |
 | Tema | `wps/Wheel*.sbs/.wps` (plantillas con `#@`), `fonts/prebuilt/` (`utils/wheel/make_fonts.sh`) |
 | Paletas | `apps/wheel/wheel_palette.c` (tabla de colores por función, selector, fondo Aero) → `wheel_typo.c` (`typo_generate_palette`: genera `Wheel-Pal`) |
-| Acabado Aero | `apps/wheel/wheel_gel.c` (gel, surco, reflejo), ganchos en `apps/gui/line.c` (selector), `apps/gui/scrollbar.c` (barras de progreso), `apps/gui/skin_engine/skin_display.c` (reflejo de la portada), `apps/gui/backdrop.c` (fondo sin tramado) |
+| Acabado Aero | `apps/wheel/wheel_gel.c` (gel, surco, reflejo, esquinas, colores dinámicos `wrNN`), ganchos en `apps/gui/line.c` (selector), `apps/gui/scrollbar.c` (barras de progreso), `apps/gui/skin_engine/skin_display.c` (reflejo, portada redonda), `apps/gui/backdrop.c` (fondo sin tramado), `apps/misc.c` (`parse_color`) |
+| Paleta de la portada, Mi paleta, imagen de fondo, vinilo | `apps/wheel/wheel_palette.c` (`wheel_palette_derive`, `wheel_palette_poll`, fondos generados), `apps/gui/skin_engine/skin_backdrops.c` (`skin_backdrop_next`) |
+| Ahora suena, panel, menú, looks, rueda, reposo, arranque | `apps/wheel/wheel_custom.c`, `wps/Wheel-NP-*.wps`, `apps/wheel/wheel_letterjump.c` (sensibilidad), `apps/beep.c` (sonidos del clic), `apps/menu.c` / `apps/gui/wps.c` (reposo), `apps/main.c` (arranque) |
 | Pruebas | `utils/wheel/tests/` |

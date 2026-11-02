@@ -46,12 +46,36 @@ struct wheel_palette {
     unsigned sel_start, sel_end, sel_text;  /* list selection gradient, top -> bottom */
 };
 
+/* the "Vinyl" Now Playing layout: where the record is (wps/Wheel-NP-Vinyl.wps
+ * puts the round cover label at its centre) */
+#define VINYL_CX      132
+#define VINYL_CY      199
+#define VINYL_R       146
+#define VINYL_LABEL_R 58
+
 int wheel_palette_count(void);
+/* the palettes after the fixed ones: the cover's, and "My palette" */
+int wheel_palette_cover_index(void);
+int wheel_palette_mine_index(void);
+/* the active palette changes with the music (colour roles, see wheel_gel.h) */
+bool wheel_palette_is_dynamic(void);
+/* a whole palette from a top bar, page and accent colour (0xRRGGBB) */
+void wheel_palette_derive(struct wheel_palette *p, unsigned bar, unsigned bg, unsigned accent);
+void wheel_rgb_to_hsv(unsigned c, int *h, int *s, int *v);
+unsigned wheel_hsv_to_rgb(int h, int s, int v);
+/* called while skins update: follows the cover; true if colours changed */
+bool wheel_palette_poll(void);
+/* sets the background image if it can be read (false: kept the old one) */
+bool wheel_wallpaper_check(const char *path);
+/* "My palette" editor */
+void wheel_palette_edit(void);
 const struct wheel_palette *wheel_palette_get(int i);
 /* the palette in use (NULL: classic Wheel colours) */
 const struct wheel_palette *wheel_palette_active(void);
 /* "f7f7f9" -> the active palette's colour for that template colour, or NULL */
 const char *wheel_palette_map(const char *hex6);
+/* the same for any word of a skin line (also "accent" etc.), or NULL */
+const char *wheel_palette_map_word(const char *w, int len);
 /* the top bar colours of the screen drawn in C (any palette) */
 void wheel_palette_bar(unsigned *bg, unsigned *fg);
 /* sets the list/screen colours of the active palette; true if changed */
@@ -60,9 +84,9 @@ bool wheel_palette_patch_colours(void);
 const struct wheel_palette *wheel_palette_classic(bool dark);
 /* the scheme the skin generator is writing (NULL: the active palette) */
 void wheel_palette_use(const struct wheel_palette *p);
-/* writes the glossy backdrop of that scheme into wps/<skin>/; name gets
- * its file name */
-bool wheel_palette_backdrop(const char *skin, char *name, size_t len);
+/* writes the backdrop of that scheme into wps/<skin>/ (gel bar, background
+ * image, the vinyl record); name gets its file name */
+bool wheel_palette_backdrop(const char *skin, bool aero, bool vinyl, char *name, size_t len);
 /* chooses a palette: theme files, colours, reload */
 void wheel_palette_set(int i);
 /* the "Pick your palette" screen */

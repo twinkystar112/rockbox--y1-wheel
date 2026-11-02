@@ -306,3 +306,87 @@ LANG_WHEEL_PAL_DESC_6	Rose poudré, bois de rose, vanille
 LANG_WHEEL_FINISH	Finition
 LANG_WHEEL_FINISH_AERO	Brillant Aero
 LANG_WHEEL_FINISH_MATTE	Mat
+LANG_WHEEL_PAL_COVER	De la pochette
+LANG_WHEEL_PAL_COVER_DESC	Les couleurs du morceau en cours
+LANG_WHEEL_PAL_MINE	Ma palette
+LANG_WHEEL_PAL_MINE_DESC	Vos couleurs : appuyez pour modifier
+LANG_WHEEL_PAL_BAR	Barre du haut
+LANG_WHEEL_PAL_BG	Fond
+LANG_WHEEL_PAL_ACCENT	Accent
+LANG_WHEEL_PAL_USE	Utiliser cette palette
+LANG_WHEEL_HUE	Teinte
+LANG_WHEEL_SATURATION	Saturation
+LANG_WHEEL_LIGHTNESS	Luminosité
+LANG_WHEEL_GLOSS	Intensité du brillant
+LANG_WHEEL_GLOSS_0	Subtil
+LANG_WHEEL_GLOSS_1	iPod
+LANG_WHEEL_GLOSS_2	Maximum
+LANG_WHEEL_REFLECT	Reflet de la pochette
+LANG_WHEEL_CORNERS	Coins
+LANG_WHEEL_CORNERS_0	Droits
+LANG_WHEEL_CORNERS_1	Doux
+LANG_WHEEL_CORNERS_2	Arrondis
+LANG_WHEEL_WALLPAPER	Image de fond
+LANG_WHEEL_WALL_NONE	Aucune
+LANG_WHEEL_WALL_PICK	Choisir une image…
+LANG_WHEEL_WALL_STRENGTH	Intensité
+LANG_WHEEL_WALL_S0	Douce
+LANG_WHEEL_WALL_S1	Moyenne
+LANG_WHEEL_WALL_S2	Forte
+LANG_WHEEL_WALL_BLUR	Flou
+LANG_WHEEL_WALL_BAD	Impossible d'ouvrir l'image (JPEG ou BMP)
+LANG_WHEEL_WALL_REMOVE	Retirer l'image
+LANG_WHEEL_NP_LAYOUT	Disposition
+LANG_WHEEL_NP_L0	Classique
+LANG_WHEEL_NP_L1	Grande pochette
+LANG_WHEEL_NP_L2	Minimaliste
+LANG_WHEEL_NP_L3	Vinyle
+LANG_WHEEL_NP_ALBUM	Afficher l'album
+LANG_WHEEL_NP_DETAILS	Année, format et débit
+LANG_WHEEL_NP_NEXT	Afficher le morceau suivant
+LANG_WHEEL_NP_BAR	Barre de progression
+LANG_WHEEL_NP_BAR_0	Fine
+LANG_WHEEL_NP_BAR_1	Épaisse
+LANG_WHEEL_MAIN_MENU	Menu principal
+LANG_WHEEL_PANE	Panneau de droite
+LANG_WHEEL_PANE_0	Pochette
+LANG_WHEEL_PANE_1	Horloge
+LANG_WHEEL_PANE_3	Aucun
+LANG_WHEEL_MENU_ITEMS	Éléments et ordre
+LANG_WHEEL_MENU_HINT	OK affiche ou masque · maintenir OK pour déplacer
+LANG_WHEEL_MENU_MOVING	Tournez pour déplacer, OK pour lâcher
+LANG_WHEEL_MENU_RESET	Rétablir le menu d'origine
+LANG_WHEEL_LOOKS	Looks
+LANG_WHEEL_LOOK_SAVE	Enregistrer le look actuel…
+LANG_WHEEL_LOOK_NAME	Nom du look
+LANG_WHEEL_LOOK_APPLY	Appliquer
+LANG_WHEEL_LOOK_DELETE	Supprimer
+LANG_WHEEL_LOOK_SAVED	Look enregistré
+LANG_WHEEL_LOOK_AUTO	Looks de jour et de nuit
+LANG_WHEEL_LOOK_DAY	Look de jour
+LANG_WHEEL_LOOK_NIGHT	Look de nuit
+LANG_WHEEL_DAY_FROM	Le jour commence à
+LANG_WHEEL_NIGHT_FROM	La nuit commence à
+LANG_WHEEL_LOOK_NONE	(aucun)
+LANG_WHEEL_LOOK_EMPTY	Pas encore de looks : enregistrez-en un
+LANG_WHEEL_WHEEL_CLICK	Molette et clic
+LANG_WHEEL_CLICK_SOUND	Son du clic
+LANG_WHEEL_CLICK_0	Tic
+LANG_WHEEL_CLICK_1	Clac
+LANG_WHEEL_CLICK_2	Bulle
+LANG_WHEEL_CLICK_3	Goutte
+LANG_WHEEL_CLICK_4	Bois
+LANG_WHEEL_CLICK_VOLUME	Volume du clic
+LANG_WHEEL_SENSITIVITY	Sensibilité de la molette
+LANG_WHEEL_SENS_0	Basse
+LANG_WHEEL_SENS_1	Normale
+LANG_WHEEL_SENS_2	Haute
+LANG_WHEEL_ACCEL	Accélération
+LANG_WHEEL_IDLE	Écran de veille
+LANG_WHEEL_IDLE_BOOT	Veille et démarrage
+LANG_WHEEL_BOOT_IMAGE	Image de démarrage
+LANG_WHEEL_BOOT_DEFAULT	Logo Rockbox
+LANG_WHEEL_BOOT_TEXT	Texte de démarrage
+LANG_WHEEL_PREVIEW	Aperçu
+LANG_WHEEL_FINISH_SCREEN	Brillant, reflet, coins
+LANG_WHEEL_PICK_HINT	Tournez pour régler · OK : suivant · Retour : terminé

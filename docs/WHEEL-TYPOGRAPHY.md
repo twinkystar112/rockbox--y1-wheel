@@ -65,15 +65,25 @@ por el color de la paleta (`apps/wheel/wheel_palette.c`). Un color nuevo en la p
 reutilizar un token existente o añadirse a la tabla `tmpl[]` y a `make_dark.py`.
 
 Los temas de color se generan desde esas plantillas (`wheel_typo.c`, `gen_scheme`): `Wheel-Pal`
-(la paleta elegida) y, con el acabado **Brillo Aero**, `Wheel-Aero` / `Wheel-Dark-Aero` (los
-colores clásicos). Empiezan con `# wheel-gen format=… skin=… palette=… aero=… typo=…` (si no
-coincide con los ajustes o el perfil de tipografía, se regeneran) y, con brillo,
+(la paleta elegida) y, con brillo, imagen de fondo u otro diseño de Ahora suena, `Wheel-Aero` /
+`Wheel-Dark-Aero` (los colores clásicos). El `.wps` sale de `Wheel.wps` o de
+`Wheel-NP-Big/Minimal/Vinyl.wps` según el diseño. Empiezan con
+`# wheel-gen format=… skin=… palette=… look=… typo=…`: `look` resume todo lo que cambia los
+archivos (acabado, reflejo, brillo, diseño, imagen, colores de Mi paleta y el contenido de las
+plantillas) y `typo` el perfil de fuentes; si no coincide, se regeneran. Con brillo o imagen,
 `%X(aero-<hash>.bmp)`: un fondo con la barra superior en gel y la página. Con fondo, Rockbox borra
 cada línea copiando el fondo en lugar de pintar `%Vb`, así que lo que necesita un color propio se
 pinta con `%dr` (el mosaico de la portada) y la nota encima se dibuja con `%Vs(none)`. Las líneas
 `#@aero viejo=nuevo` solo se aplican a los temas con brillo (quitan la sombra de la portada y
 alargan su viewport para el reflejo). Al cambiar el aspecto del gel (`wheel_gel.c`), sube
 `GEN_FORMAT` para que se regeneren.
+
+La paleta **De la portada** no escribe colores en el tema: escribe *roles* (`wr00`…`wr19`,
+`parse_color()` en `apps/misc.c`) que el motor de skins resuelve al dibujar
+(`wheel_role_colour()`); `wheel_palette_poll()` (desde `skin_update()`) saca el color dominante
+de la portada al cambiar de canción, recalcula la paleta, redibuja en memoria los fondos ya
+cargados (`skin_backdrop_next()`) y pide un redibujado completo. Los ajustes de Ahora suena y del
+panel derecho se leen con `%?St(...)`, sin regenerar nada.
 
 ### Fuentes CJK
 `fonts/cjk/CJK-{SC,JP,KR}-{17,22}.fnt` (≈10 MB): Noto Sans SC/JP/KR (SIL OFL) recortadas a GB 2312,

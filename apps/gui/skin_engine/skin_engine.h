@@ -67,6 +67,9 @@ bool skin_backdrops_preload(void);
 void skin_backdrop_show(int backdrop_id);
 void skin_backdrop_load_setting(void);
 void skin_backdrop_unload(int backdrop_id);
+/* Y1 Wheel: the loaded backdrops whose file name contains needle, one per
+ * call (*iter starts at 0); NULL when there are no more */
+fb_data *skin_backdrop_next(const char *needle, int *iter, const char **name);
 #define BACKDROP_BUFFERNAME "#backdrop_buffer#"
 void skin_backdrop_set_buffer(int backdrop_id, struct skin_viewport *svp);
 

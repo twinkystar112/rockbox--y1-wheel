@@ -425,6 +425,13 @@ sub buildzip {
             copy($f, "$temp_dir/fonts/typo/");
         }
     }
+    # Y1 Wheel: the Now Playing layouts (templates of the generated skins)
+    if($bitmap && glob("$ROOT/wps/Wheel-NP-*.wps")) {
+        glob_mkdir("$temp_dir/wps");
+        foreach my $f (glob("$ROOT/wps/Wheel-NP-*.wps")) {
+            copy($f, "$temp_dir/wps/");
+        }
+    }
     # Chinese / Japanese / Korean glyph fallback fonts (Noto Sans, SIL OFL)
     if($bitmap && -d "$ROOT/fonts/cjk") {
         glob_mkdir("$temp_dir/fonts/cjk");

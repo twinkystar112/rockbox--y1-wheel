@@ -952,22 +952,30 @@ static const char *skin_var(const char *name, const char files[TU_COUNT][64], in
     return NULL;
 }
 
-/* colours: every 6-digit hex word the palette knows is replaced */
+/* colours: every word the palette knows (6-digit colours, "accent"...) is
+ * replaced */
 static void recolour(char *out, size_t size)
 {
     char res[512];
     size_t o = 0;
     for (const char *s = out; *s && o < sizeof(res) - 1; )
     {
-        bool word = isxdigit((unsigned char)s[0]) && (s == out || !isalnum((unsigned char)s[-1]));
         int n = 0;
-        while (word && n < 7 && isxdigit((unsigned char)s[n])) n++;
-        const char *m = (word && n == 6 && !isalnum((unsigned char)s[6])) ? wheel_palette_map(s) : NULL;
-        if (m && o + 6 < sizeof(res) - 1)
+        if (isalnum((unsigned char)s[0]) && (s == out || !isalnum((unsigned char)s[-1])))
+            while (isalnum((unsigned char)s[n]))
+                n++;
+        const char *m = n ? wheel_palette_map_word(s, n) : NULL;
+        size_t ml = m ? strlen(m) : 0;
+        if (m && o + ml < sizeof(res) - 1)
         {
-            memcpy(res + o, m, 6);
-            o += 6;
-            s += 6;
+            memcpy(res + o, m, ml);
+            o += ml;
+            s += n;
+        }
+        else if (n)
+        {   /* copy the whole word */
+            while (n-- && o < sizeof(res) - 1)
+                res[o++] = *s++;
         }
         else
             res[o++] = *s++;
@@ -1138,17 +1146,58 @@ static const struct wheel_palette *scheme_for(const char *name)
 /* first line of a generated scheme: what it was made from */
 static void scheme_signature(const char *name, char *buf, size_t size)
 {
-    unsigned h = 2166136261u;
+    bool pal = !strcmp(name, "Wheel-Pal");
+    /* the look: everything else that changes the files */
+    unsigned look, h = 2166136261u;
+#define MIXIN(v) (h = (h ^ (unsigned)(v)) * 16777619u)
+    MIXIN(global_settings.wheel_aero);
+    MIXIN(global_settings.wheel_reflect);
+    MIXIN(global_settings.wheel_gloss);
+    MIXIN(global_settings.wheel_np_layout);
+    for (const char *c = global_settings.wheel_wallpaper; *c; c++)
+        MIXIN((unsigned char)*c);
+    MIXIN(global_settings.wheel_wall_blur);
+    MIXIN(global_settings.wheel_wall_strength);
+    if (pal && global_settings.wheel_palette == wheel_palette_mine_index())
+    {
+        MIXIN(global_settings.wheel_custom_bar);
+        MIXIN(global_settings.wheel_custom_bg);
+        MIXIN(global_settings.wheel_custom_accent);
+    }
+    /* the templates themselves (an update may change them) */
+    {
+        static const char * const tpl[] = {
+            "Wheel.sbs", "Wheel.wps", "Wheel-NP-Big.wps", "Wheel-NP-Minimal.wps",
+            "Wheel-NP-Vinyl.wps",
+        };
+        int l = global_settings.wheel_np_layout;
+        for (unsigned i = 0; i < ARRAYLEN(tpl); i++)
+        {
+            if (i >= 1 && (int)i != l + 1)
+                continue;
+            char path[MAX_PATH];
+            snprintf(path, sizeof(path), WPS_DIR "/%s", tpl[i]);
+            long n = 0;
+            char *t = read_all(path, &n, 65536);
+            if (t)
+            {
+                for (long k = 0; k < n; k++)
+                    MIXIN((unsigned char)t[k]);
+                free(t);
+            }
+        }
+    }
+    look = h;
+    h = 2166136261u;
     for (int u = 0; u < TU_COUNT; u++)
         for (const char *c = active_files[u]; *c; c++)
-            h = (h ^ (unsigned char)*c) * 16777619u;
-    h = (h ^ (unsigned)typo_row_height(&active)) * 16777619u;
-    h = (h ^ (unsigned)active.np_pct) * 16777619u;
-    h = (h ^ (unsigned)active.list_pct) * 16777619u;
-    bool pal = !strcmp(name, "Wheel-Pal");
-    snprintf(buf, size, "# wheel-gen format=%d skin=%s palette=%d aero=%d typo=%08x\n",
-             GEN_FORMAT, name, pal ? global_settings.wheel_palette : 0,
-             pal ? global_settings.wheel_aero : 1, h);
+            MIXIN((unsigned char)*c);
+    MIXIN(typo_row_height(&active));
+    MIXIN(active.np_pct);
+    MIXIN(active.list_pct);
+#undef MIXIN
+    snprintf(buf, size, "# wheel-gen format=%d skin=%s palette=%d look=%08x typo=%08x\n",
+             GEN_FORMAT, name, pal ? global_settings.wheel_palette : 0, look, h);
 }
 
 static bool scheme_current(const char *name)
@@ -1165,30 +1214,42 @@ static bool scheme_current(const char *name)
     return strstr(have, want) != NULL;
 }
 
+static const char * const np_templates[] = {
+    "Wheel", "Wheel-NP-Big", "Wheel-NP-Minimal", "Wheel-NP-Vinyl",
+};
+
 static bool gen_scheme(const char *name)
 {
-    static const char * const exts[] = { "sbs", "wps" };
     const struct wheel_palette *p = scheme_for(name);
     if (!p)
         return false;
-    bool aero = strcmp(name, "Wheel-Pal") || global_settings.wheel_aero;
+    int layout = global_settings.wheel_np_layout;
+    if (layout < 0 || layout >= (int)ARRAYLEN(np_templates))
+        layout = 0;
+    bool aero = global_settings.wheel_aero;
+    bool pic = global_settings.wheel_wallpaper[0] != '\0';
+    bool vinyl = layout == 3;
     wheel_palette_use(p);
     skin_vars((const char (*)[64])active_files, active.np_pct);
     mkdir(WPS_DIR);
-    /* the glossy finish: a backdrop with the gel bar and the page sheen */
-    char bmp[40], prelude[224];
-    scheme_signature(name, prelude, sizeof(prelude));
-    if (aero && wheel_palette_backdrop(name, bmp, sizeof(bmp)))
-        snprintf(prelude + strlen(prelude), sizeof(prelude) - strlen(prelude),
-                 "%%X(%s)\n", bmp);
-    gen_prelude = prelude;
-    gen_aero = aero;
+    char sig[160], bmp[40], prelude[224];
+    scheme_signature(name, sig, sizeof(sig));
     bool ok = true;
-    for (unsigned e = 0; e < ARRAYLEN(exts) && ok; e++)
+    for (int e = 0; e < 2 && ok; e++)
     {
+        bool wps = e == 1;
+        /* the backdrop: gel bar, own image; the record for the vinyl layout */
+        strlcpy(prelude, sig, sizeof(prelude));
+        if ((aero || pic || (wps && vinyl)) &&
+            wheel_palette_backdrop(name, aero, wps && vinyl, bmp, sizeof(bmp)))
+            snprintf(prelude + strlen(prelude), sizeof(prelude) - strlen(prelude),
+                     "%%X(%s)\n", bmp);
+        gen_prelude = prelude;
+        gen_aero = aero && global_settings.wheel_reflect;
         char src[MAX_PATH], dst[MAX_PATH];
-        snprintf(src, sizeof(src), WPS_DIR "/Wheel.%s", exts[e]);
-        snprintf(dst, sizeof(dst), WPS_DIR "/%s.%s", name, exts[e]);
+        snprintf(src, sizeof(src), WPS_DIR "/%s.%s", wps ? np_templates[layout] : "Wheel",
+                 wps ? "wps" : "sbs");
+        snprintf(dst, sizeof(dst), WPS_DIR "/%s.%s", name, wps ? "wps" : "sbs");
         ok = gen_skin(src, dst, (const char (*)[64])active_files, typo_row_height(&active), true);
     }
     gen_prelude = NULL;
@@ -1249,7 +1310,9 @@ static const char *wheel_skin_for(bool dark)
 {
     if (wheel_palette_active())
         return "Wheel-Pal";
-    if (global_settings.wheel_aero)
+    /* the classic colours, generated with the finish, image or layout */
+    if (global_settings.wheel_aero || global_settings.wheel_wallpaper[0] ||
+        global_settings.wheel_np_layout)
         return dark ? "Wheel-Dark-Aero" : "Wheel-Aero";
     if (custom)
         return dark ? "Wheel-Dark-Type" : "Wheel-Type";

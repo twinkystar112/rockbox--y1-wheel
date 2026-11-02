@@ -69,6 +69,9 @@
 #include "skin_engine.h"
 #include "statusbar-skinned.h"
 #include "wheel/wheel_gel.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "wheel/wheel_palette.h"
+#endif
 #include "skin_display.h"
 
 static bool dirty[NB_SCREENS];
@@ -92,6 +95,11 @@ void skin_mark_dirty(enum screen_type screen)
 void skin_update(enum skinnable_screens skin, enum screen_type screen,
                  unsigned int update_type)
 {
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(HAVE_LCD_COLOR)
+    /* Y1 Wheel: the palette that follows the cover */
+    if (screen == SCREEN_MAIN)
+        wheel_palette_poll();
+#endif
     struct gui_wps *gwps = skin_get_gwps(skin, screen);
     /* This maybe shouldnt be here,
      * This is also safe for skined screen which dont use the id3 */
@@ -838,10 +846,16 @@ void draw_album_art(struct gui_wps *gwps, int handle_id, bool clear)
         }
 #endif
 #ifdef HAVE_LCD_COLOR
-        /* Y1 Wheel: the glossy finish reflects the cover below it */
-        if (wheel_aero_on())
-            wheel_reflect(gwps->display, (fb_data*)bmp->data, bmp->width,
-                          x, y, width, height, false);
+        /* Y1 Wheel: rounded (or round, for the vinyl label) covers; the
+         * glossy finish reflects the cover below it */
+        if (wheel_skin_is_wheel())
+        {
+            int r = aa->round ? MIN(width, height) / 2 : wheel_corner_radius();
+            wheel_round_mask(gwps->display, x, y, width, height, r);
+            if (wheel_aero_on() && global_settings.wheel_reflect && !aa->round)
+                wheel_reflect(gwps->display, (fb_data*)bmp->data, bmp->width,
+                              x, y, width, height, false, r);
+        }
 #endif
     }
     else
@@ -850,8 +864,8 @@ void draw_album_art(struct gui_wps *gwps, int handle_id, bool clear)
         gwps->display->set_drawmode(DRMODE_SOLID|DRMODE_INVERSEVID);
         gwps->display->fillrect(x, y, width, height);
 #ifdef HAVE_LCD_COLOR
-        if (wheel_aero_on())
-            wheel_reflect(gwps->display, NULL, 0, x, y, width, height, true);
+        if (wheel_aero_on() && global_settings.wheel_reflect && !aa->round)
+            wheel_reflect(gwps->display, NULL, 0, x, y, width, height, true, 0);
 #endif
         gwps->display->set_drawmode(DRMODE_SOLID);
     }
