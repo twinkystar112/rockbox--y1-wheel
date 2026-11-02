@@ -36,6 +36,7 @@
 #include "yesno.h"
 #include "button.h"
 #include "statusbar-skinned.h"
+#include "wheel_gel.h"
 
 #define PAD 18
 #define ROW 44
@@ -126,8 +127,7 @@ static void draw_sheet(const struct text_message *m, int sel)
         if (i == sel)
         {
 #ifdef HAVE_LCD_COLOR
-            d->gradient_fillrect(rx, y, rw, ROW - 6, global_settings.lss_color,
-                                 global_settings.lse_color);
+            wheel_selection(d, rx, y, rw, ROW - 6);
             d->set_foreground(global_settings.lst_color);
 #else
             d->fillrect(rx, y, rw, ROW - 6);

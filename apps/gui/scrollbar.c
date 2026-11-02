@@ -22,6 +22,7 @@
 #include "config.h"
 #include "limits.h"
 #include "bmp.h"
+#include "wheel/wheel_gel.h"
 
 /* calculates the start and size of the knob */
 static void scrollbar_helper(int min_shown, int max_shown, int items,
@@ -118,6 +119,27 @@ void gui_scrollbar_draw(struct screen * screen, int x, int y,
         inner_len = inner_ht;
 
     scrollbar_helper(min_shown, max_shown, items, inner_len, &size, &start);
+
+#ifdef HAVE_LCD_COLOR
+    /* Y1 Wheel: glossy progress bars (a groove in the background colour,
+     * a gel in the foreground colour) */
+    if ((flags & ~INVERTFILL) == (HORIZONTAL|BORDER_NOFILL) &&
+        screen->depth >= 16 && screen->screen_type == SCREEN_MAIN && wheel_aero_on())
+    {
+        unsigned fg = screen->get_foreground(), bg = screen->get_background();
+        screen->set_drawmode(DRMODE_SOLID);
+        for (int k = 0; k < inner_ht; k++)
+        {
+            screen->set_foreground(wheel_groove_row(bg, k, inner_ht));
+            screen->hline(inner_x, inner_x + inner_wd - 1, inner_y + k);
+        }
+        if (size > 0)
+            wheel_gel_rect(screen, inner_x + start, inner_y, size, inner_ht,
+                           wheel_blend(fg, LCD_RGBPACK(255, 255, 255), 18), fg, 100);
+        screen->set_foreground(fg);
+        return;
+    }
+#endif
 
     /* draw box */
     if (!(flags & BORDER_NOFILL))

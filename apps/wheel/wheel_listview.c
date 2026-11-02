@@ -46,6 +46,7 @@
 #include "pathfuncs.h"
 #include "yesno.h"
 #include "filetypes.h"
+#include "wheel_gel.h"
 #include "wheel_connect.h"
 #include "wheel_art.h"
 #include "wheel_library.h"
@@ -146,9 +147,12 @@ static int text_w(struct screen *d, struct viewport *vp, int f, const char *s)
 static void pill(struct screen *d, int x, int y, int w, int h, unsigned col)
 {
     int r = h / 2;
+    bool gel = wheel_aero_on(); /* glossy capsule */
     d->set_foreground(col);
     for (int i = 0; i < h; i++)
     {
+        if (gel)
+            d->set_foreground(wheel_gel_row(col, col, i, h, 90));
         int dy = i < r ? r - i : (i >= h - r ? i - (h - r) + 1 : 0);
         int inset = 0;
         if (dy)
@@ -592,7 +596,13 @@ static void draw_row(struct screen *d, struct viewport *vp, int i, int y, bool s
     struct wheel_track *t = &v.l->t[i];
     unsigned bg = global_settings.bg_color, fg = global_settings.fg_color;
     unsigned dim = mixc(fg, bg, 55);
-    if (sel)
+    if (sel && wheel_aero_on())
+    {
+        d->set_drawmode(DRMODE_SOLID);
+        wheel_selection(d, 0, y, W, ROW_H);
+        fg = dim = global_settings.lst_color;
+    }
+    else if (sel)
     {
         d->set_drawmode(DRMODE_SOLID);
         for (int k = 0; k < ROW_H; k++)

@@ -21492,3 +21492,45 @@
     *: "腮红粉、玫瑰木与香草"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Finish"
+  </source>
+  <dest>
+    *: "质感"
+  </dest>
+  <voice>
+    *: "质感"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_AERO
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Aero gloss"
+  </source>
+  <dest>
+    *: "Aero 光泽"
+  </dest>
+  <voice>
+    *: "Aero 光泽"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_MATTE
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Matte"
+  </source>
+  <dest>
+    *: "哑光"
+  </dest>
+  <voice>
+    *: "哑光"
+  </voice>
+</phrase>

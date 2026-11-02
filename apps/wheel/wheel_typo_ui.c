@@ -37,6 +37,7 @@
 #include "string-extra.h"
 #include "rbpaths.h"
 #include "wheel_typo.h"
+#include "wheel_gel.h"
 #include "wheel_fontforge.h"
 #include "wheel_screens.h"
 #include "wheel_themes.h"
@@ -176,19 +177,17 @@ static void draw_preview(const struct typo_profile *p, const int *f, int row_h)
     vp.x = vp.y = 0; vp.width = LCD_WIDTH; vp.height = LCD_HEIGHT;
     struct viewport *last = d->set_viewport(&vp);
     unsigned fg = global_settings.fg_color, bg = global_settings.bg_color;
-    unsigned grey = mix(fg, bg, 55), pane = mix(fg, bg, 5), bar = mix(fg, bg, 4);
+    unsigned grey = mix(fg, bg, 55), pane = mix(fg, bg, 5);
     unsigned accent = global_settings.lse_color;
     d->set_drawmode(DRMODE_SOLID);
     d->set_background(bg);
     d->clear_viewport();
 
     /* top bar */
-    d->set_foreground(bar);
-    d->fillrect(0, 0, LCD_WIDTH, 38);
-    d->set_foreground(mix(fg, bg, 18));
-    d->hline(0, LCD_WIDTH - 1, 37);
+    unsigned barfg;
+    wheel_top_bar(d, LCD_WIDTH, 38, &barfg);
     d->set_drawmode(DRMODE_FG);
-    text(d, &vp, f[PV_TITLE], fg, 16, 2, S(LANG_WHEEL_TYPO_PREVIEW), 300);
+    text(d, &vp, f[PV_TITLE], barfg, 16, 2, S(LANG_WHEEL_TYPO_PREVIEW), 300);
     text(d, &vp, f[PV_NUM], grey, LCD_WIDTH - 16 - text_w(d, &vp, f[PV_NUM], "87%"), 8, "87%", 0);
 
     /* left: library rows, then an album list */
@@ -200,8 +199,13 @@ static void draw_preview(const struct typo_profile *p, const int *f, int row_h)
         if (i == 0)
         {
             d->set_drawmode(DRMODE_SOLID);
-            d->set_foreground(accent);
-            d->fillrect(0, y, 264, row_h);
+            if (wheel_aero_on())
+                wheel_selection(d, 0, y, 264, row_h);
+            else
+            {
+                d->set_foreground(accent);
+                d->fillrect(0, y, 264, row_h);
+            }
             d->set_drawmode(DRMODE_FG);
             col = global_settings.lst_color;
         }
@@ -737,10 +741,10 @@ static void draw_gallery(int sel, int top)
     d->set_background(bg);
     d->set_drawmode(DRMODE_SOLID);
     d->clear_viewport();
-    d->set_foreground(mix(fg, bg, 4));
-    d->fillrect(0, 0, LCD_WIDTH, 38);
+    unsigned barfg;
+    wheel_top_bar(d, LCD_WIDTH, 38, &barfg);
     d->set_drawmode(DRMODE_FG);
-    text(d, &vp, typo_font(TU_DISPLAY_MENU), fg, 16, 2, S(LANG_WHEEL_TYPO_GALLERY), 0);
+    text(d, &vp, typo_font(TU_DISPLAY_MENU), barfg, 16, 2, S(LANG_WHEEL_TYPO_GALLERY), 0);
     const struct typo_profile *act = typo_active();
     const int H = 64;
     for (int i = top, y = 38; i < gal_n && y < LCD_HEIGHT; i++, y += H)
@@ -749,8 +753,13 @@ static void draw_gallery(int sel, int top)
         if (i == sel)
         {
             d->set_drawmode(DRMODE_SOLID);
-            d->set_foreground(global_settings.lse_color);
-            d->fillrect(0, y, LCD_WIDTH, H);
+            if (wheel_aero_on())
+                wheel_selection(d, 0, y, LCD_WIDTH, H);
+            else
+            {
+                d->set_foreground(global_settings.lse_color);
+                d->fillrect(0, y, LCD_WIDTH, H);
+            }
             d->set_drawmode(DRMODE_FG);
             col = sub = global_settings.lst_color;
         }

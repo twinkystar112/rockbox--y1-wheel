@@ -21425,3 +21425,45 @@
     *: "Rosa suave, palo rosa y vainilla"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Finish"
+  </source>
+  <dest>
+    *: "Acabado"
+  </dest>
+  <voice>
+    *: "Acabado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_AERO
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Aero gloss"
+  </source>
+  <dest>
+    *: "Brillo Aero"
+  </dest>
+  <voice>
+    *: "Brillo Aero"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_MATTE
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Matte"
+  </source>
+  <dest>
+    *: "Mate"
+  </dest>
+  <voice>
+    *: "Mate"
+  </voice>
+</phrase>

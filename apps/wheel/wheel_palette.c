@@ -27,6 +27,10 @@
 #include "wheel_palette.h"
 #include "wheel_screens.h"
 #include "wheel_typo.h"
+#include "wheel_gel.h"
+#include "file.h"
+#include "dir.h"
+#include "rbpaths.h"
 
 /* template colours, in enum wheel_pal_role order */
 static const char * const tmpl[PR_COUNT] = {
@@ -160,6 +164,99 @@ bool wheel_palette_patch_colours(void)
     return changed;
 }
 
+/* ------------------------- the Aero backdrop ------------------------- */
+#define BAR_H 38
+
+/* row y of the backdrop: a gel top bar, a soft shadow under it and a
+ * sheen down the page tinted by the selection colour at the bottom */
+static unsigned backdrop_row(const struct wheel_palette *p, int y)
+{
+    unsigned bar = p->c[PR_BAR], bg = p->c[PR_BG];
+    if (y < BAR_H - 1)
+        return wheel_rgb_gel(bar, bar, y, BAR_H - 1,
+                             wheel_rgb_strength_for(bar, p->c[PR_BARTEXT]));
+    if (y == BAR_H - 1)
+        return p->c[PR_HAIRLINE];
+    int t = (y - BAR_H) * 100 / (LCD_HEIGHT - BAR_H);
+    unsigned c = wheel_rgb_blend(wheel_rgb_blend(bg, 0xffffff, p->dark ? 4 : 45),
+                                 wheel_rgb_blend(bg, p->sel_end, p->dark ? 10 : 7), t);
+    if (y - BAR_H < 6) /* the bar floats a little above the page */
+        c = wheel_rgb_blend(c, 0, (6 - (y - BAR_H)) * (p->dark ? 7 : 2));
+    return c;
+}
+
+static void put_le(unsigned char *b, unsigned v, int n)
+{
+    for (int i = 0; i < n; i++)
+        b[i] = (v >> (8 * i)) & 0xff;
+}
+
+/* writes wps/Wheel-Pal/aero-<hash>.bmp for the active palette (once) and
+ * removes the ones of other palettes; name gets the file name */
+bool wheel_palette_backdrop(char *name, size_t len)
+{
+    const struct wheel_palette *p = wheel_palette_active();
+    if (!p)
+        return false;
+    unsigned h = 2166136261u;
+    for (int y = 0; y < LCD_HEIGHT; y++)
+        h = (h ^ backdrop_row(p, y)) * 16777619u;
+    h = (h ^ (LCD_WIDTH << 16 | LCD_HEIGHT)) * 16777619u;
+    snprintf(name, len, "aero-%08x.bmp", h);
+
+    char dir[MAX_PATH], path[MAX_PATH];
+    strlcpy(dir, WPS_DIR "/Wheel-Pal", sizeof(dir));
+    mkdir(dir);
+    DIR *dp = opendir(dir);
+    if (dp)
+    {
+        struct dirent *e;
+        while ((e = readdir(dp)))
+            if (!strncmp((char *)e->d_name, "aero-", 5) && strcmp((char *)e->d_name, name))
+            {
+                snprintf(path, sizeof(path), "%s/%s", dir, e->d_name);
+                remove(path);
+            }
+        closedir(dp);
+    }
+    snprintf(path, sizeof(path), "%s/%s", dir, name);
+    int fd = open(path, O_RDONLY);
+    if (fd >= 0)
+    {
+        close(fd);
+        return true;
+    }
+    fd = open(path, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    if (fd < 0)
+        return false;
+    const int stride = (LCD_WIDTH * 3 + 3) & ~3;
+    unsigned char hdr[54] = { 'B', 'M' };
+    put_le(hdr + 2, 54 + stride * LCD_HEIGHT, 4);
+    put_le(hdr + 10, 54, 4);
+    put_le(hdr + 14, 40, 4);
+    put_le(hdr + 18, LCD_WIDTH, 4);
+    put_le(hdr + 22, LCD_HEIGHT, 4);  /* bottom-up */
+    put_le(hdr + 26, 1, 2);
+    put_le(hdr + 28, 24, 2);
+    bool ok = write(fd, hdr, sizeof(hdr)) == sizeof(hdr);
+    static unsigned char row[(LCD_WIDTH * 3 + 3) & ~3];
+    for (int y = LCD_HEIGHT - 1; y >= 0 && ok; y--)
+    {
+        unsigned c = backdrop_row(p, y);
+        for (int x = 0; x < LCD_WIDTH; x++)
+        {
+            row[x * 3] = c & 0xff;
+            row[x * 3 + 1] = (c >> 8) & 0xff;
+            row[x * 3 + 2] = (c >> 16) & 0xff;
+        }
+        ok = write(fd, row, stride) == stride;
+    }
+    close(fd);
+    if (!ok)
+        remove(path);
+    return ok;
+}
+
 void wheel_palette_set(int i)
 {
     if (i < 0 || i >= N_PALS)
@@ -202,12 +299,15 @@ static int round_inset(int y, int h, int r)
 
 /* rounded rectangle, vertical gradient top -> bottom */
 static void round_rect(struct screen *d, int x, int y, int w, int h, int r,
-                       unsigned top, unsigned bottom)
+                       unsigned top, unsigned bottom, bool gloss)
 {
     for (int k = 0; k < h; k++)
     {
         int in = round_inset(k, h, r);
-        d->set_foreground(mixc(bottom, top, h > 1 ? k * 100 / (h - 1) : 0));
+        unsigned c = mixc(bottom, top, h > 1 ? k * 100 / (h - 1) : 0);
+        if (gloss) /* the glossy finish: a gel in the gradient's colours */
+            c = wheel_gel_row(c, c, k, h, 80);
+        d->set_foreground(c);
         d->hline(x + in, x + w - 1 - in, y + k);
     }
 }
@@ -254,13 +354,12 @@ static void draw_picker(int sel, int top)
     vp.x = vp.y = 0; vp.width = LCD_WIDTH; vp.height = LCD_HEIGHT;
     struct viewport *last = d->set_viewport(&vp);
     unsigned fg = global_settings.fg_color, bg = global_settings.bg_color;
-    unsigned barbg, barfg;
-    wheel_palette_bar(&barbg, &barfg);
+    unsigned barfg;
+    bool aero = global_settings.wheel_aero;
     d->set_drawmode(DRMODE_SOLID);
     d->set_background(bg);
     d->clear_viewport();
-    d->set_foreground(barbg);
-    d->fillrect(0, 0, LCD_WIDTH, 38);
+    wheel_top_bar(d, LCD_WIDTH, 38, &barfg);
     d->set_drawmode(DRMODE_FG);
     vp.font = typo_font(TU_DISPLAY_MENU);
     d->set_foreground(barfg);
@@ -274,13 +373,13 @@ static void draw_picker(int sel, int top)
         if (i == sel)
         {   /* card with an accent outline */
             round_rect(d, 8, y, LCD_WIDTH - 16, ROW_H - 6, 14,
-                       global_settings.lse_color, global_settings.lse_color);
+                       global_settings.lse_color, global_settings.lse_color, false);
             round_rect(d, 10, y + 2, LCD_WIDTH - 20, ROW_H - 10, 12,
                        mixc(global_settings.lss_color, bg, 14),
-                       mixc(global_settings.lss_color, bg, 14));
+                       mixc(global_settings.lss_color, bg, 14), false);
         }
         /* thumbnail: gradient + colour dots */
-        round_rect(d, 20, y + 9, 76, 52, 11, rgb(e->swatch[0]), rgb(e->swatch[1]));
+        round_rect(d, 20, y + 9, 76, 52, 11, rgb(e->swatch[0]), rgb(e->swatch[1]), aero);
         for (int k = 0; k < e->ndots; k++)
         {
             int cx = 29 + k * 14, cy = y + 50;

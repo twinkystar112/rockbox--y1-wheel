@@ -198,7 +198,7 @@ bool wheel_appearance_check(void)
 }
 
 /* ------------------------------ screen ------------------------------ */
-enum { AP_THEME, AP_PALETTE, AP_TYPO, AP_LANG, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
+enum { AP_THEME, AP_PALETTE, AP_FINISH, AP_TYPO, AP_LANG, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
 
 /* ----------------------------- language ----------------------------- */
 /* the languages the Wheel edition is translated into, by their own names
@@ -297,6 +297,11 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
                     wheel_palette_get(global_settings.wheel_palette)->name : "Wheel";
 #endif
             break;
+        case AP_FINISH:
+            label = str(LANG_WHEEL_FINISH);
+            value = str(global_settings.wheel_aero ? LANG_WHEEL_FINISH_AERO
+                                                   : LANG_WHEEL_FINISH_MATTE);
+            break;
         case AP_TYPO:
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
             label = str(LANG_WHEEL_TYPO);
@@ -370,6 +375,16 @@ static int ap_action(int action, struct gui_synclist *lists)
             break;
         case AP_LANG:
             language_screen();
+            break;
+        case AP_FINISH:
+            global_settings.wheel_aero = !global_settings.wheel_aero;
+            splash(0, ID2P(LANG_WAIT));
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            /* the palettes' skins carry (or drop) the glossy backdrop */
+            if (PALETTE_ON())
+                typo_generate_palette();
+#endif
+            wheel_appearance_apply(true);
             break;
         case AP_MODE:
         case AP_ACCENT:

@@ -21499,3 +21499,45 @@
     *: "블러시, 로즈우드, 바닐라"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Finish"
+  </source>
+  <dest>
+    *: "마감"
+  </dest>
+  <voice>
+    *: "마감"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_AERO
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Aero gloss"
+  </source>
+  <dest>
+    *: "Aero 광택"
+  </dest>
+  <voice>
+    *: "Aero 광택"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_MATTE
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Matte"
+  </source>
+  <dest>
+    *: "무광"
+  </dest>
+  <voice>
+    *: "무광"
+  </voice>
+</phrase>

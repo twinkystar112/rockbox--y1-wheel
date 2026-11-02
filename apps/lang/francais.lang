@@ -21222,3 +21222,45 @@
     *: "Rose poudré, bois de rose, vanille"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Finish"
+  </source>
+  <dest>
+    *: "Finition"
+  </dest>
+  <voice>
+    *: "Finition"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_AERO
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Aero gloss"
+  </source>
+  <dest>
+    *: "Brillant Aero"
+  </dest>
+  <voice>
+    *: "Brillant Aero"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_MATTE
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Matte"
+  </source>
+  <dest>
+    *: "Mat"
+  </dest>
+  <voice>
+    *: "Mat"
+  </voice>
+</phrase>

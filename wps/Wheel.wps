@@ -35,8 +35,9 @@
 %Vl(art,24,60,200,200,-)
 %Cd
 %Vl(tile,24,60,200,200,-)%Vb(cfcfd6)
+%dr(0,0,-,-,cfcfd6)
 %Vl(note,24,104,200,112,8)%Vb(cfcfd6)%Vf(fffffe)
-%acO
+%Vs(none)%dr(0,0,-,-,cfcfd6)%acO
 #
 # ---------- track text ----------
 #@ %V(248,57,=%V(248,${np1},

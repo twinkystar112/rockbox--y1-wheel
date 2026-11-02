@@ -45,9 +45,12 @@
 %Cl(0,0,184,184,c,c)
 %Vl(art,280,56,184,184,-)%Vb(f2f2f5)
 %Cd
+# (the tile is painted with %dr and the note drawn without clearing, so it
+#  also works over the backdrop of the glossy finish)
 %Vl(tile,280,56,184,184,-)%Vb(cfcfd6)
+%dr(0,0,-,-,cfcfd6)
 %Vl(note,280,92,184,112,5)%Vb(cfcfd6)%Vf(fffffe)
-%acO
+%Vs(none)%dr(0,0,-,-,cfcfd6)%acO
 #
 %Vl(cap1,272,247,200,26,7)%Vf(141416)%Vb(f2f2f5)
 %ac%s%?it<%it|%fn>

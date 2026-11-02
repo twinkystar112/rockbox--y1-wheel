@@ -120,6 +120,7 @@ wheel/wheel_listview.c
 wheel/wheel_foryou.c
 wheel/wheel_tools.c
 wheel/wheel_themes.c
+wheel/wheel_gel.c
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
 wheel/wheel_qr.c
 wheel/qrcodegen.c

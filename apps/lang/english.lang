@@ -21555,3 +21555,45 @@
     *: "Blush, rosewood and vanilla"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Finish"
+  </source>
+  <dest>
+    *: "Finish"
+  </dest>
+  <voice>
+    *: "Finish"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_AERO
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Aero gloss"
+  </source>
+  <dest>
+    *: "Aero gloss"
+  </dest>
+  <voice>
+    *: "Aero gloss"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_MATTE
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Matte"
+  </source>
+  <dest>
+    *: "Matte"
+  </dest>
+  <voice>
+    *: "Matte"
+  </voice>
+</phrase>

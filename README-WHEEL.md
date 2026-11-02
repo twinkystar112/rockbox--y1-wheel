@@ -104,6 +104,15 @@ reserva, barra de progreso, sombras y las pantallas dibujadas en C):
 | **Citrus Sunset** | coral, tomate maduro y un poco de cielo |
 | **Rose Chai** | rosa suave, palo rosa y vainilla |
 
+**Acabado** (justo debajo): **Brillo Aero** (por defecto) o **Mate**. El brillo Aero da a la
+interfaz el aire gel/cristal de los reproductores de mediados de los 2000, dibujado con los
+colores de cada paleta, sin imágenes copiadas: barra de selección con reflejo superior, línea de
+"flotación" y fondo que se ilumina hacia abajo; barra superior acristalada con una sombra suave
+sobre la página; página con un degradado tenue teñido por la paleta; barras de progreso y
+volumen como tubos (surco hundido + relleno gel); botones-cápsula y miniaturas brillantes. Con
+la Wheel clásica se aplica a la selección, las barras de progreso y las pantallas propias; con
+las paletas, también a la barra superior y al fondo (un fondo generado `wps/Wheel-Pal/aero-*.bmp`).
+
 Los colores están inspirados en las capturas de referencia, con nombres propios. Funciona junto
 con la tipografía: el tema `Wheel-Pal` se genera desde las plantillas `Wheel.sbs/.wps` con tu
 perfil de fuentes e interlineado y los colores de la paleta. Con una paleta activa, Apariencia y
@@ -210,5 +219,6 @@ primera vez.
 | Traducciones | `utils/wheel/i18n/wheel_{fr,zh,ja,ko}.tsv` → `apply.py` → `apps/lang/*.lang` |
 | Etiquetas de skin nuevas | `%Lh %Lv %Wb %Wq %Wm %Wy %Wd %Wa..%Wo` en `lib/skin_parser/tag_table.*`, `apps/gui/skin_engine/skin_tokens.c` |
 | Tema | `wps/Wheel*.sbs/.wps` (plantillas con `#@`), `fonts/prebuilt/` (`utils/wheel/make_fonts.sh`) |
-| Paletas | `apps/wheel/wheel_palette.c` (tabla de colores por función, selector) → `wheel_typo.c` (`typo_generate_palette`: genera `Wheel-Pal`) |
+| Paletas | `apps/wheel/wheel_palette.c` (tabla de colores por función, selector, fondo Aero) → `wheel_typo.c` (`typo_generate_palette`: genera `Wheel-Pal`) |
+| Acabado Aero | `apps/wheel/wheel_gel.c` (gel, surco), ganchos en `apps/gui/line.c` (selector), `apps/gui/scrollbar.c` (barras de progreso), `apps/gui/backdrop.c` (fondo sin tramado) |
 | Pruebas | `utils/wheel/tests/` |

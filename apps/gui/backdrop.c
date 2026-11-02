@@ -54,6 +54,10 @@ bool backdrop_load(const char* filename, char *backdrop_buffer)
     bm.width = LCD_WIDTH;
     bm.height = LCD_HEIGHT;
 #endif
+    /* Y1 Wheel: the glossy finish's backdrop (wheel_palette.c) is made of
+     * soft gradients that dithering would turn into grain */
+    if (strstr(filename, "/Wheel-Pal/aero-"))
+        format &= ~FORMAT_DITHER;
     /* load the image */
     bm.data = backdrop_buffer;
     ret = read_bmp_file(filename, &bm, maxsize, format, NULL);

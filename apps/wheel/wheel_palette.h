@@ -56,6 +56,9 @@ const char *wheel_palette_map(const char *hex6);
 void wheel_palette_bar(unsigned *bg, unsigned *fg);
 /* sets the list/screen colours of the active palette; true if changed */
 bool wheel_palette_patch_colours(void);
+/* writes the Aero backdrop of the active palette into wps/Wheel-Pal/;
+ * name gets its file name */
+bool wheel_palette_backdrop(char *name, size_t len);
 /* chooses a palette: theme files, colours, reload */
 void wheel_palette_set(int i);
 /* the "Pick your palette" screen */

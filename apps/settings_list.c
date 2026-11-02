@@ -2656,6 +2656,7 @@ const struct settings_list settings[] = {
                   "letter jump", NULL),
     INT_SETTING(0, wheel_palette, LANG_WHEEL_PALETTE, 0, "wheel palette", UNIT_INT,
                 0, 6, 1, NULL, NULL, NULL),
+    OFFON_SETTING(0, wheel_aero, LANG_WHEEL_FINISH, true, "wheel aero", NULL),
     OFFON_SETTING(0, wheel_theme_scale, LANG_WHEEL_THEME_SCALE, true,
                   "theme scaling", NULL),
 #ifdef INNIOASIS_Y1

@@ -64,6 +64,13 @@ Las paletas (Ajustes › Apariencia › Paleta) usan las mismas plantillas: cada
 por el color de la paleta (`apps/wheel/wheel_palette.c`). Un color nuevo en la plantilla debe
 reutilizar un token existente o añadirse a la tabla `tmpl[]` y a `make_dark.py`.
 
+Con el acabado **Brillo Aero**, `Wheel-Pal.*` empieza con `# wheel-pal format=… palette=… aero=…`
+(si no coincide con los ajustes al arrancar, se regenera) y `%X(aero-<hash>.bmp)`: un fondo con
+la barra superior en gel y el degradado de la página. Con fondo, Rockbox borra cada línea
+copiando el fondo en lugar de pintar `%Vb`, así que lo que necesita un color propio se pinta con
+`%dr` (el mosaico de la portada) y la nota encima se dibuja con `%Vs(none)`. Al subir el aspecto
+del gel (`wheel_gel.c`), sube `PAL_FORMAT` en `wheel_typo.c` para que se regenere.
+
 ### Fuentes CJK
 `fonts/cjk/CJK-{SC,JP,KR}-{17,22}.fnt` (≈10 MB): Noto Sans SC/JP/KR (SIL OFL) recortadas a GB 2312,
 JIS X 0208 y el hangul de KS X 1001 (más símbolos, kana y puntuación de ancho completo), en dos

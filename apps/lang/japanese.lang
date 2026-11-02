@@ -20783,3 +20783,45 @@
     *: "ブラッシュ、ローズウッド、バニラ"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Finish"
+  </source>
+  <dest>
+    *: "仕上げ"
+  </dest>
+  <voice>
+    *: "仕上げ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_AERO
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Aero gloss"
+  </source>
+  <dest>
+    *: "Aero光沢"
+  </dest>
+  <voice>
+    *: "Aero光沢"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FINISH_MATTE
+  desc: Y1 Wheel finish
+  user: core
+  <source>
+    *: "Matte"
+  </source>
+  <dest>
+    *: "マット"
+  </dest>
+  <voice>
+    *: "マット"
+  </voice>
+</phrase>
