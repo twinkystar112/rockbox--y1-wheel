@@ -91,6 +91,33 @@ static const struct pal_entry pals[] = {
 };
 #define N_PALS ((int)ARRAYLEN(pals))
 
+/* the classic Wheel colours as schemes for the glossy skins: the template
+ * itself and its dark variant (utils/wheel/make_dark.py); the selection
+ * comes from the accent setting, so the page is not tinted */
+static const struct wheel_palette classic[2] = {
+    { "Wheel", LANG_WHEEL_PAL_DESC_0, false,
+      { 0xf7f7f9, 0x141415, 0x3a3a3e, 0x141416, 0x6e6e73, 0x8e8e93, 0x3a3a3f, 0xffffff,
+        0xf2f2f5, 0xd1d1d6, 0xc8c8ce, 0xcfcfd6, 0xfffffe, 0xdcdce1, 0xd6d6dc, 0xe6e6ea,
+        0xd4d4da }, 0xffffff, 0xffffff, 0xffffff },
+    { "Wheel", LANG_WHEEL_PAL_DESC_0, true,
+      { 0x1c1c1f, 0xf2f2f5, 0xe5e5ea, 0xf2f2f5, 0xa1a1a8, 0x8e8e93, 0xe5e5ea, 0x0f0f11,
+        0x18181b, 0x2c2c2f, 0x38383c, 0x2c2c31, 0x8e8e93, 0x3a3a3f, 0x3a3a3f, 0x050506,
+        0x1f1f22 }, 0x0f0f11, 0x0f0f11, 0xffffff },
+};
+
+const struct wheel_palette *wheel_palette_classic(bool dark)
+{
+    return &classic[dark ? 1 : 0];
+}
+
+/* the scheme being written by the skin generator (NULL: the active one) */
+static const struct wheel_palette *gen_pal;
+
+void wheel_palette_use(const struct wheel_palette *p)
+{
+    gen_pal = p;
+}
+
 int wheel_palette_count(void) { return N_PALS; }
 
 const struct wheel_palette *wheel_palette_get(int i)
@@ -107,7 +134,7 @@ const struct wheel_palette *wheel_palette_active(void)
 const char *wheel_palette_map(const char *hex6)
 {
     static char out[8];
-    const struct wheel_palette *p = wheel_palette_active();
+    const struct wheel_palette *p = gen_pal ? gen_pal : wheel_palette_active();
     if (!p)
         return NULL;
     for (int r = 0; r < PR_COUNT; r++)
@@ -177,9 +204,12 @@ static unsigned backdrop_row(const struct wheel_palette *p, int y)
                              wheel_rgb_strength_for(bar, p->c[PR_BARTEXT]));
     if (y == BAR_H - 1)
         return p->c[PR_HAIRLINE];
+    /* (dark pages stay flat: so close to black the steps of a 16-bit
+     * screen would show as bands) */
     int t = (y - BAR_H) * 100 / (LCD_HEIGHT - BAR_H);
-    unsigned c = wheel_rgb_blend(wheel_rgb_blend(bg, 0xffffff, p->dark ? 4 : 45),
-                                 wheel_rgb_blend(bg, p->sel_end, p->dark ? 10 : 7), t);
+    unsigned c = p->dark ? bg :
+                 wheel_rgb_blend(wheel_rgb_blend(bg, 0xffffff, 45),
+                                 wheel_rgb_blend(bg, p->sel_end, 7), t);
     if (y - BAR_H < 6) /* the bar floats a little above the page */
         c = wheel_rgb_blend(c, 0, (6 - (y - BAR_H)) * (p->dark ? 7 : 2));
     return c;
@@ -191,11 +221,11 @@ static void put_le(unsigned char *b, unsigned v, int n)
         b[i] = (v >> (8 * i)) & 0xff;
 }
 
-/* writes wps/Wheel-Pal/aero-<hash>.bmp for the active palette (once) and
- * removes the ones of other palettes; name gets the file name */
-bool wheel_palette_backdrop(char *name, size_t len)
+/* writes wps/<skin>/aero-<hash>.bmp for the scheme being generated (once)
+ * and removes the ones of other schemes; name gets the file name */
+bool wheel_palette_backdrop(const char *skin, char *name, size_t len)
 {
-    const struct wheel_palette *p = wheel_palette_active();
+    const struct wheel_palette *p = gen_pal ? gen_pal : wheel_palette_active();
     if (!p)
         return false;
     unsigned h = 2166136261u;
@@ -205,7 +235,7 @@ bool wheel_palette_backdrop(char *name, size_t len)
     snprintf(name, len, "aero-%08x.bmp", h);
 
     char dir[MAX_PATH], path[MAX_PATH];
-    strlcpy(dir, WPS_DIR "/Wheel-Pal", sizeof(dir));
+    snprintf(dir, sizeof(dir), WPS_DIR "/%s", skin);
     mkdir(dir);
     DIR *dp = opendir(dir);
     if (dp)

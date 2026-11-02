@@ -64,12 +64,16 @@ Las paletas (Ajustes › Apariencia › Paleta) usan las mismas plantillas: cada
 por el color de la paleta (`apps/wheel/wheel_palette.c`). Un color nuevo en la plantilla debe
 reutilizar un token existente o añadirse a la tabla `tmpl[]` y a `make_dark.py`.
 
-Con el acabado **Brillo Aero**, `Wheel-Pal.*` empieza con `# wheel-pal format=… palette=… aero=…`
-(si no coincide con los ajustes al arrancar, se regenera) y `%X(aero-<hash>.bmp)`: un fondo con
-la barra superior en gel y el degradado de la página. Con fondo, Rockbox borra cada línea
-copiando el fondo en lugar de pintar `%Vb`, así que lo que necesita un color propio se pinta con
-`%dr` (el mosaico de la portada) y la nota encima se dibuja con `%Vs(none)`. Al subir el aspecto
-del gel (`wheel_gel.c`), sube `PAL_FORMAT` en `wheel_typo.c` para que se regenere.
+Los temas de color se generan desde esas plantillas (`wheel_typo.c`, `gen_scheme`): `Wheel-Pal`
+(la paleta elegida) y, con el acabado **Brillo Aero**, `Wheel-Aero` / `Wheel-Dark-Aero` (los
+colores clásicos). Empiezan con `# wheel-gen format=… skin=… palette=… aero=… typo=…` (si no
+coincide con los ajustes o el perfil de tipografía, se regeneran) y, con brillo,
+`%X(aero-<hash>.bmp)`: un fondo con la barra superior en gel y la página. Con fondo, Rockbox borra
+cada línea copiando el fondo en lugar de pintar `%Vb`, así que lo que necesita un color propio se
+pinta con `%dr` (el mosaico de la portada) y la nota encima se dibuja con `%Vs(none)`. Las líneas
+`#@aero viejo=nuevo` solo se aplican a los temas con brillo (quitan la sombra de la portada y
+alargan su viewport para el reflejo). Al cambiar el aspecto del gel (`wheel_gel.c`), sube
+`GEN_FORMAT` para que se regeneren.
 
 ### Fuentes CJK
 `fonts/cjk/CJK-{SC,JP,KR}-{17,22}.fnt` (≈10 MB): Noto Sans SC/JP/KR (SIL OFL) recortadas a GB 2312,

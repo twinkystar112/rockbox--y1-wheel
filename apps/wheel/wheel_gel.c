@@ -151,6 +151,49 @@ void wheel_gel_rect(struct screen *d, int x, int y, int w, int h,
     wheel_gel_part(d, x, y, w, h, top, bottom, h, 0, strength);
 }
 
+void wheel_reflect(struct screen *d, const fb_data *src, int stride,
+                   int x, int y, int w, int h, bool clear)
+{
+    const int gap = 2;
+    struct viewport *vp = *d->current_viewport;
+    if (d->screen_type != SCREEN_MAIN || !vp || d->depth < 16)
+        return;
+    int rows = MIN(REFLECT_ROWS, vp->height - (y + h + gap));
+    rows = MIN(rows, h);
+    if (rows < 6)
+        return; /* no room: covers in the side pane etc. */
+    int top = y + h + gap;
+    unsigned fg = d->get_foreground();
+    /* (blended with the backdrop or the background, never with what is on
+     * the screen, so drawing it twice looks the same) */
+    d->set_drawmode(DRMODE_SOLID | DRMODE_INVERSEVID);
+    d->fillrect(x, top, w, rows);
+    if (!clear && src)
+    {
+        fb_data *backdrop = lcd_get_backdrop();
+        fb_data *origin = FBADDR(0, 0);
+        d->set_drawmode(DRMODE_SOLID);
+        for (int r = 0; r < rows; r++)
+        {
+            /* fades out quickly, like a cover standing on glass */
+            int f = (rows - r) * 100 / rows;
+            int a = 40 * f * (100 + f) / 20000;
+            const fb_data *line = src + (h - 1 - r) * stride;
+            int ay = vp->y + top + r;
+            for (int c = 0; c < w; c++)
+            {
+                unsigned under = vp->bg_pattern;
+                if (backdrop)
+                    under = FB_UNPACK_SCALAR_LCD(backdrop[FBADDR(vp->x + x + c, ay) - origin]);
+                d->set_foreground(wheel_blend(under, FB_UNPACK_SCALAR_LCD(line[c]), a));
+                d->drawpixel(x + c, top + r);
+            }
+        }
+    }
+    d->set_drawmode(DRMODE_SOLID);
+    d->set_foreground(fg);
+}
+
 void wheel_selection(struct screen *d, int x, int y, int w, int h)
 {
     unsigned top = global_settings.lss_color, bottom = global_settings.lse_color;

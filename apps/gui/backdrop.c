@@ -56,7 +56,7 @@ bool backdrop_load(const char* filename, char *backdrop_buffer)
 #endif
     /* Y1 Wheel: the glossy finish's backdrop (wheel_palette.c) is made of
      * soft gradients that dithering would turn into grain */
-    if (strstr(filename, "/Wheel-Pal/aero-"))
+    if (strstr(filename, "/aero-") && strstr(filename, "/Wheel-"))
         format &= ~FORMAT_DITHER;
     /* load the image */
     bm.data = backdrop_buffer;

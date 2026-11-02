@@ -56,9 +56,13 @@ const char *wheel_palette_map(const char *hex6);
 void wheel_palette_bar(unsigned *bg, unsigned *fg);
 /* sets the list/screen colours of the active palette; true if changed */
 bool wheel_palette_patch_colours(void);
-/* writes the Aero backdrop of the active palette into wps/Wheel-Pal/;
- * name gets its file name */
-bool wheel_palette_backdrop(char *name, size_t len);
+/* the classic Wheel colours (light or dark) as a scheme */
+const struct wheel_palette *wheel_palette_classic(bool dark);
+/* the scheme the skin generator is writing (NULL: the active palette) */
+void wheel_palette_use(const struct wheel_palette *p);
+/* writes the glossy backdrop of that scheme into wps/<skin>/; name gets
+ * its file name */
+bool wheel_palette_backdrop(const char *skin, char *name, size_t len);
 /* chooses a palette: theme files, colours, reload */
 void wheel_palette_set(int i);
 /* the "Pick your palette" screen */

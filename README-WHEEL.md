@@ -109,9 +109,12 @@ interfaz el aire gel/cristal de los reproductores de mediados de los 2000, dibuj
 colores de cada paleta, sin imágenes copiadas: barra de selección con reflejo superior, línea de
 "flotación" y fondo que se ilumina hacia abajo; barra superior acristalada con una sombra suave
 sobre la página; página con un degradado tenue teñido por la paleta; barras de progreso y
-volumen como tubos (surco hundido + relleno gel); botones-cápsula y miniaturas brillantes. Con
-la Wheel clásica se aplica a la selección, las barras de progreso y las pantallas propias; con
-las paletas, también a la barra superior y al fondo (un fondo generado `wps/Wheel-Pal/aero-*.bmp`).
+volumen como tubos (surco hundido + relleno gel); botones-cápsula y miniaturas brillantes; y en
+Ahora suena, la portada se refleja debajo como si estuviera sobre cristal (en lugar de la sombra).
+Vale para la Wheel clásica (barra plateada en el modo claro, grafito en el oscuro; el automático
+cambia entre las dos) y para todas las paletas: los temas `Wheel-Aero`, `Wheel-Dark-Aero` y
+`Wheel-Pal` se generan con sus fondos (`wps/<tema>/aero-*.bmp`). Con "Mate" vuelve el aspecto
+plano de siempre.
 
 Los colores están inspirados en las capturas de referencia, con nombres propios. Funciona junto
 con la tipografía: el tema `Wheel-Pal` se genera desde las plantillas `Wheel.sbs/.wps` con tu
@@ -220,5 +223,5 @@ primera vez.
 | Etiquetas de skin nuevas | `%Lh %Lv %Wb %Wq %Wm %Wy %Wd %Wa..%Wo` en `lib/skin_parser/tag_table.*`, `apps/gui/skin_engine/skin_tokens.c` |
 | Tema | `wps/Wheel*.sbs/.wps` (plantillas con `#@`), `fonts/prebuilt/` (`utils/wheel/make_fonts.sh`) |
 | Paletas | `apps/wheel/wheel_palette.c` (tabla de colores por función, selector, fondo Aero) → `wheel_typo.c` (`typo_generate_palette`: genera `Wheel-Pal`) |
-| Acabado Aero | `apps/wheel/wheel_gel.c` (gel, surco), ganchos en `apps/gui/line.c` (selector), `apps/gui/scrollbar.c` (barras de progreso), `apps/gui/backdrop.c` (fondo sin tramado) |
+| Acabado Aero | `apps/wheel/wheel_gel.c` (gel, surco, reflejo), ganchos en `apps/gui/line.c` (selector), `apps/gui/scrollbar.c` (barras de progreso), `apps/gui/skin_engine/skin_display.c` (reflejo de la portada), `apps/gui/backdrop.c` (fondo sin tramado) |
 | Pruebas | `utils/wheel/tests/` |

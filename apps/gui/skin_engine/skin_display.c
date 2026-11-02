@@ -68,6 +68,7 @@
 #include "wps_internals.h"
 #include "skin_engine.h"
 #include "statusbar-skinned.h"
+#include "wheel/wheel_gel.h"
 #include "skin_display.h"
 
 static bool dirty[NB_SCREENS];
@@ -836,12 +837,22 @@ void draw_album_art(struct gui_wps *gwps, int handle_id, bool clear)
             gwps->display->set_drawmode(DRMODE_SOLID);
         }
 #endif
+#ifdef HAVE_LCD_COLOR
+        /* Y1 Wheel: the glossy finish reflects the cover below it */
+        if (wheel_aero_on())
+            wheel_reflect(gwps->display, (fb_data*)bmp->data, bmp->width,
+                          x, y, width, height, false);
+#endif
     }
     else
     {
         /* Clear the bitmap */
         gwps->display->set_drawmode(DRMODE_SOLID|DRMODE_INVERSEVID);
         gwps->display->fillrect(x, y, width, height);
+#ifdef HAVE_LCD_COLOR
+        if (wheel_aero_on())
+            wheel_reflect(gwps->display, NULL, 0, x, y, width, height, true);
+#endif
         gwps->display->set_drawmode(DRMODE_SOLID);
     }
 }

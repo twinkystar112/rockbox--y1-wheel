@@ -27,11 +27,15 @@
 %ar%?bc<N|%?bl<I|J|K|L|M>>
 #
 # ---------- artwork (soft shadow + cover, or a placeholder tile) ----------
+# ("#@aero" lines: the glossy finish has a reflection instead of the shadow)
 %V(24,60,206,206,-)
+#@aero %dr(4,5,202,201,e6e6ea)=#
 %dr(4,5,202,201,e6e6ea)
+#@aero %dr(2,3,202,201,d4d4da)=#
 %dr(2,3,202,201,d4d4da)
 %Cl(0,0,200,200,c,c)
 %?C<%Vd(art)|%Vd(tile)%Vd(note)>
+#@aero 200,200,-)=200,226,-)
 %Vl(art,24,60,200,200,-)
 %Cd
 %Vl(tile,24,60,200,200,-)%Vb(cfcfd6)

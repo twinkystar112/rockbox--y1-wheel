@@ -50,6 +50,13 @@ unsigned wheel_groove_row(unsigned base, int k, int h);
 /* the strength that keeps text of colour text readable on base */
 int wheel_gel_strength_for(unsigned base, unsigned text);
 
+/* a fading mirror image of a picture (rows [0, h) of src, stride pixels a
+ * row) drawn at (x, y) of the current viewport, under it, as far as the
+ * viewport has room (up to REFLECT_ROWS); clear just wipes that area */
+#define REFLECT_ROWS 24
+void wheel_reflect(struct screen *d, const fb_data *src, int stride,
+                   int x, int y, int w, int h, bool clear);
+
 /* selection bar in the accent colours (gel, or the plain gradient) */
 void wheel_selection(struct screen *d, int x, int y, int w, int h);
 /* top bar of the screens drawn in C, in the theme's bar colour */

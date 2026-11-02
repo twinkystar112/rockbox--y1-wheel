@@ -977,6 +977,7 @@ static void recolour(char *out, size_t size)
 }
 
 static const char *gen_prelude; /* extra first line of the generated skin */
+static bool gen_aero;           /* apply the "#@aero" lines too */
 
 static bool gen_skin(const char *src, const char *dst, const char files[TU_COUNT][64], int row_h,
                      bool colour)
@@ -1002,8 +1003,16 @@ static bool gen_skin(const char *src, const char *dst, const char files[TU_COUNT
         if (nl) *nl = '\0';
         char out[512];
         strlcpy(out, line, sizeof(out));
-        if (!strncmp(line, "#@", 2))
-            strlcpy(pending, line + 2, sizeof(pending));
+        bool aero_marker = !strncmp(line, "#@aero ", 7);
+        if (aero_marker || !strncmp(line, "#@", 2))
+        {   /* replacements for the next line ("#@aero": glossy finish only) */
+            if (!aero_marker || gen_aero)
+            {
+                if (pending[0])
+                    strlcat(pending, " ", sizeof(pending));
+                strlcat(pending, line + (aero_marker ? 7 : 2), sizeof(pending));
+            }
+        }
         else if (pending[0])
         {
             char *save = NULL;
@@ -1108,20 +1117,46 @@ static bool generated_present(void)
     return true;
 }
 
-/* first line of the generated palette skins: what they were made for */
-#define PAL_FORMAT 2
-static void pal_signature(char *buf, size_t size)
+/* --------------------- colour schemes (generated) ---------------------
+ * Wheel-Pal        the palette chosen in Appearance > Palette
+ * Wheel-Aero       the classic light colours with the glossy finish
+ * Wheel-Dark-Aero  the classic dark colours with the glossy finish
+ * all made from the Wheel.sbs/.wps templates with the typography profile. */
+#define GEN_FORMAT 3
+
+static const struct wheel_palette *scheme_for(const char *name)
 {
-    snprintf(buf, size, "# wheel-pal format=%d palette=%d aero=%d\n", PAL_FORMAT,
-             global_settings.wheel_palette, global_settings.wheel_aero ? 1 : 0);
+    if (!strcmp(name, "Wheel-Pal"))
+        return wheel_palette_active();
+    if (!strcmp(name, "Wheel-Aero"))
+        return wheel_palette_classic(false);
+    if (!strcmp(name, "Wheel-Dark-Aero"))
+        return wheel_palette_classic(true);
+    return NULL;
 }
 
-/* the generated palette skins match the settings (and this version)? */
-static bool palette_files_current(void)
+/* first line of a generated scheme: what it was made from */
+static void scheme_signature(const char *name, char *buf, size_t size)
 {
-    char want[128], have[256];
-    pal_signature(want, sizeof(want));
-    int fd = open(WPS_DIR "/Wheel-Pal.sbs", O_RDONLY);
+    unsigned h = 2166136261u;
+    for (int u = 0; u < TU_COUNT; u++)
+        for (const char *c = active_files[u]; *c; c++)
+            h = (h ^ (unsigned char)*c) * 16777619u;
+    h = (h ^ (unsigned)typo_row_height(&active)) * 16777619u;
+    h = (h ^ (unsigned)active.np_pct) * 16777619u;
+    h = (h ^ (unsigned)active.list_pct) * 16777619u;
+    bool pal = !strcmp(name, "Wheel-Pal");
+    snprintf(buf, size, "# wheel-gen format=%d skin=%s palette=%d aero=%d typo=%08x\n",
+             GEN_FORMAT, name, pal ? global_settings.wheel_palette : 0,
+             pal ? global_settings.wheel_aero : 1, h);
+}
+
+static bool scheme_current(const char *name)
+{
+    char want[160], have[320], path[MAX_PATH];
+    scheme_signature(name, want, sizeof(want));
+    snprintf(path, sizeof(path), WPS_DIR "/%s.sbs", name);
+    int fd = open(path, O_RDONLY);
     if (fd < 0)
         return false;
     ssize_t n = read(fd, have, sizeof(have) - 1);
@@ -1130,43 +1165,56 @@ static bool palette_files_current(void)
     return strstr(have, want) != NULL;
 }
 
-static bool gen_palette_files(void)
+static bool gen_scheme(const char *name)
 {
     static const char * const exts[] = { "sbs", "wps" };
+    const struct wheel_palette *p = scheme_for(name);
+    if (!p)
+        return false;
+    bool aero = strcmp(name, "Wheel-Pal") || global_settings.wheel_aero;
+    wheel_palette_use(p);
     skin_vars((const char (*)[64])active_files, active.np_pct);
     mkdir(WPS_DIR);
     /* the glossy finish: a backdrop with the gel bar and the page sheen */
-    char bmp[40], prelude[128];
-    pal_signature(prelude, sizeof(prelude));
-    if (global_settings.wheel_aero && wheel_palette_backdrop(bmp, sizeof(bmp)))
+    char bmp[40], prelude[224];
+    scheme_signature(name, prelude, sizeof(prelude));
+    if (aero && wheel_palette_backdrop(name, bmp, sizeof(bmp)))
         snprintf(prelude + strlen(prelude), sizeof(prelude) - strlen(prelude),
                  "%%X(%s)\n", bmp);
     gen_prelude = prelude;
+    gen_aero = aero;
     bool ok = true;
     for (unsigned e = 0; e < ARRAYLEN(exts) && ok; e++)
     {
         char src[MAX_PATH], dst[MAX_PATH];
         snprintf(src, sizeof(src), WPS_DIR "/Wheel.%s", exts[e]);
-        snprintf(dst, sizeof(dst), WPS_DIR "/Wheel-Pal.%s", exts[e]);
+        snprintf(dst, sizeof(dst), WPS_DIR "/%s.%s", name, exts[e]);
         ok = gen_skin(src, dst, (const char (*)[64])active_files, typo_row_height(&active), true);
     }
     gen_prelude = NULL;
+    gen_aero = false;
+    wheel_palette_use(NULL);
+    if (!ok)
+    {   /* never leave half a theme behind */
+        char path[MAX_PATH];
+        snprintf(path, sizeof(path), WPS_DIR "/%s.sbs", name);
+        remove(path);
+    }
     return ok;
+}
+
+static bool ensure_scheme(const char *name)
+{
+    return scheme_current(name) || gen_scheme(name);
 }
 
 bool typo_generate_palette(void)
 {
     load_active();
-    return wheel_palette_active() ? gen_palette_files() : true;
+    return wheel_palette_active() ? ensure_scheme("Wheel-Pal") : true;
 }
 
 /* ----------------------------- settings ----------------------------- */
-
-static bool ends_with(const char *s, const char *suf)
-{
-    size_t a = strlen(s), b = strlen(suf);
-    return a >= b && !strcmp(s + a - b, suf);
-}
 
 static bool set_text(unsigned char *dst, const char *v, size_t len)
 {
@@ -1184,54 +1232,50 @@ static void strip_fnt(const char *in, char *out, size_t len)
         *d = '\0';
 }
 
+/* the names of the Wheel skins (and what they are generated as) */
+static bool wheel_family(const char *name)
+{
+    static const char * const names[] = {
+        "Wheel", "Wheel-Dark", "Wheel-Type", "Wheel-Dark-Type",
+        "Wheel-Pal", "Wheel-Aero", "Wheel-Dark-Aero",
+    };
+    for (unsigned i = 0; i < ARRAYLEN(names); i++)
+        if (!strcmp(name, names[i]))
+            return true;
+    return false;
+}
+
+static const char *wheel_skin_for(bool dark)
+{
+    if (wheel_palette_active())
+        return "Wheel-Pal";
+    if (global_settings.wheel_aero)
+        return dark ? "Wheel-Dark-Aero" : "Wheel-Aero";
+    if (custom)
+        return dark ? "Wheel-Dark-Type" : "Wheel-Type";
+    return dark ? "Wheel-Dark" : "Wheel";
+}
+
 bool typo_patch_settings_changed(void)
 {
     load_active();
     bool changed = false;
     char buf[MAX_FILENAME + 1];
-    bool wheel = strstr((char *)global_settings.sbs_file, "Wheel") != NULL;
-    if (wheel && wheel_palette_active())
-    {   /* a palette: its generated skins (with the typography) and colours */
-        changed |= set_text(global_settings.sbs_file, "Wheel-Pal", sizeof(global_settings.sbs_file));
-        if (strstr((char *)global_settings.wps_file, "Wheel"))
-            changed |= set_text(global_settings.wps_file, "Wheel-Pal", sizeof(global_settings.wps_file));
+    bool wheel = wheel_family((char *)global_settings.sbs_file);
+    if (wheel)
+    {   /* the Wheel skins: stock, typography (-Type), glossy (-Aero) or a
+         * palette, for the light or dark variant that was loaded */
+        const char *want = wheel_skin_for(strstr((char *)global_settings.sbs_file, "Dark") != NULL);
+        if (scheme_for(want) && !ensure_scheme(want))
+        {   /* can't write the generated files: plain skins */
+            global_settings.wheel_palette = 0;
+            want = strstr((char *)global_settings.sbs_file, "Dark") ?
+                   (custom ? "Wheel-Dark-Type" : "Wheel-Dark") : (custom ? "Wheel-Type" : "Wheel");
+        }
+        changed |= set_text(global_settings.sbs_file, want, sizeof(global_settings.sbs_file));
+        if (wheel_family((char *)global_settings.wps_file))
+            changed |= set_text(global_settings.wps_file, want, sizeof(global_settings.wps_file));
         changed |= wheel_palette_patch_colours();
-    }
-    else if (wheel && !strcmp((char *)global_settings.sbs_file, "Wheel-Pal"))
-    {   /* palette switched off without reloading the theme */
-        changed |= set_text(global_settings.sbs_file, custom ? "Wheel-Type" : "Wheel",
-                            sizeof(global_settings.sbs_file));
-        changed |= set_text(global_settings.wps_file, custom ? "Wheel-Type" : "Wheel",
-                            sizeof(global_settings.wps_file));
-    }
-    else if (custom && wheel)
-    {
-        if (!ends_with((char *)global_settings.sbs_file, "-Type"))
-        {
-            snprintf(buf, sizeof(buf), "%s-Type", global_settings.sbs_file);
-            changed |= set_text(global_settings.sbs_file, buf, sizeof(global_settings.sbs_file));
-        }
-        if (strstr((char *)global_settings.wps_file, "Wheel") &&
-            !ends_with((char *)global_settings.wps_file, "-Type"))
-        {
-            snprintf(buf, sizeof(buf), "%s-Type", global_settings.wps_file);
-            changed |= set_text(global_settings.wps_file, buf, sizeof(global_settings.wps_file));
-        }
-    }
-    else if (!custom)
-    {
-        if (ends_with((char *)global_settings.sbs_file, "-Type"))
-        {
-            strlcpy(buf, (char *)global_settings.sbs_file, sizeof(buf));
-            buf[strlen(buf) - 5] = '\0';
-            changed |= set_text(global_settings.sbs_file, buf, sizeof(global_settings.sbs_file));
-        }
-        if (ends_with((char *)global_settings.wps_file, "-Type"))
-        {
-            strlcpy(buf, (char *)global_settings.wps_file, sizeof(buf));
-            buf[strlen(buf) - 5] = '\0';
-            changed |= set_text(global_settings.wps_file, buf, sizeof(global_settings.wps_file));
-        }
     }
     /* the UI font: the Wheel themes always use the profile's, other
      * themes only if asked to */
@@ -1305,9 +1349,7 @@ bool typo_apply(const struct typo_profile *p)
         strlcpy(active_files[u], bi.file[u], sizeof(active_files[u]));
     active_loaded = true;
     custom = true;
-    if (wheel_palette_active())
-        gen_palette_files();
-    typo_patch_settings_changed();
+    typo_patch_settings_changed(); /* (regenerates the colour schemes) */
     reload_everything();
     return true;
 }
@@ -1317,9 +1359,7 @@ void typo_restore_default(void)
     remove(TYPO_ACTIVE);
     active_loaded = false;
     load_active();
-    if (wheel_palette_active())
-        gen_palette_files();
-    typo_patch_settings_changed();
+    typo_patch_settings_changed(); /* (regenerates the colour schemes) */
     reload_everything();
 }
 
@@ -1327,12 +1367,14 @@ void typo_init(void)
 {
     typo_update_fallbacks(true);
     load_active();
-    if (wheel_palette_active() && !palette_files_current())
+    if (scheme_for((char *)global_settings.sbs_file) &&
+        !scheme_current((char *)global_settings.sbs_file))
     {   /* first start after an update, or the files are gone */
-        if (!gen_palette_files())
+        if (wheel_palette_active() && !ensure_scheme("Wheel-Pal"))
             global_settings.wheel_palette = 0;
-        if (strstr((char *)global_settings.sbs_file, "Wheel-Pal"))
-            settings_apply_skins();
+        if (typo_patch_settings_changed())
+            settings_apply(true);
+        settings_apply_skins();
     }
     if (custom && !generated_present())
     {   /* cache or theme files gone (card wiped?): back to the stock look */
