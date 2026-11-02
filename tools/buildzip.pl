@@ -215,12 +215,14 @@ sub make_install {
         glob_install("$src/$t/*", "$userdir/$t");
     }
 
-    # Y1 Wheel typography sources (fonts/typo)
-    if (-d "$src/fonts/typo") {
-        unless (glob_mkdir("$userdir/fonts/typo")) {
-            return 0;
+    # Y1 Wheel typography sources and CJK fallback fonts
+    foreach my $sub ("typo", "cjk") {
+        if (-d "$src/fonts/$sub") {
+            unless (glob_mkdir("$userdir/fonts/$sub")) {
+                return 0;
+            }
+            glob_install("$src/fonts/$sub/*", "$userdir/fonts/$sub");
         }
-        glob_install("$src/fonts/typo/*", "$userdir/fonts/typo");
     }
 
     # wps/ subfolders and bitmaps
@@ -421,6 +423,13 @@ sub buildzip {
         glob_mkdir("$temp_dir/fonts/typo");
         foreach my $f (glob("$ROOT/fonts/typo/*.{ttf,otf,fnt,cfg,txt}")) {
             copy($f, "$temp_dir/fonts/typo/");
+        }
+    }
+    # Chinese / Japanese / Korean glyph fallback fonts (Noto Sans, SIL OFL)
+    if($bitmap && -d "$ROOT/fonts/cjk") {
+        glob_mkdir("$temp_dir/fonts/cjk");
+        foreach my $f (glob("$ROOT/fonts/cjk/*.{fnt,txt}")) {
+            copy($f, "$temp_dir/fonts/cjk/");
         }
     }
 

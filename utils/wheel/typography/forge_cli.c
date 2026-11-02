@@ -4,7 +4,8 @@
  *
  *   gcc -O2 -I apps/wheel -o forge utils/wheel/typography/forge_cli.c apps/wheel/wheel_fontforge.c
  *   forge [-p px] [-b band] [-t tracking] [-T] [-c] [-e px] [-k contrast]
- *         [-l last] [-r] [-f fallback.ttf] [-i] in.ttf|in.fnt out.fnt
+ *         [-s first] [-l last] [-A] [-r] [-f fallback.ttf] [-i] in.ttf|in.fnt out.fnt
+ *   -A: every glyph the source has between first and last (CJK fallback fonts)
  *
  * GPLv2+ */
 #include <stdio.h>
@@ -43,6 +44,7 @@ int main(int argc, char **argv)
         else if (o == 'c') p.crisp = true;
         else if (o == 'r') p.extras = FORGE_EXTRA_ROW;
         else if (o == 'i') info = true;
+        else if (o == 'A') p.all = true;
         else if (i + 1 < argc)
         {
             const char *v = argv[++i];
@@ -54,6 +56,7 @@ int main(int argc, char **argv)
                 case 'e': p.embolden = atoi(v); break;
                 case 'k': p.contrast = atoi(v); break;
                 case 'l': p.last = strtoul(v, NULL, 0); break;
+                case 's': p.first = strtoul(v, NULL, 0); break;
                 case 'f': fb = v; break;
                 default: fprintf(stderr, "unknown option -%c\n", o); return 1;
             }

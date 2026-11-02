@@ -312,6 +312,25 @@ static unsigned blend(unsigned a, unsigned b, int pct) /* pct of a */
 }
 
 /* word-wrap every lyric line into rows that fit the screen */
+/* Han, kana and CJK punctuation (Hangul is written with spaces) */
+static bool is_cjk_cp(ucschar_t c)
+{
+    return (c >= 0x2e80 && c <= 0x9fff) || (c >= 0xf900 && c <= 0xfaff) ||
+           (c >= 0xff00 && c <= 0xffef);
+}
+static bool is_cjk_at(const char *t, int pos)
+{
+    ucschar_t c;
+    utf8decode((const unsigned char *)t + pos, &c);
+    return is_cjk_cp(c);
+}
+static bool is_cjk_before(const char *t, int pos)
+{
+    int p = pos - 1;
+    while (p > 0 && ((t[p] & 0xc0) == 0x80)) p--;
+    return p >= 0 && is_cjk_at(t, p);
+}
+
 static void wrap_all(int font, int width)
 {
     n_rows = 0;
@@ -329,11 +348,14 @@ static void wrap_all(int font, int width)
         {
             int best = len - start, w, h;
             char tmp[256];
-            /* longest run of whole words that fits */
+            /* longest run of whole words that fits; Chinese and Japanese
+             * have no spaces, so they may break between any characters */
             int end = start, last_ok = -1;
             while (end <= len)
             {
-                if (end == len || t[end] == ' ')
+                if (end == len || t[end] == ' ' ||
+                    (end > start && ((t[end] & 0xc0) != 0x80) &&
+                     (is_cjk_at(t, end) || is_cjk_before(t, end))))
                 {
                     int n = MIN(end - start, (int)sizeof(tmp) - 1);
                     memcpy(tmp, t + start, n); tmp[n] = 0;
@@ -351,12 +373,16 @@ static void wrap_all(int font, int width)
         }
     }
     line_first_row[n_lines] = n_rows;
-    /* rows of one line sit tight, lines get air between them */
+    /* rows of one line sit tight, lines get air between them; the
+     * typography line spacing sets how much (135 % = the classic look) */
+    int pct = typo_active()->ly_pct;
+    if (pct < 100 || pct > 220) pct = 135;
+    int between = 16 * (pct - 100) / 35, within = 2 * pct / 135;
     int fh = font_get(font)->height, y = 0;
     for (int r = 0; r < n_rows; r++)
     {
         rows[r].y = y;
-        y += fh + ((r + 1 < n_rows && rows[r + 1].line == rows[r].line) ? 2 : 16);
+        y += fh + ((r + 1 < n_rows && rows[r + 1].line == rows[r].line) ? within : between);
     }
 }
 

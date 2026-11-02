@@ -17236,3 +17236,4133 @@
     recording_remote: "线控录音界面皮肤"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_TAPTIC_ENGINE_MODE
+  desc: in keyclick settings menu
+  user: core
+  <source>
+    *: "Taptic Engine Mode"
+  </source>
+  <dest>
+    *: "Taptic Engine 模式"
+  </dest>
+  <voice>
+    *: "Taptic Engine 模式"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_VIBRATIONS
+  desc: wheel vibration settings 
+  user: core
+  <source>
+    *: "Wheel Vibration Intensity"
+  </source>
+  <dest>
+    *: "滚轮振动强度"
+  </dest>
+  <voice>
+    *: "滚轮振动强度"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_RESTART_ROCKBOX
+  desc: Main menu item to restart Rockbox on Android
+  user: core
+  <source>
+    *: "Restart Rockbox"
+  </source>
+  <dest>
+    *: "重启 Rockbox"
+  </dest>
+  <voice>
+    *: "重启 Rockbox"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_UPDATE_ROCKBOX
+  desc: Main menu item to update the firmware on Android
+  user: core
+  <source>
+    *: "Firmware Update"
+  </source>
+  <dest>
+    *: "固件更新"
+  </dest>
+  <voice>
+    *: "固件更新"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SYSTEM_SETTINGS
+  desc: Menu item to launch system settings
+  user: core
+  <source>
+    *: "Android System Settings"
+  </source>
+  <dest>
+    *: "Android 系统设置"
+  </dest>
+  <voice>
+    *: "Android 系统设置"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_SETTINGS
+  desc: Bluetooth menu item
+  user: core
+  <source>
+    *: "Bluetooth Settings"
+  </source>
+  <dest>
+    *: "蓝牙设置"
+  </dest>
+  <voice>
+    *: "蓝牙设置"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_RESET
+  desc: Reset Bluetooth menu item
+  user: core
+  <source>
+    *: "Reset Bluetooth Devices"
+  </source>
+  <dest>
+    *: "重置蓝牙设备"
+  </dest>
+  <voice>
+    *: "重置蓝牙设备"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SWITCH_FIRMWARE
+  desc: Switch to Stock item
+  user: core
+  <source>
+    *: "Switch to Stock Firmware"
+  </source>
+  <dest>
+    *: "切换到原厂固件"
+  </dest>
+  <voice>
+    *: "切换到原厂固件"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MUSIC
+  desc: Main menu: music library
+  user: core
+  <source>
+    *: "Music"
+  </source>
+  <dest>
+    *: "音乐"
+  </dest>
+  <voice>
+    *: "音乐"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW
+  desc: Main menu: album art browser
+  user: core
+  <source>
+    *: "Cover Flow"
+  </source>
+  <dest>
+    *: "Cover Flow"
+  </dest>
+  <voice>
+    *: "Cover Flow"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE_SONGS
+  desc: Main menu: play every song shuffled
+  user: core
+  <source>
+    *: "Shuffle Songs"
+  </source>
+  <dest>
+    *: "随机播放歌曲"
+  </dest>
+  <voice>
+    *: "随机播放歌曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EXTRAS
+  desc: Main menu: files, plugins and tools
+  user: core
+  <source>
+    *: "Extras"
+  </source>
+  <dest>
+    *: "更多"
+  </dest>
+  <voice>
+    *: "更多"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW_MISSING
+  desc: Splash: pictureflow plugin missing
+  user: core
+  <source>
+    *: "Cover Flow plugin not installed"
+  </source>
+  <dest>
+    *: "未安装 Cover Flow 插件"
+  </dest>
+  <voice>
+    *: "未安装 Cover Flow 插件"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_SONGS
+  desc: Splash: no audio files found for shuffle
+  user: core
+  <source>
+    *: "No songs found in the Music folder"
+  </source>
+  <dest>
+    *: "Music 文件夹中没有歌曲"
+  </dest>
+  <voice>
+    *: "Music 文件夹中没有歌曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connected"
+  </source>
+  <dest>
+    *: "已连接"
+  </dest>
+  <voice>
+    *: "已连接"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTING
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connecting…"
+  </source>
+  <dest>
+    *: "正在连接…"
+  </dest>
+  <voice>
+    *: "正在连接…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAIRING
+  desc: Bluetooth device state / splash
+  user: core
+  <source>
+    *: "Pairing…"
+  </source>
+  <dest>
+    *: "正在配对…"
+  </dest>
+  <voice>
+    *: "正在配对…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NOT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Not Connected"
+  </source>
+  <dest>
+    *: "未连接"
+  </dest>
+  <voice>
+    *: "未连接"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH
+  desc: Bluetooth: start device discovery
+  user: core
+  <source>
+    *: "Search for Devices"
+  </source>
+  <dest>
+    *: "搜索设备"
+  </dest>
+  <voice>
+    *: "搜索设备"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCHING
+  desc: Bluetooth: discovery running
+  user: core
+  <source>
+    *: "Searching…"
+  </source>
+  <dest>
+    *: "正在搜索…"
+  </dest>
+  <voice>
+    *: "正在搜索…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH_AGAIN
+  desc: Bluetooth: restart discovery
+  user: core
+  <source>
+    *: "Search Again"
+  </source>
+  <dest>
+    *: "重新搜索"
+  </dest>
+  <voice>
+    *: "重新搜索"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NONE_FOUND
+  desc: Bluetooth: discovery found nothing
+  user: core
+  <source>
+    *: "No devices found"
+  </source>
+  <dest>
+    *: "未找到设备"
+  </dest>
+  <voice>
+    *: "未找到设备"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_AUTORECONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Auto-Reconnect"
+  </source>
+  <dest>
+    *: "自动重新连接"
+  </dest>
+  <voice>
+    *: "自动重新连接"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAUSE_ON_LOSS
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Pause When Disconnected"
+  </source>
+  <dest>
+    *: "断开时暂停"
+  </dest>
+  <voice>
+    *: "断开时暂停"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESUME_ON_CONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Resume When Reconnected"
+  </source>
+  <dest>
+    *: "重新连接时继续播放"
+  </dest>
+  <voice>
+    *: "重新连接时继续播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SYSTEM
+  desc: Bluetooth: open Android settings
+  user: core
+  <source>
+    *: "Advanced (Android)"
+  </source>
+  <dest>
+    *: "高级（Android）"
+  </dest>
+  <voice>
+    *: "高级（Android）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_OFF_HINT
+  desc: Bluetooth: radio is off
+  user: core
+  <source>
+    *: "Turn on Bluetooth to see devices"
+  </source>
+  <dest>
+    *: "打开蓝牙以查看设备"
+  </dest>
+  <voice>
+    *: "打开蓝牙以查看设备"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FAILED
+  desc: Bluetooth: operation failed
+  user: core
+  <source>
+    *: "Couldn't connect"
+  </source>
+  <dest>
+    *: "无法连接"
+  </dest>
+  <voice>
+    *: "无法连接"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Connect"
+  </source>
+  <dest>
+    *: "连接"
+  </dest>
+  <voice>
+    *: "连接"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_DISCONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Disconnect"
+  </source>
+  <dest>
+    *: "断开连接"
+  </dest>
+  <voice>
+    *: "断开连接"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FORGET
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Forget This Device"
+  </source>
+  <dest>
+    *: "忽略此设备"
+  </dest>
+  <voice>
+    *: "忽略此设备"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURNING_ON
+  desc: Bluetooth: radio starting
+  user: core
+  <source>
+    *: "Turning on Bluetooth…"
+  </source>
+  <dest>
+    *: "正在打开蓝牙…"
+  </dest>
+  <voice>
+    *: "正在打开蓝牙…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_UNAVAILABLE
+  desc: Bluetooth: no radio on this player
+  user: core
+  <source>
+    *: "Bluetooth is not available on this player"
+  </source>
+  <dest>
+    *: "此播放器不支持蓝牙"
+  </dest>
+  <voice>
+    *: "此播放器不支持蓝牙"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SCROBBLING
+  desc: Last.fm: enable
+  user: core
+  <source>
+    *: "Scrobbling"
+  </source>
+  <dest>
+    *: "Scrobble"
+  </dest>
+  <voice>
+    *: "Scrobble"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ACCOUNT
+  desc: Last.fm: account row
+  user: core
+  <source>
+    *: "Account"
+  </source>
+  <dest>
+    *: "账户"
+  </dest>
+  <voice>
+    *: "账户"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOT_SIGNED_IN
+  desc: Last.fm: no session
+  user: core
+  <source>
+    *: "Not signed in"
+  </source>
+  <dest>
+    *: "未登录"
+  </dest>
+  <voice>
+    *: "未登录"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_PENDING
+  desc: Last.fm: queue size
+  user: core
+  <source>
+    *: "Waiting to Send"
+  </source>
+  <dest>
+    *: "等待发送"
+  </dest>
+  <voice>
+    *: "等待发送"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SENT
+  desc: Last.fm: accepted scrobbles
+  user: core
+  <source>
+    *: "Scrobbled"
+  </source>
+  <dest>
+    *: "已 Scrobble"
+  </dest>
+  <voice>
+    *: "已 Scrobble"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LAST_SYNC
+  desc: Last.fm: last successful submit
+  user: core
+  <source>
+    *: "Last Sync"
+  </source>
+  <dest>
+    *: "上次同步"
+  </dest>
+  <voice>
+    *: "上次同步"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ERROR
+  desc: Last.fm: last error
+  user: core
+  <source>
+    *: "Error"
+  </source>
+  <dest>
+    *: "错误"
+  </dest>
+  <voice>
+    *: "错误"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NEVER
+  desc: Last.fm: never synced
+  user: core
+  <source>
+    *: "Never"
+  </source>
+  <dest>
+    *: "从未"
+  </dest>
+  <voice>
+    *: "从未"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_JUST_NOW
+  desc: Last.fm: synced < 1 min ago
+  user: core
+  <source>
+    *: "Just now"
+  </source>
+  <dest>
+    *: "刚刚"
+  </dest>
+  <voice>
+    *: "刚刚"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE_SUFFIX
+  desc: Last.fm: appended when no network
+  user: core
+  <source>
+    *: " (offline)"
+  </source>
+  <dest>
+    *: "（离线）"
+  </dest>
+  <voice>
+    *: "（离线）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SEND_NOW
+  desc: Last.fm: flush queue
+  user: core
+  <source>
+    *: "Send Scrobbles Now"
+  </source>
+  <dest>
+    *: "立即发送 Scrobble"
+  </dest>
+  <voice>
+    *: "立即发送 Scrobble"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOWPLAYING
+  desc: Last.fm: now playing updates
+  user: core
+  <source>
+    *: "Now Playing Updates"
+  </source>
+  <dest>
+    *: "更新正在播放"
+  </dest>
+  <voice>
+    *: "更新正在播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LOG
+  desc: Last.fm: offline .scrobbler.log
+  user: core
+  <source>
+    *: "Offline Log File"
+  </source>
+  <dest>
+    *: "离线日志文件"
+  </dest>
+  <voice>
+    *: "离线日志文件"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SIGN_OUT
+  desc: Last.fm: confirm sign out
+  user: core
+  <source>
+    *: "Sign out of Last.fm?"
+  </source>
+  <dest>
+    *: "退出 Last.fm？"
+  </dest>
+  <voice>
+    *: "退出 Last.fm？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SETUP_HINT
+  desc: Last.fm: how to sign in
+  user: core
+  <source>
+    *: "Copy lastfm.cfg into the .rockbox folder"
+  </source>
+  <dest>
+    *: "请将 lastfm.cfg 复制到 .rockbox 文件夹"
+  </dest>
+  <voice>
+    *: "请将 lastfm.cfg 复制到 .rockbox 文件夹"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE
+  desc: Last.fm: no network
+  user: core
+  <source>
+    *: "No connection. Scrobbles are kept safe."
+  </source>
+  <dest>
+    *: "无网络连接。Scrobble 已妥善保存。"
+  </dest>
+  <voice>
+    *: "无网络连接。Scrobble 已妥善保存。"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_UNAVAILABLE
+  desc: Last.fm: not supported on this platform
+  user: core
+  <source>
+    *: "Not available on this player"
+  </source>
+  <dest>
+    *: "此播放器不可用"
+  </dest>
+  <voice>
+    *: "此播放器不可用"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_READY
+  desc: DB scan finished, restart needed
+  user: core
+  <source>
+    *: "Your music library is ready"
+  </source>
+  <dest>
+    *: "音乐库已就绪"
+  </dest>
+  <voice>
+    *: "音乐库已就绪"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RESTART_NOW
+  desc: Ask to restart Rockbox now
+  user: core
+  <source>
+    *: "Restart Rockbox now to finish?"
+  </source>
+  <dest>
+    *: "立即重启 Rockbox 以完成？"
+  </dest>
+  <voice>
+    *: "立即重启 Rockbox 以完成？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BATTERY_PERCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Battery Percentage"
+  </source>
+  <dest>
+    *: "电池百分比"
+  </dest>
+  <voice>
+    *: "电池百分比"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_APPEARANCE
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Appearance"
+  </source>
+  <dest>
+    *: "外观"
+  </dest>
+  <voice>
+    *: "外观"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIGHT
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Light"
+  </source>
+  <dest>
+    *: "浅色"
+  </dest>
+  <voice>
+    *: "浅色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DARK
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Dark"
+  </source>
+  <dest>
+    *: "深色"
+  </dest>
+  <voice>
+    *: "深色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Accent Colour"
+  </source>
+  <dest>
+    *: "强调色"
+  </dest>
+  <voice>
+    *: "强调色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_BLUE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Blue"
+  </source>
+  <dest>
+    *: "蓝色"
+  </dest>
+  <voice>
+    *: "蓝色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PINK
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Pink"
+  </source>
+  <dest>
+    *: "粉色"
+  </dest>
+  <voice>
+    *: "粉色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PURPLE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Purple"
+  </source>
+  <dest>
+    *: "紫色"
+  </dest>
+  <voice>
+    *: "紫色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GREEN
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Green"
+  </source>
+  <dest>
+    *: "绿色"
+  </dest>
+  <voice>
+    *: "绿色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_ORANGE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Orange"
+  </source>
+  <dest>
+    *: "橙色"
+  </dest>
+  <voice>
+    *: "橙色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_RED
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Red"
+  </source>
+  <dest>
+    *: "红色"
+  </dest>
+  <voice>
+    *: "红色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GRAPHITE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Graphite"
+  </source>
+  <dest>
+    *: "石墨色"
+  </dest>
+  <voice>
+    *: "石墨色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LETTER_JUMP
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Letter Jump"
+  </source>
+  <dest>
+    *: "字母跳转"
+  </dest>
+  <voice>
+    *: "字母跳转"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICKER
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Clicker"
+  </source>
+  <dest>
+    *: "滚轮点击声"
+  </dest>
+  <voice>
+    *: "滚轮点击声"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_HINT
+  desc: Y1 Wheel keyboard title when empty
+  user: core
+  <source>
+    *: "Type with the wheel"
+  </source>
+  <dest>
+    *: "用滚轮输入"
+  </dest>
+  <voice>
+    *: "用滚轮输入"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DONE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Done"
+  </source>
+  <dest>
+    *: "完成"
+  </dest>
+  <voice>
+    *: "完成"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DELETE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "删除"
+  </dest>
+  <voice>
+    *: "删除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_SPACE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Space"
+  </source>
+  <dest>
+    *: "空格"
+  </dest>
+  <voice>
+    *: "空格"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_CASE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Letters"
+  </source>
+  <dest>
+    *: "字母"
+  </dest>
+  <voice>
+    *: "字母"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP1
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Scan with your phone"
+  </source>
+  <dest>
+    *: "用手机扫描"
+  </dest>
+  <voice>
+    *: "用手机扫描"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP2
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Allow access"
+  </source>
+  <dest>
+    *: "允许访问"
+  </dest>
+  <voice>
+    *: "允许访问"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP3
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Wait here a moment"
+  </source>
+  <dest>
+    *: "请在此稍候"
+  </dest>
+  <voice>
+    *: "请在此稍候"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_NEEDS
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Needs internet (Wi-Fi if your ROM has it, or Bluetooth > your phone > Use Phone's Internet) and a Last.fm API key"
+  </source>
+  <dest>
+    *: "需要联网（Wi-Fi，或通过蓝牙使用手机网络）和 Last.fm API 密钥"
+  </dest>
+  <voice>
+    *: "需要联网（Wi-Fi，或通过蓝牙使用手机网络）和 Last.fm API 密钥"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_SCANNING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Building your library…"
+  </source>
+  <dest>
+    *: "正在建立音乐库…"
+  </dest>
+  <voice>
+    *: "正在建立音乐库…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_FINISHING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Finishing your library…"
+  </source>
+  <dest>
+    *: "正在完成音乐库…"
+  </dest>
+  <voice>
+    *: "正在完成音乐库…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ALBUM
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Album"
+  </source>
+  <dest>
+    *: "前往专辑"
+  </dest>
+  <voice>
+    *: "前往专辑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ARTIST
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Artist"
+  </source>
+  <dest>
+    *: "前往艺人"
+  </dest>
+  <voice>
+    *: "前往艺人"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_UP_NEXT
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Up Next"
+  </source>
+  <dest>
+    *: "待播清单"
+  </dest>
+  <voice>
+    *: "待播清单"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVE
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Love on Last.fm"
+  </source>
+  <dest>
+    *: "在 Last.fm 上喜欢"
+  </dest>
+  <voice>
+    *: "在 Last.fm 上喜欢"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVED
+  desc: Y1 Wheel splash
+  user: core
+  <source>
+    *: "Loved"
+  </source>
+  <dest>
+    *: "已喜欢"
+  </dest>
+  <voice>
+    *: "已喜欢"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_NEXT
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Next"
+  </source>
+  <dest>
+    *: "下一首播放"
+  </dest>
+  <voice>
+    *: "下一首播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_LATER
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Later"
+  </source>
+  <dest>
+    *: "稍后播放"
+  </dest>
+  <voice>
+    *: "稍后播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_OF
+  desc: Y1 Wheel '3 of 12' in Now Playing
+  user: core
+  <source>
+    *: "of"
+  </source>
+  <dest>
+    *: "/"
+  </dest>
+  <voice>
+    *: "/"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SCRUBBING
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Scrubbing"
+  </source>
+  <dest>
+    *: "快进/快退"
+  </dest>
+  <voice>
+    *: "快进/快退"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "歌词"
+  </dest>
+  <voice>
+    *: "歌词"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "No lyrics for this song"
+  </source>
+  <dest>
+    *: "这首歌没有歌词"
+  </dest>
+  <voice>
+    *: "这首歌没有歌词"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS_SEARCHING
+  desc: Y1 Wheel lyrics
+  user: core
+  <source>
+    *: "Looking for lyrics…"
+  </source>
+  <dest>
+    *: "正在查找歌词…"
+  </dest>
+  <voice>
+    *: "正在查找歌词…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_NEXT
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Playing next"
+  </source>
+  <dest>
+    *: "将在下一首播放"
+  </dest>
+  <voice>
+    *: "将在下一首播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Added to Up Next"
+  </source>
+  <dest>
+    *: "已加入待播清单"
+  </dest>
+  <voice>
+    *: "已加入待播清单"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ANY
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Any"
+  </source>
+  <dest>
+    *: "不限"
+  </dest>
+  <voice>
+    *: "不限"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send via Bluetooth"
+  </source>
+  <dest>
+    *: "通过蓝牙发送"
+  </dest>
+  <voice>
+    *: "通过蓝牙发送"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ALL
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send whole list via Bluetooth"
+  </source>
+  <dest>
+    *: "通过蓝牙发送整个列表"
+  </dest>
+  <voice>
+    *: "通过蓝牙发送整个列表"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_1
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending… %d%%"
+  </source>
+  <dest>
+    *: "正在发送… %d%%"
+  </dest>
+  <voice>
+    *: "正在发送… %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_N
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending %d of %d · %d%%"
+  </source>
+  <dest>
+    *: "正在发送 %d/%d · %d%%"
+  </dest>
+  <voice>
+    *: "正在发送 %d/%d · %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ACCEPT
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Accept the file on the other device"
+  </source>
+  <dest>
+    *: "请在另一台设备上接受文件"
+  </dest>
+  <voice>
+    *: "请在另一台设备上接受文件"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_DONE
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sent"
+  </source>
+  <dest>
+    *: "已发送"
+  </dest>
+  <voice>
+    *: "已发送"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_FAILED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Couldn't send. Is Bluetooth on and the device close?"
+  </source>
+  <dest>
+    *: "发送失败。蓝牙是否已打开、设备是否在附近？"
+  </dest>
+  <voice>
+    *: "发送失败。蓝牙是否已打开、设备是否在附近？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_NO_TARGETS
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Pair your phone or computer first (Bluetooth)"
+  </source>
+  <dest>
+    *: "请先配对手机或电脑（蓝牙）"
+  </dest>
+  <voice>
+    *: "请先配对手机或电脑（蓝牙）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_REJECTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "The other device declined"
+  </source>
+  <dest>
+    *: "对方设备已拒绝"
+  </dest>
+  <voice>
+    *: "对方设备已拒绝"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_TO
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send to"
+  </source>
+  <dest>
+    *: "发送到"
+  </dest>
+  <voice>
+    *: "发送到"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_UNSUPPORTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "This player can't send files over Bluetooth"
+  </source>
+  <dest>
+    *: "此播放器无法通过蓝牙发送文件"
+  </dest>
+  <voice>
+    *: "此播放器无法通过蓝牙发送文件"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURN_ON
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Turn on Bluetooth?"
+  </source>
+  <dest>
+    *: "打开蓝牙？"
+  </dest>
+  <voice>
+    *: "打开蓝牙？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CONTINUE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Continue Listening"
+  </source>
+  <dest>
+    *: "继续收听"
+  </dest>
+  <voice>
+    *: "继续收听"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CREATE_LIST
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Create List"
+  </source>
+  <dest>
+    *: "创建列表"
+  </dest>
+  <voice>
+    *: "创建列表"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DAILY_MIX
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Daily Mix"
+  </source>
+  <dest>
+    *: "每日推荐"
+  </dest>
+  <voice>
+    *: "每日推荐"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Decade"
+  </source>
+  <dest>
+    *: "年代"
+  </dest>
+  <voice>
+    *: "年代"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Decades"
+  </source>
+  <dest>
+    *: "年代"
+  </dest>
+  <voice>
+    *: "年代"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EQ_FINE_TUNE
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Fine Tune…"
+  </source>
+  <dest>
+    *: "微调…"
+  </dest>
+  <voice>
+    *: "微调…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_AMBIENT
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Ambient & Chill"
+  </source>
+  <dest>
+    *: "氛围与轻松"
+  </dest>
+  <voice>
+    *: "氛围与轻松"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_CLASSICAL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Classical"
+  </source>
+  <dest>
+    *: "古典"
+  </dest>
+  <voice>
+    *: "古典"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_DANCE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Dance"
+  </source>
+  <dest>
+    *: "舞曲"
+  </dest>
+  <voice>
+    *: "舞曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ELECTRONIC
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Electronic"
+  </source>
+  <dest>
+    *: "电子"
+  </dest>
+  <voice>
+    *: "电子"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_FOLK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Folk & Acoustic"
+  </source>
+  <dest>
+    *: "民谣与原声"
+  </dest>
+  <voice>
+    *: "民谣与原声"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HARD
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Metal & Punk"
+  </source>
+  <dest>
+    *: "金属与朋克"
+  </dest>
+  <voice>
+    *: "金属与朋克"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HIPHOP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Hip-Hop"
+  </source>
+  <dest>
+    *: "嘻哈"
+  </dest>
+  <voice>
+    *: "嘻哈"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_INDIE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Indie & Alternative"
+  </source>
+  <dest>
+    *: "独立与另类"
+  </dest>
+  <voice>
+    *: "独立与另类"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_JAZZ
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Jazz"
+  </source>
+  <dest>
+    *: "爵士"
+  </dest>
+  <voice>
+    *: "爵士"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_LATIN
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Latin"
+  </source>
+  <dest>
+    *: "拉丁"
+  </dest>
+  <voice>
+    *: "拉丁"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_OTHER
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Other"
+  </source>
+  <dest>
+    *: "其他"
+  </dest>
+  <voice>
+    *: "其他"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_POP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Pop"
+  </source>
+  <dest>
+    *: "流行"
+  </dest>
+  <voice>
+    *: "流行"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ROCK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Rock"
+  </source>
+  <dest>
+    *: "摇滚"
+  </dest>
+  <voice>
+    *: "摇滚"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soul, R&B & Blues"
+  </source>
+  <dest>
+    *: "灵魂乐、R&B 与布鲁斯"
+  </dest>
+  <voice>
+    *: "灵魂乐、R&B 与布鲁斯"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUNDTRACK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soundtracks"
+  </source>
+  <dest>
+    *: "原声带"
+  </dest>
+  <voice>
+    *: "原声带"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAVOURITES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Favourites"
+  </source>
+  <dest>
+    *: "你的最爱"
+  </dest>
+  <voice>
+    *: "你的最爱"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FORGOTTEN
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Forgotten Gems"
+  </source>
+  <dest>
+    *: "被遗忘的好歌"
+  </dest>
+  <voice>
+    *: "被遗忘的好歌"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FOR_YOU
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "For You"
+  </source>
+  <dest>
+    *: "为你推荐"
+  </dest>
+  <voice>
+    *: "为你推荐"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GENRE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Genre"
+  </source>
+  <dest>
+    *: "流派"
+  </dest>
+  <voice>
+    *: "流派"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LENGTH
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Length"
+  </source>
+  <dest>
+    *: "时长"
+  </dest>
+  <voice>
+    *: "时长"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIST_EMPTY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Nothing here yet"
+  </source>
+  <dest>
+    *: "这里还什么都没有"
+  </dest>
+  <voice>
+    *: "这里还什么都没有"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LONG_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Long (6 min +)"
+  </source>
+  <dest>
+    *: "长（6 分钟以上）"
+  </dest>
+  <voice>
+    *: "长（6 分钟以上）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MAKING_MIX
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Making your mix…"
+  </source>
+  <dest>
+    *: "正在生成你的混音…"
+  </dest>
+  <voice>
+    *: "正在生成你的混音…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MIXTAPE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Mixtape"
+  </source>
+  <dest>
+    *: "混音带"
+  </dest>
+  <voice>
+    *: "混音带"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOODS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Moods"
+  </source>
+  <dest>
+    *: "心情"
+  </dest>
+  <voice>
+    *: "心情"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_CALM
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Calm"
+  </source>
+  <dest>
+    *: "平静"
+  </dest>
+  <voice>
+    *: "平静"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_ENERGY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Energy"
+  </source>
+  <dest>
+    *: "活力"
+  </dest>
+  <voice>
+    *: "活力"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_FOCUS
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Focus"
+  </source>
+  <dest>
+    *: "专注"
+  </dest>
+  <voice>
+    *: "专注"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_MELANCHOLY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Melancholy"
+  </source>
+  <dest>
+    *: "忧郁"
+  </dest>
+  <voice>
+    *: "忧郁"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_PARTY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Party"
+  </source>
+  <dest>
+    *: "派对"
+  </dest>
+  <voice>
+    *: "派对"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_DOWN
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Down"
+  </source>
+  <dest>
+    *: "下移"
+  </dest>
+  <voice>
+    *: "下移"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_UP
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Up"
+  </source>
+  <dest>
+    *: "上移"
+  </dest>
+  <voice>
+    *: "上移"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEED_LIBRARY
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Your library is still being prepared"
+  </source>
+  <dest>
+    *: "音乐库仍在准备中"
+  </dest>
+  <voice>
+    *: "音乐库仍在准备中"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEVER_PLAYED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Never Played"
+  </source>
+  <dest>
+    *: "从未播放"
+  </dest>
+  <voice>
+    *: "从未播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOTHING_PLAYING
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Nothing is playing"
+  </source>
+  <dest>
+    *: "没有正在播放的内容"
+  </dest>
+  <voice>
+    *: "没有正在播放的内容"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOW_PLAYING
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Now Playing"
+  </source>
+  <dest>
+    *: "正在播放"
+  </dest>
+  <voice>
+    *: "正在播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_PLAYLISTS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "No playlists yet. Save one from any mix."
+  </source>
+  <dest>
+    *: "还没有播放列表。可从任意混音保存。"
+  </dest>
+  <voice>
+    *: "还没有播放列表。可从任意混音保存。"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PICKS_TODAY
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picked for today"
+  </source>
+  <dest>
+    *: "今日精选"
+  </dest>
+  <voice>
+    *: "今日精选"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Play"
+  </source>
+  <dest>
+    *: "播放"
+  </dest>
+  <voice>
+    *: "播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAYLIST_SAVED
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Saved to Playlists"
+  </source>
+  <dest>
+    *: "已保存到播放列表"
+  </dest>
+  <voice>
+    *: "已保存到播放列表"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PREPARING_PICKS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picking songs for you…"
+  </source>
+  <dest>
+    *: "正在为你挑选歌曲…"
+  </dest>
+  <voice>
+    *: "正在为你挑选歌曲…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Queue"
+  </source>
+  <dest>
+    *: "队列"
+  </dest>
+  <voice>
+    *: "队列"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENTLY_ADDED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Added"
+  </source>
+  <dest>
+    *: "最近添加"
+  </dest>
+  <voice>
+    *: "最近添加"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENT_ALBUMS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Played Albums"
+  </source>
+  <dest>
+    *: "最近播放的专辑"
+  </dest>
+  <voice>
+    *: "最近播放的专辑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REMOVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Remove"
+  </source>
+  <dest>
+    *: "移除"
+  </dest>
+  <voice>
+    *: "移除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REPLACE_PLAYLIST
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Replace the playlist with that name?"
+  </source>
+  <dest>
+    *: "替换同名播放列表？"
+  </dest>
+  <voice>
+    *: "替换同名播放列表？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SAVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Save"
+  </source>
+  <dest>
+    *: "保存"
+  </dest>
+  <voice>
+    *: "保存"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHORT_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Short (under 3:30)"
+  </source>
+  <dest>
+    *: "短（3:30 以内）"
+  </dest>
+  <voice>
+    *: "短（3:30 以内）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Shuffle"
+  </source>
+  <dest>
+    *: "随机播放"
+  </dest>
+  <voice>
+    *: "随机播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Similar Songs"
+  </source>
+  <dest>
+    *: "相似歌曲"
+  </dest>
+  <voice>
+    *: "相似歌曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR_TO
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Similar To"
+  </source>
+  <dest>
+    *: "相似于"
+  </dest>
+  <voice>
+    *: "相似于"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_OFF
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Sleep timer off"
+  </source>
+  <dest>
+    *: "睡眠定时器已关闭"
+  </dest>
+  <voice>
+    *: "睡眠定时器已关闭"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_SET
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Music stops in %d min"
+  </source>
+  <dest>
+    *: "音乐将在 %d 分钟后停止"
+  </dest>
+  <voice>
+    *: "音乐将在 %d 分钟后停止"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SMART_LIST
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Smart List"
+  </source>
+  <dest>
+    *: "智能列表"
+  </dest>
+  <voice>
+    *: "智能列表"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONG
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "song"
+  </source>
+  <dest>
+    *: "首"
+  </dest>
+  <voice>
+    *: "首"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONGS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "songs"
+  </source>
+  <dest>
+    *: "首"
+  </dest>
+  <voice>
+    *: "首"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SOUND
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Sound"
+  </source>
+  <dest>
+    *: "声音"
+  </dest>
+  <voice>
+    *: "声音"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WHICH_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Songs"
+  </source>
+  <dest>
+    *: "歌曲"
+  </dest>
+  <voice>
+    *: "歌曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Stats"
+  </source>
+  <dest>
+    *: "你的统计"
+  </dest>
+  <voice>
+    *: "你的统计"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ALLTIME
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "All Time"
+  </source>
+  <dest>
+    *: "全部时间"
+  </dest>
+  <voice>
+    *: "全部时间"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ARTISTS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "artists"
+  </source>
+  <dest>
+    *: "位艺人"
+  </dest>
+  <voice>
+    *: "位艺人"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_BY_MONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Month by Month"
+  </source>
+  <dest>
+    *: "按月查看"
+  </dest>
+  <voice>
+    *: "按月查看"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_EMPTY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Play some music and your stats will appear here"
+  </source>
+  <dest>
+    *: "播放一些音乐，你的统计就会显示在这里"
+  </dest>
+  <voice>
+    *: "播放一些音乐，你的统计就会显示在这里"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_HISTORY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Recently Played"
+  </source>
+  <dest>
+    *: "最近播放"
+  </dest>
+  <voice>
+    *: "最近播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_MINUTES
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Time Listened"
+  </source>
+  <dest>
+    *: "收听时长"
+  </dest>
+  <voice>
+    *: "收听时长"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PERIOD
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Period"
+  </source>
+  <dest>
+    *: "时段"
+  </dest>
+  <voice>
+    *: "时段"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Plays"
+  </source>
+  <dest>
+    *: "播放次数"
+  </dest>
+  <voice>
+    *: "播放次数"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "plays"
+  </source>
+  <dest>
+    *: "次播放"
+  </dest>
+  <voice>
+    *: "次播放"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_SUMMARY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Summary"
+  </source>
+  <dest>
+    *: "你的总结"
+  </dest>
+  <voice>
+    *: "你的总结"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISMONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Month"
+  </source>
+  <dest>
+    *: "本月"
+  </dest>
+  <voice>
+    *: "本月"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISYEAR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Year"
+  </source>
+  <dest>
+    *: "今年"
+  </dest>
+  <voice>
+    *: "今年"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ALBUMS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Albums"
+  </source>
+  <dest>
+    *: "热门专辑"
+  </dest>
+  <voice>
+    *: "热门专辑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ARTISTS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Artists"
+  </source>
+  <dest>
+    *: "热门艺人"
+  </dest>
+  <voice>
+    *: "热门艺人"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_SONGS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Songs"
+  </source>
+  <dest>
+    *: "热门歌曲"
+  </dest>
+  <voice>
+    *: "热门歌曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_ARTIST
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your artist"
+  </source>
+  <dest>
+    *: "你的艺人"
+  </dest>
+  <voice>
+    *: "你的艺人"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_HOUR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your favourite hour"
+  </source>
+  <dest>
+    *: "你最爱的时段"
+  </dest>
+  <voice>
+    *: "你最爱的时段"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_SONG
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your song"
+  </source>
+  <dest>
+    *: "你的歌"
+  </dest>
+  <voice>
+    *: "你的歌"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOU_LISTENED
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "You listened to"
+  </source>
+  <dest>
+    *: "你收听了"
+  </dest>
+  <voice>
+    *: "你收听了"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Theme"
+  </source>
+  <dest>
+    *: "主题"
+  </dest>
+  <voice>
+    *: "主题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALL
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Install Theme from .zip…"
+  </source>
+  <dest>
+    *: "从 .zip 安装主题…"
+  </dest>
+  <voice>
+    *: "从 .zip 安装主题…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_SCALE
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Scale 320x240 Themes"
+  </source>
+  <dest>
+    *: "放大 320x240 主题"
+  </dest>
+  <voice>
+    *: "放大 320x240 主题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_KEEP
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Keep this theme?"
+  </source>
+  <dest>
+    *: "保留此主题？"
+  </dest>
+  <voice>
+    *: "保留此主题？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_BROKEN
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "This theme couldn't be loaded"
+  </source>
+  <dest>
+    *: "无法加载此主题"
+  </dest>
+  <voice>
+    *: "无法加载此主题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLING
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installing…"
+  </source>
+  <dest>
+    *: "正在安装…"
+  </dest>
+  <voice>
+    *: "正在安装…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NO_ZIPS
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Copy a theme .zip to the player (main folder, Download or Themes) first"
+  </source>
+  <dest>
+    *: "请先将主题 .zip 复制到播放器（根目录、Download 或 Themes）"
+  </dest>
+  <voice>
+    *: "请先将主题 .zip 复制到播放器（根目录、Download 或 Themes）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NOT_A_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "That .zip isn't a Rockbox theme"
+  </source>
+  <dest>
+    *: "此 .zip 不是 Rockbox 主题"
+  </dest>
+  <voice>
+    *: "此 .zip 不是 Rockbox 主题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLED
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installed: %s"
+  </source>
+  <dest>
+    *: "已安装：%s"
+  </dest>
+  <voice>
+    *: "已安装：%s"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Use Phone's Internet"
+  </source>
+  <dest>
+    *: "使用手机网络"
+  </dest>
+  <voice>
+    *: "使用手机网络"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER_HINT
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Turn on Bluetooth tethering on the phone first"
+  </source>
+  <dest>
+    *: "请先在手机上打开蓝牙网络共享"
+  </dest>
+  <voice>
+    *: "请先在手机上打开蓝牙网络共享"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_INTERNET
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Internet"
+  </source>
+  <dest>
+    *: "网络"
+  </dest>
+  <voice>
+    *: "网络"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_GENRES
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Genres"
+  </source>
+  <dest>
+    *: "流派"
+  </dest>
+  <voice>
+    *: "流派"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_COMPOSERS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Composers"
+  </source>
+  <dest>
+    *: "作曲者"
+  </dest>
+  <voice>
+    *: "作曲者"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_YEARS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Years"
+  </source>
+  <dest>
+    *: "年份"
+  </dest>
+  <voice>
+    *: "年份"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_MORE
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "More"
+  </source>
+  <dest>
+    *: "更多"
+  </dest>
+  <voice>
+    *: "更多"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_TRACK_ARTISTS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Track Artists"
+  </source>
+  <dest>
+    *: "歌曲艺人"
+  </dest>
+  <voice>
+    *: "歌曲艺人"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESET_WARN
+  desc: Y1 Wheel Y1: confirm resetting the Bluetooth stack
+  user: core
+  <source>
+    *: "Forget all devices and restart Bluetooth?"
+  </source>
+  <dest>
+    *: "忽略所有设备并重启蓝牙？"
+  </dest>
+  <voice>
+    *: "忽略所有设备并重启蓝牙？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_WIFI_HINT
+  desc: Y1 Wheel Last.fm: Wi-Fi turns on by itself to send
+  user: core
+  <source>
+    *: "Wi-Fi switches on briefly to send (wifi.cfg)"
+  </source>
+  <dest>
+    *: "Wi-Fi 将短暂开启以发送（wifi.cfg）"
+  </dest>
+  <voice>
+    *: "Wi-Fi 将短暂开启以发送（wifi.cfg）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_DOUBLE_WARN
+  desc: Y1 Wheel Last.fm: warning when the plugin also uploads the same log
+  user: core
+  <source>
+    *: "The Last.fm Scrobbler plugin can also upload .scrobbler.log: use one or the other"
+  </source>
+  <dest>
+    *: "Last.fm Scrobbler 插件也能上传 .scrobbler.log：二者只用其一"
+  </dest>
+  <voice>
+    *: "Last.fm Scrobbler 插件也能上传 .scrobbler.log：二者只用其一"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BLUETOOTH
+  desc: Y1 Wheel Bluetooth screen title and power row
+  user: core
+  <source>
+    *: "Bluetooth"
+  </source>
+  <dest>
+    *: "蓝牙"
+  </dest>
+  <voice>
+    *: "蓝牙"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO
+  desc: Y1 Wheel typography settings screen
+  user: core
+  <source>
+    *: "Typography & Fonts"
+  </source>
+  <dest>
+    *: "字体与排版"
+  </dest>
+  <voice>
+    *: "字体与排版"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_THEME
+  desc: Y1 Wheel typography: current font theme
+  user: core
+  <source>
+    *: "Font theme"
+  </source>
+  <dest>
+    *: "字体风格"
+  </dest>
+  <voice>
+    *: "字体风格"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_GALLERY
+  desc: Y1 Wheel typography: gallery title
+  user: core
+  <source>
+    *: "Font themes"
+  </source>
+  <dest>
+    *: "字体风格"
+  </dest>
+  <voice>
+    *: "字体风格"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOMIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Customize"
+  </source>
+  <dest>
+    *: "自定义"
+  </dest>
+  <voice>
+    *: "自定义"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Preview"
+  </source>
+  <dest>
+    *: "预览"
+  </dest>
+  <voice>
+    *: "预览"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profiles"
+  </source>
+  <dest>
+    *: "配置"
+  </dest>
+  <voice>
+    *: "配置"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FONTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font management"
+  </source>
+  <dest>
+    *: "字体管理"
+  </dest>
+  <voice>
+    *: "字体管理"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Restore defaults"
+  </source>
+  <dest>
+    *: "恢复默认字体"
+  </dest>
+  <voice>
+    *: "恢复默认字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Back to the standard fonts?"
+  </source>
+  <dest>
+    *: "恢复为标准字体？"
+  </dest>
+  <voice>
+    *: "恢复为标准字体？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREPARING
+  desc: Y1 Wheel typography: building fonts
+  user: core
+  <source>
+    *: "Preparing fonts…"
+  </source>
+  <dest>
+    *: "正在准备字体…"
+  </dest>
+  <voice>
+    *: "正在准备字体…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAILED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Could not prepare the fonts"
+  </source>
+  <dest>
+    *: "无法准备字体"
+  </dest>
+  <voice>
+    *: "无法准备字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISPLAY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Titles"
+  </source>
+  <dest>
+    *: "标题"
+  </dest>
+  <voice>
+    *: "标题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PRIMARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Lists"
+  </source>
+  <dest>
+    *: "列表"
+  </dest>
+  <voice>
+    *: "列表"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SECONDARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Artist & album"
+  </source>
+  <dest>
+    *: "艺人与专辑"
+  </dest>
+  <voice>
+    *: "艺人与专辑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_META
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Details"
+  </source>
+  <dest>
+    *: "详细信息"
+  </dest>
+  <voice>
+    *: "详细信息"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERIC
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Numbers"
+  </source>
+  <dest>
+    *: "数字"
+  </dest>
+  <voice>
+    *: "数字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAMILY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font"
+  </source>
+  <dest>
+    *: "字体"
+  </dest>
+  <voice>
+    *: "字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weight"
+  </source>
+  <dest>
+    *: "字重"
+  </dest>
+  <voice>
+    *: "字重"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Size"
+  </source>
+  <dest>
+    *: "大小"
+  </dest>
+  <voice>
+    *: "大小"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SPACING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Letter spacing"
+  </source>
+  <dest>
+    *: "字距"
+  </dest>
+  <voice>
+    *: "字距"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPACT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compact"
+  </source>
+  <dest>
+    *: "紧凑"
+  </dest>
+  <voice>
+    *: "紧凑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NORMAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Normal"
+  </source>
+  <dest>
+    *: "标准"
+  </dest>
+  <voice>
+    *: "标准"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WIDE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Wide"
+  </source>
+  <dest>
+    *: "宽松"
+  </dest>
+  <voice>
+    *: "宽松"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Line spacing"
+  </source>
+  <dest>
+    *: "行距"
+  </dest>
+  <voice>
+    *: "行距"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RELAXED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Relaxed"
+  </source>
+  <dest>
+    *: "舒展"
+  </dest>
+  <voice>
+    *: "舒展"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERALS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Numerals"
+  </source>
+  <dest>
+    *: "数字样式"
+  </dest>
+  <voice>
+    *: "数字样式"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_TABULAR
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Tabular"
+  </source>
+  <dest>
+    *: "等宽"
+  </dest>
+  <voice>
+    *: "等宽"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROPORTIONAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Proportional"
+  </source>
+  <dest>
+    *: "比例"
+  </dest>
+  <voice>
+    *: "比例"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENDER
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rendering"
+  </source>
+  <dest>
+    *: "渲染"
+  </dest>
+  <voice>
+    *: "渲染"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SMOOTH
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Smooth"
+  </source>
+  <dest>
+    *: "平滑"
+  </dest>
+  <voice>
+    *: "平滑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SHARP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Sharp"
+  </source>
+  <dest>
+    *: "清晰"
+  </dest>
+  <voice>
+    *: "清晰"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PIXEL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Pixel"
+  </source>
+  <dest>
+    *: "像素"
+  </dest>
+  <voice>
+    *: "像素"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SCREENS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Per-screen sizes"
+  </source>
+  <dest>
+    *: "各屏幕大小"
+  </dest>
+  <voice>
+    *: "各屏幕大小"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MENUS_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Menu titles"
+  </source>
+  <dest>
+    *: "菜单标题"
+  </dest>
+  <voice>
+    *: "菜单标题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NP_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Now Playing title"
+  </source>
+  <dest>
+    *: "正在播放标题"
+  </dest>
+  <voice>
+    *: "正在播放标题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LYRICS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "歌词"
+  </dest>
+  <voice>
+    *: "歌词"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AUTO
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Auto"
+  </source>
+  <dest>
+    *: "自动"
+  </dest>
+  <voice>
+    *: "自动"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_UI_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Use in other themes"
+  </source>
+  <dest>
+    *: "用于其他主题"
+  </dest>
+  <voice>
+    *: "用于其他主题"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fill missing characters"
+  </source>
+  <dest>
+    *: "补全缺失字符"
+  </dest>
+  <voice>
+    *: "补全缺失字符"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_APPLY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Apply"
+  </source>
+  <dest>
+    *: "应用"
+  </dest>
+  <voice>
+    *: "应用"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVE_AS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Save as profile…"
+  </source>
+  <dest>
+    *: "另存为配置…"
+  </dest>
+  <voice>
+    *: "另存为配置…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Name"
+  </source>
+  <dest>
+    *: "名称"
+  </dest>
+  <voice>
+    *: "名称"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NEW_PROFILE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "New profile from current"
+  </source>
+  <dest>
+    *: "以当前设置新建配置"
+  </dest>
+  <voice>
+    *: "以当前设置新建配置"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rename"
+  </source>
+  <dest>
+    *: "重命名"
+  </dest>
+  <voice>
+    *: "重命名"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "删除"
+  </dest>
+  <voice>
+    *: "删除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete this profile?"
+  </source>
+  <dest>
+    *: "删除此配置？"
+  </dest>
+  <voice>
+    *: "删除此配置？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profile saved"
+  </source>
+  <dest>
+    *: "配置已保存"
+  </dest>
+  <voice>
+    *: "配置已保存"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No saved profiles yet"
+  </source>
+  <dest>
+    *: "还没有保存的配置"
+  </dest>
+  <voice>
+    *: "还没有保存的配置"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_KEEP_EDITING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Keep editing"
+  </source>
+  <dest>
+    *: "继续编辑"
+  </dest>
+  <voice>
+    *: "继续编辑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESET
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Reset changes"
+  </source>
+  <dest>
+    *: "撤销更改"
+  </dest>
+  <voice>
+    *: "撤销更改"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_INSTALLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Installed fonts"
+  </source>
+  <dest>
+    *: "已安装字体"
+  </dest>
+  <voice>
+    *: "已安装字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Import fonts"
+  </source>
+  <dest>
+    *: "导入字体"
+  </dest>
+  <voice>
+    *: "导入字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Or copy .ttf/.otf/.fnt to .rockbox/fonts/import"
+  </source>
+  <dest>
+    *: "或将 .ttf/.otf/.fnt 复制到 .rockbox/fonts/import"
+  </dest>
+  <voice>
+    *: "或将 .ttf/.otf/.fnt 复制到 .rockbox/fonts/import"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_NONE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No fonts in Download or Fonts"
+  </source>
+  <dest>
+    *: "Download 或 Fonts 中没有字体"
+  </dest>
+  <voice>
+    *: "Download 或 Fonts 中没有字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font imported"
+  </source>
+  <dest>
+    *: "字体已导入"
+  </dest>
+  <voice>
+    *: "字体已导入"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESCAN
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rescan fonts"
+  </source>
+  <dest>
+    *: "重新扫描字体"
+  </dest>
+  <voice>
+    *: "重新扫描字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MEMORY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fonts in memory"
+  </source>
+  <dest>
+    *: "内存中的字体"
+  </dest>
+  <voice>
+    *: "内存中的字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font cache"
+  </source>
+  <dest>
+    *: "字体缓存"
+  </dest>
+  <voice>
+    *: "字体缓存"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CLEAR_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Remove unused cached fonts?"
+  </source>
+  <dest>
+    *: "删除未使用的缓存字体？"
+  </dest>
+  <voice>
+    *: "删除未使用的缓存字体？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fallback font"
+  </source>
+  <dest>
+    *: "后备字体"
+  </dest>
+  <voice>
+    *: "后备字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compatibility"
+  </source>
+  <dest>
+    *: "兼容性"
+  </dest>
+  <voice>
+    *: "兼容性"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SOURCE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Source"
+  </source>
+  <dest>
+    *: "来源"
+  </dest>
+  <voice>
+    *: "来源"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BUNDLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included (SIL OFL)"
+  </source>
+  <dest>
+    *: "内置（SIL OFL）"
+  </dest>
+  <voice>
+    *: "内置（SIL OFL）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BITMAP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included bitmap (X11)"
+  </source>
+  <dest>
+    *: "内置点阵（X11）"
+  </dest>
+  <voice>
+    *: "内置点阵（X11）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED_SRC
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Imported by you"
+  </source>
+  <dest>
+    *: "由你导入"
+  </dest>
+  <voice>
+    *: "由你导入"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weights"
+  </source>
+  <dest>
+    *: "字重"
+  </dest>
+  <voice>
+    *: "字重"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COVERAGE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Characters"
+  </source>
+  <dest>
+    *: "字符"
+  </dest>
+  <voice>
+    *: "字符"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_VARIABLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Variable fonts: default style only"
+  </source>
+  <dest>
+    *: "可变字体：仅默认样式"
+  </dest>
+  <voice>
+    *: "可变字体：仅默认样式"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "On disk"
+  </source>
+  <dest>
+    *: "磁盘占用"
+  </dest>
+  <voice>
+    *: "磁盘占用"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_1
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rockbox draws bitmap fonts only"
+  </source>
+  <dest>
+    *: "Rockbox 只能显示点阵字体"
+  </dest>
+  <voice>
+    *: "Rockbox 只能显示点阵字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_2
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "TTF/OTF are converted on the player"
+  </source>
+  <dest>
+    *: "TTF/OTF 在播放器上转换"
+  </dest>
+  <voice>
+    *: "TTF/OTF 在播放器上转换"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_4
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No kerning or ligatures"
+  </source>
+  <dest>
+    *: "不支持字距调整和连字"
+  </dest>
+  <voice>
+    *: "不支持字距调整和连字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_5
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Arabic, Hebrew, Indic: not shaped"
+  </source>
+  <dest>
+    *: "阿拉伯文、希伯来文、印度文字：不支持字形处理"
+  </dest>
+  <voice>
+    *: "阿拉伯文、希伯来文、印度文字：不支持字形处理"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_6
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Missing characters: Inter, Noto Sans CJK"
+  </source>
+  <dest>
+    *: "缺失字符：Inter、Noto Sans CJK"
+  </dest>
+  <voice>
+    *: "缺失字符：Inter、Noto Sans CJK"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_7
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Other themes keep their own fonts"
+  </source>
+  <dest>
+    *: "其他主题保留各自的字体"
+  </dest>
+  <voice>
+    *: "其他主题保留各自的字体"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "OK: options · Back: return"
+  </source>
+  <dest>
+    *: "OK：选项 · 返回：退出"
+  </dest>
+  <voice>
+    *: "OK：选项 · 返回：退出"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CANCEL
+  desc: Y1 Wheel typography: leave without applying
+  user: core
+  <source>
+    *: "Cancel"
+  </source>
+  <dest>
+    *: "取消"
+  </dest>
+  <voice>
+    *: "取消"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMFORT
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Comfortable"
+  </source>
+  <dest>
+    *: "舒适"
+  </dest>
+  <voice>
+    *: "舒适"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AIRY
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Airy"
+  </source>
+  <dest>
+    *: "宽敞"
+  </dest>
+  <voice>
+    *: "宽敞"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOM
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Custom"
+  </source>
+  <dest>
+    *: "自定义"
+  </dest>
+  <voice>
+    *: "自定义"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_STYLE
+  desc: Y1 Wheel typography line spacing style row
+  user: core
+  <source>
+    *: "Style"
+  </source>
+  <dest>
+    *: "样式"
+  </dest>
+  <voice>
+    *: "样式"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_MENUS
+  desc: Y1 Wheel typography: menu row height
+  user: core
+  <source>
+    *: "Menus (row height)"
+  </source>
+  <dest>
+    *: "菜单（行高）"
+  </dest>
+  <voice>
+    *: "菜单（行高）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_NP
+  desc: Y1 Wheel typography: Now Playing text spacing
+  user: core
+  <source>
+    *: "Now Playing text"
+  </source>
+  <dest>
+    *: "正在播放的文字"
+  </dest>
+  <voice>
+    *: "正在播放的文字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_LISTS
+  desc: Y1 Wheel typography: two-line list spacing
+  user: core
+  <source>
+    *: "Two-line lists"
+  </source>
+  <dest>
+    *: "双行列表"
+  </dest>
+  <voice>
+    *: "双行列表"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CJK_READY
+  desc: Y1 Wheel typography: CJK fonts installed
+  user: core
+  <source>
+    *: "Ready"
+  </source>
+  <dest>
+    *: "就绪"
+  </dest>
+  <voice>
+    *: "就绪"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LANG_MORE
+  desc: Y1 Wheel language picker: all languages
+  user: core
+  <source>
+    *: "More languages…"
+  </source>
+  <dest>
+    *: "更多语言…"
+  </dest>
+  <voice>
+    *: "更多语言…"
+  </voice>
+</phrase>

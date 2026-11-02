@@ -16527,3 +16527,4133 @@
     *: "~U S B"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_TAPTIC_ENGINE_MODE
+  desc: in keyclick settings menu
+  user: core
+  <source>
+    *: "Taptic Engine Mode"
+  </source>
+  <dest>
+    *: "Taptic Engine モード"
+  </dest>
+  <voice>
+    *: "Taptic Engine モード"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_VIBRATIONS
+  desc: wheel vibration settings 
+  user: core
+  <source>
+    *: "Wheel Vibration Intensity"
+  </source>
+  <dest>
+    *: "ホイールの振動の強さ"
+  </dest>
+  <voice>
+    *: "ホイールの振動の強さ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_RESTART_ROCKBOX
+  desc: Main menu item to restart Rockbox on Android
+  user: core
+  <source>
+    *: "Restart Rockbox"
+  </source>
+  <dest>
+    *: "Rockbox を再起動"
+  </dest>
+  <voice>
+    *: "Rockbox を再起動"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_UPDATE_ROCKBOX
+  desc: Main menu item to update the firmware on Android
+  user: core
+  <source>
+    *: "Firmware Update"
+  </source>
+  <dest>
+    *: "ファームウェア更新"
+  </dest>
+  <voice>
+    *: "ファームウェア更新"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SYSTEM_SETTINGS
+  desc: Menu item to launch system settings
+  user: core
+  <source>
+    *: "Android System Settings"
+  </source>
+  <dest>
+    *: "Android のシステム設定"
+  </dest>
+  <voice>
+    *: "Android のシステム設定"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_SETTINGS
+  desc: Bluetooth menu item
+  user: core
+  <source>
+    *: "Bluetooth Settings"
+  </source>
+  <dest>
+    *: "Bluetooth 設定"
+  </dest>
+  <voice>
+    *: "Bluetooth 設定"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_RESET
+  desc: Reset Bluetooth menu item
+  user: core
+  <source>
+    *: "Reset Bluetooth Devices"
+  </source>
+  <dest>
+    *: "Bluetooth デバイスをリセット"
+  </dest>
+  <voice>
+    *: "Bluetooth デバイスをリセット"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SWITCH_FIRMWARE
+  desc: Switch to Stock item
+  user: core
+  <source>
+    *: "Switch to Stock Firmware"
+  </source>
+  <dest>
+    *: "純正ファームウェアに切り替え"
+  </dest>
+  <voice>
+    *: "純正ファームウェアに切り替え"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MUSIC
+  desc: Main menu: music library
+  user: core
+  <source>
+    *: "Music"
+  </source>
+  <dest>
+    *: "ミュージック"
+  </dest>
+  <voice>
+    *: "ミュージック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW
+  desc: Main menu: album art browser
+  user: core
+  <source>
+    *: "Cover Flow"
+  </source>
+  <dest>
+    *: "Cover Flow"
+  </dest>
+  <voice>
+    *: "Cover Flow"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE_SONGS
+  desc: Main menu: play every song shuffled
+  user: core
+  <source>
+    *: "Shuffle Songs"
+  </source>
+  <dest>
+    *: "曲をシャッフル"
+  </dest>
+  <voice>
+    *: "曲をシャッフル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EXTRAS
+  desc: Main menu: files, plugins and tools
+  user: core
+  <source>
+    *: "Extras"
+  </source>
+  <dest>
+    *: "その他"
+  </dest>
+  <voice>
+    *: "その他"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW_MISSING
+  desc: Splash: pictureflow plugin missing
+  user: core
+  <source>
+    *: "Cover Flow plugin not installed"
+  </source>
+  <dest>
+    *: "Cover Flow プラグインがありません"
+  </dest>
+  <voice>
+    *: "Cover Flow プラグインがありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_SONGS
+  desc: Splash: no audio files found for shuffle
+  user: core
+  <source>
+    *: "No songs found in the Music folder"
+  </source>
+  <dest>
+    *: "Music フォルダに曲がありません"
+  </dest>
+  <voice>
+    *: "Music フォルダに曲がありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connected"
+  </source>
+  <dest>
+    *: "接続済み"
+  </dest>
+  <voice>
+    *: "接続済み"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTING
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connecting…"
+  </source>
+  <dest>
+    *: "接続中…"
+  </dest>
+  <voice>
+    *: "接続中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAIRING
+  desc: Bluetooth device state / splash
+  user: core
+  <source>
+    *: "Pairing…"
+  </source>
+  <dest>
+    *: "ペアリング中…"
+  </dest>
+  <voice>
+    *: "ペアリング中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NOT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Not Connected"
+  </source>
+  <dest>
+    *: "未接続"
+  </dest>
+  <voice>
+    *: "未接続"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH
+  desc: Bluetooth: start device discovery
+  user: core
+  <source>
+    *: "Search for Devices"
+  </source>
+  <dest>
+    *: "デバイスを検索"
+  </dest>
+  <voice>
+    *: "デバイスを検索"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCHING
+  desc: Bluetooth: discovery running
+  user: core
+  <source>
+    *: "Searching…"
+  </source>
+  <dest>
+    *: "検索中…"
+  </dest>
+  <voice>
+    *: "検索中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH_AGAIN
+  desc: Bluetooth: restart discovery
+  user: core
+  <source>
+    *: "Search Again"
+  </source>
+  <dest>
+    *: "もう一度検索"
+  </dest>
+  <voice>
+    *: "もう一度検索"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NONE_FOUND
+  desc: Bluetooth: discovery found nothing
+  user: core
+  <source>
+    *: "No devices found"
+  </source>
+  <dest>
+    *: "デバイスが見つかりません"
+  </dest>
+  <voice>
+    *: "デバイスが見つかりません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_AUTORECONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Auto-Reconnect"
+  </source>
+  <dest>
+    *: "自動再接続"
+  </dest>
+  <voice>
+    *: "自動再接続"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAUSE_ON_LOSS
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Pause When Disconnected"
+  </source>
+  <dest>
+    *: "切断時に一時停止"
+  </dest>
+  <voice>
+    *: "切断時に一時停止"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESUME_ON_CONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Resume When Reconnected"
+  </source>
+  <dest>
+    *: "再接続時に再開"
+  </dest>
+  <voice>
+    *: "再接続時に再開"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SYSTEM
+  desc: Bluetooth: open Android settings
+  user: core
+  <source>
+    *: "Advanced (Android)"
+  </source>
+  <dest>
+    *: "詳細（Android）"
+  </dest>
+  <voice>
+    *: "詳細（Android）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_OFF_HINT
+  desc: Bluetooth: radio is off
+  user: core
+  <source>
+    *: "Turn on Bluetooth to see devices"
+  </source>
+  <dest>
+    *: "Bluetooth をオンにするとデバイスが表示されます"
+  </dest>
+  <voice>
+    *: "Bluetooth をオンにするとデバイスが表示されます"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FAILED
+  desc: Bluetooth: operation failed
+  user: core
+  <source>
+    *: "Couldn't connect"
+  </source>
+  <dest>
+    *: "接続できませんでした"
+  </dest>
+  <voice>
+    *: "接続できませんでした"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Connect"
+  </source>
+  <dest>
+    *: "接続"
+  </dest>
+  <voice>
+    *: "接続"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_DISCONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Disconnect"
+  </source>
+  <dest>
+    *: "切断"
+  </dest>
+  <voice>
+    *: "切断"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FORGET
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Forget This Device"
+  </source>
+  <dest>
+    *: "このデバイスを削除"
+  </dest>
+  <voice>
+    *: "このデバイスを削除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURNING_ON
+  desc: Bluetooth: radio starting
+  user: core
+  <source>
+    *: "Turning on Bluetooth…"
+  </source>
+  <dest>
+    *: "Bluetooth をオンにしています…"
+  </dest>
+  <voice>
+    *: "Bluetooth をオンにしています…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_UNAVAILABLE
+  desc: Bluetooth: no radio on this player
+  user: core
+  <source>
+    *: "Bluetooth is not available on this player"
+  </source>
+  <dest>
+    *: "このプレーヤーでは Bluetooth を使えません"
+  </dest>
+  <voice>
+    *: "このプレーヤーでは Bluetooth を使えません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SCROBBLING
+  desc: Last.fm: enable
+  user: core
+  <source>
+    *: "Scrobbling"
+  </source>
+  <dest>
+    *: "Scrobble"
+  </dest>
+  <voice>
+    *: "Scrobble"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ACCOUNT
+  desc: Last.fm: account row
+  user: core
+  <source>
+    *: "Account"
+  </source>
+  <dest>
+    *: "アカウント"
+  </dest>
+  <voice>
+    *: "アカウント"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOT_SIGNED_IN
+  desc: Last.fm: no session
+  user: core
+  <source>
+    *: "Not signed in"
+  </source>
+  <dest>
+    *: "未ログイン"
+  </dest>
+  <voice>
+    *: "未ログイン"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_PENDING
+  desc: Last.fm: queue size
+  user: core
+  <source>
+    *: "Waiting to Send"
+  </source>
+  <dest>
+    *: "送信待ち"
+  </dest>
+  <voice>
+    *: "送信待ち"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SENT
+  desc: Last.fm: accepted scrobbles
+  user: core
+  <source>
+    *: "Scrobbled"
+  </source>
+  <dest>
+    *: "Scrobble 済み"
+  </dest>
+  <voice>
+    *: "Scrobble 済み"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LAST_SYNC
+  desc: Last.fm: last successful submit
+  user: core
+  <source>
+    *: "Last Sync"
+  </source>
+  <dest>
+    *: "最終同期"
+  </dest>
+  <voice>
+    *: "最終同期"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ERROR
+  desc: Last.fm: last error
+  user: core
+  <source>
+    *: "Error"
+  </source>
+  <dest>
+    *: "エラー"
+  </dest>
+  <voice>
+    *: "エラー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NEVER
+  desc: Last.fm: never synced
+  user: core
+  <source>
+    *: "Never"
+  </source>
+  <dest>
+    *: "なし"
+  </dest>
+  <voice>
+    *: "なし"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_JUST_NOW
+  desc: Last.fm: synced < 1 min ago
+  user: core
+  <source>
+    *: "Just now"
+  </source>
+  <dest>
+    *: "たった今"
+  </dest>
+  <voice>
+    *: "たった今"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE_SUFFIX
+  desc: Last.fm: appended when no network
+  user: core
+  <source>
+    *: " (offline)"
+  </source>
+  <dest>
+    *: "（オフライン）"
+  </dest>
+  <voice>
+    *: "（オフライン）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SEND_NOW
+  desc: Last.fm: flush queue
+  user: core
+  <source>
+    *: "Send Scrobbles Now"
+  </source>
+  <dest>
+    *: "今すぐ Scrobble を送信"
+  </dest>
+  <voice>
+    *: "今すぐ Scrobble を送信"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOWPLAYING
+  desc: Last.fm: now playing updates
+  user: core
+  <source>
+    *: "Now Playing Updates"
+  </source>
+  <dest>
+    *: "再生中の曲を送信"
+  </dest>
+  <voice>
+    *: "再生中の曲を送信"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LOG
+  desc: Last.fm: offline .scrobbler.log
+  user: core
+  <source>
+    *: "Offline Log File"
+  </source>
+  <dest>
+    *: "オフラインログ"
+  </dest>
+  <voice>
+    *: "オフラインログ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SIGN_OUT
+  desc: Last.fm: confirm sign out
+  user: core
+  <source>
+    *: "Sign out of Last.fm?"
+  </source>
+  <dest>
+    *: "Last.fm からログアウトしますか？"
+  </dest>
+  <voice>
+    *: "Last.fm からログアウトしますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SETUP_HINT
+  desc: Last.fm: how to sign in
+  user: core
+  <source>
+    *: "Copy lastfm.cfg into the .rockbox folder"
+  </source>
+  <dest>
+    *: "lastfm.cfg を .rockbox フォルダにコピーしてください"
+  </dest>
+  <voice>
+    *: "lastfm.cfg を .rockbox フォルダにコピーしてください"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE
+  desc: Last.fm: no network
+  user: core
+  <source>
+    *: "No connection. Scrobbles are kept safe."
+  </source>
+  <dest>
+    *: "接続がありません。Scrobble は保存されています。"
+  </dest>
+  <voice>
+    *: "接続がありません。Scrobble は保存されています。"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_UNAVAILABLE
+  desc: Last.fm: not supported on this platform
+  user: core
+  <source>
+    *: "Not available on this player"
+  </source>
+  <dest>
+    *: "このプレーヤーでは使えません"
+  </dest>
+  <voice>
+    *: "このプレーヤーでは使えません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_READY
+  desc: DB scan finished, restart needed
+  user: core
+  <source>
+    *: "Your music library is ready"
+  </source>
+  <dest>
+    *: "ライブラリの準備ができました"
+  </dest>
+  <voice>
+    *: "ライブラリの準備ができました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RESTART_NOW
+  desc: Ask to restart Rockbox now
+  user: core
+  <source>
+    *: "Restart Rockbox now to finish?"
+  </source>
+  <dest>
+    *: "完了するため Rockbox を再起動しますか？"
+  </dest>
+  <voice>
+    *: "完了するため Rockbox を再起動しますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BATTERY_PERCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Battery Percentage"
+  </source>
+  <dest>
+    *: "バッテリー残量を％で表示"
+  </dest>
+  <voice>
+    *: "バッテリー残量を％で表示"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_APPEARANCE
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Appearance"
+  </source>
+  <dest>
+    *: "外観"
+  </dest>
+  <voice>
+    *: "外観"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIGHT
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Light"
+  </source>
+  <dest>
+    *: "ライト"
+  </dest>
+  <voice>
+    *: "ライト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DARK
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Dark"
+  </source>
+  <dest>
+    *: "ダーク"
+  </dest>
+  <voice>
+    *: "ダーク"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Accent Colour"
+  </source>
+  <dest>
+    *: "アクセントカラー"
+  </dest>
+  <voice>
+    *: "アクセントカラー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_BLUE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Blue"
+  </source>
+  <dest>
+    *: "ブルー"
+  </dest>
+  <voice>
+    *: "ブルー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PINK
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Pink"
+  </source>
+  <dest>
+    *: "ピンク"
+  </dest>
+  <voice>
+    *: "ピンク"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PURPLE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Purple"
+  </source>
+  <dest>
+    *: "パープル"
+  </dest>
+  <voice>
+    *: "パープル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GREEN
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Green"
+  </source>
+  <dest>
+    *: "グリーン"
+  </dest>
+  <voice>
+    *: "グリーン"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_ORANGE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Orange"
+  </source>
+  <dest>
+    *: "オレンジ"
+  </dest>
+  <voice>
+    *: "オレンジ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_RED
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Red"
+  </source>
+  <dest>
+    *: "レッド"
+  </dest>
+  <voice>
+    *: "レッド"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GRAPHITE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Graphite"
+  </source>
+  <dest>
+    *: "グラファイト"
+  </dest>
+  <voice>
+    *: "グラファイト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LETTER_JUMP
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Letter Jump"
+  </source>
+  <dest>
+    *: "頭文字ジャンプ"
+  </dest>
+  <voice>
+    *: "頭文字ジャンプ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICKER
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Clicker"
+  </source>
+  <dest>
+    *: "ホイールのクリック音"
+  </dest>
+  <voice>
+    *: "ホイールのクリック音"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_HINT
+  desc: Y1 Wheel keyboard title when empty
+  user: core
+  <source>
+    *: "Type with the wheel"
+  </source>
+  <dest>
+    *: "ホイールで入力"
+  </dest>
+  <voice>
+    *: "ホイールで入力"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DONE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Done"
+  </source>
+  <dest>
+    *: "完了"
+  </dest>
+  <voice>
+    *: "完了"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DELETE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "削除"
+  </dest>
+  <voice>
+    *: "削除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_SPACE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Space"
+  </source>
+  <dest>
+    *: "スペース"
+  </dest>
+  <voice>
+    *: "スペース"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_CASE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Letters"
+  </source>
+  <dest>
+    *: "文字"
+  </dest>
+  <voice>
+    *: "文字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP1
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Scan with your phone"
+  </source>
+  <dest>
+    *: "スマホで読み取る"
+  </dest>
+  <voice>
+    *: "スマホで読み取る"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP2
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Allow access"
+  </source>
+  <dest>
+    *: "アクセスを許可"
+  </dest>
+  <voice>
+    *: "アクセスを許可"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP3
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Wait here a moment"
+  </source>
+  <dest>
+    *: "ここで少し待つ"
+  </dest>
+  <voice>
+    *: "ここで少し待つ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_NEEDS
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Needs internet (Wi-Fi if your ROM has it, or Bluetooth > your phone > Use Phone's Internet) and a Last.fm API key"
+  </source>
+  <dest>
+    *: "インターネット（Wi-Fi、または Bluetooth でスマホの回線）と Last.fm の API キーが必要です"
+  </dest>
+  <voice>
+    *: "インターネット（Wi-Fi、または Bluetooth でスマホの回線）と Last.fm の API キーが必要です"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_SCANNING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Building your library…"
+  </source>
+  <dest>
+    *: "ライブラリを作成中…"
+  </dest>
+  <voice>
+    *: "ライブラリを作成中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_FINISHING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Finishing your library…"
+  </source>
+  <dest>
+    *: "ライブラリを仕上げ中…"
+  </dest>
+  <voice>
+    *: "ライブラリを仕上げ中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ALBUM
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Album"
+  </source>
+  <dest>
+    *: "アルバムへ"
+  </dest>
+  <voice>
+    *: "アルバムへ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ARTIST
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Artist"
+  </source>
+  <dest>
+    *: "アーティストへ"
+  </dest>
+  <voice>
+    *: "アーティストへ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_UP_NEXT
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Up Next"
+  </source>
+  <dest>
+    *: "次に再生"
+  </dest>
+  <voice>
+    *: "次に再生"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVE
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Love on Last.fm"
+  </source>
+  <dest>
+    *: "Last.fm で Love"
+  </dest>
+  <voice>
+    *: "Last.fm で Love"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVED
+  desc: Y1 Wheel splash
+  user: core
+  <source>
+    *: "Loved"
+  </source>
+  <dest>
+    *: "Love しました"
+  </dest>
+  <voice>
+    *: "Love しました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_NEXT
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Next"
+  </source>
+  <dest>
+    *: "次に再生する"
+  </dest>
+  <voice>
+    *: "次に再生する"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_LATER
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Later"
+  </source>
+  <dest>
+    *: "後で再生"
+  </dest>
+  <voice>
+    *: "後で再生"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_OF
+  desc: Y1 Wheel '3 of 12' in Now Playing
+  user: core
+  <source>
+    *: "of"
+  </source>
+  <dest>
+    *: "/"
+  </dest>
+  <voice>
+    *: "/"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SCRUBBING
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Scrubbing"
+  </source>
+  <dest>
+    *: "早送り・巻き戻し"
+  </dest>
+  <voice>
+    *: "早送り・巻き戻し"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "歌詞"
+  </dest>
+  <voice>
+    *: "歌詞"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "No lyrics for this song"
+  </source>
+  <dest>
+    *: "この曲の歌詞はありません"
+  </dest>
+  <voice>
+    *: "この曲の歌詞はありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS_SEARCHING
+  desc: Y1 Wheel lyrics
+  user: core
+  <source>
+    *: "Looking for lyrics…"
+  </source>
+  <dest>
+    *: "歌詞を探しています…"
+  </dest>
+  <voice>
+    *: "歌詞を探しています…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_NEXT
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Playing next"
+  </source>
+  <dest>
+    *: "次に再生します"
+  </dest>
+  <voice>
+    *: "次に再生します"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Added to Up Next"
+  </source>
+  <dest>
+    *: "「次に再生」に追加しました"
+  </dest>
+  <voice>
+    *: "「次に再生」に追加しました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ANY
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Any"
+  </source>
+  <dest>
+    *: "指定なし"
+  </dest>
+  <voice>
+    *: "指定なし"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send via Bluetooth"
+  </source>
+  <dest>
+    *: "Bluetooth で送信"
+  </dest>
+  <voice>
+    *: "Bluetooth で送信"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ALL
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send whole list via Bluetooth"
+  </source>
+  <dest>
+    *: "リスト全体を Bluetooth で送信"
+  </dest>
+  <voice>
+    *: "リスト全体を Bluetooth で送信"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_1
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending… %d%%"
+  </source>
+  <dest>
+    *: "送信中… %d%%"
+  </dest>
+  <voice>
+    *: "送信中… %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_N
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending %d of %d · %d%%"
+  </source>
+  <dest>
+    *: "送信中 %d/%d · %d%%"
+  </dest>
+  <voice>
+    *: "送信中 %d/%d · %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ACCEPT
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Accept the file on the other device"
+  </source>
+  <dest>
+    *: "相手のデバイスでファイルを受け入れてください"
+  </dest>
+  <voice>
+    *: "相手のデバイスでファイルを受け入れてください"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_DONE
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sent"
+  </source>
+  <dest>
+    *: "送信しました"
+  </dest>
+  <voice>
+    *: "送信しました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_FAILED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Couldn't send. Is Bluetooth on and the device close?"
+  </source>
+  <dest>
+    *: "送信できませんでした。Bluetooth はオンで、相手は近くにありますか？"
+  </dest>
+  <voice>
+    *: "送信できませんでした。Bluetooth はオンで、相手は近くにありますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_NO_TARGETS
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Pair your phone or computer first (Bluetooth)"
+  </source>
+  <dest>
+    *: "先にスマホやパソコンをペアリングしてください（Bluetooth）"
+  </dest>
+  <voice>
+    *: "先にスマホやパソコンをペアリングしてください（Bluetooth）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_REJECTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "The other device declined"
+  </source>
+  <dest>
+    *: "相手のデバイスが拒否しました"
+  </dest>
+  <voice>
+    *: "相手のデバイスが拒否しました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_TO
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send to"
+  </source>
+  <dest>
+    *: "送信先"
+  </dest>
+  <voice>
+    *: "送信先"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_UNSUPPORTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "This player can't send files over Bluetooth"
+  </source>
+  <dest>
+    *: "このプレーヤーは Bluetooth でファイルを送れません"
+  </dest>
+  <voice>
+    *: "このプレーヤーは Bluetooth でファイルを送れません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURN_ON
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Turn on Bluetooth?"
+  </source>
+  <dest>
+    *: "Bluetooth をオンにしますか？"
+  </dest>
+  <voice>
+    *: "Bluetooth をオンにしますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CONTINUE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Continue Listening"
+  </source>
+  <dest>
+    *: "続けて聴く"
+  </dest>
+  <voice>
+    *: "続けて聴く"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CREATE_LIST
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Create List"
+  </source>
+  <dest>
+    *: "リストを作成"
+  </dest>
+  <voice>
+    *: "リストを作成"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DAILY_MIX
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Daily Mix"
+  </source>
+  <dest>
+    *: "デイリーミックス"
+  </dest>
+  <voice>
+    *: "デイリーミックス"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Decade"
+  </source>
+  <dest>
+    *: "年代"
+  </dest>
+  <voice>
+    *: "年代"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Decades"
+  </source>
+  <dest>
+    *: "年代別"
+  </dest>
+  <voice>
+    *: "年代別"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EQ_FINE_TUNE
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Fine Tune…"
+  </source>
+  <dest>
+    *: "微調整…"
+  </dest>
+  <voice>
+    *: "微調整…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_AMBIENT
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Ambient & Chill"
+  </source>
+  <dest>
+    *: "アンビエント＆チル"
+  </dest>
+  <voice>
+    *: "アンビエント＆チル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_CLASSICAL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Classical"
+  </source>
+  <dest>
+    *: "クラシック"
+  </dest>
+  <voice>
+    *: "クラシック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_DANCE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Dance"
+  </source>
+  <dest>
+    *: "ダンス"
+  </dest>
+  <voice>
+    *: "ダンス"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ELECTRONIC
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Electronic"
+  </source>
+  <dest>
+    *: "エレクトロニック"
+  </dest>
+  <voice>
+    *: "エレクトロニック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_FOLK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Folk & Acoustic"
+  </source>
+  <dest>
+    *: "フォーク＆アコースティック"
+  </dest>
+  <voice>
+    *: "フォーク＆アコースティック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HARD
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Metal & Punk"
+  </source>
+  <dest>
+    *: "メタル＆パンク"
+  </dest>
+  <voice>
+    *: "メタル＆パンク"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HIPHOP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Hip-Hop"
+  </source>
+  <dest>
+    *: "ヒップホップ"
+  </dest>
+  <voice>
+    *: "ヒップホップ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_INDIE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Indie & Alternative"
+  </source>
+  <dest>
+    *: "インディー＆オルタナティブ"
+  </dest>
+  <voice>
+    *: "インディー＆オルタナティブ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_JAZZ
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Jazz"
+  </source>
+  <dest>
+    *: "ジャズ"
+  </dest>
+  <voice>
+    *: "ジャズ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_LATIN
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Latin"
+  </source>
+  <dest>
+    *: "ラテン"
+  </dest>
+  <voice>
+    *: "ラテン"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_OTHER
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Other"
+  </source>
+  <dest>
+    *: "その他"
+  </dest>
+  <voice>
+    *: "その他"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_POP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Pop"
+  </source>
+  <dest>
+    *: "ポップ"
+  </dest>
+  <voice>
+    *: "ポップ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ROCK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Rock"
+  </source>
+  <dest>
+    *: "ロック"
+  </dest>
+  <voice>
+    *: "ロック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soul, R&B & Blues"
+  </source>
+  <dest>
+    *: "ソウル・R&B・ブルース"
+  </dest>
+  <voice>
+    *: "ソウル・R&B・ブルース"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUNDTRACK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soundtracks"
+  </source>
+  <dest>
+    *: "サウンドトラック"
+  </dest>
+  <voice>
+    *: "サウンドトラック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAVOURITES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Favourites"
+  </source>
+  <dest>
+    *: "お気に入り"
+  </dest>
+  <voice>
+    *: "お気に入り"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FORGOTTEN
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Forgotten Gems"
+  </source>
+  <dest>
+    *: "忘れかけの名曲"
+  </dest>
+  <voice>
+    *: "忘れかけの名曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FOR_YOU
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "For You"
+  </source>
+  <dest>
+    *: "あなたへのおすすめ"
+  </dest>
+  <voice>
+    *: "あなたへのおすすめ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GENRE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Genre"
+  </source>
+  <dest>
+    *: "ジャンル"
+  </dest>
+  <voice>
+    *: "ジャンル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LENGTH
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Length"
+  </source>
+  <dest>
+    *: "長さ"
+  </dest>
+  <voice>
+    *: "長さ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIST_EMPTY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Nothing here yet"
+  </source>
+  <dest>
+    *: "まだ何もありません"
+  </dest>
+  <voice>
+    *: "まだ何もありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LONG_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Long (6 min +)"
+  </source>
+  <dest>
+    *: "長い曲（6 分以上）"
+  </dest>
+  <voice>
+    *: "長い曲（6 分以上）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MAKING_MIX
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Making your mix…"
+  </source>
+  <dest>
+    *: "ミックスを作成中…"
+  </dest>
+  <voice>
+    *: "ミックスを作成中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MIXTAPE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Mixtape"
+  </source>
+  <dest>
+    *: "ミックステープ"
+  </dest>
+  <voice>
+    *: "ミックステープ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOODS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Moods"
+  </source>
+  <dest>
+    *: "ムード"
+  </dest>
+  <voice>
+    *: "ムード"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_CALM
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Calm"
+  </source>
+  <dest>
+    *: "おだやか"
+  </dest>
+  <voice>
+    *: "おだやか"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_ENERGY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Energy"
+  </source>
+  <dest>
+    *: "エナジー"
+  </dest>
+  <voice>
+    *: "エナジー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_FOCUS
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Focus"
+  </source>
+  <dest>
+    *: "集中"
+  </dest>
+  <voice>
+    *: "集中"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_MELANCHOLY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Melancholy"
+  </source>
+  <dest>
+    *: "メランコリー"
+  </dest>
+  <voice>
+    *: "メランコリー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_PARTY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Party"
+  </source>
+  <dest>
+    *: "パーティー"
+  </dest>
+  <voice>
+    *: "パーティー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_DOWN
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Down"
+  </source>
+  <dest>
+    *: "下へ移動"
+  </dest>
+  <voice>
+    *: "下へ移動"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_UP
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Up"
+  </source>
+  <dest>
+    *: "上へ移動"
+  </dest>
+  <voice>
+    *: "上へ移動"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEED_LIBRARY
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Your library is still being prepared"
+  </source>
+  <dest>
+    *: "ライブラリを準備しています"
+  </dest>
+  <voice>
+    *: "ライブラリを準備しています"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEVER_PLAYED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Never Played"
+  </source>
+  <dest>
+    *: "未再生"
+  </dest>
+  <voice>
+    *: "未再生"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOTHING_PLAYING
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Nothing is playing"
+  </source>
+  <dest>
+    *: "再生中の曲はありません"
+  </dest>
+  <voice>
+    *: "再生中の曲はありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOW_PLAYING
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Now Playing"
+  </source>
+  <dest>
+    *: "再生中"
+  </dest>
+  <voice>
+    *: "再生中"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_PLAYLISTS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "No playlists yet. Save one from any mix."
+  </source>
+  <dest>
+    *: "プレイリストはまだありません。ミックスから保存できます。"
+  </dest>
+  <voice>
+    *: "プレイリストはまだありません。ミックスから保存できます。"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PICKS_TODAY
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picked for today"
+  </source>
+  <dest>
+    *: "今日のおすすめ"
+  </dest>
+  <voice>
+    *: "今日のおすすめ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Play"
+  </source>
+  <dest>
+    *: "再生"
+  </dest>
+  <voice>
+    *: "再生"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAYLIST_SAVED
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Saved to Playlists"
+  </source>
+  <dest>
+    *: "プレイリストに保存しました"
+  </dest>
+  <voice>
+    *: "プレイリストに保存しました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PREPARING_PICKS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picking songs for you…"
+  </source>
+  <dest>
+    *: "曲を選んでいます…"
+  </dest>
+  <voice>
+    *: "曲を選んでいます…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Queue"
+  </source>
+  <dest>
+    *: "キュー"
+  </dest>
+  <voice>
+    *: "キュー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENTLY_ADDED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Added"
+  </source>
+  <dest>
+    *: "最近追加した項目"
+  </dest>
+  <voice>
+    *: "最近追加した項目"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENT_ALBUMS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Played Albums"
+  </source>
+  <dest>
+    *: "最近再生したアルバム"
+  </dest>
+  <voice>
+    *: "最近再生したアルバム"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REMOVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Remove"
+  </source>
+  <dest>
+    *: "削除"
+  </dest>
+  <voice>
+    *: "削除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REPLACE_PLAYLIST
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Replace the playlist with that name?"
+  </source>
+  <dest>
+    *: "同じ名前のプレイリストを置き換えますか？"
+  </dest>
+  <voice>
+    *: "同じ名前のプレイリストを置き換えますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SAVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Save"
+  </source>
+  <dest>
+    *: "保存"
+  </dest>
+  <voice>
+    *: "保存"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHORT_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Short (under 3:30)"
+  </source>
+  <dest>
+    *: "短い曲（3:30 未満）"
+  </dest>
+  <voice>
+    *: "短い曲（3:30 未満）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Shuffle"
+  </source>
+  <dest>
+    *: "シャッフル"
+  </dest>
+  <voice>
+    *: "シャッフル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Similar Songs"
+  </source>
+  <dest>
+    *: "似ている曲"
+  </dest>
+  <voice>
+    *: "似ている曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR_TO
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Similar To"
+  </source>
+  <dest>
+    *: "似ている曲："
+  </dest>
+  <voice>
+    *: "似ている曲："
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_OFF
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Sleep timer off"
+  </source>
+  <dest>
+    *: "スリープタイマーをオフにしました"
+  </dest>
+  <voice>
+    *: "スリープタイマーをオフにしました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_SET
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Music stops in %d min"
+  </source>
+  <dest>
+    *: "%d 分後に音楽を停止します"
+  </dest>
+  <voice>
+    *: "%d 分後に音楽を停止します"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SMART_LIST
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Smart List"
+  </source>
+  <dest>
+    *: "スマートリスト"
+  </dest>
+  <voice>
+    *: "スマートリスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONG
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "song"
+  </source>
+  <dest>
+    *: "曲"
+  </dest>
+  <voice>
+    *: "曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONGS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "songs"
+  </source>
+  <dest>
+    *: "曲"
+  </dest>
+  <voice>
+    *: "曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SOUND
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Sound"
+  </source>
+  <dest>
+    *: "サウンド"
+  </dest>
+  <voice>
+    *: "サウンド"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WHICH_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Songs"
+  </source>
+  <dest>
+    *: "曲"
+  </dest>
+  <voice>
+    *: "曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Stats"
+  </source>
+  <dest>
+    *: "あなたの統計"
+  </dest>
+  <voice>
+    *: "あなたの統計"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ALLTIME
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "All Time"
+  </source>
+  <dest>
+    *: "全期間"
+  </dest>
+  <voice>
+    *: "全期間"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ARTISTS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "artists"
+  </source>
+  <dest>
+    *: "アーティスト"
+  </dest>
+  <voice>
+    *: "アーティスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_BY_MONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Month by Month"
+  </source>
+  <dest>
+    *: "月別"
+  </dest>
+  <voice>
+    *: "月別"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_EMPTY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Play some music and your stats will appear here"
+  </source>
+  <dest>
+    *: "音楽を聴くとここに統計が表示されます"
+  </dest>
+  <voice>
+    *: "音楽を聴くとここに統計が表示されます"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_HISTORY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Recently Played"
+  </source>
+  <dest>
+    *: "最近再生した曲"
+  </dest>
+  <voice>
+    *: "最近再生した曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_MINUTES
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Time Listened"
+  </source>
+  <dest>
+    *: "再生時間"
+  </dest>
+  <voice>
+    *: "再生時間"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PERIOD
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Period"
+  </source>
+  <dest>
+    *: "期間"
+  </dest>
+  <voice>
+    *: "期間"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Plays"
+  </source>
+  <dest>
+    *: "再生回数"
+  </dest>
+  <voice>
+    *: "再生回数"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "plays"
+  </source>
+  <dest>
+    *: "回再生"
+  </dest>
+  <voice>
+    *: "回再生"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_SUMMARY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Summary"
+  </source>
+  <dest>
+    *: "まとめ"
+  </dest>
+  <voice>
+    *: "まとめ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISMONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Month"
+  </source>
+  <dest>
+    *: "今月"
+  </dest>
+  <voice>
+    *: "今月"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISYEAR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Year"
+  </source>
+  <dest>
+    *: "今年"
+  </dest>
+  <voice>
+    *: "今年"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ALBUMS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Albums"
+  </source>
+  <dest>
+    *: "トップアルバム"
+  </dest>
+  <voice>
+    *: "トップアルバム"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ARTISTS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Artists"
+  </source>
+  <dest>
+    *: "トップアーティスト"
+  </dest>
+  <voice>
+    *: "トップアーティスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_SONGS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Songs"
+  </source>
+  <dest>
+    *: "トップソング"
+  </dest>
+  <voice>
+    *: "トップソング"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_ARTIST
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your artist"
+  </source>
+  <dest>
+    *: "あなたのアーティスト"
+  </dest>
+  <voice>
+    *: "あなたのアーティスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_HOUR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your favourite hour"
+  </source>
+  <dest>
+    *: "よく聴く時間帯"
+  </dest>
+  <voice>
+    *: "よく聴く時間帯"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_SONG
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your song"
+  </source>
+  <dest>
+    *: "あなたの曲"
+  </dest>
+  <voice>
+    *: "あなたの曲"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOU_LISTENED
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "You listened to"
+  </source>
+  <dest>
+    *: "聴いた時間"
+  </dest>
+  <voice>
+    *: "聴いた時間"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Theme"
+  </source>
+  <dest>
+    *: "テーマ"
+  </dest>
+  <voice>
+    *: "テーマ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALL
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Install Theme from .zip…"
+  </source>
+  <dest>
+    *: ".zip からテーマをインストール…"
+  </dest>
+  <voice>
+    *: ".zip からテーマをインストール…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_SCALE
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Scale 320x240 Themes"
+  </source>
+  <dest>
+    *: "320x240 テーマを拡大"
+  </dest>
+  <voice>
+    *: "320x240 テーマを拡大"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_KEEP
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Keep this theme?"
+  </source>
+  <dest>
+    *: "このテーマにしますか？"
+  </dest>
+  <voice>
+    *: "このテーマにしますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_BROKEN
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "This theme couldn't be loaded"
+  </source>
+  <dest>
+    *: "このテーマを読み込めませんでした"
+  </dest>
+  <voice>
+    *: "このテーマを読み込めませんでした"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLING
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installing…"
+  </source>
+  <dest>
+    *: "インストール中…"
+  </dest>
+  <voice>
+    *: "インストール中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NO_ZIPS
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Copy a theme .zip to the player (main folder, Download or Themes) first"
+  </source>
+  <dest>
+    *: "先にテーマの .zip をプレーヤーにコピーしてください（ルート、Download、Themes）"
+  </dest>
+  <voice>
+    *: "先にテーマの .zip をプレーヤーにコピーしてください（ルート、Download、Themes）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NOT_A_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "That .zip isn't a Rockbox theme"
+  </source>
+  <dest>
+    *: "この .zip は Rockbox のテーマではありません"
+  </dest>
+  <voice>
+    *: "この .zip は Rockbox のテーマではありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLED
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installed: %s"
+  </source>
+  <dest>
+    *: "インストールしました：%s"
+  </dest>
+  <voice>
+    *: "インストールしました：%s"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Use Phone's Internet"
+  </source>
+  <dest>
+    *: "スマホのインターネットを使う"
+  </dest>
+  <voice>
+    *: "スマホのインターネットを使う"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER_HINT
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Turn on Bluetooth tethering on the phone first"
+  </source>
+  <dest>
+    *: "先にスマホで Bluetooth テザリングをオンにしてください"
+  </dest>
+  <voice>
+    *: "先にスマホで Bluetooth テザリングをオンにしてください"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_INTERNET
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Internet"
+  </source>
+  <dest>
+    *: "インターネット"
+  </dest>
+  <voice>
+    *: "インターネット"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_GENRES
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Genres"
+  </source>
+  <dest>
+    *: "ジャンル"
+  </dest>
+  <voice>
+    *: "ジャンル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_COMPOSERS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Composers"
+  </source>
+  <dest>
+    *: "作曲者"
+  </dest>
+  <voice>
+    *: "作曲者"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_YEARS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Years"
+  </source>
+  <dest>
+    *: "年"
+  </dest>
+  <voice>
+    *: "年"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_MORE
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "More"
+  </source>
+  <dest>
+    *: "その他"
+  </dest>
+  <voice>
+    *: "その他"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_TRACK_ARTISTS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Track Artists"
+  </source>
+  <dest>
+    *: "曲のアーティスト"
+  </dest>
+  <voice>
+    *: "曲のアーティスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESET_WARN
+  desc: Y1 Wheel Y1: confirm resetting the Bluetooth stack
+  user: core
+  <source>
+    *: "Forget all devices and restart Bluetooth?"
+  </source>
+  <dest>
+    *: "すべてのデバイスを削除して Bluetooth を再起動しますか？"
+  </dest>
+  <voice>
+    *: "すべてのデバイスを削除して Bluetooth を再起動しますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_WIFI_HINT
+  desc: Y1 Wheel Last.fm: Wi-Fi turns on by itself to send
+  user: core
+  <source>
+    *: "Wi-Fi switches on briefly to send (wifi.cfg)"
+  </source>
+  <dest>
+    *: "送信のため Wi-Fi が一時的にオンになります（wifi.cfg）"
+  </dest>
+  <voice>
+    *: "送信のため Wi-Fi が一時的にオンになります（wifi.cfg）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_DOUBLE_WARN
+  desc: Y1 Wheel Last.fm: warning when the plugin also uploads the same log
+  user: core
+  <source>
+    *: "The Last.fm Scrobbler plugin can also upload .scrobbler.log: use one or the other"
+  </source>
+  <dest>
+    *: "Last.fm Scrobbler プラグインも .scrobbler.log を送れます。どちらか一方だけ使ってください"
+  </dest>
+  <voice>
+    *: "Last.fm Scrobbler プラグインも .scrobbler.log を送れます。どちらか一方だけ使ってください"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BLUETOOTH
+  desc: Y1 Wheel Bluetooth screen title and power row
+  user: core
+  <source>
+    *: "Bluetooth"
+  </source>
+  <dest>
+    *: "Bluetooth"
+  </dest>
+  <voice>
+    *: "Bluetooth"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO
+  desc: Y1 Wheel typography settings screen
+  user: core
+  <source>
+    *: "Typography & Fonts"
+  </source>
+  <dest>
+    *: "フォントと文字"
+  </dest>
+  <voice>
+    *: "フォントと文字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_THEME
+  desc: Y1 Wheel typography: current font theme
+  user: core
+  <source>
+    *: "Font theme"
+  </source>
+  <dest>
+    *: "フォントスタイル"
+  </dest>
+  <voice>
+    *: "フォントスタイル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_GALLERY
+  desc: Y1 Wheel typography: gallery title
+  user: core
+  <source>
+    *: "Font themes"
+  </source>
+  <dest>
+    *: "フォントスタイル"
+  </dest>
+  <voice>
+    *: "フォントスタイル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOMIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Customize"
+  </source>
+  <dest>
+    *: "カスタマイズ"
+  </dest>
+  <voice>
+    *: "カスタマイズ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Preview"
+  </source>
+  <dest>
+    *: "プレビュー"
+  </dest>
+  <voice>
+    *: "プレビュー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profiles"
+  </source>
+  <dest>
+    *: "プロファイル"
+  </dest>
+  <voice>
+    *: "プロファイル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FONTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font management"
+  </source>
+  <dest>
+    *: "フォント管理"
+  </dest>
+  <voice>
+    *: "フォント管理"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Restore defaults"
+  </source>
+  <dest>
+    *: "標準フォントに戻す"
+  </dest>
+  <voice>
+    *: "標準フォントに戻す"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Back to the standard fonts?"
+  </source>
+  <dest>
+    *: "標準フォントに戻しますか？"
+  </dest>
+  <voice>
+    *: "標準フォントに戻しますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREPARING
+  desc: Y1 Wheel typography: building fonts
+  user: core
+  <source>
+    *: "Preparing fonts…"
+  </source>
+  <dest>
+    *: "フォントを準備中…"
+  </dest>
+  <voice>
+    *: "フォントを準備中…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAILED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Could not prepare the fonts"
+  </source>
+  <dest>
+    *: "フォントを準備できませんでした"
+  </dest>
+  <voice>
+    *: "フォントを準備できませんでした"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISPLAY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Titles"
+  </source>
+  <dest>
+    *: "タイトル"
+  </dest>
+  <voice>
+    *: "タイトル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PRIMARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Lists"
+  </source>
+  <dest>
+    *: "リスト"
+  </dest>
+  <voice>
+    *: "リスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SECONDARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Artist & album"
+  </source>
+  <dest>
+    *: "アーティストとアルバム"
+  </dest>
+  <voice>
+    *: "アーティストとアルバム"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_META
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Details"
+  </source>
+  <dest>
+    *: "詳細"
+  </dest>
+  <voice>
+    *: "詳細"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERIC
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Numbers"
+  </source>
+  <dest>
+    *: "数字"
+  </dest>
+  <voice>
+    *: "数字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAMILY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font"
+  </source>
+  <dest>
+    *: "フォント"
+  </dest>
+  <voice>
+    *: "フォント"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weight"
+  </source>
+  <dest>
+    *: "太さ"
+  </dest>
+  <voice>
+    *: "太さ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Size"
+  </source>
+  <dest>
+    *: "サイズ"
+  </dest>
+  <voice>
+    *: "サイズ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SPACING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Letter spacing"
+  </source>
+  <dest>
+    *: "字間"
+  </dest>
+  <voice>
+    *: "字間"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPACT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compact"
+  </source>
+  <dest>
+    *: "コンパクト"
+  </dest>
+  <voice>
+    *: "コンパクト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NORMAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Normal"
+  </source>
+  <dest>
+    *: "標準"
+  </dest>
+  <voice>
+    *: "標準"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WIDE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Wide"
+  </source>
+  <dest>
+    *: "広め"
+  </dest>
+  <voice>
+    *: "広め"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Line spacing"
+  </source>
+  <dest>
+    *: "行間"
+  </dest>
+  <voice>
+    *: "行間"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RELAXED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Relaxed"
+  </source>
+  <dest>
+    *: "ゆったり"
+  </dest>
+  <voice>
+    *: "ゆったり"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERALS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Numerals"
+  </source>
+  <dest>
+    *: "数字の形"
+  </dest>
+  <voice>
+    *: "数字の形"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_TABULAR
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Tabular"
+  </source>
+  <dest>
+    *: "等幅"
+  </dest>
+  <voice>
+    *: "等幅"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROPORTIONAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Proportional"
+  </source>
+  <dest>
+    *: "プロポーショナル"
+  </dest>
+  <voice>
+    *: "プロポーショナル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENDER
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rendering"
+  </source>
+  <dest>
+    *: "描画"
+  </dest>
+  <voice>
+    *: "描画"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SMOOTH
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Smooth"
+  </source>
+  <dest>
+    *: "なめらか"
+  </dest>
+  <voice>
+    *: "なめらか"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SHARP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Sharp"
+  </source>
+  <dest>
+    *: "くっきり"
+  </dest>
+  <voice>
+    *: "くっきり"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PIXEL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Pixel"
+  </source>
+  <dest>
+    *: "ピクセル"
+  </dest>
+  <voice>
+    *: "ピクセル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SCREENS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Per-screen sizes"
+  </source>
+  <dest>
+    *: "画面ごとのサイズ"
+  </dest>
+  <voice>
+    *: "画面ごとのサイズ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MENUS_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Menu titles"
+  </source>
+  <dest>
+    *: "メニューのタイトル"
+  </dest>
+  <voice>
+    *: "メニューのタイトル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NP_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Now Playing title"
+  </source>
+  <dest>
+    *: "再生中のタイトル"
+  </dest>
+  <voice>
+    *: "再生中のタイトル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LYRICS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "歌詞"
+  </dest>
+  <voice>
+    *: "歌詞"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AUTO
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Auto"
+  </source>
+  <dest>
+    *: "自動"
+  </dest>
+  <voice>
+    *: "自動"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_UI_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Use in other themes"
+  </source>
+  <dest>
+    *: "ほかのテーマでも使う"
+  </dest>
+  <voice>
+    *: "ほかのテーマでも使う"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fill missing characters"
+  </source>
+  <dest>
+    *: "足りない文字を補う"
+  </dest>
+  <voice>
+    *: "足りない文字を補う"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_APPLY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Apply"
+  </source>
+  <dest>
+    *: "適用"
+  </dest>
+  <voice>
+    *: "適用"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVE_AS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Save as profile…"
+  </source>
+  <dest>
+    *: "プロファイルとして保存…"
+  </dest>
+  <voice>
+    *: "プロファイルとして保存…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Name"
+  </source>
+  <dest>
+    *: "名前"
+  </dest>
+  <voice>
+    *: "名前"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NEW_PROFILE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "New profile from current"
+  </source>
+  <dest>
+    *: "現在の設定から新規作成"
+  </dest>
+  <voice>
+    *: "現在の設定から新規作成"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rename"
+  </source>
+  <dest>
+    *: "名前を変更"
+  </dest>
+  <voice>
+    *: "名前を変更"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "削除"
+  </dest>
+  <voice>
+    *: "削除"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete this profile?"
+  </source>
+  <dest>
+    *: "このプロファイルを削除しますか？"
+  </dest>
+  <voice>
+    *: "このプロファイルを削除しますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profile saved"
+  </source>
+  <dest>
+    *: "プロファイルを保存しました"
+  </dest>
+  <voice>
+    *: "プロファイルを保存しました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No saved profiles yet"
+  </source>
+  <dest>
+    *: "保存したプロファイルはまだありません"
+  </dest>
+  <voice>
+    *: "保存したプロファイルはまだありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_KEEP_EDITING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Keep editing"
+  </source>
+  <dest>
+    *: "編集を続ける"
+  </dest>
+  <voice>
+    *: "編集を続ける"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESET
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Reset changes"
+  </source>
+  <dest>
+    *: "変更を元に戻す"
+  </dest>
+  <voice>
+    *: "変更を元に戻す"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_INSTALLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Installed fonts"
+  </source>
+  <dest>
+    *: "インストール済みフォント"
+  </dest>
+  <voice>
+    *: "インストール済みフォント"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Import fonts"
+  </source>
+  <dest>
+    *: "フォントを読み込む"
+  </dest>
+  <voice>
+    *: "フォントを読み込む"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Or copy .ttf/.otf/.fnt to .rockbox/fonts/import"
+  </source>
+  <dest>
+    *: "または .ttf/.otf/.fnt を .rockbox/fonts/import にコピー"
+  </dest>
+  <voice>
+    *: "または .ttf/.otf/.fnt を .rockbox/fonts/import にコピー"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_NONE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No fonts in Download or Fonts"
+  </source>
+  <dest>
+    *: "Download と Fonts にフォントがありません"
+  </dest>
+  <voice>
+    *: "Download と Fonts にフォントがありません"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font imported"
+  </source>
+  <dest>
+    *: "フォントを読み込みました"
+  </dest>
+  <voice>
+    *: "フォントを読み込みました"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESCAN
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rescan fonts"
+  </source>
+  <dest>
+    *: "フォントを再検索"
+  </dest>
+  <voice>
+    *: "フォントを再検索"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MEMORY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fonts in memory"
+  </source>
+  <dest>
+    *: "メモリ上のフォント"
+  </dest>
+  <voice>
+    *: "メモリ上のフォント"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font cache"
+  </source>
+  <dest>
+    *: "フォントキャッシュ"
+  </dest>
+  <voice>
+    *: "フォントキャッシュ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CLEAR_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Remove unused cached fonts?"
+  </source>
+  <dest>
+    *: "使っていないキャッシュを削除しますか？"
+  </dest>
+  <voice>
+    *: "使っていないキャッシュを削除しますか？"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fallback font"
+  </source>
+  <dest>
+    *: "代替フォント"
+  </dest>
+  <voice>
+    *: "代替フォント"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compatibility"
+  </source>
+  <dest>
+    *: "互換性"
+  </dest>
+  <voice>
+    *: "互換性"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SOURCE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Source"
+  </source>
+  <dest>
+    *: "入手元"
+  </dest>
+  <voice>
+    *: "入手元"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BUNDLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included (SIL OFL)"
+  </source>
+  <dest>
+    *: "同梱（SIL OFL）"
+  </dest>
+  <voice>
+    *: "同梱（SIL OFL）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BITMAP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included bitmap (X11)"
+  </source>
+  <dest>
+    *: "同梱ビットマップ（X11）"
+  </dest>
+  <voice>
+    *: "同梱ビットマップ（X11）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED_SRC
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Imported by you"
+  </source>
+  <dest>
+    *: "あなたが読み込んだもの"
+  </dest>
+  <voice>
+    *: "あなたが読み込んだもの"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weights"
+  </source>
+  <dest>
+    *: "太さ"
+  </dest>
+  <voice>
+    *: "太さ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COVERAGE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Characters"
+  </source>
+  <dest>
+    *: "文字"
+  </dest>
+  <voice>
+    *: "文字"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_VARIABLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Variable fonts: default style only"
+  </source>
+  <dest>
+    *: "可変フォント：標準スタイルのみ"
+  </dest>
+  <voice>
+    *: "可変フォント：標準スタイルのみ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "On disk"
+  </source>
+  <dest>
+    *: "ディスク使用量"
+  </dest>
+  <voice>
+    *: "ディスク使用量"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_1
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rockbox draws bitmap fonts only"
+  </source>
+  <dest>
+    *: "Rockbox はビットマップフォントのみ表示"
+  </dest>
+  <voice>
+    *: "Rockbox はビットマップフォントのみ表示"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_2
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "TTF/OTF are converted on the player"
+  </source>
+  <dest>
+    *: "TTF/OTF はプレーヤー上で変換"
+  </dest>
+  <voice>
+    *: "TTF/OTF はプレーヤー上で変換"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_4
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No kerning or ligatures"
+  </source>
+  <dest>
+    *: "カーニングと合字はなし"
+  </dest>
+  <voice>
+    *: "カーニングと合字はなし"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_5
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Arabic, Hebrew, Indic: not shaped"
+  </source>
+  <dest>
+    *: "アラビア・ヘブライ・インド系文字：整形なし"
+  </dest>
+  <voice>
+    *: "アラビア・ヘブライ・インド系文字：整形なし"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_6
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Missing characters: Inter, Noto Sans CJK"
+  </source>
+  <dest>
+    *: "足りない文字：Inter、Noto Sans CJK"
+  </dest>
+  <voice>
+    *: "足りない文字：Inter、Noto Sans CJK"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_7
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Other themes keep their own fonts"
+  </source>
+  <dest>
+    *: "ほかのテーマは独自のフォントのまま"
+  </dest>
+  <voice>
+    *: "ほかのテーマは独自のフォントのまま"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "OK: options · Back: return"
+  </source>
+  <dest>
+    *: "OK：オプション · 戻る：終了"
+  </dest>
+  <voice>
+    *: "OK：オプション · 戻る：終了"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CANCEL
+  desc: Y1 Wheel typography: leave without applying
+  user: core
+  <source>
+    *: "Cancel"
+  </source>
+  <dest>
+    *: "キャンセル"
+  </dest>
+  <voice>
+    *: "キャンセル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMFORT
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Comfortable"
+  </source>
+  <dest>
+    *: "ゆったり"
+  </dest>
+  <voice>
+    *: "ゆったり"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AIRY
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Airy"
+  </source>
+  <dest>
+    *: "広々"
+  </dest>
+  <voice>
+    *: "広々"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOM
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Custom"
+  </source>
+  <dest>
+    *: "カスタム"
+  </dest>
+  <voice>
+    *: "カスタム"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_STYLE
+  desc: Y1 Wheel typography line spacing style row
+  user: core
+  <source>
+    *: "Style"
+  </source>
+  <dest>
+    *: "スタイル"
+  </dest>
+  <voice>
+    *: "スタイル"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_MENUS
+  desc: Y1 Wheel typography: menu row height
+  user: core
+  <source>
+    *: "Menus (row height)"
+  </source>
+  <dest>
+    *: "メニュー（行の高さ）"
+  </dest>
+  <voice>
+    *: "メニュー（行の高さ）"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_NP
+  desc: Y1 Wheel typography: Now Playing text spacing
+  user: core
+  <source>
+    *: "Now Playing text"
+  </source>
+  <dest>
+    *: "再生中のテキスト"
+  </dest>
+  <voice>
+    *: "再生中のテキスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_LISTS
+  desc: Y1 Wheel typography: two-line list spacing
+  user: core
+  <source>
+    *: "Two-line lists"
+  </source>
+  <dest>
+    *: "2 行のリスト"
+  </dest>
+  <voice>
+    *: "2 行のリスト"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CJK_READY
+  desc: Y1 Wheel typography: CJK fonts installed
+  user: core
+  <source>
+    *: "Ready"
+  </source>
+  <dest>
+    *: "準備完了"
+  </dest>
+  <voice>
+    *: "準備完了"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LANG_MORE
+  desc: Y1 Wheel language picker: all languages
+  user: core
+  <source>
+    *: "More languages…"
+  </source>
+  <dest>
+    *: "ほかの言語…"
+  </dest>
+  <voice>
+    *: "ほかの言語…"
+  </voice>
+</phrase>

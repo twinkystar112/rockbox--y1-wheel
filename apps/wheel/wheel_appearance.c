@@ -38,6 +38,11 @@
 #include "playlist.h"
 #include "metadata.h"
 #include "wheel_themes.h"
+#include "language.h"
+#include "menus/exported_menus.h"
+#include "talk.h"
+#include "tree.h"
+#include "filetypes.h"
 #include "wheel_typo.h"
 
 #define WHEEL_LIGHT_CFG THEME_DIR "/Wheel.cfg"
@@ -165,6 +170,8 @@ void wheel_appearance_apply(bool force)
 /* called when the main menu shows: follows the clock in automatic mode */
 bool wheel_appearance_check(void)
 {
+    /* the language may have been changed in General Settings */
+    typo_update_fallbacks(false);
     if (global_settings.wheel_appearance == 2 && wheel_theme_active())
     {
         if (loaded_variant < 0)
@@ -180,7 +187,75 @@ bool wheel_appearance_check(void)
 }
 
 /* ------------------------------ screen ------------------------------ */
-enum { AP_THEME, AP_TYPO, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
+enum { AP_THEME, AP_TYPO, AP_LANG, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
+
+/* ----------------------------- language ----------------------------- */
+/* the languages the Wheel edition is translated into, by their own names
+ * (Chinese, Japanese and Korean are drawn with the CJK fallback fonts) */
+static const struct { const char *file, *name; } wheel_langs[] = {
+    { "espanol", "Español" }, { "english", "English" }, { "francais", "Français" },
+    { "chinese-simp", "简体中文" }, { "japanese", "日本語" }, { "korean", "한국어" },
+};
+#define N_LANGS ((int)ARRAYLEN(wheel_langs))
+
+static const char *lang_name(void)
+{
+    for (int i = 0; i < N_LANGS; i++)
+        if (!strcmp((char *)global_settings.lang_file, wheel_langs[i].file))
+            return wheel_langs[i].name;
+    return (const char *)global_settings.lang_file;
+}
+
+static const char *lg_get_name(int item, void *data, char *buf, size_t len)
+{
+    (void)data; (void)buf; (void)len;
+    return item < N_LANGS ? wheel_langs[item].name : str(LANG_WHEEL_LANG_MORE);
+}
+
+static int lg_action(int action, struct gui_synclist *lists)
+{
+    (void)lists;
+    return action == ACTION_STD_MENU ? ACTION_STD_CANCEL : action;
+}
+
+static void language_screen(void)
+{
+    struct simplelist_info info;
+    simplelist_info_init(&info, str(LANG_LANGUAGE), N_LANGS + 1, NULL);
+    info.get_name = lg_get_name;
+    info.action_callback = lg_action;
+    for (int i = 0; i < N_LANGS; i++)
+        if (!strcmp((char *)global_settings.lang_file, wheel_langs[i].file))
+            info.selection = i;
+    simplelist_show_list(&info);
+    if (info.selection < 0)
+        return;
+    if (info.selection == N_LANGS)
+    {   /* every language Rockbox has */
+        static struct browse_folder_info langs = { LANG_DIR, SHOW_LNG };
+        browse_folder(&langs);
+    }
+    else
+    {
+        char path[MAX_PATH];
+        snprintf(path, sizeof(path), LANG_DIR "/%s.lng", wheel_langs[info.selection].file);
+        splash(0, ID2P(LANG_WAIT));
+        if (lang_core_load(path))
+        {
+            splash(HZ, ID2P(LANG_FAILED));
+            return;
+        }
+        /* (set_file() checks file_exists(), which can't see the
+         * read-only share dir of hosted builds) */
+        strlcpy((char *)global_settings.lang_file, wheel_langs[info.selection].file,
+                sizeof(global_settings.lang_file));
+        talk_init();
+        settings_save();
+    }
+    typo_update_fallbacks(true);
+    viewportmanager_theme_changed(THEME_LANGUAGE);
+    settings_apply_skins();
+}
 
 static const char *choice_text(void *var, char *buf, size_t len)
 {
@@ -210,6 +285,10 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
             value = typo_is_custom() ? typo_active()->name : "Wheel";
 #endif
             break;
+        case AP_LANG:
+            label = str(LANG_LANGUAGE);
+            value = lang_name();
+            break;
         case AP_MODE:
             label = str(LANG_WHEEL_APPEARANCE);
             value = choice_text(&global_settings.wheel_appearance, val, sizeof(val));
@@ -238,7 +317,7 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
 static bool ap_get_nav(int item, void *data)
 {
     (void)data;
-    return item == AP_THEME || item == AP_TYPO;
+    return item == AP_THEME || item == AP_TYPO || item == AP_LANG;
 }
 
 static int ap_action(int action, struct gui_synclist *lists)
@@ -261,6 +340,9 @@ static int ap_action(int action, struct gui_synclist *lists)
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
             wheel_typography_screen();
 #endif
+            break;
+        case AP_LANG:
+            language_screen();
             break;
         case AP_MODE:
             global_settings.wheel_appearance = (global_settings.wheel_appearance + 1) % 3;

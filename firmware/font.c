@@ -855,6 +855,76 @@ int font_get_width(struct font* pf, ucschar_t char_code)
     return width;
 }
 
+/* --------------------------- glyph fallback --------------------------- */
+static int fallback_ids[MAX_FALLBACK_FONTS];
+static int n_fallbacks;
+
+void font_set_fallbacks(const int *font_ids, int count)
+{
+    n_fallbacks = 0;
+    for (int i = 0; i < count && n_fallbacks < MAX_FALLBACK_FONTS; i++)
+        if (font_ids[i] >= 0 && font_ids[i] < MAXFONTS)
+            fallback_ids[n_fallbacks++] = font_ids[i];
+}
+
+static bool font_has_glyph(struct font *pf, ucschar_t ch)
+{
+    if (ch < pf->firstchar || ch >= pf->firstchar + pf->size)
+        return false;
+    if (!pf->width && pf->fd < 0)  /* fixed width font in RAM */
+        return true;
+    return font_get_width(pf, ch) > 0 || IS_DIACRITIC(ch);
+}
+
+struct font *font_glyph_source(struct font *pf, ucschar_t *ch, int *id)
+{
+    if (id)
+        *id = -1;
+    if (font_has_glyph(pf, *ch))
+        return pf;
+    struct font *best = NULL;
+    int best_id = -1;
+    for (int i = 0; i < n_fallbacks; i++)
+    {
+        int fid = fallback_ids[i];
+        if (buflib_allocations[fid] <= 0)
+            continue;
+        struct font *f = font_get(fid);
+        if (!f || f == pf || f == &sysfont || !font_has_glyph(f, *ch))
+            continue;
+        /* the tallest that fits; else the smallest */
+        if (!best ||
+            (f->height <= pf->height + 2 && (best->height > pf->height + 2 || f->height > best->height)) ||
+            (best->height > pf->height + 2 && f->height < best->height))
+        {
+            best = f;
+            best_id = fid;
+        }
+    }
+    if (best)
+    {
+        if (id)
+            *id = best_id;
+        return best;
+    }
+    *ch = pf->defaultchar;
+    return pf;
+}
+
+int font_glyph_width(struct font *pf, ucschar_t ch)
+{
+    if (!n_fallbacks)
+        return font_get_width(pf, ch);
+    int id;
+    struct font *f = font_glyph_source(pf, &ch, &id);
+    if (f == pf)
+        return font_get_width(pf, ch);
+    font_lock(id, true);
+    int w = font_get_width(f, ch);
+    font_lock(id, false);
+    return w;
+}
+
 const unsigned char* font_get_bits(struct font* pf, ucschar_t char_code)
 {
     const unsigned char* bits;
@@ -1089,6 +1159,25 @@ struct font* font_get(int font)
     return &sysfont;
 }
 
+void font_set_fallbacks(const int *font_ids, int count)
+{
+    (void)font_ids; (void)count;
+}
+
+struct font *font_glyph_source(struct font *pf, ucschar_t *ch, int *id)
+{
+    if (id) *id = -1;
+    if (*ch < pf->firstchar || *ch >= pf->firstchar + pf->size)
+        *ch = pf->defaultchar;
+    return pf;
+}
+
+int font_get_width(struct font* pf, ucschar_t char_code);
+int font_glyph_width(struct font *pf, ucschar_t ch)
+{
+    return font_get_width(pf, ch);
+}
+
 /*
  * Returns width of character
  */
@@ -1148,7 +1237,7 @@ int font_measurestring(const unsigned char *str, size_t maxbytes, size_t maxwidt
         }
         if (IS_DIACRITIC(ch))
             continue;
-        int fw = font_get_width(pf,ch);
+        int fw = font_glyph_width(pf,ch);
         width += fw;
         if (width > maxwidth)
         {

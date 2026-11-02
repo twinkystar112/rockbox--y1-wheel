@@ -383,11 +383,14 @@ static void put32(unsigned char *p, unsigned long v)
     p[0] = v & 0xff; p[1] = (v >> 8) & 0xff; p[2] = (v >> 16) & 0xff; p[3] = (v >> 24) & 0xff;
 }
 
-/* code points worth storing (the rest map to '?') */
+/* code points worth storing; the rest get width 0, so the firmware's glyph
+ * fallback (CJK fonts) or the default character steps in */
 static bool wanted(unsigned cp, const struct forge_params *p)
 {
     if (cp > p->last)
         return false;
+    if (p->all)
+        return true;
     if (cp >= 0x20 && cp <= 0x7e) return true;
     if (cp >= 0xa0 && cp <= 0x24f) return true;
     if (cp >= 0x2c6 && cp <= 0x2dd) return true;
@@ -400,7 +403,7 @@ static bool wanted(unsigned cp, const struct forge_params *p)
     return false;
 }
 
-#define FIRST 0x20
+#define FIRST first
 
 int forge_build(const struct forge_src *src, const struct forge_src *fallback,
                 const struct forge_params *p, forge_write_fn write, void *ctx,
@@ -435,6 +438,7 @@ int forge_build(const struct forge_src *src, const struct forge_src *fallback,
     if (base < forge_iceil(main.cap)) base = forge_iceil(main.cap);
     if (base > band) base = band;
 
+    unsigned first = p->first ? p->first : 0x20;
     unsigned last = p->last ? p->last : 0x2122;
     if (p->extras == FORGE_EXTRA_ROW && last < 0x2713)
         last = 0x2713;
@@ -562,8 +566,8 @@ int forge_build(const struct forge_src *src, const struct forge_src *fallback,
         if (from == 2) st->fallback++; else st->glyphs++;
     }
 
-    /* everything else shows '?' (or a space if even that is missing) */
-    unsigned def = seen['?' - FIRST] ? '?' : ' ';
+    /* the default character: '?' (or a space, or the first glyph) */
+    unsigned def = ('?' >= first && seen['?' - FIRST]) ? '?' : (' ' >= first ? ' ' : first);
     if (!seen[def - FIRST])
     {
         struct cell c = { calloc(band, 1), 1, band };
@@ -577,11 +581,12 @@ int forge_build(const struct forge_src *src, const struct forge_src *fallback,
         if (!ok)
             goto done;
     }
+    /* everything else: width 0 = "not in this font" */
     for (unsigned i = 0; i < count; i++)
         if (!seen[i])
         {
-            offs[i] = offs[def - FIRST];
-            widths[i] = widths[def - FIRST];
+            offs[i] = 0;
+            widths[i] = 0;
         }
 
     /* write */

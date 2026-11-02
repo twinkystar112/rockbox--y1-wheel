@@ -82,7 +82,14 @@ static const char *spacing_label(int s)
 }
 static const char *line_label(int s)
 {
-    return s < 0 ? S(LANG_WHEEL_TYPO_COMPACT) : s > 0 ? S(LANG_WHEEL_TYPO_RELAXED) : S(LANG_WHEEL_TYPO_NORMAL);
+    switch (s)
+    {
+        case TLS_COMPACT: return S(LANG_WHEEL_TYPO_COMPACT);
+        case TLS_COMFORT: return S(LANG_WHEEL_TYPO_COMFORT);
+        case TLS_AIRY:    return S(LANG_WHEEL_TYPO_AIRY);
+        case TLS_CUSTOM:  return S(LANG_WHEEL_TYPO_CUSTOM);
+        default:          return S(LANG_WHEEL_TYPO_NORMAL);
+    }
 }
 static const char *render_label(int r)
 {
@@ -209,15 +216,16 @@ static void draw_preview(const struct typo_profile *p, const int *f, int row_h)
         { "Ciudad de Cristal", "Orquesta Imaginaria · 2019" },
         { "Mareas", "Clara Ruiz Trío · 12 · 48:20" },
     };
-    for (int i = 0; i < 2 && y + 48 <= LCD_HEIGHT - 26; i++)
+    int lr = 52 * p->list_pct / 100, lg = MAX(22, 26 * p->list_pct / 100);
+    for (int i = 0; i < 2 && y + lg + 22 <= LCD_HEIGHT - 26; i++)
     {
         d->set_drawmode(DRMODE_SOLID);
         d->set_foreground(mix(fg, bg, 12));
-        d->fillrect(14, y + 4, 40, 40);
+        d->fillrect(14, y + (lg + 22 - 40) / 2, 40, 40);
         d->set_drawmode(DRMODE_FG);
         text(d, &vp, f[PV_SEC], fg, 64, y, al[i][0], 190);
-        text(d, &vp, f[PV_META], grey, 64, y + 26, al[i][1], 190);
-        y += 52;
+        text(d, &vp, f[PV_META], grey, 64, y + lg, al[i][1], 190);
+        y += lr;
     }
 
     /* right: now playing */
@@ -225,28 +233,33 @@ static void draw_preview(const struct typo_profile *p, const int *f, int row_h)
     d->set_foreground(pane);
     d->fillrect(264, 38, LCD_WIDTH - 264, LCD_HEIGHT - 38);
     d->set_foreground(mix(fg, bg, 14));
-    d->fillrect(312, 50, 120, 120);
+    d->fillrect(317, 50, 110, 110);
     d->set_drawmode(DRMODE_FG);
-    text(d, &vp, f[PV_META], grey, 276, 172, "3 / 12", 0);
-    text(d, &vp, f[PV_DISPLAY], fg, 276, 190, "Luz de Agosto", 196);
-    text(d, &vp, f[PV_SEC], accent, 276, 222, "Clara Ruiz Trío", 196);
-    text(d, &vp, f[PV_META], grey, 276, 248, "Mareas · 2021 · FLAC", 196);
+    /* title / artist / album with the Now Playing spacing of the profile */
+    int ny[5];
+    typo_np_positions(p->np_pct, ny);
+    int t0 = 166, t1 = t0 + (ny[2] - ny[1]), t2 = t1 + (ny[3] - ny[2]);
+    text(d, &vp, f[PV_DISPLAY], fg, 276, t0 - 4, "Luz de Agosto", 196);
+    text(d, &vp, f[PV_SEC], accent, 276, t1, "Clara Ruiz Trío", 196);
+    text(d, &vp, f[PV_META], grey, 276, t2, "Mareas · 2021 · FLAC", 196);
+    int pb = MAX(t2 + 30, 270);
     d->set_drawmode(DRMODE_SOLID);
     d->set_foreground(mix(fg, bg, 14));
-    d->fillrect(276, 276, 192, 4);
+    d->fillrect(276, pb, 192, 4);
     d->set_foreground(accent);
-    d->fillrect(276, 276, 74, 4);
+    d->fillrect(276, pb, 74, 4);
     /* controls */
+    int cy = MIN(pb + 32, LCD_HEIGHT - 20);
     d->set_foreground(fg);
-    triangle(d, 318, 316, 15, false);
-    d->fillrect(316, 316, 3, 15);
-    d->fillrect(364, 314, 4, 19);
-    d->fillrect(372, 314, 4, 19);
-    triangle(d, 414, 316, 15, true);
-    d->fillrect(422, 316, 3, 15);
+    triangle(d, 318, cy, 15, false);
+    d->fillrect(316, cy, 3, 15);
+    d->fillrect(364, cy - 2, 4, 19);
+    d->fillrect(372, cy - 2, 4, 19);
+    triangle(d, 414, cy, 15, true);
+    d->fillrect(422, cy, 3, 15);
     d->set_drawmode(DRMODE_FG);
-    text(d, &vp, f[PV_NUM], grey, 276, 282, "1:58", 0);
-    text(d, &vp, f[PV_NUM], grey, 468 - text_w(d, &vp, f[PV_NUM], "-3:07"), 282, "-3:07", 0);
+    text(d, &vp, f[PV_NUM], grey, 276, pb + 6, "1:58", 0);
+    text(d, &vp, f[PV_NUM], grey, 468 - text_w(d, &vp, f[PV_NUM], "-3:07"), pb + 6, "-3:07", 0);
 
     /* hint */
     text(d, &vp, f[PV_META], grey, 14, LCD_HEIGHT - 24, S(LANG_WHEEL_TYPO_PREVIEW_HINT), 240);
@@ -326,6 +339,7 @@ static int preview(const struct typo_profile *p, int mode)
 
 static struct typo_profile edit;
 static struct typo_profile edit_base;   /* for "Reset" */
+static bool cu_done;                     /* applied: leave Customize */
 
 static void save_as(void)
 {
@@ -450,6 +464,95 @@ static int ps_action(int action, struct gui_synclist *lists)
     return ACTION_REDRAW;
 }
 
+/* --- line spacing: a style, or each part on its own --- */
+enum { LS_STYLE, LS_MENUS, LS_LYRICS, LS_NP, LS_LISTS, LS_PREVIEW, LS_COUNT };
+
+static const char *ls_get_name(int item, void *data, char *buf, size_t len)
+{
+    (void)data;
+    switch (item)
+    {
+        case LS_STYLE:
+            snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%s", S(LANG_WHEEL_TYPO_LINE_STYLE), line_label(edit.line));
+            break;
+        case LS_MENUS:
+            snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%d px", S(LANG_WHEEL_TYPO_LINE_MENUS), edit.row_h);
+            break;
+        case LS_LYRICS:
+            snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%d %%", S(LANG_WHEEL_TYPO_LYRICS), edit.ly_pct);
+            break;
+        case LS_NP:
+            snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%d %%", S(LANG_WHEEL_TYPO_LINE_NP), edit.np_pct);
+            break;
+        case LS_LISTS:
+            snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%d %%", S(LANG_WHEEL_TYPO_LINE_LISTS), edit.list_pct);
+            break;
+        default:
+            return S(LANG_WHEEL_TYPO_PREVIEW);
+    }
+    return buf;
+}
+
+static bool ls_get_nav(int item, void *data)
+{
+    (void)data;
+    return item == LS_PREVIEW;
+}
+
+/* steps up, then wraps to the smallest */
+static short step(short v, int lo, int hi, int by)
+{
+    v += by;
+    return v > hi ? lo : v;
+}
+
+static int ls_action(int action, struct gui_synclist *lists)
+{
+    if (action == ACTION_REDRAW)
+    {
+        gui_synclist_set_nav_callback(lists, ls_get_nav);
+        return action;
+    }
+    if (action == ACTION_STD_MENU)
+        return ACTION_STD_CANCEL;
+    if (action != ACTION_STD_OK)
+        return action;
+    int sel = gui_synclist_get_sel_pos(lists);
+    switch (sel)
+    {
+        case LS_STYLE:
+            typo_line_style_apply(&edit, edit.line >= TLS_AIRY || edit.line < 0 ? TLS_COMPACT : edit.line + 1);
+            break;
+        case LS_MENUS:  edit.row_h = step(edit.row_h, 30, 56, 2); edit.line = TLS_CUSTOM; break;
+        case LS_LYRICS: edit.ly_pct = step(edit.ly_pct, 100, 200, 10); edit.line = TLS_CUSTOM; break;
+        case LS_NP:     edit.np_pct = step(edit.np_pct, 80, 135, 5); edit.line = TLS_CUSTOM; break;
+        case LS_LISTS:  edit.list_pct = step(edit.list_pct, 80, 140, 10); edit.line = TLS_CUSTOM; break;
+        case LS_PREVIEW:
+        {
+            int r = preview(&edit, PM_EDIT);
+            if (r == PVR_RESET)
+                edit = edit_base;
+            else if (r == PVR_APPLY && typo_apply(&edit))
+            {
+                cu_done = true;
+                return ACTION_STD_CANCEL;
+            }
+            break;
+        }
+    }
+    gui_synclist_set_title(lists, S(LANG_WHEEL_TYPO_LINE), Icon_NOICON);
+    return ACTION_REDRAW;
+}
+
+static void line_spacing(void)
+{
+    struct simplelist_info info;
+    simplelist_info_init(&info, S(LANG_WHEEL_TYPO_LINE), LS_COUNT, NULL);
+    info.get_name = ls_get_name;
+    info.action_callback = ls_action;
+    simplelist_show_list(&info);
+}
+
 /* --- the customise list --- */
 enum { CU_NAME, CU_ROLE0, CU_SPACING = CU_ROLE0 + TR_COUNT, CU_LINE, CU_NUMERALS, CU_RENDER,
        CU_SCREENS, CU_UIFONT, CU_FALLBACK, CU_PREVIEW, CU_APPLY, CU_SAVE, CU_COUNT };
@@ -492,10 +595,9 @@ static const char *cu_get_name(int item, void *data, char *buf, size_t len)
 static bool cu_get_nav(int item, void *data)
 {
     (void)data;
-    return (item >= CU_ROLE0 && item < CU_ROLE0 + TR_COUNT) || item == CU_SCREENS || item == CU_PREVIEW;
+    return (item >= CU_ROLE0 && item < CU_ROLE0 + TR_COUNT) || item == CU_SCREENS ||
+           item == CU_PREVIEW || item == CU_LINE;
 }
-
-static bool cu_done;
 
 static int cu_action(int action, struct gui_synclist *lists)
 {
@@ -518,7 +620,7 @@ static int cu_action(int action, struct gui_synclist *lists)
             save_as();
             break;
         case CU_SPACING: edit.spacing = edit.spacing >= 1 ? -1 : edit.spacing + 1; break;
-        case CU_LINE: edit.line = edit.line >= 1 ? -1 : edit.line + 1; break;
+        case CU_LINE: line_spacing(); break;
         case CU_NUMERALS: edit.tabular = !edit.tabular; break;
         case CU_RENDER: edit.render = (edit.render + 1) % 3; break;
         case CU_UIFONT: edit.ui_font = !edit.ui_font; break;
@@ -608,7 +710,6 @@ static void gallery_fonts(bool load)
         }
         struct typo_profile s = gal[i];
         s.ov[TOV_MENUS] = s.role[TR_DISPLAY].size;   /* its own title size */
-        s.line = 0;
         char file[64];
         gal_font[i] = FONT_UI;
         if (typo_build_one(&s, TU_DISPLAY_MENU, file, sizeof(file)))
@@ -1058,7 +1159,7 @@ static const char *compat_get_name(int item, void *data, char *buf, size_t len)
     return S(ids[item]);
 }
 
-enum { FM_INSTALLED, FM_IMPORT, FM_RESCAN, FM_MEMORY, FM_CACHE, FM_FALLBACK, FM_COMPAT, FM_COUNT };
+enum { FM_INSTALLED, FM_IMPORT, FM_RESCAN, FM_MEMORY, FM_CACHE, FM_FALLBACK, FM_CJK, FM_COMPAT, FM_COUNT };
 
 static const char *fm_get_name(int item, void *data, char *buf, size_t len)
 {
@@ -1093,6 +1194,12 @@ static const char *fm_get_name(int item, void *data, char *buf, size_t len)
         case FM_FALLBACK:
             snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%s", S(LANG_WHEEL_TYPO_FALLBACK_FONT),
                      typo_family_exists(TYPO_FALLBACK) ? TYPO_FALLBACK : "-");
+            return buf;
+        case FM_CJK:
+            /* 中文 · 日本語 · 한국어 come from the fallback fonts */
+            snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%s", "中文 · 日本語 · 한국어",
+                     typo_cjk_fonts() >= 6 ? (const char *)S(LANG_WHEEL_TYPO_CJK_READY)
+                                            : typo_cjk_fonts() ? "…" : "-");
             return buf;
         case FM_COMPAT: return S(LANG_WHEEL_TYPO_COMPAT);
     }

@@ -28,7 +28,7 @@
 #include "wheel_themes.h"
 #include "wheel_screens.h"
 
-#define FORGE_VERSION 3          /* bump when the forge output changes */
+#define FORGE_VERSION 4          /* bump when the forge output changes */
 #define MAX_FACES 96
 #define MAX_PRESETS 12
 
@@ -306,7 +306,30 @@ void typo_profile_default(struct typo_profile *p)
     p->tabular = true;
     p->fallback = true;
     p->ov[0] = p->ov[1] = p->ov[2] = TS_AUTO;
+    typo_line_style_apply(p, TLS_NORMAL);
 }
+
+static const struct { short row, ly, np, list; } line_styles[TLS_CUSTOM] = {
+    { 34, 115,  85,  90 },   /* compact */
+    { 40, 135, 100, 100 },   /* normal */
+    { 46, 155, 112, 110 },   /* comfortable */
+    { 52, 180, 125, 125 },   /* airy */
+};
+static const char * const line_style_keys[TLS_COUNT] = {
+    "compact", "normal", "comfortable", "airy", "custom" };
+
+void typo_line_style_apply(struct typo_profile *p, int style)
+{
+    p->line = style;
+    if (style < 0 || style >= TLS_CUSTOM)
+        return;
+    p->row_h = line_styles[style].row;
+    p->ly_pct = line_styles[style].ly;
+    p->np_pct = line_styles[style].np;
+    p->list_pct = line_styles[style].list;
+}
+
+static int clampi(int v, int lo, int hi) { return v < lo ? lo : v > hi ? hi : v; }
 
 static void parse_kv(struct typo_profile *p, const char *k, char *v)
 {
@@ -334,7 +357,22 @@ static void parse_kv(struct typo_profile *p, const char *k, char *v)
     else if (!strcasecmp(k, "spacing"))
         p->spacing = !strcasecmp(v, "compact") ? -1 : !strcasecmp(v, "wide") ? 1 : 0;
     else if (!strcasecmp(k, "line height"))
-        p->line = !strcasecmp(v, "compact") ? -1 : !strcasecmp(v, "relaxed") ? 1 : 0;
+    {   /* "relaxed" is the old name of "comfortable" */
+        int st = TLS_NORMAL;
+        for (int i = 0; i < TLS_COUNT; i++)
+            if (!strcasecmp(v, line_style_keys[i])) st = i;
+        if (!strcasecmp(v, "relaxed")) st = TLS_COMFORT;
+        if (st == TLS_CUSTOM) p->line = TLS_CUSTOM;
+        else typo_line_style_apply(p, st);
+    }
+    else if (!strcasecmp(k, "menu rows"))
+        p->row_h = clampi(atoi(v), TYPO_ROW_MIN, TYPO_ROW_MAX) & ~1;
+    else if (!strcasecmp(k, "lyrics spacing"))
+        p->ly_pct = clampi(atoi(v), 100, 220);
+    else if (!strcasecmp(k, "now playing spacing"))
+        p->np_pct = clampi(atoi(v), 75, 140);
+    else if (!strcasecmp(k, "list spacing"))
+        p->list_pct = clampi(atoi(v), 80, 150);
     else if (!strcasecmp(k, "numerals"))
         p->tabular = strcasecmp(v, "proportional") != 0;
     else if (!strcasecmp(k, "rendering"))
@@ -466,7 +504,6 @@ static void write_profile(int fd, const struct typo_profile *p)
 {
     char line[160];
     static const char * const sp[] = { "compact", "normal", "wide" };
-    static const char * const lh[] = { "compact", "normal", "relaxed" };
     static const char * const rn[] = { "smooth", "sharp", "pixel" };
     snprintf(line, sizeof(line), "name: %s\n", p->name); fdputs(fd, line);
     if (p->note[0]) { snprintf(line, sizeof(line), "note: %s\n", p->note); fdputs(fd, line); }
@@ -476,9 +513,14 @@ static void write_profile(int fd, const struct typo_profile *p)
                  p->role[r].weight, typo_size_name(p->role[r].size));
         fdputs(fd, line);
     }
-    snprintf(line, sizeof(line), "spacing: %s\nline height: %s\nnumerals: %s\nrendering: %s\n"
+    snprintf(line, sizeof(line), "line height: %s\nmenu rows: %d\nlyrics spacing: %d\n"
+             "now playing spacing: %d\nlist spacing: %d\n",
+             line_style_keys[p->line >= 0 && p->line < TLS_COUNT ? p->line : TLS_NORMAL],
+             p->row_h, p->ly_pct, p->np_pct, p->list_pct);
+    fdputs(fd, line);
+    snprintf(line, sizeof(line), "spacing: %s\nnumerals: %s\nrendering: %s\n"
              "ui font: %s\nfallback: %s\n",
-             sp[p->spacing + 1], lh[p->line + 1], p->tabular ? "tabular" : "proportional",
+             sp[p->spacing + 1], p->tabular ? "tabular" : "proportional",
              rn[p->render < 0 || p->render > 2 ? 0 : p->render],
              p->ui_font ? "on" : "off", p->fallback ? "on" : "off");
     fdputs(fd, line);
@@ -630,7 +672,7 @@ static void use_metrics(const struct typo_profile *p, enum typo_use u, int *em, 
         case TU_JUMBO:
             *em = 52; *band = 65; break;
         case TU_ROW: case TU_ROWSEL:
-            *em = em_table[TR_PRIMARY][s]; *band = 40 + 6 * p->line; break;
+            *em = em_table[TR_PRIMARY][s]; *band = typo_row_height(p); break;
         case TU_UI:
             *em = em_table[TR_PRIMARY][clamp_size(s - 1)]; *band = 26; break;
         case TU_SECONDARY:
@@ -642,7 +684,7 @@ static void use_metrics(const struct typo_profile *p, enum typo_use u, int *em, 
 
 int typo_row_height(const struct typo_profile *p)
 {
-    return 40 + 6 * p->line;
+    return p->row_h >= TYPO_ROW_MIN && p->row_h <= TYPO_ROW_MAX ? p->row_h : 40;
 }
 
 /* -------------------------------- build -------------------------------- */
@@ -854,11 +896,39 @@ static int fnt_char_width(const char *rel, unsigned ch)
 }
 
 static int skin_pad_px[2];   /* left / right padding of list rows, in spaces */
+static int skin_np[5];       /* Now Playing text block: tops of its 5 lines */
+
+/* Now Playing: track number, title, artist, album, details. The gaps
+ * between them follow the spacing %, never overlapping, kept centred
+ * next to the cover and above the shuffle/repeat line */
+void typo_np_positions(int pct, int y[5])
+{
+    static const short gap[4] = { 28, 37, 28, 33 };   /* at 100 % */
+    static const short hgt[5] = { 22, 32, 26, 26, 22 };
+    int g[4], total = hgt[4];
+    for (int i = 0; i < 4; i++)
+    {
+        g[i] = (gap[i] * pct + 50) / 100;
+        if (g[i] < hgt[i]) g[i] = hgt[i];
+        total += g[i];
+    }
+    int start = 131 - total / 2;      /* 57..205 at 100 %: centre 131 */
+    if (start < 42) start = 42;
+    if (start + total > 222) start = 222 - total;
+    y[0] = start;
+    for (int i = 0; i < 4; i++)
+        y[i + 1] = y[i] + g[i];
+}
 
 static const char *skin_var(const char *name, const char files[TU_COUNT][64], int row_h)
 {
     static char num[8];
     static char pad[12];
+    if (name[0] == 'n' && name[1] == 'p' && name[2] >= '1' && name[2] <= '5' && !name[3])
+    {
+        snprintf(num, sizeof(num), "%d", skin_np[name[2] - '1']);
+        return num;
+    }
     if (!strcmp(name, "pad") || !strcmp(name, "rpad"))
     {   /* ~14 px / ~10 px of spaces in the row font */
         int n = name[0] == 'p' ? skin_pad_px[0] : skin_pad_px[1];
@@ -965,8 +1035,9 @@ static bool gen_skin(const char *src, const char *dst, const char files[TU_COUNT
     return ok;
 }
 
-static bool gen_theme_files(const char files[TU_COUNT][64], int row_h)
+static bool gen_theme_files(const char files[TU_COUNT][64], int row_h, int np_pct)
 {
+    typo_np_positions(np_pct, skin_np);
     int sp = fnt_char_width(files[TU_ROW], ' ');
     skin_pad_px[0] = sp > 0 ? (14 + sp / 2) / sp : 3;
     skin_pad_px[1] = sp > 0 ? (10 + sp / 2) / sp : 2;
@@ -1120,7 +1191,7 @@ bool typo_apply(const struct typo_profile *p)
         splash(HZ * 2, ID2P(LANG_WHEEL_TYPO_FAILED));
         return false;
     }
-    if (!gen_theme_files((const char (*)[64])bi.file, typo_row_height(p)))
+    if (!gen_theme_files((const char (*)[64])bi.file, typo_row_height(p), p->np_pct))
     {
         splash(HZ * 2, ID2P(LANG_WHEEL_TYPO_FAILED));
         return false;
@@ -1147,6 +1218,7 @@ void typo_restore_default(void)
 
 void typo_init(void)
 {
+    typo_update_fallbacks(true);
     load_active();
     if (custom && !generated_present())
     {   /* cache or theme files gone (card wiped?): back to the stock look */
@@ -1222,6 +1294,62 @@ long typo_loaded_bytes(int *fonts)
     }
     if (fonts) *fonts = n;
     return total;
+}
+
+/* ---------------------------- glyph fallback ---------------------------- */
+
+/* fonts/cjk/CJK-<script>-<em>.fnt (Noto Sans SC/JP/KR, SIL OFL), plus the
+ * stock Inter fonts for Latin/Greek/Cyrillic that a theme's font lacks */
+#define CJK_DIR FONT_DIR "/cjk"
+static const char * const cjk_scripts[3] = { "JP", "SC", "KR" };
+static const int cjk_sizes[2] = { 22, 17 };
+static int cjk_ids[3][2] = { { -1, -1 }, { -1, -1 }, { -1, -1 } };
+static int latin_ids[2] = { -1, -1 };
+static bool fb_loaded;
+static char fb_lang[MAX_FILENAME + 1] = "\x01";
+
+int typo_cjk_fonts(void)
+{
+    int n = 0;
+    for (int s = 0; s < 3; s++)
+        for (int z = 0; z < 2; z++)
+            n += cjk_ids[s][z] >= 0;
+    return n;
+}
+
+void typo_update_fallbacks(bool force)
+{
+    const char *lang = (const char *)global_settings.lang_file;
+    if (!force && fb_loaded && !strcmp(lang, fb_lang))
+        return;
+    strlcpy(fb_lang, lang, sizeof(fb_lang));
+    if (!fb_loaded)
+    {   /* glyph caches: these stay open, only the glyphs in use are in RAM */
+        for (int s = 0; s < 3; s++)
+            for (int z = 0; z < 2; z++)
+            {
+                char path[MAX_PATH];
+                snprintf(path, sizeof(path), CJK_DIR "/CJK-%s-%d.fnt", cjk_scripts[s], cjk_sizes[z]);
+                cjk_ids[s][z] = font_load(path);
+            }
+        latin_ids[0] = font_load(FONT_DIR "/Wheel-Secondary.fnt");
+        latin_ids[1] = font_load(FONT_DIR "/Wheel-Meta.fnt");
+        fb_loaded = true;
+    }
+    /* Han characters look different in each language: the UI language's
+     * script first, then the others */
+    int order[3] = { 0, 1, 2 };                   /* JP, SC, KR */
+    if (!strncmp(lang, "chinese", 7)) { order[0] = 1; order[1] = 0; }
+    else if (!strcmp(lang, "korean")) { order[0] = 2; order[1] = 0; order[2] = 1; }
+    int ids[MAX_FALLBACK_FONTS], n = 0;
+    for (int i = 0; i < 3; i++)
+        for (int z = 0; z < 2; z++)
+            if (cjk_ids[order[i]][z] >= 0 && n < MAX_FALLBACK_FONTS)
+                ids[n++] = cjk_ids[order[i]][z];
+    for (int z = 0; z < 2; z++)
+        if (latin_ids[z] >= 0 && n < MAX_FALLBACK_FONTS)
+            ids[n++] = latin_ids[z];
+    font_set_fallbacks(ids, n);
 }
 
 /* ------------------------------- cache ------------------------------- */

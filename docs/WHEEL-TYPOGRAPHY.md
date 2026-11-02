@@ -12,10 +12,10 @@ con el hardware y el informe de implementación y pruebas.
 | El motor no tiene espaciado entre letras, interlineado ni cifras tabulares. | No se pueden cambiar "en vivo". | Se **hornean** en el `.fnt`: avance de cada glifo ±px, altura de línea = alto de la fuente con las mayúsculas centradas, dígitos con el ancho del más ancho. |
 | Máx. 12 fuentes cargadas a la vez (`MAXUSERFONTS`). | Los temas Wheel + vista previa no cabían. | En builds *hosted* (Y1, simulador) sube a 32; la memoria no es problema (512 MB). |
 | Los temas Wheel tienen alturas fijas (barra 38 px, filas 40 px). | Un tamaño grande se cortaría. | Cada rol tiene una **banda** fija (títulos 32, artista 26, detalles/números 22, filas 34/40/46). Los tamaños XS–XL se eligen para que quepan; los temas Wheel son plantillas que se regeneran con cada perfil. |
-| No hay sustitución de glifos en tiempo real. | Una fuente sin griego mostraría `?`. | El conversor toma lo que falte de **Inter** (escalado a la misma altura de mayúscula). La cobertura de cada fuente se muestra en Gestión de fuentes. |
+| Rockbox no sustituía glifos entre fuentes. | Una fuente latina no podía mostrar chino, japonés o coreano. | **Respaldo de glifos en el núcleo** (`font_set_fallbacks`): si una fuente no tiene un carácter (fuera de rango o con ancho 0), se dibuja con la siguiente de la cadena, alineado a la línea base y recortado a su alto. Cadena: Noto Sans JP/SC/KR (el idioma de la interfaz primero, por las formas de los kanji/hanzi) y después Inter para latín/griego/cirílico. Además el conversor puede completar huecos con Inter al generar. |
 | Fuentes variables. | stb_truetype solo dibuja la instancia por defecto. | Las incluidas se entregan como instancias estáticas por grosor (fontTools, en la compilación). Una variable importada usa su estilo base (se avisa). |
 | Fuentes propietarias (Chicago, Geneva, SF Pro, Avenir Next). | No se pueden redistribuir. | **No se incluyen.** Si copias tus archivos con licencia a `/.rockbox/fonts/import/`, los perfiles los usan solos; si no, alternativas OFL. |
-| Árabe, hebreo, escrituras índicas. | Necesitan *shaping*, que Rockbox no hace. | Fuera de alcance; se indica en Compatibilidad. CJK funciona si importas una fuente que lo tenga (los `.fnt` grandes usan la caché de glifos). |
+| Árabe, hebreo, escrituras índicas. | Necesitan *shaping*, que Rockbox no hace. | Fuera de alcance; se indica en Compatibilidad. |
 
 **Rendimiento:** las fuentes solo se generan al aplicar o previsualizar (CPU en *boost*), nunca
 durante la reproducción; el audio sigue sonando. El arranque no cambia: el perfil activo ya está
@@ -56,6 +56,23 @@ fuente con `typo_font(TU_…)`; los temas Wheel la reciben en la plantilla.
 `${row}`, `${rowsel}`, `${secondary}`, `${meta}`, `${numeric}` son las fuentes del perfil,
 `${row_h}` la altura de fila y `${pad}`/`${rpad}` el margen en espacios de la fuente de fila;
 `\s` es un espacio.
+
+### Fuentes CJK
+`fonts/cjk/CJK-{SC,JP,KR}-{17,22}.fnt` (≈10 MB): Noto Sans SC/JP/KR (SIL OFL) recortadas a GB 2312,
+JIS X 0208 y el hangul de KS X 1001 (más símbolos, kana y puntuación de ancho completo), en dos
+tamaños (líneas de 21 y 27 px). Se cargan con caché de glifos: en RAM solo están los que se ven.
+`build_cjk.py` las regenera.
+
+### Interlineado
+Un **estilo** (compacto, normal, cómodo, espacioso) fija cuatro valores; cambiar cualquiera pasa a
+"personalizado":
+
+| Valor | Rango | Dónde |
+|---|---|---|
+| Menús (alto de fila) | 30–56 px | filas de todas las listas del tema y fuente de UI (regenera las fuentes de fila y el tema) |
+| Letras | 100–200 % | separación entre versos y entre líneas de un mismo verso |
+| Textos de Reproduciendo | 80–135 % | número de pista, título, artista, álbum y detalles (se regenera el tema; nunca se solapan) |
+| Listas de dos líneas | 80–140 % | cola, playlists, álbumes (alto de fila y separación título/artista) |
 
 ## 3. Los 8 perfiles (`fonts/typo/presets.cfg`)
 
@@ -122,7 +139,8 @@ fuentes del aspecto estándar.
 
 ## 7. Informe de implementación y pruebas
 
-* `utils/wheel/typography/test_forge.py` — 15 pruebas: las 42 fuentes incluidas se convierten y se
+* `utils/wheel/typography/test_forge.py` — 20 pruebas (incluye las fuentes CJK y que cada carácter
+  de las traducciones fr/zh/ja/ko tenga glifo): las 42 fuentes incluidas se convierten y se
   leen como lo hace `firmware/font.c`; altura de línea y mayúsculas centradas (bandas 22–46);
   descendentes y acentos dentro de la banda; espaciado ±px en cada glifo; cifras tabulares y
   proporcionales; modo píxel sin suavizado y 16 niveles en suave; glifos de respaldo (griego de

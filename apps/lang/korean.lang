@@ -17243,3 +17243,4133 @@
     recording_remote: "원격 녹음 화면 스킨"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_TAPTIC_ENGINE_MODE
+  desc: in keyclick settings menu
+  user: core
+  <source>
+    *: "Taptic Engine Mode"
+  </source>
+  <dest>
+    *: "Taptic Engine 모드"
+  </dest>
+  <voice>
+    *: "Taptic Engine 모드"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_VIBRATIONS
+  desc: wheel vibration settings 
+  user: core
+  <source>
+    *: "Wheel Vibration Intensity"
+  </source>
+  <dest>
+    *: "휠 진동 세기"
+  </dest>
+  <voice>
+    *: "휠 진동 세기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_RESTART_ROCKBOX
+  desc: Main menu item to restart Rockbox on Android
+  user: core
+  <source>
+    *: "Restart Rockbox"
+  </source>
+  <dest>
+    *: "Rockbox 다시 시작"
+  </dest>
+  <voice>
+    *: "Rockbox 다시 시작"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_UPDATE_ROCKBOX
+  desc: Main menu item to update the firmware on Android
+  user: core
+  <source>
+    *: "Firmware Update"
+  </source>
+  <dest>
+    *: "펌웨어 업데이트"
+  </dest>
+  <voice>
+    *: "펌웨어 업데이트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SYSTEM_SETTINGS
+  desc: Menu item to launch system settings
+  user: core
+  <source>
+    *: "Android System Settings"
+  </source>
+  <dest>
+    *: "Android 시스템 설정"
+  </dest>
+  <voice>
+    *: "Android 시스템 설정"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_SETTINGS
+  desc: Bluetooth menu item
+  user: core
+  <source>
+    *: "Bluetooth Settings"
+  </source>
+  <dest>
+    *: "블루투스 설정"
+  </dest>
+  <voice>
+    *: "블루투스 설정"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_BLUETOOTH_RESET
+  desc: Reset Bluetooth menu item
+  user: core
+  <source>
+    *: "Reset Bluetooth Devices"
+  </source>
+  <dest>
+    *: "블루투스 기기 초기화"
+  </dest>
+  <voice>
+    *: "블루투스 기기 초기화"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SWITCH_FIRMWARE
+  desc: Switch to Stock item
+  user: core
+  <source>
+    *: "Switch to Stock Firmware"
+  </source>
+  <dest>
+    *: "기본 펌웨어로 전환"
+  </dest>
+  <voice>
+    *: "기본 펌웨어로 전환"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MUSIC
+  desc: Main menu: music library
+  user: core
+  <source>
+    *: "Music"
+  </source>
+  <dest>
+    *: "음악"
+  </dest>
+  <voice>
+    *: "음악"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW
+  desc: Main menu: album art browser
+  user: core
+  <source>
+    *: "Cover Flow"
+  </source>
+  <dest>
+    *: "Cover Flow"
+  </dest>
+  <voice>
+    *: "Cover Flow"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE_SONGS
+  desc: Main menu: play every song shuffled
+  user: core
+  <source>
+    *: "Shuffle Songs"
+  </source>
+  <dest>
+    *: "노래 셔플"
+  </dest>
+  <voice>
+    *: "노래 셔플"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EXTRAS
+  desc: Main menu: files, plugins and tools
+  user: core
+  <source>
+    *: "Extras"
+  </source>
+  <dest>
+    *: "더 보기"
+  </dest>
+  <voice>
+    *: "더 보기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_COVERFLOW_MISSING
+  desc: Splash: pictureflow plugin missing
+  user: core
+  <source>
+    *: "Cover Flow plugin not installed"
+  </source>
+  <dest>
+    *: "Cover Flow 플러그인이 설치되지 않았습니다"
+  </dest>
+  <voice>
+    *: "Cover Flow 플러그인이 설치되지 않았습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_SONGS
+  desc: Splash: no audio files found for shuffle
+  user: core
+  <source>
+    *: "No songs found in the Music folder"
+  </source>
+  <dest>
+    *: "Music 폴더에 노래가 없습니다"
+  </dest>
+  <voice>
+    *: "Music 폴더에 노래가 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connected"
+  </source>
+  <dest>
+    *: "연결됨"
+  </dest>
+  <voice>
+    *: "연결됨"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECTING
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Connecting…"
+  </source>
+  <dest>
+    *: "연결 중…"
+  </dest>
+  <voice>
+    *: "연결 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAIRING
+  desc: Bluetooth device state / splash
+  user: core
+  <source>
+    *: "Pairing…"
+  </source>
+  <dest>
+    *: "페어링 중…"
+  </dest>
+  <voice>
+    *: "페어링 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NOT_CONNECTED
+  desc: Bluetooth device state
+  user: core
+  <source>
+    *: "Not Connected"
+  </source>
+  <dest>
+    *: "연결 안 됨"
+  </dest>
+  <voice>
+    *: "연결 안 됨"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH
+  desc: Bluetooth: start device discovery
+  user: core
+  <source>
+    *: "Search for Devices"
+  </source>
+  <dest>
+    *: "기기 검색"
+  </dest>
+  <voice>
+    *: "기기 검색"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCHING
+  desc: Bluetooth: discovery running
+  user: core
+  <source>
+    *: "Searching…"
+  </source>
+  <dest>
+    *: "검색 중…"
+  </dest>
+  <voice>
+    *: "검색 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEARCH_AGAIN
+  desc: Bluetooth: restart discovery
+  user: core
+  <source>
+    *: "Search Again"
+  </source>
+  <dest>
+    *: "다시 검색"
+  </dest>
+  <voice>
+    *: "다시 검색"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_NONE_FOUND
+  desc: Bluetooth: discovery found nothing
+  user: core
+  <source>
+    *: "No devices found"
+  </source>
+  <dest>
+    *: "기기를 찾지 못했습니다"
+  </dest>
+  <voice>
+    *: "기기를 찾지 못했습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_AUTORECONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Auto-Reconnect"
+  </source>
+  <dest>
+    *: "자동 재연결"
+  </dest>
+  <voice>
+    *: "자동 재연결"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_PAUSE_ON_LOSS
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Pause When Disconnected"
+  </source>
+  <dest>
+    *: "연결이 끊기면 일시정지"
+  </dest>
+  <voice>
+    *: "연결이 끊기면 일시정지"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESUME_ON_CONNECT
+  desc: Bluetooth option
+  user: core
+  <source>
+    *: "Resume When Reconnected"
+  </source>
+  <dest>
+    *: "다시 연결되면 재생"
+  </dest>
+  <voice>
+    *: "다시 연결되면 재생"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SYSTEM
+  desc: Bluetooth: open Android settings
+  user: core
+  <source>
+    *: "Advanced (Android)"
+  </source>
+  <dest>
+    *: "고급 (Android)"
+  </dest>
+  <voice>
+    *: "고급 (Android)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_OFF_HINT
+  desc: Bluetooth: radio is off
+  user: core
+  <source>
+    *: "Turn on Bluetooth to see devices"
+  </source>
+  <dest>
+    *: "블루투스를 켜면 기기가 보입니다"
+  </dest>
+  <voice>
+    *: "블루투스를 켜면 기기가 보입니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FAILED
+  desc: Bluetooth: operation failed
+  user: core
+  <source>
+    *: "Couldn't connect"
+  </source>
+  <dest>
+    *: "연결할 수 없습니다"
+  </dest>
+  <voice>
+    *: "연결할 수 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_CONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Connect"
+  </source>
+  <dest>
+    *: "연결"
+  </dest>
+  <voice>
+    *: "연결"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_DISCONNECT
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Disconnect"
+  </source>
+  <dest>
+    *: "연결 해제"
+  </dest>
+  <voice>
+    *: "연결 해제"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_FORGET
+  desc: Bluetooth device menu
+  user: core
+  <source>
+    *: "Forget This Device"
+  </source>
+  <dest>
+    *: "이 기기 지우기"
+  </dest>
+  <voice>
+    *: "이 기기 지우기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURNING_ON
+  desc: Bluetooth: radio starting
+  user: core
+  <source>
+    *: "Turning on Bluetooth…"
+  </source>
+  <dest>
+    *: "블루투스 켜는 중…"
+  </dest>
+  <voice>
+    *: "블루투스 켜는 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_UNAVAILABLE
+  desc: Bluetooth: no radio on this player
+  user: core
+  <source>
+    *: "Bluetooth is not available on this player"
+  </source>
+  <dest>
+    *: "이 플레이어에서는 블루투스를 쓸 수 없습니다"
+  </dest>
+  <voice>
+    *: "이 플레이어에서는 블루투스를 쓸 수 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SCROBBLING
+  desc: Last.fm: enable
+  user: core
+  <source>
+    *: "Scrobbling"
+  </source>
+  <dest>
+    *: "스크로블"
+  </dest>
+  <voice>
+    *: "스크로블"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ACCOUNT
+  desc: Last.fm: account row
+  user: core
+  <source>
+    *: "Account"
+  </source>
+  <dest>
+    *: "계정"
+  </dest>
+  <voice>
+    *: "계정"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOT_SIGNED_IN
+  desc: Last.fm: no session
+  user: core
+  <source>
+    *: "Not signed in"
+  </source>
+  <dest>
+    *: "로그인 안 됨"
+  </dest>
+  <voice>
+    *: "로그인 안 됨"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_PENDING
+  desc: Last.fm: queue size
+  user: core
+  <source>
+    *: "Waiting to Send"
+  </source>
+  <dest>
+    *: "전송 대기"
+  </dest>
+  <voice>
+    *: "전송 대기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SENT
+  desc: Last.fm: accepted scrobbles
+  user: core
+  <source>
+    *: "Scrobbled"
+  </source>
+  <dest>
+    *: "스크로블됨"
+  </dest>
+  <voice>
+    *: "스크로블됨"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LAST_SYNC
+  desc: Last.fm: last successful submit
+  user: core
+  <source>
+    *: "Last Sync"
+  </source>
+  <dest>
+    *: "마지막 동기화"
+  </dest>
+  <voice>
+    *: "마지막 동기화"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_ERROR
+  desc: Last.fm: last error
+  user: core
+  <source>
+    *: "Error"
+  </source>
+  <dest>
+    *: "오류"
+  </dest>
+  <voice>
+    *: "오류"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NEVER
+  desc: Last.fm: never synced
+  user: core
+  <source>
+    *: "Never"
+  </source>
+  <dest>
+    *: "없음"
+  </dest>
+  <voice>
+    *: "없음"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_JUST_NOW
+  desc: Last.fm: synced < 1 min ago
+  user: core
+  <source>
+    *: "Just now"
+  </source>
+  <dest>
+    *: "방금"
+  </dest>
+  <voice>
+    *: "방금"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE_SUFFIX
+  desc: Last.fm: appended when no network
+  user: core
+  <source>
+    *: " (offline)"
+  </source>
+  <dest>
+    *: " (오프라인)"
+  </dest>
+  <voice>
+    *: " (오프라인)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SEND_NOW
+  desc: Last.fm: flush queue
+  user: core
+  <source>
+    *: "Send Scrobbles Now"
+  </source>
+  <dest>
+    *: "지금 스크로블 보내기"
+  </dest>
+  <voice>
+    *: "지금 스크로블 보내기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_NOWPLAYING
+  desc: Last.fm: now playing updates
+  user: core
+  <source>
+    *: "Now Playing Updates"
+  </source>
+  <dest>
+    *: "지금 재생 중 보내기"
+  </dest>
+  <voice>
+    *: "지금 재생 중 보내기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_LOG
+  desc: Last.fm: offline .scrobbler.log
+  user: core
+  <source>
+    *: "Offline Log File"
+  </source>
+  <dest>
+    *: "오프라인 로그 파일"
+  </dest>
+  <voice>
+    *: "오프라인 로그 파일"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SIGN_OUT
+  desc: Last.fm: confirm sign out
+  user: core
+  <source>
+    *: "Sign out of Last.fm?"
+  </source>
+  <dest>
+    *: "Last.fm에서 로그아웃할까요?"
+  </dest>
+  <voice>
+    *: "Last.fm에서 로그아웃할까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_SETUP_HINT
+  desc: Last.fm: how to sign in
+  user: core
+  <source>
+    *: "Copy lastfm.cfg into the .rockbox folder"
+  </source>
+  <dest>
+    *: "lastfm.cfg를 .rockbox 폴더에 복사하세요"
+  </dest>
+  <voice>
+    *: "lastfm.cfg를 .rockbox 폴더에 복사하세요"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_OFFLINE
+  desc: Last.fm: no network
+  user: core
+  <source>
+    *: "No connection. Scrobbles are kept safe."
+  </source>
+  <dest>
+    *: "연결이 없습니다. 스크로블은 안전하게 보관됩니다."
+  </dest>
+  <voice>
+    *: "연결이 없습니다. 스크로블은 안전하게 보관됩니다."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_UNAVAILABLE
+  desc: Last.fm: not supported on this platform
+  user: core
+  <source>
+    *: "Not available on this player"
+  </source>
+  <dest>
+    *: "이 플레이어에서는 사용할 수 없습니다"
+  </dest>
+  <voice>
+    *: "이 플레이어에서는 사용할 수 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_READY
+  desc: DB scan finished, restart needed
+  user: core
+  <source>
+    *: "Your music library is ready"
+  </source>
+  <dest>
+    *: "음악 보관함이 준비되었습니다"
+  </dest>
+  <voice>
+    *: "음악 보관함이 준비되었습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RESTART_NOW
+  desc: Ask to restart Rockbox now
+  user: core
+  <source>
+    *: "Restart Rockbox now to finish?"
+  </source>
+  <dest>
+    *: "마치려면 Rockbox를 다시 시작할까요?"
+  </dest>
+  <voice>
+    *: "마치려면 Rockbox를 다시 시작할까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BATTERY_PERCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Battery Percentage"
+  </source>
+  <dest>
+    *: "배터리 잔량 %"
+  </dest>
+  <voice>
+    *: "배터리 잔량 %"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_APPEARANCE
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Appearance"
+  </source>
+  <dest>
+    *: "화면 스타일"
+  </dest>
+  <voice>
+    *: "화면 스타일"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIGHT
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Light"
+  </source>
+  <dest>
+    *: "라이트"
+  </dest>
+  <voice>
+    *: "라이트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DARK
+  desc: Y1 Wheel appearance
+  user: core
+  <source>
+    *: "Dark"
+  </source>
+  <dest>
+    *: "다크"
+  </dest>
+  <voice>
+    *: "다크"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Accent Colour"
+  </source>
+  <dest>
+    *: "강조 색상"
+  </dest>
+  <voice>
+    *: "강조 색상"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_BLUE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Blue"
+  </source>
+  <dest>
+    *: "파랑"
+  </dest>
+  <voice>
+    *: "파랑"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PINK
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Pink"
+  </source>
+  <dest>
+    *: "분홍"
+  </dest>
+  <voice>
+    *: "분홍"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_PURPLE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Purple"
+  </source>
+  <dest>
+    *: "보라"
+  </dest>
+  <voice>
+    *: "보라"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GREEN
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Green"
+  </source>
+  <dest>
+    *: "초록"
+  </dest>
+  <voice>
+    *: "초록"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_ORANGE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Orange"
+  </source>
+  <dest>
+    *: "주황"
+  </dest>
+  <voice>
+    *: "주황"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_RED
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Red"
+  </source>
+  <dest>
+    *: "빨강"
+  </dest>
+  <voice>
+    *: "빨강"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ACCENT_GRAPHITE
+  desc: Y1 Wheel accent
+  user: core
+  <source>
+    *: "Graphite"
+  </source>
+  <dest>
+    *: "그래파이트"
+  </dest>
+  <voice>
+    *: "그래파이트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LETTER_JUMP
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Letter Jump"
+  </source>
+  <dest>
+    *: "글자로 이동"
+  </dest>
+  <voice>
+    *: "글자로 이동"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CLICKER
+  desc: Y1 Wheel setting
+  user: core
+  <source>
+    *: "Clicker"
+  </source>
+  <dest>
+    *: "휠 클릭음"
+  </dest>
+  <voice>
+    *: "휠 클릭음"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_HINT
+  desc: Y1 Wheel keyboard title when empty
+  user: core
+  <source>
+    *: "Type with the wheel"
+  </source>
+  <dest>
+    *: "휠로 입력하세요"
+  </dest>
+  <voice>
+    *: "휠로 입력하세요"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DONE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Done"
+  </source>
+  <dest>
+    *: "완료"
+  </dest>
+  <voice>
+    *: "완료"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_DELETE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "지우기"
+  </dest>
+  <voice>
+    *: "지우기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_SPACE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Space"
+  </source>
+  <dest>
+    *: "띄어쓰기"
+  </dest>
+  <voice>
+    *: "띄어쓰기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_KBD_CASE
+  desc: Y1 Wheel keyboard
+  user: core
+  <source>
+    *: "Letters"
+  </source>
+  <dest>
+    *: "문자"
+  </dest>
+  <voice>
+    *: "문자"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP1
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Scan with your phone"
+  </source>
+  <dest>
+    *: "휴대폰으로 스캔"
+  </dest>
+  <voice>
+    *: "휴대폰으로 스캔"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP2
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Allow access"
+  </source>
+  <dest>
+    *: "접근 허용"
+  </dest>
+  <voice>
+    *: "접근 허용"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_STEP3
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Wait here a moment"
+  </source>
+  <dest>
+    *: "여기서 잠시 기다리세요"
+  </dest>
+  <voice>
+    *: "여기서 잠시 기다리세요"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QR_NEEDS
+  desc: Y1 Wheel qr sign-in
+  user: core
+  <source>
+    *: "Needs internet (Wi-Fi if your ROM has it, or Bluetooth > your phone > Use Phone's Internet) and a Last.fm API key"
+  </source>
+  <dest>
+    *: "인터넷(Wi-Fi 또는 블루투스로 휴대폰 인터넷)과 Last.fm API 키가 필요합니다"
+  </dest>
+  <voice>
+    *: "인터넷(Wi-Fi 또는 블루투스로 휴대폰 인터넷)과 Last.fm API 키가 필요합니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_SCANNING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Building your library…"
+  </source>
+  <dest>
+    *: "음악 보관함 만드는 중…"
+  </dest>
+  <voice>
+    *: "음악 보관함 만드는 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIBRARY_FINISHING
+  desc: Y1 Wheel library status
+  user: core
+  <source>
+    *: "Finishing your library…"
+  </source>
+  <dest>
+    *: "음악 보관함 마무리 중…"
+  </dest>
+  <voice>
+    *: "음악 보관함 마무리 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ALBUM
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Album"
+  </source>
+  <dest>
+    *: "앨범으로 이동"
+  </dest>
+  <voice>
+    *: "앨범으로 이동"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GOTO_ARTIST
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Go to Artist"
+  </source>
+  <dest>
+    *: "아티스트로 이동"
+  </dest>
+  <voice>
+    *: "아티스트로 이동"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_UP_NEXT
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Up Next"
+  </source>
+  <dest>
+    *: "다음 곡"
+  </dest>
+  <voice>
+    *: "다음 곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVE
+  desc: Y1 Wheel now playing menu
+  user: core
+  <source>
+    *: "Love on Last.fm"
+  </source>
+  <dest>
+    *: "Last.fm에서 좋아요"
+  </dest>
+  <voice>
+    *: "Last.fm에서 좋아요"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LOVED
+  desc: Y1 Wheel splash
+  user: core
+  <source>
+    *: "Loved"
+  </source>
+  <dest>
+    *: "좋아요 표시함"
+  </dest>
+  <voice>
+    *: "좋아요 표시함"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_NEXT
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Next"
+  </source>
+  <dest>
+    *: "다음에 재생"
+  </dest>
+  <voice>
+    *: "다음에 재생"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY_LATER
+  desc: Y1 Wheel browser menu
+  user: core
+  <source>
+    *: "Play Later"
+  </source>
+  <dest>
+    *: "나중에 재생"
+  </dest>
+  <voice>
+    *: "나중에 재생"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_OF
+  desc: Y1 Wheel '3 of 12' in Now Playing
+  user: core
+  <source>
+    *: "of"
+  </source>
+  <dest>
+    *: "/"
+  </dest>
+  <voice>
+    *: "/"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SCRUBBING
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Scrubbing"
+  </source>
+  <dest>
+    *: "탐색 중"
+  </dest>
+  <voice>
+    *: "탐색 중"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "가사"
+  </dest>
+  <voice>
+    *: "가사"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_LYRICS
+  desc: Y1 Wheel now playing mode
+  user: core
+  <source>
+    *: "No lyrics for this song"
+  </source>
+  <dest>
+    *: "이 노래의 가사가 없습니다"
+  </dest>
+  <voice>
+    *: "이 노래의 가사가 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LYRICS_SEARCHING
+  desc: Y1 Wheel lyrics
+  user: core
+  <source>
+    *: "Looking for lyrics…"
+  </source>
+  <dest>
+    *: "가사 찾는 중…"
+  </dest>
+  <voice>
+    *: "가사 찾는 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_NEXT
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Playing next"
+  </source>
+  <dest>
+    *: "다음에 재생됩니다"
+  </dest>
+  <voice>
+    *: "다음에 재생됩니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ADDED_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Added to Up Next"
+  </source>
+  <dest>
+    *: "다음 곡에 추가됨"
+  </dest>
+  <voice>
+    *: "다음 곡에 추가됨"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_ANY
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Any"
+  </source>
+  <dest>
+    *: "모두"
+  </dest>
+  <voice>
+    *: "모두"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send via Bluetooth"
+  </source>
+  <dest>
+    *: "블루투스로 보내기"
+  </dest>
+  <voice>
+    *: "블루투스로 보내기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ALL
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send whole list via Bluetooth"
+  </source>
+  <dest>
+    *: "목록 전체를 블루투스로 보내기"
+  </dest>
+  <voice>
+    *: "목록 전체를 블루투스로 보내기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_1
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending… %d%%"
+  </source>
+  <dest>
+    *: "보내는 중… %d%%"
+  </dest>
+  <voice>
+    *: "보내는 중… %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SENDING_N
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sending %d of %d · %d%%"
+  </source>
+  <dest>
+    *: "보내는 중 %d/%d · %d%%"
+  </dest>
+  <voice>
+    *: "보내는 중 %d/%d · %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_ACCEPT
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Accept the file on the other device"
+  </source>
+  <dest>
+    *: "다른 기기에서 파일을 수락하세요"
+  </dest>
+  <voice>
+    *: "다른 기기에서 파일을 수락하세요"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_DONE
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Sent"
+  </source>
+  <dest>
+    *: "보냈습니다"
+  </dest>
+  <voice>
+    *: "보냈습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_FAILED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Couldn't send. Is Bluetooth on and the device close?"
+  </source>
+  <dest>
+    *: "보내지 못했습니다. 블루투스가 켜져 있고 기기가 가까이 있나요?"
+  </dest>
+  <voice>
+    *: "보내지 못했습니다. 블루투스가 켜져 있고 기기가 가까이 있나요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_NO_TARGETS
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Pair your phone or computer first (Bluetooth)"
+  </source>
+  <dest>
+    *: "먼저 휴대폰이나 컴퓨터를 페어링하세요 (블루투스)"
+  </dest>
+  <voice>
+    *: "먼저 휴대폰이나 컴퓨터를 페어링하세요 (블루투스)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_REJECTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "The other device declined"
+  </source>
+  <dest>
+    *: "상대 기기가 거부했습니다"
+  </dest>
+  <voice>
+    *: "상대 기기가 거부했습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_TO
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Send to"
+  </source>
+  <dest>
+    *: "보낼 기기"
+  </dest>
+  <voice>
+    *: "보낼 기기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_SEND_UNSUPPORTED
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "This player can't send files over Bluetooth"
+  </source>
+  <dest>
+    *: "이 플레이어는 블루투스로 파일을 보낼 수 없습니다"
+  </dest>
+  <voice>
+    *: "이 플레이어는 블루투스로 파일을 보낼 수 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TURN_ON
+  desc: Y1 Wheel send
+  user: core
+  <source>
+    *: "Turn on Bluetooth?"
+  </source>
+  <dest>
+    *: "블루투스를 켤까요?"
+  </dest>
+  <voice>
+    *: "블루투스를 켤까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CONTINUE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Continue Listening"
+  </source>
+  <dest>
+    *: "이어서 듣기"
+  </dest>
+  <voice>
+    *: "이어서 듣기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CREATE_LIST
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Create List"
+  </source>
+  <dest>
+    *: "목록 만들기"
+  </dest>
+  <voice>
+    *: "목록 만들기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DAILY_MIX
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Daily Mix"
+  </source>
+  <dest>
+    *: "오늘의 믹스"
+  </dest>
+  <voice>
+    *: "오늘의 믹스"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Decade"
+  </source>
+  <dest>
+    *: "연대"
+  </dest>
+  <voice>
+    *: "연대"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_DECADES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Decades"
+  </source>
+  <dest>
+    *: "연대별"
+  </dest>
+  <voice>
+    *: "연대별"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_EQ_FINE_TUNE
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Fine Tune…"
+  </source>
+  <dest>
+    *: "세부 조정…"
+  </dest>
+  <voice>
+    *: "세부 조정…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_AMBIENT
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Ambient & Chill"
+  </source>
+  <dest>
+    *: "앰비언트 & 칠"
+  </dest>
+  <voice>
+    *: "앰비언트 & 칠"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_CLASSICAL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Classical"
+  </source>
+  <dest>
+    *: "클래식"
+  </dest>
+  <voice>
+    *: "클래식"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_DANCE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Dance"
+  </source>
+  <dest>
+    *: "댄스"
+  </dest>
+  <voice>
+    *: "댄스"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ELECTRONIC
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Electronic"
+  </source>
+  <dest>
+    *: "일렉트로닉"
+  </dest>
+  <voice>
+    *: "일렉트로닉"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_FOLK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Folk & Acoustic"
+  </source>
+  <dest>
+    *: "포크 & 어쿠스틱"
+  </dest>
+  <voice>
+    *: "포크 & 어쿠스틱"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HARD
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Metal & Punk"
+  </source>
+  <dest>
+    *: "메탈 & 펑크"
+  </dest>
+  <voice>
+    *: "메탈 & 펑크"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_HIPHOP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Hip-Hop"
+  </source>
+  <dest>
+    *: "힙합"
+  </dest>
+  <voice>
+    *: "힙합"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_INDIE
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Indie & Alternative"
+  </source>
+  <dest>
+    *: "인디 & 얼터너티브"
+  </dest>
+  <voice>
+    *: "인디 & 얼터너티브"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_JAZZ
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Jazz"
+  </source>
+  <dest>
+    *: "재즈"
+  </dest>
+  <voice>
+    *: "재즈"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_LATIN
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Latin"
+  </source>
+  <dest>
+    *: "라틴"
+  </dest>
+  <voice>
+    *: "라틴"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_OTHER
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Other"
+  </source>
+  <dest>
+    *: "기타"
+  </dest>
+  <voice>
+    *: "기타"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_POP
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Pop"
+  </source>
+  <dest>
+    *: "팝"
+  </dest>
+  <voice>
+    *: "팝"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_ROCK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Rock"
+  </source>
+  <dest>
+    *: "록"
+  </dest>
+  <voice>
+    *: "록"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUL
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soul, R&B & Blues"
+  </source>
+  <dest>
+    *: "소울, R&B & 블루스"
+  </dest>
+  <voice>
+    *: "소울, R&B & 블루스"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAM_SOUNDTRACK
+  desc: Y1 Wheel genre
+  user: core
+  <source>
+    *: "Soundtracks"
+  </source>
+  <dest>
+    *: "사운드트랙"
+  </dest>
+  <voice>
+    *: "사운드트랙"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FAVOURITES
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Your Favourites"
+  </source>
+  <dest>
+    *: "즐겨 듣는 곡"
+  </dest>
+  <voice>
+    *: "즐겨 듣는 곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FORGOTTEN
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Forgotten Gems"
+  </source>
+  <dest>
+    *: "잊고 있던 명곡"
+  </dest>
+  <voice>
+    *: "잊고 있던 명곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_FOR_YOU
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "For You"
+  </source>
+  <dest>
+    *: "추천"
+  </dest>
+  <voice>
+    *: "추천"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_GENRE
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Genre"
+  </source>
+  <dest>
+    *: "장르"
+  </dest>
+  <voice>
+    *: "장르"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LENGTH
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Length"
+  </source>
+  <dest>
+    *: "길이"
+  </dest>
+  <voice>
+    *: "길이"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LIST_EMPTY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Nothing here yet"
+  </source>
+  <dest>
+    *: "아직 아무것도 없습니다"
+  </dest>
+  <voice>
+    *: "아직 아무것도 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LONG_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Long (6 min +)"
+  </source>
+  <dest>
+    *: "긴 곡 (6분 이상)"
+  </dest>
+  <voice>
+    *: "긴 곡 (6분 이상)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MAKING_MIX
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Making your mix…"
+  </source>
+  <dest>
+    *: "믹스 만드는 중…"
+  </dest>
+  <voice>
+    *: "믹스 만드는 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MIXTAPE
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Mixtape"
+  </source>
+  <dest>
+    *: "믹스테이프"
+  </dest>
+  <voice>
+    *: "믹스테이프"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOODS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Moods"
+  </source>
+  <dest>
+    *: "분위기"
+  </dest>
+  <voice>
+    *: "분위기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_CALM
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Calm"
+  </source>
+  <dest>
+    *: "차분함"
+  </dest>
+  <voice>
+    *: "차분함"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_ENERGY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Energy"
+  </source>
+  <dest>
+    *: "에너지"
+  </dest>
+  <voice>
+    *: "에너지"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_FOCUS
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Focus"
+  </source>
+  <dest>
+    *: "집중"
+  </dest>
+  <voice>
+    *: "집중"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_MELANCHOLY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Melancholy"
+  </source>
+  <dest>
+    *: "멜랑콜리"
+  </dest>
+  <voice>
+    *: "멜랑콜리"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOOD_PARTY
+  desc: Y1 Wheel mood
+  user: core
+  <source>
+    *: "Party"
+  </source>
+  <dest>
+    *: "파티"
+  </dest>
+  <voice>
+    *: "파티"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_DOWN
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Down"
+  </source>
+  <dest>
+    *: "아래로 이동"
+  </dest>
+  <voice>
+    *: "아래로 이동"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_MOVE_UP
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Move Up"
+  </source>
+  <dest>
+    *: "위로 이동"
+  </dest>
+  <voice>
+    *: "위로 이동"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEED_LIBRARY
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Your library is still being prepared"
+  </source>
+  <dest>
+    *: "음악 보관함을 준비하고 있습니다"
+  </dest>
+  <voice>
+    *: "음악 보관함을 준비하고 있습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NEVER_PLAYED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Never Played"
+  </source>
+  <dest>
+    *: "들어 본 적 없는 곡"
+  </dest>
+  <voice>
+    *: "들어 본 적 없는 곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOTHING_PLAYING
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Nothing is playing"
+  </source>
+  <dest>
+    *: "재생 중인 곡이 없습니다"
+  </dest>
+  <voice>
+    *: "재생 중인 곡이 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NOW_PLAYING
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Now Playing"
+  </source>
+  <dest>
+    *: "지금 재생 중"
+  </dest>
+  <voice>
+    *: "지금 재생 중"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_PLAYLISTS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "No playlists yet. Save one from any mix."
+  </source>
+  <dest>
+    *: "아직 재생목록이 없습니다. 믹스에서 저장하세요."
+  </dest>
+  <voice>
+    *: "아직 재생목록이 없습니다. 믹스에서 저장하세요."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PICKS_TODAY
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picked for today"
+  </source>
+  <dest>
+    *: "오늘의 추천"
+  </dest>
+  <voice>
+    *: "오늘의 추천"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAY
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Play"
+  </source>
+  <dest>
+    *: "재생"
+  </dest>
+  <voice>
+    *: "재생"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PLAYLIST_SAVED
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Saved to Playlists"
+  </source>
+  <dest>
+    *: "재생목록에 저장됨"
+  </dest>
+  <voice>
+    *: "재생목록에 저장됨"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PREPARING_PICKS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Picking songs for you…"
+  </source>
+  <dest>
+    *: "노래를 고르는 중…"
+  </dest>
+  <voice>
+    *: "노래를 고르는 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_QUEUE
+  desc: Y1 Wheel queue
+  user: core
+  <source>
+    *: "Queue"
+  </source>
+  <dest>
+    *: "대기열"
+  </dest>
+  <voice>
+    *: "대기열"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENTLY_ADDED
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Added"
+  </source>
+  <dest>
+    *: "최근 추가"
+  </dest>
+  <voice>
+    *: "최근 추가"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_RECENT_ALBUMS
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Recently Played Albums"
+  </source>
+  <dest>
+    *: "최근 재생한 앨범"
+  </dest>
+  <voice>
+    *: "최근 재생한 앨범"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REMOVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Remove"
+  </source>
+  <dest>
+    *: "제거"
+  </dest>
+  <voice>
+    *: "제거"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_REPLACE_PLAYLIST
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Replace the playlist with that name?"
+  </source>
+  <dest>
+    *: "같은 이름의 재생목록을 바꿀까요?"
+  </dest>
+  <voice>
+    *: "같은 이름의 재생목록을 바꿀까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SAVE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Save"
+  </source>
+  <dest>
+    *: "저장"
+  </dest>
+  <voice>
+    *: "저장"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHORT_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Short (under 3:30)"
+  </source>
+  <dest>
+    *: "짧은 곡 (3:30 미만)"
+  </dest>
+  <voice>
+    *: "짧은 곡 (3:30 미만)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SHUFFLE
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "Shuffle"
+  </source>
+  <dest>
+    *: "셔플"
+  </dest>
+  <voice>
+    *: "셔플"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR
+  desc: Y1 Wheel mixes
+  user: core
+  <source>
+    *: "Similar Songs"
+  </source>
+  <dest>
+    *: "비슷한 곡"
+  </dest>
+  <voice>
+    *: "비슷한 곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SIMILAR_TO
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Similar To"
+  </source>
+  <dest>
+    *: "비슷한 곡:"
+  </dest>
+  <voice>
+    *: "비슷한 곡:"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_OFF
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Sleep timer off"
+  </source>
+  <dest>
+    *: "취침 타이머 꺼짐"
+  </dest>
+  <voice>
+    *: "취침 타이머 꺼짐"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SLEEP_SET
+  desc: Y1 Wheel sleep
+  user: core
+  <source>
+    *: "Music stops in %d min"
+  </source>
+  <dest>
+    *: "%d분 후 음악이 멈춥니다"
+  </dest>
+  <voice>
+    *: "%d분 후 음악이 멈춥니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SMART_LIST
+  desc: Y1 Wheel for you
+  user: core
+  <source>
+    *: "Smart List"
+  </source>
+  <dest>
+    *: "스마트 목록"
+  </dest>
+  <voice>
+    *: "스마트 목록"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONG
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "song"
+  </source>
+  <dest>
+    *: "곡"
+  </dest>
+  <voice>
+    *: "곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SONGS
+  desc: Y1 Wheel lists
+  user: core
+  <source>
+    *: "songs"
+  </source>
+  <dest>
+    *: "곡"
+  </dest>
+  <voice>
+    *: "곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SOUND
+  desc: Y1 Wheel sound
+  user: core
+  <source>
+    *: "Sound"
+  </source>
+  <dest>
+    *: "사운드"
+  </dest>
+  <voice>
+    *: "사운드"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_WHICH_SONGS
+  desc: Y1 Wheel rules
+  user: core
+  <source>
+    *: "Songs"
+  </source>
+  <dest>
+    *: "노래"
+  </dest>
+  <voice>
+    *: "노래"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Stats"
+  </source>
+  <dest>
+    *: "내 통계"
+  </dest>
+  <voice>
+    *: "내 통계"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ALLTIME
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "All Time"
+  </source>
+  <dest>
+    *: "전체 기간"
+  </dest>
+  <voice>
+    *: "전체 기간"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_ARTISTS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "artists"
+  </source>
+  <dest>
+    *: "아티스트"
+  </dest>
+  <voice>
+    *: "아티스트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_BY_MONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Month by Month"
+  </source>
+  <dest>
+    *: "월별"
+  </dest>
+  <voice>
+    *: "월별"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_EMPTY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Play some music and your stats will appear here"
+  </source>
+  <dest>
+    *: "음악을 들으면 여기에 통계가 표시됩니다"
+  </dest>
+  <voice>
+    *: "음악을 들으면 여기에 통계가 표시됩니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_HISTORY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Recently Played"
+  </source>
+  <dest>
+    *: "최근 재생"
+  </dest>
+  <voice>
+    *: "최근 재생"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_MINUTES
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Time Listened"
+  </source>
+  <dest>
+    *: "들은 시간"
+  </dest>
+  <voice>
+    *: "들은 시간"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PERIOD
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Period"
+  </source>
+  <dest>
+    *: "기간"
+  </dest>
+  <voice>
+    *: "기간"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Plays"
+  </source>
+  <dest>
+    *: "재생 횟수"
+  </dest>
+  <voice>
+    *: "재생 횟수"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_PLAYS_LOWER
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "plays"
+  </source>
+  <dest>
+    *: "회 재생"
+  </dest>
+  <voice>
+    *: "회 재생"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_SUMMARY
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your Summary"
+  </source>
+  <dest>
+    *: "요약"
+  </dest>
+  <voice>
+    *: "요약"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISMONTH
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Month"
+  </source>
+  <dest>
+    *: "이번 달"
+  </dest>
+  <voice>
+    *: "이번 달"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_THISYEAR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "This Year"
+  </source>
+  <dest>
+    *: "올해"
+  </dest>
+  <voice>
+    *: "올해"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ALBUMS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Albums"
+  </source>
+  <dest>
+    *: "인기 앨범"
+  </dest>
+  <voice>
+    *: "인기 앨범"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_ARTISTS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Artists"
+  </source>
+  <dest>
+    *: "인기 아티스트"
+  </dest>
+  <voice>
+    *: "인기 아티스트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_TOP_SONGS
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Top Songs"
+  </source>
+  <dest>
+    *: "인기 곡"
+  </dest>
+  <voice>
+    *: "인기 곡"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_ARTIST
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your artist"
+  </source>
+  <dest>
+    *: "나의 아티스트"
+  </dest>
+  <voice>
+    *: "나의 아티스트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_HOUR
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your favourite hour"
+  </source>
+  <dest>
+    *: "가장 좋아하는 시간"
+  </dest>
+  <voice>
+    *: "가장 좋아하는 시간"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOUR_SONG
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "Your song"
+  </source>
+  <dest>
+    *: "나의 노래"
+  </dest>
+  <voice>
+    *: "나의 노래"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_STATS_YOU_LISTENED
+  desc: Y1 Wheel stats
+  user: core
+  <source>
+    *: "You listened to"
+  </source>
+  <dest>
+    *: "들은 시간"
+  </dest>
+  <voice>
+    *: "들은 시간"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Theme"
+  </source>
+  <dest>
+    *: "테마"
+  </dest>
+  <voice>
+    *: "테마"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALL
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Install Theme from .zip…"
+  </source>
+  <dest>
+    *: ".zip에서 테마 설치…"
+  </dest>
+  <voice>
+    *: ".zip에서 테마 설치…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_SCALE
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Scale 320x240 Themes"
+  </source>
+  <dest>
+    *: "320x240 테마 확대"
+  </dest>
+  <voice>
+    *: "320x240 테마 확대"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_KEEP
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Keep this theme?"
+  </source>
+  <dest>
+    *: "이 테마를 유지할까요?"
+  </dest>
+  <voice>
+    *: "이 테마를 유지할까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_BROKEN
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "This theme couldn't be loaded"
+  </source>
+  <dest>
+    *: "이 테마를 불러올 수 없습니다"
+  </dest>
+  <voice>
+    *: "이 테마를 불러올 수 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLING
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installing…"
+  </source>
+  <dest>
+    *: "설치 중…"
+  </dest>
+  <voice>
+    *: "설치 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NO_ZIPS
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Copy a theme .zip to the player (main folder, Download or Themes) first"
+  </source>
+  <dest>
+    *: "먼저 테마 .zip을 플레이어에 복사하세요 (최상위, Download 또는 Themes)"
+  </dest>
+  <voice>
+    *: "먼저 테마 .zip을 플레이어에 복사하세요 (최상위, Download 또는 Themes)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_NOT_A_THEME
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "That .zip isn't a Rockbox theme"
+  </source>
+  <dest>
+    *: "이 .zip은 Rockbox 테마가 아닙니다"
+  </dest>
+  <voice>
+    *: "이 .zip은 Rockbox 테마가 아닙니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_THEME_INSTALLED
+  desc: Y1 Wheel themes
+  user: core
+  <source>
+    *: "Installed: %s"
+  </source>
+  <dest>
+    *: "설치됨: %s"
+  </dest>
+  <voice>
+    *: "설치됨: %s"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Use Phone's Internet"
+  </source>
+  <dest>
+    *: "휴대폰 인터넷 사용"
+  </dest>
+  <voice>
+    *: "휴대폰 인터넷 사용"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_TETHER_HINT
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Turn on Bluetooth tethering on the phone first"
+  </source>
+  <dest>
+    *: "먼저 휴대폰에서 블루투스 테더링을 켜세요"
+  </dest>
+  <voice>
+    *: "먼저 휴대폰에서 블루투스 테더링을 켜세요"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_INTERNET
+  desc: Y1 Wheel bluetooth
+  user: core
+  <source>
+    *: "Internet"
+  </source>
+  <dest>
+    *: "인터넷"
+  </dest>
+  <voice>
+    *: "인터넷"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_GENRES
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Genres"
+  </source>
+  <dest>
+    *: "장르"
+  </dest>
+  <voice>
+    *: "장르"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_COMPOSERS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Composers"
+  </source>
+  <dest>
+    *: "작곡가"
+  </dest>
+  <voice>
+    *: "작곡가"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_YEARS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Years"
+  </source>
+  <dest>
+    *: "연도"
+  </dest>
+  <voice>
+    *: "연도"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_MORE
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "More"
+  </source>
+  <dest>
+    *: "더 보기"
+  </dest>
+  <voice>
+    *: "더 보기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NAV_TRACK_ARTISTS
+  desc: Y1 Wheel music menu
+  user: core
+  <source>
+    *: "Track Artists"
+  </source>
+  <dest>
+    *: "곡 아티스트"
+  </dest>
+  <voice>
+    *: "곡 아티스트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BT_RESET_WARN
+  desc: Y1 Wheel Y1: confirm resetting the Bluetooth stack
+  user: core
+  <source>
+    *: "Forget all devices and restart Bluetooth?"
+  </source>
+  <dest>
+    *: "모든 기기를 지우고 블루투스를 다시 시작할까요?"
+  </dest>
+  <voice>
+    *: "모든 기기를 지우고 블루투스를 다시 시작할까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_WIFI_HINT
+  desc: Y1 Wheel Last.fm: Wi-Fi turns on by itself to send
+  user: core
+  <source>
+    *: "Wi-Fi switches on briefly to send (wifi.cfg)"
+  </source>
+  <dest>
+    *: "보내기 위해 Wi-Fi가 잠시 켜집니다 (wifi.cfg)"
+  </dest>
+  <voice>
+    *: "보내기 위해 Wi-Fi가 잠시 켜집니다 (wifi.cfg)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LFM_DOUBLE_WARN
+  desc: Y1 Wheel Last.fm: warning when the plugin also uploads the same log
+  user: core
+  <source>
+    *: "The Last.fm Scrobbler plugin can also upload .scrobbler.log: use one or the other"
+  </source>
+  <dest>
+    *: "Last.fm Scrobbler 플러그인도 .scrobbler.log를 올릴 수 있습니다. 하나만 사용하세요"
+  </dest>
+  <voice>
+    *: "Last.fm Scrobbler 플러그인도 .scrobbler.log를 올릴 수 있습니다. 하나만 사용하세요"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BLUETOOTH
+  desc: Y1 Wheel Bluetooth screen title and power row
+  user: core
+  <source>
+    *: "Bluetooth"
+  </source>
+  <dest>
+    *: "블루투스"
+  </dest>
+  <voice>
+    *: "블루투스"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO
+  desc: Y1 Wheel typography settings screen
+  user: core
+  <source>
+    *: "Typography & Fonts"
+  </source>
+  <dest>
+    *: "글꼴 및 서체"
+  </dest>
+  <voice>
+    *: "글꼴 및 서체"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_THEME
+  desc: Y1 Wheel typography: current font theme
+  user: core
+  <source>
+    *: "Font theme"
+  </source>
+  <dest>
+    *: "글꼴 스타일"
+  </dest>
+  <voice>
+    *: "글꼴 스타일"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_GALLERY
+  desc: Y1 Wheel typography: gallery title
+  user: core
+  <source>
+    *: "Font themes"
+  </source>
+  <dest>
+    *: "글꼴 스타일"
+  </dest>
+  <voice>
+    *: "글꼴 스타일"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOMIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Customize"
+  </source>
+  <dest>
+    *: "직접 설정"
+  </dest>
+  <voice>
+    *: "직접 설정"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Preview"
+  </source>
+  <dest>
+    *: "미리 보기"
+  </dest>
+  <voice>
+    *: "미리 보기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profiles"
+  </source>
+  <dest>
+    *: "프로필"
+  </dest>
+  <voice>
+    *: "프로필"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FONTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font management"
+  </source>
+  <dest>
+    *: "글꼴 관리"
+  </dest>
+  <voice>
+    *: "글꼴 관리"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Restore defaults"
+  </source>
+  <dest>
+    *: "기본 글꼴로 복원"
+  </dest>
+  <voice>
+    *: "기본 글꼴로 복원"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Back to the standard fonts?"
+  </source>
+  <dest>
+    *: "기본 글꼴로 되돌릴까요?"
+  </dest>
+  <voice>
+    *: "기본 글꼴로 되돌릴까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREPARING
+  desc: Y1 Wheel typography: building fonts
+  user: core
+  <source>
+    *: "Preparing fonts…"
+  </source>
+  <dest>
+    *: "글꼴 준비 중…"
+  </dest>
+  <voice>
+    *: "글꼴 준비 중…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAILED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Could not prepare the fonts"
+  </source>
+  <dest>
+    *: "글꼴을 준비할 수 없습니다"
+  </dest>
+  <voice>
+    *: "글꼴을 준비할 수 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISPLAY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Titles"
+  </source>
+  <dest>
+    *: "제목"
+  </dest>
+  <voice>
+    *: "제목"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PRIMARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Lists"
+  </source>
+  <dest>
+    *: "목록"
+  </dest>
+  <voice>
+    *: "목록"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SECONDARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Artist & album"
+  </source>
+  <dest>
+    *: "아티스트와 앨범"
+  </dest>
+  <voice>
+    *: "아티스트와 앨범"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_META
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Details"
+  </source>
+  <dest>
+    *: "세부 정보"
+  </dest>
+  <voice>
+    *: "세부 정보"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERIC
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Numbers"
+  </source>
+  <dest>
+    *: "숫자"
+  </dest>
+  <voice>
+    *: "숫자"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAMILY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font"
+  </source>
+  <dest>
+    *: "글꼴"
+  </dest>
+  <voice>
+    *: "글꼴"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weight"
+  </source>
+  <dest>
+    *: "굵기"
+  </dest>
+  <voice>
+    *: "굵기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Size"
+  </source>
+  <dest>
+    *: "크기"
+  </dest>
+  <voice>
+    *: "크기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SPACING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Letter spacing"
+  </source>
+  <dest>
+    *: "자간"
+  </dest>
+  <voice>
+    *: "자간"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPACT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compact"
+  </source>
+  <dest>
+    *: "좁게"
+  </dest>
+  <voice>
+    *: "좁게"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NORMAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Normal"
+  </source>
+  <dest>
+    *: "보통"
+  </dest>
+  <voice>
+    *: "보통"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WIDE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Wide"
+  </source>
+  <dest>
+    *: "넓게"
+  </dest>
+  <voice>
+    *: "넓게"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Line spacing"
+  </source>
+  <dest>
+    *: "줄 간격"
+  </dest>
+  <voice>
+    *: "줄 간격"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RELAXED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Relaxed"
+  </source>
+  <dest>
+    *: "여유 있게"
+  </dest>
+  <voice>
+    *: "여유 있게"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERALS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Numerals"
+  </source>
+  <dest>
+    *: "숫자 모양"
+  </dest>
+  <voice>
+    *: "숫자 모양"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_TABULAR
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Tabular"
+  </source>
+  <dest>
+    *: "고정폭"
+  </dest>
+  <voice>
+    *: "고정폭"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROPORTIONAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Proportional"
+  </source>
+  <dest>
+    *: "비례폭"
+  </dest>
+  <voice>
+    *: "비례폭"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENDER
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rendering"
+  </source>
+  <dest>
+    *: "렌더링"
+  </dest>
+  <voice>
+    *: "렌더링"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SMOOTH
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Smooth"
+  </source>
+  <dest>
+    *: "부드럽게"
+  </dest>
+  <voice>
+    *: "부드럽게"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SHARP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Sharp"
+  </source>
+  <dest>
+    *: "선명하게"
+  </dest>
+  <voice>
+    *: "선명하게"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PIXEL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Pixel"
+  </source>
+  <dest>
+    *: "픽셀"
+  </dest>
+  <voice>
+    *: "픽셀"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SCREENS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Per-screen sizes"
+  </source>
+  <dest>
+    *: "화면별 크기"
+  </dest>
+  <voice>
+    *: "화면별 크기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MENUS_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Menu titles"
+  </source>
+  <dest>
+    *: "메뉴 제목"
+  </dest>
+  <voice>
+    *: "메뉴 제목"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NP_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Now Playing title"
+  </source>
+  <dest>
+    *: "재생 중 제목"
+  </dest>
+  <voice>
+    *: "재생 중 제목"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LYRICS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "가사"
+  </dest>
+  <voice>
+    *: "가사"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AUTO
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Auto"
+  </source>
+  <dest>
+    *: "자동"
+  </dest>
+  <voice>
+    *: "자동"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_UI_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Use in other themes"
+  </source>
+  <dest>
+    *: "다른 테마에도 사용"
+  </dest>
+  <voice>
+    *: "다른 테마에도 사용"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fill missing characters"
+  </source>
+  <dest>
+    *: "없는 글자 채우기"
+  </dest>
+  <voice>
+    *: "없는 글자 채우기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_APPLY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Apply"
+  </source>
+  <dest>
+    *: "적용"
+  </dest>
+  <voice>
+    *: "적용"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVE_AS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Save as profile…"
+  </source>
+  <dest>
+    *: "프로필로 저장…"
+  </dest>
+  <voice>
+    *: "프로필로 저장…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Name"
+  </source>
+  <dest>
+    *: "이름"
+  </dest>
+  <voice>
+    *: "이름"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NEW_PROFILE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "New profile from current"
+  </source>
+  <dest>
+    *: "현재 설정으로 새 프로필"
+  </dest>
+  <voice>
+    *: "현재 설정으로 새 프로필"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rename"
+  </source>
+  <dest>
+    *: "이름 바꾸기"
+  </dest>
+  <voice>
+    *: "이름 바꾸기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "삭제"
+  </dest>
+  <voice>
+    *: "삭제"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete this profile?"
+  </source>
+  <dest>
+    *: "이 프로필을 삭제할까요?"
+  </dest>
+  <voice>
+    *: "이 프로필을 삭제할까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profile saved"
+  </source>
+  <dest>
+    *: "프로필을 저장했습니다"
+  </dest>
+  <voice>
+    *: "프로필을 저장했습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No saved profiles yet"
+  </source>
+  <dest>
+    *: "저장된 프로필이 아직 없습니다"
+  </dest>
+  <voice>
+    *: "저장된 프로필이 아직 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_KEEP_EDITING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Keep editing"
+  </source>
+  <dest>
+    *: "계속 편집"
+  </dest>
+  <voice>
+    *: "계속 편집"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESET
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Reset changes"
+  </source>
+  <dest>
+    *: "변경 취소"
+  </dest>
+  <voice>
+    *: "변경 취소"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_INSTALLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Installed fonts"
+  </source>
+  <dest>
+    *: "설치된 글꼴"
+  </dest>
+  <voice>
+    *: "설치된 글꼴"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Import fonts"
+  </source>
+  <dest>
+    *: "글꼴 가져오기"
+  </dest>
+  <voice>
+    *: "글꼴 가져오기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Or copy .ttf/.otf/.fnt to .rockbox/fonts/import"
+  </source>
+  <dest>
+    *: "또는 .ttf/.otf/.fnt를 .rockbox/fonts/import에 복사"
+  </dest>
+  <voice>
+    *: "또는 .ttf/.otf/.fnt를 .rockbox/fonts/import에 복사"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_NONE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No fonts in Download or Fonts"
+  </source>
+  <dest>
+    *: "Download나 Fonts에 글꼴이 없습니다"
+  </dest>
+  <voice>
+    *: "Download나 Fonts에 글꼴이 없습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font imported"
+  </source>
+  <dest>
+    *: "글꼴을 가져왔습니다"
+  </dest>
+  <voice>
+    *: "글꼴을 가져왔습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESCAN
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rescan fonts"
+  </source>
+  <dest>
+    *: "글꼴 다시 찾기"
+  </dest>
+  <voice>
+    *: "글꼴 다시 찾기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MEMORY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fonts in memory"
+  </source>
+  <dest>
+    *: "메모리의 글꼴"
+  </dest>
+  <voice>
+    *: "메모리의 글꼴"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font cache"
+  </source>
+  <dest>
+    *: "글꼴 캐시"
+  </dest>
+  <voice>
+    *: "글꼴 캐시"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CLEAR_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Remove unused cached fonts?"
+  </source>
+  <dest>
+    *: "사용하지 않는 캐시 글꼴을 지울까요?"
+  </dest>
+  <voice>
+    *: "사용하지 않는 캐시 글꼴을 지울까요?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fallback font"
+  </source>
+  <dest>
+    *: "대체 글꼴"
+  </dest>
+  <voice>
+    *: "대체 글꼴"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compatibility"
+  </source>
+  <dest>
+    *: "호환성"
+  </dest>
+  <voice>
+    *: "호환성"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SOURCE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Source"
+  </source>
+  <dest>
+    *: "출처"
+  </dest>
+  <voice>
+    *: "출처"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BUNDLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included (SIL OFL)"
+  </source>
+  <dest>
+    *: "기본 포함 (SIL OFL)"
+  </dest>
+  <voice>
+    *: "기본 포함 (SIL OFL)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BITMAP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included bitmap (X11)"
+  </source>
+  <dest>
+    *: "기본 비트맵 (X11)"
+  </dest>
+  <voice>
+    *: "기본 비트맵 (X11)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED_SRC
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Imported by you"
+  </source>
+  <dest>
+    *: "직접 가져옴"
+  </dest>
+  <voice>
+    *: "직접 가져옴"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weights"
+  </source>
+  <dest>
+    *: "굵기"
+  </dest>
+  <voice>
+    *: "굵기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COVERAGE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Characters"
+  </source>
+  <dest>
+    *: "글자"
+  </dest>
+  <voice>
+    *: "글자"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_VARIABLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Variable fonts: default style only"
+  </source>
+  <dest>
+    *: "가변 글꼴: 기본 스타일만"
+  </dest>
+  <voice>
+    *: "가변 글꼴: 기본 스타일만"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "On disk"
+  </source>
+  <dest>
+    *: "디스크 사용량"
+  </dest>
+  <voice>
+    *: "디스크 사용량"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_1
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rockbox draws bitmap fonts only"
+  </source>
+  <dest>
+    *: "Rockbox는 비트맵 글꼴만 표시합니다"
+  </dest>
+  <voice>
+    *: "Rockbox는 비트맵 글꼴만 표시합니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_2
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "TTF/OTF are converted on the player"
+  </source>
+  <dest>
+    *: "TTF/OTF는 플레이어에서 변환됩니다"
+  </dest>
+  <voice>
+    *: "TTF/OTF는 플레이어에서 변환됩니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_4
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No kerning or ligatures"
+  </source>
+  <dest>
+    *: "커닝과 합자는 지원하지 않습니다"
+  </dest>
+  <voice>
+    *: "커닝과 합자는 지원하지 않습니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_5
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Arabic, Hebrew, Indic: not shaped"
+  </source>
+  <dest>
+    *: "아랍어·히브리어·인도계 문자: 글자 조합 미지원"
+  </dest>
+  <voice>
+    *: "아랍어·히브리어·인도계 문자: 글자 조합 미지원"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_6
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Missing characters: Inter, Noto Sans CJK"
+  </source>
+  <dest>
+    *: "없는 글자: Inter, Noto Sans CJK"
+  </dest>
+  <voice>
+    *: "없는 글자: Inter, Noto Sans CJK"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_7
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Other themes keep their own fonts"
+  </source>
+  <dest>
+    *: "다른 테마는 자체 글꼴을 유지합니다"
+  </dest>
+  <voice>
+    *: "다른 테마는 자체 글꼴을 유지합니다"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "OK: options · Back: return"
+  </source>
+  <dest>
+    *: "OK: 옵션 · 뒤로: 돌아가기"
+  </dest>
+  <voice>
+    *: "OK: 옵션 · 뒤로: 돌아가기"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CANCEL
+  desc: Y1 Wheel typography: leave without applying
+  user: core
+  <source>
+    *: "Cancel"
+  </source>
+  <dest>
+    *: "취소"
+  </dest>
+  <voice>
+    *: "취소"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMFORT
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Comfortable"
+  </source>
+  <dest>
+    *: "편안하게"
+  </dest>
+  <voice>
+    *: "편안하게"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AIRY
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Airy"
+  </source>
+  <dest>
+    *: "넉넉하게"
+  </dest>
+  <voice>
+    *: "넉넉하게"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOM
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Custom"
+  </source>
+  <dest>
+    *: "사용자 지정"
+  </dest>
+  <voice>
+    *: "사용자 지정"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_STYLE
+  desc: Y1 Wheel typography line spacing style row
+  user: core
+  <source>
+    *: "Style"
+  </source>
+  <dest>
+    *: "스타일"
+  </dest>
+  <voice>
+    *: "스타일"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_MENUS
+  desc: Y1 Wheel typography: menu row height
+  user: core
+  <source>
+    *: "Menus (row height)"
+  </source>
+  <dest>
+    *: "메뉴 (행 높이)"
+  </dest>
+  <voice>
+    *: "메뉴 (행 높이)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_NP
+  desc: Y1 Wheel typography: Now Playing text spacing
+  user: core
+  <source>
+    *: "Now Playing text"
+  </source>
+  <dest>
+    *: "재생 중 텍스트"
+  </dest>
+  <voice>
+    *: "재생 중 텍스트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_LISTS
+  desc: Y1 Wheel typography: two-line list spacing
+  user: core
+  <source>
+    *: "Two-line lists"
+  </source>
+  <dest>
+    *: "두 줄 목록"
+  </dest>
+  <voice>
+    *: "두 줄 목록"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CJK_READY
+  desc: Y1 Wheel typography: CJK fonts installed
+  user: core
+  <source>
+    *: "Ready"
+  </source>
+  <dest>
+    *: "준비됨"
+  </dest>
+  <voice>
+    *: "준비됨"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LANG_MORE
+  desc: Y1 Wheel language picker: all languages
+  user: core
+  <source>
+    *: "More languages…"
+  </source>
+  <dest>
+    *: "더 많은 언어…"
+  </dest>
+  <voice>
+    *: "더 많은 언어…"
+  </voice>
+</phrase>

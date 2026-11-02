@@ -137,9 +137,36 @@ def main():
     fb = int(m2.split("(+")[1].split()[0]) if ok2 else 0
     f1, f2 = Fnt(os.path.join(tmp, "lora.fnt")), Fnt(os.path.join(tmp, "lorafb.fnt"))
     lam = "\u03bb"  # Greek small lambda: not in Lora
-    same = lambda f, ch: f.offs[ord(ch) - f.first] == f.offs[ord("?") - f.first]
-    check(fb > 50 and not same(f2, lam) and same(f1, lam),
-          "Greek missing in Lora -> taken from Inter (%d glyphs); without fallback it shows '?'" % fb)
+    check(fb > 50 and f2.width(lam) > 0 and f1.width(lam) == 0,
+          "Greek missing in Lora -> taken from Inter (%d glyphs); without: width 0, "
+          "so the firmware's glyph fallback takes over" % fb)
+
+    print("Chinese, Japanese, Korean fallback fonts")
+    cjk = {k: Fnt(os.path.join(ROOT, "fonts", "cjk", "CJK-%s-22.fnt" % k)) for k in ("SC", "JP", "KR")}
+    has = lambda f, ch: 0 <= ord(ch) - f.first < f.size and f.widths[ord(ch) - f.first] > 0
+    check(all(f.ok_size and f.first == 0x2190 for f in cjk.values()), "SC / JP / KR read back (0x2190-0xFFEF)")
+    check(has(cjk["SC"], "\u97f3") and has(cjk["SC"], "\u4e50") and has(cjk["JP"], "\u306e")
+          and has(cjk["JP"], "\u66f2") and has(cjk["KR"], "\uc74c") and has(cjk["KR"], "\uc545"),
+          "音乐 (zh), の曲 (ja), 음악 (ko)")
+    check(not has(cjk["KR"], "\u4e00") and not has(cjk["SC"], "\uac00"),
+          "absent glyphs have width 0 (next font in the chain is tried)")
+    small = Fnt(os.path.join(ROOT, "fonts", "cjk", "CJK-JP-17.fnt"))
+    check(small.height == 21 and cjk["JP"].height == 27, "two sizes: 21 px lines (details) and 27 px")
+    # every character of the translations can be drawn
+    missing = set()
+    i18n = os.path.join(ROOT, "utils", "wheel", "i18n")
+    for code in ("fr", "zh", "ja", "ko"):
+        for line in open(os.path.join(i18n, "wheel_%s.tsv" % code), encoding="utf-8"):
+            if line.startswith("#") or "\t" not in line:
+                continue
+            for ch in line.rstrip("\n").split("\t", 1)[1]:
+                ui = Fnt(os.path.join(ROOT, "fonts", "prebuilt", "Wheel-Secondary.fnt"))
+                if ord(ch) < 0x2190:
+                    if not has(ui, ch):
+                        missing.add(ch)
+                elif not any(has(f, ch) for f in cjk.values()):
+                    missing.add(ch)
+    check(not missing, "fr / zh / ja / ko interface: every character has a glyph %s" % "".join(sorted(missing)))
 
     print("Bitmap sources")
     bm = os.path.join(TYPO, "ClassicBitmap-700-21.fnt")

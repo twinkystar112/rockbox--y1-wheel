@@ -63,7 +63,11 @@ struct typo_profile {
     bool preset;
     struct typo_role_cfg role[TR_COUNT];
     signed char spacing;    /* -1 compact, 0 normal, 1 wide */
-    signed char line;       /* -1 compact, 0 normal, 1 relaxed (list rows) */
+    signed char line;       /* line spacing style: enum typo_line_style */
+    short row_h;            /* menus: list row height in pixels */
+    short ly_pct;           /* lyrics line spacing, % */
+    short np_pct;           /* Now Playing text block spacing, % */
+    short list_pct;         /* two-line lists (playlists, albums), % */
     signed char render;     /* 0 smooth, 1 sharp, 2 pixel (no anti-aliasing) */
     bool tabular;           /* tabular figures */
     bool ui_font;           /* Primary also becomes the UI font of other themes */
@@ -71,6 +75,13 @@ struct typo_profile {
     signed char ov[3];      /* per-screen title size: menus, now playing, lyrics (TS_AUTO) */
 };
 enum { TOV_MENUS, TOV_NOWPLAYING, TOV_LYRICS };
+
+/* line spacing styles: each sets the four values below; changing one of
+ * them makes the style "custom" */
+enum typo_line_style { TLS_COMPACT, TLS_NORMAL, TLS_COMFORT, TLS_AIRY, TLS_CUSTOM, TLS_COUNT };
+void typo_line_style_apply(struct typo_profile *p, int style);
+#define TYPO_ROW_MIN 28
+#define TYPO_ROW_MAX 60
 
 /* ------------------------------ registry ------------------------------ */
 struct typo_face {
@@ -137,6 +148,7 @@ void typo_init(void);
 #endif
 bool typo_patch_settings_changed(void);   /* same, true if a setting changed */
 int  typo_row_height(const struct typo_profile *p);
+void typo_np_positions(int pct, int y[5]);
 /* boot: fall back to the stock theme if generated files went missing
  * (typo_init, declared above) */
 
@@ -151,7 +163,13 @@ static inline int typo_font(enum typo_use u) { (void)u; return FONT_UI; }
 static inline void typo_fonts_unload(void) { }
 static inline void typo_patch_settings(void) { }
 static inline void typo_init(void) { }
+static inline void typo_update_fallbacks(bool force) { (void)force; }
 #endif
+
+/* Chinese, Japanese and Korean (and Latin/Greek/Cyrillic) glyph fallback
+ * fonts, ordered for the UI language; call when the language changes */
+void typo_update_fallbacks(bool force);
+int  typo_cjk_fonts(void);   /* how many CJK fallback fonts are installed */
 
 /* sizes */
 int  typo_em(enum typo_role r, int size);

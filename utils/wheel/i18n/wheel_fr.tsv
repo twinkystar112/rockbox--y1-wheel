@@ -1,0 +1,296 @@
+# Rockbox Y1 Wheel - français (ID<TAB>texte)
+LANG_TAPTIC_ENGINE_MODE	Mode Taptic Engine
+LANG_WHEEL_VIBRATIONS	Intensité de vibration de la molette
+LANG_RESTART_ROCKBOX	Redémarrer Rockbox
+LANG_UPDATE_ROCKBOX	Mise à jour du firmware
+LANG_SYSTEM_SETTINGS	Réglages système Android
+LANG_BLUETOOTH_SETTINGS	Réglages Bluetooth
+LANG_BLUETOOTH_RESET	Réinitialiser les appareils Bluetooth
+LANG_SWITCH_FIRMWARE	Passer au firmware d'origine
+LANG_WHEEL_MUSIC	Musique
+LANG_WHEEL_COVERFLOW	Cover Flow
+LANG_WHEEL_SHUFFLE_SONGS	Lecture aléatoire
+LANG_WHEEL_EXTRAS	Extras
+LANG_WHEEL_COVERFLOW_MISSING	Le plugin Cover Flow n'est pas installé
+LANG_WHEEL_NO_SONGS	Aucun morceau dans le dossier Music
+LANG_WHEEL_BT_CONNECTED	Connecté
+LANG_WHEEL_BT_CONNECTING	Connexion…
+LANG_WHEEL_BT_PAIRING	Association…
+LANG_WHEEL_BT_NOT_CONNECTED	Non connecté
+LANG_WHEEL_BT_SEARCH	Rechercher des appareils
+LANG_WHEEL_BT_SEARCHING	Recherche…
+LANG_WHEEL_BT_SEARCH_AGAIN	Relancer la recherche
+LANG_WHEEL_BT_NONE_FOUND	Aucun appareil trouvé
+LANG_WHEEL_BT_AUTORECONNECT	Reconnexion auto
+LANG_WHEEL_BT_PAUSE_ON_LOSS	Pause à la déconnexion
+LANG_WHEEL_BT_RESUME_ON_CONNECT	Reprendre à la reconnexion
+LANG_WHEEL_BT_SYSTEM	Avancé (Android)
+LANG_WHEEL_BT_OFF_HINT	Activez le Bluetooth pour voir les appareils
+LANG_WHEEL_BT_FAILED	Connexion impossible
+LANG_WHEEL_BT_CONNECT	Connecter
+LANG_WHEEL_BT_DISCONNECT	Déconnecter
+LANG_WHEEL_BT_FORGET	Oublier cet appareil
+LANG_WHEEL_BT_TURNING_ON	Activation du Bluetooth…
+LANG_WHEEL_BT_UNAVAILABLE	Bluetooth indisponible sur ce lecteur
+LANG_WHEEL_LFM_SCROBBLING	Scrobbling
+LANG_WHEEL_LFM_ACCOUNT	Compte
+LANG_WHEEL_LFM_NOT_SIGNED_IN	Non connecté
+LANG_WHEEL_LFM_PENDING	En attente d'envoi
+LANG_WHEEL_LFM_SENT	Scrobblés
+LANG_WHEEL_LFM_LAST_SYNC	Dernière synchro
+LANG_WHEEL_LFM_ERROR	Erreur
+LANG_WHEEL_LFM_NEVER	Jamais
+LANG_WHEEL_LFM_JUST_NOW	À l'instant
+LANG_WHEEL_LFM_OFFLINE_SUFFIX	 (hors ligne)
+LANG_WHEEL_LFM_SEND_NOW	Envoyer les scrobbles
+LANG_WHEEL_LFM_NOWPLAYING	Envoyer « En écoute »
+LANG_WHEEL_LFM_LOG	Journal hors ligne
+LANG_WHEEL_LFM_SIGN_OUT	Se déconnecter de Last.fm ?
+LANG_WHEEL_LFM_SETUP_HINT	Copiez lastfm.cfg dans le dossier .rockbox
+LANG_WHEEL_LFM_OFFLINE	Pas de connexion. Les scrobbles sont conservés.
+LANG_WHEEL_LFM_UNAVAILABLE	Indisponible sur ce lecteur
+LANG_WHEEL_LIBRARY_READY	Votre bibliothèque est prête
+LANG_WHEEL_RESTART_NOW	Redémarrer Rockbox pour terminer ?
+LANG_WHEEL_BATTERY_PERCENT	Pourcentage de batterie
+LANG_WHEEL_APPEARANCE	Apparence
+LANG_WHEEL_LIGHT	Clair
+LANG_WHEEL_DARK	Sombre
+LANG_WHEEL_ACCENT	Couleur d'accent
+LANG_WHEEL_ACCENT_BLUE	Bleu
+LANG_WHEEL_ACCENT_PINK	Rose
+LANG_WHEEL_ACCENT_PURPLE	Violet
+LANG_WHEEL_ACCENT_GREEN	Vert
+LANG_WHEEL_ACCENT_ORANGE	Orange
+LANG_WHEEL_ACCENT_RED	Rouge
+LANG_WHEEL_ACCENT_GRAPHITE	Graphite
+LANG_WHEEL_LETTER_JUMP	Saut par lettre
+LANG_WHEEL_CLICKER	Clic de la molette
+LANG_WHEEL_KBD_HINT	Tapez avec la molette
+LANG_WHEEL_KBD_DONE	OK
+LANG_WHEEL_KBD_DELETE	Effacer
+LANG_WHEEL_KBD_SPACE	Espace
+LANG_WHEEL_KBD_CASE	Lettres
+LANG_WHEEL_QR_STEP1	Scannez avec votre téléphone
+LANG_WHEEL_QR_STEP2	Autorisez l'accès
+LANG_WHEEL_QR_STEP3	Patientez un instant ici
+LANG_WHEEL_QR_NEEDS	Requiert Internet (Wi-Fi, ou Internet du téléphone par Bluetooth) et une clé API Last.fm
+LANG_WHEEL_LIBRARY_SCANNING	Création de votre bibliothèque…
+LANG_WHEEL_LIBRARY_FINISHING	Finalisation de la bibliothèque…
+LANG_WHEEL_GOTO_ALBUM	Aller à l'album
+LANG_WHEEL_GOTO_ARTIST	Aller à l'artiste
+LANG_WHEEL_UP_NEXT	À suivre
+LANG_WHEEL_LOVE	J'aime sur Last.fm
+LANG_WHEEL_LOVED	Aimé
+LANG_WHEEL_PLAY_NEXT	Lire ensuite
+LANG_WHEEL_PLAY_LATER	Lire plus tard
+LANG_WHEEL_OF	sur
+LANG_WHEEL_SCRUBBING	Défilement
+LANG_WHEEL_LYRICS	Paroles
+LANG_WHEEL_NO_LYRICS	Pas de paroles pour ce morceau
+LANG_WHEEL_LYRICS_SEARCHING	Recherche des paroles…
+LANG_WHEEL_ADDED_NEXT	Lecture ensuite
+LANG_WHEEL_ADDED_QUEUE	Ajouté à « À suivre »
+LANG_WHEEL_ANY	Peu importe
+LANG_WHEEL_BT_SEND	Envoyer par Bluetooth
+LANG_WHEEL_BT_SEND_ALL	Envoyer toute la liste par Bluetooth
+LANG_WHEEL_BT_SENDING_1	Envoi… %d%%
+LANG_WHEEL_BT_SENDING_N	Envoi %d sur %d · %d%%
+LANG_WHEEL_BT_SEND_ACCEPT	Acceptez le fichier sur l'autre appareil
+LANG_WHEEL_BT_SEND_DONE	Envoyé
+LANG_WHEEL_BT_SEND_FAILED	Envoi impossible. Bluetooth activé et appareil proche ?
+LANG_WHEEL_BT_SEND_NO_TARGETS	Associez d'abord votre téléphone ou ordinateur (Bluetooth)
+LANG_WHEEL_BT_SEND_REJECTED	L'autre appareil a refusé
+LANG_WHEEL_BT_SEND_TO	Envoyer à
+LANG_WHEEL_BT_SEND_UNSUPPORTED	Ce lecteur ne peut pas envoyer de fichiers par Bluetooth
+LANG_WHEEL_BT_TURN_ON	Activer le Bluetooth ?
+LANG_WHEEL_CONTINUE	Reprendre l'écoute
+LANG_WHEEL_CREATE_LIST	Créer la liste
+LANG_WHEEL_DAILY_MIX	Votre mix du jour
+LANG_WHEEL_DECADE	Décennie
+LANG_WHEEL_DECADES	Décennies
+LANG_WHEEL_EQ_FINE_TUNE	Réglage fin…
+LANG_WHEEL_FAM_AMBIENT	Ambient & chill
+LANG_WHEEL_FAM_CLASSICAL	Classique
+LANG_WHEEL_FAM_DANCE	Dance
+LANG_WHEEL_FAM_ELECTRONIC	Électronique
+LANG_WHEEL_FAM_FOLK	Folk & acoustique
+LANG_WHEEL_FAM_HARD	Metal & punk
+LANG_WHEEL_FAM_HIPHOP	Hip-hop
+LANG_WHEEL_FAM_INDIE	Indé & alternatif
+LANG_WHEEL_FAM_JAZZ	Jazz
+LANG_WHEEL_FAM_LATIN	Latino
+LANG_WHEEL_FAM_OTHER	Autres
+LANG_WHEEL_FAM_POP	Pop
+LANG_WHEEL_FAM_ROCK	Rock
+LANG_WHEEL_FAM_SOUL	Soul, R&B & blues
+LANG_WHEEL_FAM_SOUNDTRACK	Bandes originales
+LANG_WHEEL_FAVOURITES	Vos favoris
+LANG_WHEEL_FORGOTTEN	Pépites oubliées
+LANG_WHEEL_FOR_YOU	Pour vous
+LANG_WHEEL_GENRE	Genre
+LANG_WHEEL_LENGTH	Durée
+LANG_WHEEL_LIST_EMPTY	Rien ici pour l'instant
+LANG_WHEEL_LONG_SONGS	Longs (6 min et +)
+LANG_WHEEL_MAKING_MIX	Préparation de votre mix…
+LANG_WHEEL_MIXTAPE	Mixtape
+LANG_WHEEL_MOODS	Humeurs
+LANG_WHEEL_MOOD_CALM	Calme
+LANG_WHEEL_MOOD_ENERGY	Énergie
+LANG_WHEEL_MOOD_FOCUS	Concentration
+LANG_WHEEL_MOOD_MELANCHOLY	Mélancolie
+LANG_WHEEL_MOOD_PARTY	Fête
+LANG_WHEEL_MOVE_DOWN	Descendre
+LANG_WHEEL_MOVE_UP	Monter
+LANG_WHEEL_NEED_LIBRARY	Votre bibliothèque est en préparation
+LANG_WHEEL_NEVER_PLAYED	Jamais écoutés
+LANG_WHEEL_NOTHING_PLAYING	Aucune lecture en cours
+LANG_WHEEL_NOW_PLAYING	En cours de lecture
+LANG_WHEEL_NO_PLAYLISTS	Pas encore de playlist. Enregistrez un mix.
+LANG_WHEEL_PICKS_TODAY	Sélection du jour
+LANG_WHEEL_PLAY	Lire
+LANG_WHEEL_PLAYLIST_SAVED	Enregistré dans les playlists
+LANG_WHEEL_PREPARING_PICKS	Sélection de morceaux pour vous…
+LANG_WHEEL_QUEUE	File d'attente
+LANG_WHEEL_RECENTLY_ADDED	Ajouts récents
+LANG_WHEEL_RECENT_ALBUMS	Albums écoutés récemment
+LANG_WHEEL_REMOVE	Retirer
+LANG_WHEEL_REPLACE_PLAYLIST	Remplacer la playlist de ce nom ?
+LANG_WHEEL_SAVE	Enregistrer
+LANG_WHEEL_SHORT_SONGS	Courts (moins de 3:30)
+LANG_WHEEL_SHUFFLE	Aléatoire
+LANG_WHEEL_SIMILAR	Morceaux similaires
+LANG_WHEEL_SIMILAR_TO	Similaires à
+LANG_WHEEL_SLEEP_OFF	Minuterie désactivée
+LANG_WHEEL_SLEEP_SET	Arrêt de la musique dans %d min
+LANG_WHEEL_SMART_LIST	Liste intelligente
+LANG_WHEEL_SONG	morceau
+LANG_WHEEL_SONGS	morceaux
+LANG_WHEEL_SOUND	Son
+LANG_WHEEL_WHICH_SONGS	Morceaux
+LANG_WHEEL_STATS	Vos statistiques
+LANG_WHEEL_STATS_ALLTIME	Depuis toujours
+LANG_WHEEL_STATS_ARTISTS_LOWER	artistes
+LANG_WHEEL_STATS_BY_MONTH	Mois par mois
+LANG_WHEEL_STATS_EMPTY	Écoutez de la musique et vos statistiques apparaîtront ici
+LANG_WHEEL_STATS_HISTORY	Écoutés récemment
+LANG_WHEEL_STATS_MINUTES	Temps d'écoute
+LANG_WHEEL_STATS_PERIOD	Période
+LANG_WHEEL_STATS_PLAYS	Lectures
+LANG_WHEEL_STATS_PLAYS_LOWER	lectures
+LANG_WHEEL_STATS_SUMMARY	Votre résumé
+LANG_WHEEL_STATS_THISMONTH	Ce mois-ci
+LANG_WHEEL_STATS_THISYEAR	Cette année
+LANG_WHEEL_STATS_TOP_ALBUMS	Top albums
+LANG_WHEEL_STATS_TOP_ARTISTS	Top artistes
+LANG_WHEEL_STATS_TOP_SONGS	Top morceaux
+LANG_WHEEL_STATS_YOUR_ARTIST	Votre artiste
+LANG_WHEEL_STATS_YOUR_HOUR	Votre heure préférée
+LANG_WHEEL_STATS_YOUR_SONG	Votre morceau
+LANG_WHEEL_STATS_YOU_LISTENED	Vous avez écouté
+LANG_WHEEL_THEME	Thème
+LANG_WHEEL_THEME_INSTALL	Installer un thème (.zip)…
+LANG_WHEEL_THEME_SCALE	Agrandir les thèmes 320x240
+LANG_WHEEL_THEME_KEEP	Garder ce thème ?
+LANG_WHEEL_THEME_BROKEN	Impossible de charger ce thème
+LANG_WHEEL_THEME_INSTALLING	Installation…
+LANG_WHEEL_THEME_NO_ZIPS	Copiez d'abord un thème .zip sur le lecteur (dossier principal, Download ou Themes)
+LANG_WHEEL_THEME_NOT_A_THEME	Ce .zip n'est pas un thème Rockbox
+LANG_WHEEL_THEME_INSTALLED	Installé : %s
+LANG_WHEEL_BT_TETHER	Utiliser l'Internet du téléphone
+LANG_WHEEL_BT_TETHER_HINT	Activez d'abord le partage de connexion Bluetooth sur le téléphone
+LANG_WHEEL_BT_INTERNET	Internet
+LANG_WHEEL_NAV_GENRES	Genres
+LANG_WHEEL_NAV_COMPOSERS	Compositeurs
+LANG_WHEEL_NAV_YEARS	Années
+LANG_WHEEL_NAV_MORE	Plus
+LANG_WHEEL_NAV_TRACK_ARTISTS	Artistes des morceaux
+LANG_WHEEL_BT_RESET_WARN	Oublier tous les appareils et redémarrer le Bluetooth ?
+LANG_WHEEL_LFM_WIFI_HINT	Le Wi-Fi s'active un instant pour l'envoi (wifi.cfg)
+LANG_WHEEL_LFM_DOUBLE_WARN	Le plugin Last.fm Scrobbler peut aussi envoyer .scrobbler.log : n'en utilisez qu'un
+LANG_WHEEL_BLUETOOTH	Bluetooth
+LANG_WHEEL_TYPO	Typographie et polices
+LANG_WHEEL_TYPO_THEME	Style de police
+LANG_WHEEL_TYPO_GALLERY	Styles de police
+LANG_WHEEL_TYPO_CUSTOMIZE	Personnaliser
+LANG_WHEEL_TYPO_PREVIEW	Aperçu
+LANG_WHEEL_TYPO_PROFILES	Profils
+LANG_WHEEL_TYPO_FONTS	Gestion des polices
+LANG_WHEEL_TYPO_RESTORE	Polices par défaut
+LANG_WHEEL_TYPO_RESTORE_ASK	Revenir aux polices par défaut ?
+LANG_WHEEL_TYPO_PREPARING	Préparation des polices…
+LANG_WHEEL_TYPO_FAILED	Impossible de préparer les polices
+LANG_WHEEL_TYPO_DISPLAY	Titres
+LANG_WHEEL_TYPO_PRIMARY	Listes
+LANG_WHEEL_TYPO_SECONDARY	Artiste et album
+LANG_WHEEL_TYPO_META	Détails
+LANG_WHEEL_TYPO_NUMERIC	Chiffres
+LANG_WHEEL_TYPO_FAMILY	Police
+LANG_WHEEL_TYPO_WEIGHT	Graisse
+LANG_WHEEL_TYPO_SIZE	Taille
+LANG_WHEEL_TYPO_SPACING	Espacement
+LANG_WHEEL_TYPO_COMPACT	Compact
+LANG_WHEEL_TYPO_NORMAL	Normal
+LANG_WHEEL_TYPO_WIDE	Large
+LANG_WHEEL_TYPO_LINE	Interligne
+LANG_WHEEL_TYPO_RELAXED	Aéré
+LANG_WHEEL_TYPO_NUMERALS	Chiffres
+LANG_WHEEL_TYPO_TABULAR	Tabulaires
+LANG_WHEEL_TYPO_PROPORTIONAL	Proportionnels
+LANG_WHEEL_TYPO_RENDER	Rendu
+LANG_WHEEL_TYPO_SMOOTH	Lisse
+LANG_WHEEL_TYPO_SHARP	Net
+LANG_WHEEL_TYPO_PIXEL	Pixel
+LANG_WHEEL_TYPO_SCREENS	Tailles par écran
+LANG_WHEEL_TYPO_MENUS_TITLE	Titres des menus
+LANG_WHEEL_TYPO_NP_TITLE	Titre en lecture
+LANG_WHEEL_TYPO_LYRICS	Paroles
+LANG_WHEEL_TYPO_AUTO	Auto
+LANG_WHEEL_TYPO_UI_FONT	Utiliser dans les autres thèmes
+LANG_WHEEL_TYPO_FALLBACK	Compléter les caractères
+LANG_WHEEL_TYPO_APPLY	Appliquer
+LANG_WHEEL_TYPO_SAVE_AS	Enregistrer comme profil…
+LANG_WHEEL_TYPO_NAME	Nom
+LANG_WHEEL_TYPO_NEW_PROFILE	Nouveau profil depuis l'actuel
+LANG_WHEEL_TYPO_RENAME	Renommer
+LANG_WHEEL_TYPO_DELETE	Supprimer
+LANG_WHEEL_TYPO_DELETE_ASK	Supprimer ce profil ?
+LANG_WHEEL_TYPO_SAVED	Profil enregistré
+LANG_WHEEL_TYPO_NO_PROFILES	Aucun profil enregistré
+LANG_WHEEL_TYPO_KEEP_EDITING	Continuer à modifier
+LANG_WHEEL_TYPO_RESET	Annuler les modifications
+LANG_WHEEL_TYPO_INSTALLED	Polices installées
+LANG_WHEEL_TYPO_IMPORT	Importer des polices
+LANG_WHEEL_TYPO_IMPORT_HINT	Ou copiez .ttf/.otf/.fnt dans .rockbox/fonts/import
+LANG_WHEEL_TYPO_IMPORT_NONE	Aucune police dans Download ou Fonts
+LANG_WHEEL_TYPO_IMPORTED	Police importée
+LANG_WHEEL_TYPO_RESCAN	Rechercher à nouveau
+LANG_WHEEL_TYPO_MEMORY	Polices en mémoire
+LANG_WHEEL_TYPO_CACHE	Cache des polices
+LANG_WHEEL_TYPO_CLEAR_CACHE	Supprimer les polices en cache inutilisées ?
+LANG_WHEEL_TYPO_FALLBACK_FONT	Police de secours
+LANG_WHEEL_TYPO_COMPAT	Compatibilité
+LANG_WHEEL_TYPO_SOURCE	Origine
+LANG_WHEEL_TYPO_BUNDLED	Incluse (SIL OFL)
+LANG_WHEEL_TYPO_BITMAP	Bitmap incluse (X11)
+LANG_WHEEL_TYPO_IMPORTED_SRC	Importée par vous
+LANG_WHEEL_TYPO_WEIGHTS	Graisses
+LANG_WHEEL_TYPO_COVERAGE	Caractères
+LANG_WHEEL_TYPO_VARIABLE	Polices variables : style par défaut seulement
+LANG_WHEEL_TYPO_DISK	Sur le disque
+LANG_WHEEL_TYPO_COMPAT_1	Rockbox n'affiche que des polices bitmap
+LANG_WHEEL_TYPO_COMPAT_2	Les TTF/OTF sont converties sur le lecteur
+LANG_WHEEL_TYPO_COMPAT_4	Pas de crénage ni de ligatures
+LANG_WHEEL_TYPO_COMPAT_5	Arabe, hébreu, indien : pas de mise en forme
+LANG_WHEEL_TYPO_COMPAT_6	Caractères manquants : Inter, Noto Sans CJK
+LANG_WHEEL_TYPO_COMPAT_7	Les autres thèmes gardent leurs polices
+LANG_WHEEL_TYPO_PREVIEW_HINT	OK : options · Retour : revenir
+LANG_WHEEL_TYPO_CANCEL	Annuler
+LANG_WHEEL_TYPO_COMFORT	Confortable
+LANG_WHEEL_TYPO_AIRY	Très aéré
+LANG_WHEEL_TYPO_CUSTOM	Personnalisé
+LANG_WHEEL_TYPO_LINE_STYLE	Style
+LANG_WHEEL_TYPO_LINE_MENUS	Menus (hauteur de ligne)
+LANG_WHEEL_TYPO_LINE_NP	Textes en lecture
+LANG_WHEEL_TYPO_LINE_LISTS	Listes à deux lignes
+LANG_WHEEL_TYPO_CJK_READY	Prêt
+LANG_WHEEL_LANG_MORE	Plus de langues…

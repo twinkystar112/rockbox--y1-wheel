@@ -21125,10 +21125,10 @@
     *: "Missing characters come from Inter"
   </source>
   <dest>
-    *: "Lo que falte se toma de Inter"
+    *: "Lo que falte: Inter, Noto Sans CJK"
   </dest>
   <voice>
-    *: "Lo que falte se toma de Inter"
+    *: "Lo que falte: Inter, Noto Sans CJK"
   </voice>
 </phrase>
 <phrase>
@@ -21171,5 +21171,131 @@
   </dest>
   <voice>
     *: "Cancelar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMFORT
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Comfortable"
+  </source>
+  <dest>
+    *: "Cómodo"
+  </dest>
+  <voice>
+    *: "Cómodo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AIRY
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Airy"
+  </source>
+  <dest>
+    *: "Espacioso"
+  </dest>
+  <voice>
+    *: "Espacioso"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOM
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Custom"
+  </source>
+  <dest>
+    *: "Personalizado"
+  </dest>
+  <voice>
+    *: "Personalizado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_STYLE
+  desc: Y1 Wheel typography line spacing style row
+  user: core
+  <source>
+    *: "Style"
+  </source>
+  <dest>
+    *: "Estilo"
+  </dest>
+  <voice>
+    *: "Estilo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_MENUS
+  desc: Y1 Wheel typography: menu row height
+  user: core
+  <source>
+    *: "Menus (row height)"
+  </source>
+  <dest>
+    *: "Menús (alto de fila)"
+  </dest>
+  <voice>
+    *: "Menús (alto de fila)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_NP
+  desc: Y1 Wheel typography: Now Playing text spacing
+  user: core
+  <source>
+    *: "Now Playing text"
+  </source>
+  <dest>
+    *: "Textos de Reproduciendo"
+  </dest>
+  <voice>
+    *: "Textos de Reproduciendo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_LISTS
+  desc: Y1 Wheel typography: two-line list spacing
+  user: core
+  <source>
+    *: "Two-line lists"
+  </source>
+  <dest>
+    *: "Listas de dos líneas"
+  </dest>
+  <voice>
+    *: "Listas de dos líneas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CJK_READY
+  desc: Y1 Wheel typography: CJK fonts installed
+  user: core
+  <source>
+    *: "Ready"
+  </source>
+  <dest>
+    *: "Listo"
+  </dest>
+  <voice>
+    *: "Listo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LANG_MORE
+  desc: Y1 Wheel language picker: all languages
+  user: core
+  <source>
+    *: "More languages…"
+  </source>
+  <dest>
+    *: "Más idiomas…"
+  </dest>
+  <voice>
+    *: "Más idiomas…"
   </voice>
 </phrase>

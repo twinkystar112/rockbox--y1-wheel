@@ -58,7 +58,16 @@
 
 #define HDR_FULL   150
 #define HDR_SMALL  56
-#define ROW_H      48
+/* two-line rows: 48 px at 100 %, the typography line spacing scales them */
+static int ROW_H = 48;
+static int row_gap = 21;   /* title -> artist */
+static void update_row_metrics(void)
+{
+    int pct = typo_active()->list_pct;
+    if (pct < 80 || pct > 150) pct = 100;
+    ROW_H = (48 * pct + 50) / 100;
+    row_gap = MAX(20, (21 * pct + 50) / 100);
+}
 #define COVER      112
 #define DURATION_CACHE ROCKBOX_DIR "/wheel-playlists.tsv"
 
@@ -88,6 +97,7 @@ static int mixc(unsigned a, unsigned b, int pct)
 
 static void load_fonts(void)
 {
+    update_row_metrics();
     /* typography profile: titles, artist/album, details */
     f_title = typo_font(TU_DISPLAY_NP);
     f_semi  = typo_font(TU_SECONDARY);
@@ -598,14 +608,14 @@ static void draw_row(struct screen *d, struct viewport *vp, int i, int y, bool s
     d->set_drawmode(DRMODE_FG);
     char num[12], dur[12];
     if (i == v.playing)
-        draw_eq_bars(d, 18, y + 15, sel ? fg : (unsigned)global_settings.lse_color);
+        draw_eq_bars(d, 18, y + ROW_H / 2 - 9, sel ? fg : (unsigned)global_settings.lse_color);
     else
     {
         snprintf(num, sizeof(num), "%d", i + 1);
         int w = text_w(d, vp, f_reg, num);
         vp->font = fnt(f_reg);
         d->set_foreground(dim);
-        d->putsxy(40 - w, y + 14, num);
+        d->putsxy(40 - w, y + (ROW_H - 22) / 2 + 1, num);
     }
     int right = W - 16;
     if (t->len_ms)
@@ -616,14 +626,15 @@ static void draw_row(struct screen *d, struct viewport *vp, int i, int y, bool s
         d->set_drawmode(DRMODE_FG);
         vp->font = fnt(f_reg);
         d->set_foreground(dim);
-        d->putsxy(right - w, y + 14, dur);
+        d->putsxy(right - w, y + (ROW_H - 22) / 2 + 1, dur);
         right -= w + 14;
     }
     const char *title = t->title[0] ? t->title : strrchr(t->path, '/') ? strrchr(t->path, '/') + 1 : t->path;
     unsigned tcol = (i == v.playing && !sel) ? (unsigned)global_settings.lse_color : fg;
-    text_fit(d, vp, f_med, tcol, 56, y + 4, right - 56, title);
+    int ty = (ROW_H - row_gap - 22) / 2 + 1;
+    text_fit(d, vp, f_med, tcol, 56, y + ty, right - 56, title);
     if (t->artist[0])
-        text_fit(d, vp, f_reg, dim, 56, y + 25, right - 56, t->artist);
+        text_fit(d, vp, f_reg, dim, 56, y + ty + row_gap, right - 56, t->artist);
 }
 
 static void draw(void)

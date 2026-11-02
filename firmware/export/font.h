@@ -145,4 +145,18 @@ int font_getstringsize(const unsigned char *str, int *w, int *h, int fontnumber)
 int font_get_width(struct font* ft, ucschar_t ch);
 const unsigned char * font_get_bits(struct font* ft, ucschar_t ch);
 
+/* Glyph fallback: fonts tried, in order, for characters a font lacks
+ * (out of its range, or stored with width 0) - e.g. Chinese, Japanese or
+ * Korean in a Latin UI font. Among the fallbacks that have the glyph,
+ * the tallest one that still fits the font's line height is used.
+ * Text drawing and string measuring use this; font_get_width/bits don't
+ * (plugins keep their old behaviour). */
+#define MAX_FALLBACK_FONTS 8
+void font_set_fallbacks(const int *font_ids, int count);
+/* the font that will draw ch for pf (pf itself, or a fallback). *ch is
+ * replaced by pf's default character when nothing has it; *id gets the
+ * fallback's font id (-1 for pf) */
+struct font *font_glyph_source(struct font *pf, ucschar_t *ch, int *id);
+int font_glyph_width(struct font *pf, ucschar_t ch);
+
 #endif

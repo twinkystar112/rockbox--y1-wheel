@@ -20552,13 +20552,13 @@
   desc: Y1 Wheel typography
   user: core
   <source>
-    *: "Line height"
+    *: "Line spacing"
   </source>
   <dest>
-    *: "Line height"
+    *: "Line spacing"
   </dest>
   <voice>
-    *: "Line height"
+    *: "Line spacing"
   </voice>
 </phrase>
 <phrase>
@@ -21252,13 +21252,13 @@
   desc: Y1 Wheel typography
   user: core
   <source>
-    *: "Missing characters come from Inter"
+    *: "Missing characters: Inter, Noto Sans CJK"
   </source>
   <dest>
-    *: "Missing characters come from Inter"
+    *: "Missing characters: Inter, Noto Sans CJK"
   </dest>
   <voice>
-    *: "Missing characters come from Inter"
+    *: "Missing characters: Inter, Noto Sans CJK"
   </voice>
 </phrase>
 <phrase>
@@ -21301,5 +21301,131 @@
   </dest>
   <voice>
     *: "Cancel"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMFORT
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Comfortable"
+  </source>
+  <dest>
+    *: "Comfortable"
+  </dest>
+  <voice>
+    *: "Comfortable"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AIRY
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Airy"
+  </source>
+  <dest>
+    *: "Airy"
+  </dest>
+  <voice>
+    *: "Airy"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOM
+  desc: Y1 Wheel typography line spacing style
+  user: core
+  <source>
+    *: "Custom"
+  </source>
+  <dest>
+    *: "Custom"
+  </dest>
+  <voice>
+    *: "Custom"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_STYLE
+  desc: Y1 Wheel typography line spacing style row
+  user: core
+  <source>
+    *: "Style"
+  </source>
+  <dest>
+    *: "Style"
+  </dest>
+  <voice>
+    *: "Style"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_MENUS
+  desc: Y1 Wheel typography: menu row height
+  user: core
+  <source>
+    *: "Menus (row height)"
+  </source>
+  <dest>
+    *: "Menus (row height)"
+  </dest>
+  <voice>
+    *: "Menus (row height)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_NP
+  desc: Y1 Wheel typography: Now Playing text spacing
+  user: core
+  <source>
+    *: "Now Playing text"
+  </source>
+  <dest>
+    *: "Now Playing text"
+  </dest>
+  <voice>
+    *: "Now Playing text"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE_LISTS
+  desc: Y1 Wheel typography: two-line list spacing
+  user: core
+  <source>
+    *: "Two-line lists"
+  </source>
+  <dest>
+    *: "Two-line lists"
+  </dest>
+  <voice>
+    *: "Two-line lists"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CJK_READY
+  desc: Y1 Wheel typography: CJK fonts installed
+  user: core
+  <source>
+    *: "Ready"
+  </source>
+  <dest>
+    *: "Ready"
+  </dest>
+  <voice>
+    *: "Ready"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_LANG_MORE
+  desc: Y1 Wheel language picker: all languages
+  user: core
+  <source>
+    *: "More languages…"
+  </source>
+  <dest>
+    *: "More languages…"
+  </dest>
+  <voice>
+    *: "More languages…"
   </voice>
 </phrase>

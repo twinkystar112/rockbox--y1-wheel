@@ -435,8 +435,15 @@ static void LCDFN(putsxyofs)(int x, int y, int ofs, const unsigned char *str)
 
         is_diac = IS_DIACRITIC_RTL(*ucs, &is_rtl);
 
+        /* the glyph may come from a fallback font (e.g. CJK) */
+        ucschar_t gch = *ucs;
+        int gid;
+        struct font *gf = font_glyph_source(pf, &gch, &gid);
+        if (gf != pf)
+            font_lock(gid, true);
+
         /* Get proportional width and glyph bits */
-        width = font_get_width(pf, *ucs);
+        width = font_get_width(gf, gch);
 
         /* Calculate base width */
         if (is_rtl)
@@ -472,12 +479,31 @@ static void LCDFN(putsxyofs)(int x, int y, int ofs, const unsigned char *str)
         if (ofs > width)
         {
             ofs -= width;
+            if (gf != pf)
+                font_lock(gid, false);
             continue;
         }
 
-        bits = font_get_bits(pf, *ucs);
+        bits = font_get_bits(gf, gch);
 
-        if (is_diac)
+        if (gf != pf)
+        {   /* baseline-aligned, clipped to this font's line */
+            int dy = pf->ascent - gf->ascent, sy = 0, h = gf->height;
+            if (dy < 0) { sy = -dy; h -= sy; dy = 0; }
+            if (dy + h > (int)pf->height) h = pf->height - dy;
+            void (*gfn)(const unsigned char *src, int src_x, int src_y,
+                        int stride, int x, int y, int width, int height);
+#if defined(MAIN_LCD) && defined(HAVE_LCD_COLOR)
+            if (gf->depth)
+                gfn = lcd_alpha_bitmap_part;
+            else
+#endif
+                gfn = LCDFN(mono_bmp_part_helper);
+            if (h > 0)
+                gfn(bits, ofs, sy, width, x, y + dy, width - ofs, h);
+            font_lock(gid, false);
+        }
+        else if (is_diac)
         {
             /* XXX: Suggested by amiconn:
              * This will produce completely wrong results if the original

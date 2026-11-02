@@ -39,14 +39,19 @@
 %acO
 #
 # ---------- track text ----------
+#@ %V(248,57,=%V(248,${np1},
 %V(248,57,220,22,6)%Vf(8e8e93)
 %pp %Sx(of) %pe
+#@ %V(248,85,=%V(248,${np2},
 %V(248,85,220,32,5)%Vf(f2f2f5)
 %s%?it<%it|%fn>
+#@ %V(248,122,=%V(248,${np3},
 %V(248,122,220,26,2)%Vf(accent)
 %s%?ia<%ia|%?iA<%iA|>>
+#@ %V(248,150,=%V(248,${np4},
 %V(248,150,220,26,2)%Vf(a1a1a8)
 %s%?id<%id|>
+#@ %V(248,183,=%V(248,${np5},
 %V(248,183,220,22,6)%Vf(8e8e93)
 %s%?iy<%iy · |>%?fc<MP1|MP2|MP3|AIFF|WAV|Ogg|FLAC|MPC|AC3|WavPack|ALAC|AAC|SHN|SID|ADX|NSF|Speex|SPC|APE|WMA|Opus|> · %fb kbps
 #

@@ -41,7 +41,10 @@ struct forge_params {
     bool crisp;       /* no anti-aliasing (bitmap look) */
     int embolden;     /* synthetic bold for a missing weight: 0..2 px */
     int contrast;     /* 0..3: darker anti-aliasing for thin strokes */
+    unsigned first;   /* lowest code point stored (0: from the space) */
     unsigned last;    /* highest code point stored (0x7e = ASCII only) */
+    bool all;         /* every glyph the source has in first..last (CJK
+                       * fallback fonts); default: the UI's scripts */
     int extras;       /* enum forge_extra */
 };
 

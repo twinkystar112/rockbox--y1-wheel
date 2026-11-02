@@ -13,7 +13,7 @@ que ya trae Rockbox.
 > **Estado:** beta sin probar en hardware. El C compila para el objetivo Y1 y el Java contra la
 > API 19 (y las clases Wheel contra la 17). La interfaz se ha probado en el simulador a 480×360; el
 > código de Last.fm, letras, Wi-Fi bajo demanda y envío por Bluetooth pasa 52 pruebas contra
-> servidores simulados (`utils/wheel/tests`) y el conversor de fuentes 15
+> servidores simulados (`utils/wheel/tests`) y el conversor de fuentes y las fuentes CJK 20
 > (`utils/wheel/typography/test_forge.py`). Lo que depende de la radio del Y1 solo puede
 > verificarse en un Y1. Haz copia de la tarjeta antes de instalar.
 
@@ -89,11 +89,21 @@ Ajustes › Apariencia:
 * **Apariencia** clara / oscura / automática (oscura de 21:00 a 7:00), **color de acento**
   (7), **% de batería**, **clic de la rueda** y **salto por letras**.
 
+### Idiomas
+Ajustes › Apariencia › **Idioma**: español, English, français, 简体中文, 日本語 y 한국어, todos con la
+interfaz Wheel completa traducida (`utils/wheel/i18n/`), más el resto de idiomas de Rockbox en
+"Más idiomas…". Los caracteres chinos, japoneses y coreanos (menús, títulos y artistas de tus
+canciones, letras) se dibujan con fuentes Noto Sans SC/JP/KR (SIL OFL) que el firmware usa como
+**respaldo glifo a glifo**: cualquier fuente o tema muestra CJK sin cambiar nada, y los kanji/hanzi
+toman la forma del idioma elegido. Las letras en chino y japonés se cortan entre caracteres.
+
 ### Tipografía y fuentes
 Ajustes › Apariencia › Tipografía y fuentes: 8 estilos (Classic iPod, Apple Music, Spotify Modern,
 Hi‑Fi Minimal, Retro Tech, Editorial, Neo Minimal, Analog Soul) que se ven en la galería escritos
 con su propia fuente, personalización por rol (títulos, listas, artista y álbum, detalles,
-números: fuente, grosor y tamaño), espaciado, interlineado, cifras tabulares, renderizado suave /
+números: fuente, grosor y tamaño), espaciado, **interlineado** por estilos (compacto, normal, cómodo,
+espacioso o personalizado: alto de las filas de los menús, letras, textos de Reproduciendo y
+listas de dos líneas, cada uno por separado), cifras tabulares, renderizado suave /
 nítido / píxel, tamaños por pantalla, **vista previa real** antes de aplicar, perfiles propios y
 gestión de fuentes (cobertura, memoria, caché, importar tus `.ttf`/`.otf`). Las fuentes se
 convierten en el propio Y1. Las propietarias (Chicago, Geneva, SF Pro, Avenir Next) no se
@@ -176,6 +186,8 @@ primera vez.
 | Capa de plataforma | `apps/wheel/wheel_connect.h`, `wheel_connect_stub.c` (demo del simulador), `apps/hosted/android/wheel_connect_android.c` (JNI) |
 | Lado Android | `android/y1/src/org/rockbox/Helper/Wheel*.java` (`WheelNet`: Wi-Fi bajo demanda) |
 | Tipografía | `apps/wheel/wheel_fontforge.c` (conversor), `wheel_typo.c` (registro, perfiles, temas), `wheel_typo_ui.c` (pantallas, vista previa), `fonts/typo/`, `utils/wheel/typography/` |
+| Respaldo de glifos / CJK | `firmware/font.c` (`font_set_fallbacks`, `font_glyph_source`), `firmware/drivers/lcd-bitmap-common.c`, `fonts/cjk/` (`build_cjk.py`) |
+| Traducciones | `utils/wheel/i18n/wheel_{fr,zh,ja,ko}.tsv` → `apply.py` → `apps/lang/*.lang` |
 | Etiquetas de skin nuevas | `%Lh %Lv %Wb %Wq %Wm %Wy %Wd %Wa..%Wo` en `lib/skin_parser/tag_table.*`, `apps/gui/skin_engine/skin_tokens.c` |
 | Tema | `wps/Wheel*.sbs/.wps` (plantillas con `#@`), `fonts/prebuilt/` (`utils/wheel/make_fonts.sh`) |
 | Pruebas | `utils/wheel/tests/` |
