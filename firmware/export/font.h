@@ -48,7 +48,12 @@ enum {
     FONT_SYSFIXED = -1, /* system fixed pitch font*/
     FONT_FIRSTUSERFONT = 0, /* first id for the user fonts */
 };
+#ifdef APPLICATION
+/* hosted (Y1): memory is plentiful; typography previews load extra fonts */
+#define MAXUSERFONTS 32
+#else
 #define MAXUSERFONTS 12
+#endif
 
 /* SYSFONT, FONT_UI, FONT_UI_REMOTE + MAXUSERFONTS fonts in skins */
 #define MAXFONTS (FONT_FIRSTUSERFONT + MAXUSERFONTS)

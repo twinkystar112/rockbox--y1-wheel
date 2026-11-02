@@ -215,6 +215,14 @@ sub make_install {
         glob_install("$src/$t/*", "$userdir/$t");
     }
 
+    # Y1 Wheel typography sources (fonts/typo)
+    if (-d "$src/fonts/typo") {
+        unless (glob_mkdir("$userdir/fonts/typo")) {
+            return 0;
+        }
+        glob_install("$src/fonts/typo/*", "$userdir/fonts/typo");
+    }
+
     # wps/ subfolders and bitmaps
     opendir(DIR, $src . "/wps");
     @files = readdir(DIR);
@@ -406,6 +414,14 @@ sub buildzip {
             copy($fnt, "$temp_dir/fonts/");
         }
         copy("$ROOT/fonts/prebuilt/LICENSE-Inter.txt", "$temp_dir/fonts/LICENSE-Inter.txt");
+    }
+    # Y1 Wheel typography: open-source font sources (SIL OFL), the classic
+    # bitmap fonts and the presets; converted to .fnt on the player
+    if($bitmap && -d "$ROOT/fonts/typo") {
+        glob_mkdir("$temp_dir/fonts/typo");
+        foreach my $f (glob("$ROOT/fonts/typo/*.{ttf,otf,fnt,cfg,txt}")) {
+            copy($f, "$temp_dir/fonts/typo/");
+        }
     }
 
     # create the file so the database indexer skips this folder

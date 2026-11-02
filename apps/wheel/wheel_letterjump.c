@@ -26,6 +26,7 @@
 #include "font.h"
 #include "screen_access.h"
 #include "settings.h"
+#include "wheel_typo.h"
 #include "list.h"
 #include "lang.h"
 #include "rbunicode.h"
@@ -37,7 +38,6 @@
 #define FAST_WINDOW      (HZ*40/100) /* ... within this time = fast   */
 #define SLOW_GAP         (HZ*30/100) /* a pause this long ends jumping */
 #define OVERLAY_TIME     (HZ*70/100)
-#define JUMP_FONT        FONT_DIR "/64-Wheel-Letters.fnt"
 
 static long steps[FAST_STEPS];
 static int  step_pos;
@@ -60,7 +60,7 @@ static void initial_of(const char *name, char *out, size_t len)
         p++;
     if (!strncasecmp((const char *)p, "the ", 4))
         p += 4;
-    unsigned short c;
+    ucschar_t c;
     utf8decode(p, &c);
     if (c >= 0xC0 && c <= 0xFF)
     {   /* Latin-1 letters with accents */
@@ -159,11 +159,8 @@ void wheel_letterjump_draw(struct gui_synclist *lists, struct screen *display)
 {
     if (!overlay_letter[0] || !TIME_BEFORE(current_tick, overlay_until))
         return;
-    if (!jump_font_tried)
-    {
-        jump_font_tried = true;
-        jump_font = font_load(JUMP_FONT);
-    }
+    jump_font_tried = true;
+    jump_font = typo_font(TU_JUMBO);   /* big letters in the titles font */
     struct viewport *parent = lists->parent[display->screen_type];
     struct viewport vp = *parent;
     struct viewport *last = display->set_viewport(&vp);

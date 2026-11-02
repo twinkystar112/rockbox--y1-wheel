@@ -50,6 +50,7 @@
 #include "wheel_art.h"
 #include "wheel_library.h"
 #include "wheel_listview.h"
+#include "wheel_typo.h"
 #include "wheel_screens.h"
 
 #define W LCD_WIDTH
@@ -87,10 +88,11 @@ static int mixc(unsigned a, unsigned b, int pct)
 
 static void load_fonts(void)
 {
-    if (f_title < 0) f_title = font_load(FONT_DIR "/28-Inter-Bold.fnt");
-    if (f_semi < 0)  f_semi  = font_load(FONT_DIR "/22-Inter-SemiBold.fnt");
-    if (f_med < 0)   f_med   = font_load(FONT_DIR "/18-Inter-Medium.fnt");
-    if (f_reg < 0)   f_reg   = font_load(FONT_DIR "/18-Inter-Regular.fnt");
+    /* typography profile: titles, artist/album, details */
+    f_title = typo_font(TU_DISPLAY_NP);
+    f_semi  = typo_font(TU_SECONDARY);
+    f_med   = typo_font(TU_META);
+    f_reg   = typo_font(TU_META);
     /* "O" is a music note in the Wheel icon fonts */
     if (f_icon_big < 0) f_icon_big = font_load(FONT_DIR "/110-Wheel-Icons.fnt");
     if (f_icon < 0)     f_icon     = font_load(FONT_DIR "/34-Wheel-Icons.fnt");

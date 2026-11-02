@@ -20095,3 +20095,1081 @@
     *: "Bluetooth"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO
+  desc: Y1 Wheel typography settings screen
+  user: core
+  <source>
+    *: "Typography & Fonts"
+  </source>
+  <dest>
+    *: "Tipografía y fuentes"
+  </dest>
+  <voice>
+    *: "Tipografía y fuentes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_THEME
+  desc: Y1 Wheel typography: current font theme
+  user: core
+  <source>
+    *: "Font theme"
+  </source>
+  <dest>
+    *: "Estilo de letra"
+  </dest>
+  <voice>
+    *: "Estilo de letra"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_GALLERY
+  desc: Y1 Wheel typography: gallery title
+  user: core
+  <source>
+    *: "Font themes"
+  </source>
+  <dest>
+    *: "Estilos de letra"
+  </dest>
+  <voice>
+    *: "Estilos de letra"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CUSTOMIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Customize"
+  </source>
+  <dest>
+    *: "Personalizar"
+  </dest>
+  <voice>
+    *: "Personalizar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Preview"
+  </source>
+  <dest>
+    *: "Vista previa"
+  </dest>
+  <voice>
+    *: "Vista previa"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profiles"
+  </source>
+  <dest>
+    *: "Perfiles"
+  </dest>
+  <voice>
+    *: "Perfiles"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FONTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font management"
+  </source>
+  <dest>
+    *: "Gestión de fuentes"
+  </dest>
+  <voice>
+    *: "Gestión de fuentes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Restore defaults"
+  </source>
+  <dest>
+    *: "Restaurar fuentes estándar"
+  </dest>
+  <voice>
+    *: "Restaurar fuentes estándar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESTORE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Back to the standard fonts?"
+  </source>
+  <dest>
+    *: "¿Volver a las fuentes estándar?"
+  </dest>
+  <voice>
+    *: "¿Volver a las fuentes estándar?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREPARING
+  desc: Y1 Wheel typography: building fonts
+  user: core
+  <source>
+    *: "Preparing fonts…"
+  </source>
+  <dest>
+    *: "Preparando fuentes…"
+  </dest>
+  <voice>
+    *: "Preparando fuentes…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAILED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Could not prepare the fonts"
+  </source>
+  <dest>
+    *: "No se pudieron preparar las fuentes"
+  </dest>
+  <voice>
+    *: "No se pudieron preparar las fuentes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISPLAY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Titles"
+  </source>
+  <dest>
+    *: "Títulos"
+  </dest>
+  <voice>
+    *: "Títulos"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PRIMARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Lists"
+  </source>
+  <dest>
+    *: "Listas"
+  </dest>
+  <voice>
+    *: "Listas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SECONDARY
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Artist & album"
+  </source>
+  <dest>
+    *: "Artista y álbum"
+  </dest>
+  <voice>
+    *: "Artista y álbum"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_META
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Details"
+  </source>
+  <dest>
+    *: "Detalles"
+  </dest>
+  <voice>
+    *: "Detalles"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERIC
+  desc: Y1 Wheel typography role
+  user: core
+  <source>
+    *: "Numbers"
+  </source>
+  <dest>
+    *: "Números"
+  </dest>
+  <voice>
+    *: "Números"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FAMILY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font"
+  </source>
+  <dest>
+    *: "Fuente"
+  </dest>
+  <voice>
+    *: "Fuente"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weight"
+  </source>
+  <dest>
+    *: "Grosor"
+  </dest>
+  <voice>
+    *: "Grosor"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SIZE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Size"
+  </source>
+  <dest>
+    *: "Tamaño"
+  </dest>
+  <voice>
+    *: "Tamaño"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SPACING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Letter spacing"
+  </source>
+  <dest>
+    *: "Espaciado"
+  </dest>
+  <voice>
+    *: "Espaciado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPACT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compact"
+  </source>
+  <dest>
+    *: "Compacto"
+  </dest>
+  <voice>
+    *: "Compacto"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NORMAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Normal"
+  </source>
+  <dest>
+    *: "Normal"
+  </dest>
+  <voice>
+    *: "Normal"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WIDE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Wide"
+  </source>
+  <dest>
+    *: "Amplio"
+  </dest>
+  <voice>
+    *: "Amplio"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LINE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Line height"
+  </source>
+  <dest>
+    *: "Interlineado"
+  </dest>
+  <voice>
+    *: "Interlineado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RELAXED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Relaxed"
+  </source>
+  <dest>
+    *: "Holgado"
+  </dest>
+  <voice>
+    *: "Holgado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NUMERALS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Numerals"
+  </source>
+  <dest>
+    *: "Cifras"
+  </dest>
+  <voice>
+    *: "Cifras"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_TABULAR
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Tabular"
+  </source>
+  <dest>
+    *: "Tabulares"
+  </dest>
+  <voice>
+    *: "Tabulares"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PROPORTIONAL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Proportional"
+  </source>
+  <dest>
+    *: "Proporcionales"
+  </dest>
+  <voice>
+    *: "Proporcionales"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENDER
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rendering"
+  </source>
+  <dest>
+    *: "Renderizado"
+  </dest>
+  <voice>
+    *: "Renderizado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SMOOTH
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Smooth"
+  </source>
+  <dest>
+    *: "Suave"
+  </dest>
+  <voice>
+    *: "Suave"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SHARP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Sharp"
+  </source>
+  <dest>
+    *: "Nítido"
+  </dest>
+  <voice>
+    *: "Nítido"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PIXEL
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Pixel"
+  </source>
+  <dest>
+    *: "Píxel"
+  </dest>
+  <voice>
+    *: "Píxel"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SCREENS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Per-screen sizes"
+  </source>
+  <dest>
+    *: "Tamaños por pantalla"
+  </dest>
+  <voice>
+    *: "Tamaños por pantalla"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MENUS_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Menu titles"
+  </source>
+  <dest>
+    *: "Títulos de menú"
+  </dest>
+  <voice>
+    *: "Títulos de menú"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NP_TITLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Now Playing title"
+  </source>
+  <dest>
+    *: "Título en reproducción"
+  </dest>
+  <voice>
+    *: "Título en reproducción"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_LYRICS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Lyrics"
+  </source>
+  <dest>
+    *: "Letras"
+  </dest>
+  <voice>
+    *: "Letras"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_AUTO
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Auto"
+  </source>
+  <dest>
+    *: "Auto"
+  </dest>
+  <voice>
+    *: "Auto"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_UI_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Use in other themes"
+  </source>
+  <dest>
+    *: "Usar en otros temas"
+  </dest>
+  <voice>
+    *: "Usar en otros temas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fill missing characters"
+  </source>
+  <dest>
+    *: "Completar caracteres"
+  </dest>
+  <voice>
+    *: "Completar caracteres"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_APPLY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Apply"
+  </source>
+  <dest>
+    *: "Aplicar"
+  </dest>
+  <voice>
+    *: "Aplicar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVE_AS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Save as profile…"
+  </source>
+  <dest>
+    *: "Guardar como perfil…"
+  </dest>
+  <voice>
+    *: "Guardar como perfil…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Name"
+  </source>
+  <dest>
+    *: "Nombre"
+  </dest>
+  <voice>
+    *: "Nombre"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NEW_PROFILE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "New profile from current"
+  </source>
+  <dest>
+    *: "Nuevo perfil con el actual"
+  </dest>
+  <voice>
+    *: "Nuevo perfil con el actual"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RENAME
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rename"
+  </source>
+  <dest>
+    *: "Renombrar"
+  </dest>
+  <voice>
+    *: "Renombrar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete"
+  </source>
+  <dest>
+    *: "Eliminar"
+  </dest>
+  <voice>
+    *: "Eliminar"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DELETE_ASK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Delete this profile?"
+  </source>
+  <dest>
+    *: "¿Eliminar este perfil?"
+  </dest>
+  <voice>
+    *: "¿Eliminar este perfil?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SAVED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Profile saved"
+  </source>
+  <dest>
+    *: "Perfil guardado"
+  </dest>
+  <voice>
+    *: "Perfil guardado"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_NO_PROFILES
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No saved profiles yet"
+  </source>
+  <dest>
+    *: "Aún no hay perfiles guardados"
+  </dest>
+  <voice>
+    *: "Aún no hay perfiles guardados"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_KEEP_EDITING
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Keep editing"
+  </source>
+  <dest>
+    *: "Seguir editando"
+  </dest>
+  <voice>
+    *: "Seguir editando"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESET
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Reset changes"
+  </source>
+  <dest>
+    *: "Deshacer cambios"
+  </dest>
+  <voice>
+    *: "Deshacer cambios"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_INSTALLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Installed fonts"
+  </source>
+  <dest>
+    *: "Fuentes instaladas"
+  </dest>
+  <voice>
+    *: "Fuentes instaladas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Import fonts"
+  </source>
+  <dest>
+    *: "Importar fuentes"
+  </dest>
+  <voice>
+    *: "Importar fuentes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Or copy .ttf/.otf/.fnt to .rockbox/fonts/import"
+  </source>
+  <dest>
+    *: "O copia .ttf/.otf/.fnt en .rockbox/fonts/import"
+  </dest>
+  <voice>
+    *: "O copia .ttf/.otf/.fnt en .rockbox/fonts/import"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORT_NONE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No fonts in Download or Fonts"
+  </source>
+  <dest>
+    *: "No hay fuentes en Download ni Fonts"
+  </dest>
+  <voice>
+    *: "No hay fuentes en Download ni Fonts"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font imported"
+  </source>
+  <dest>
+    *: "Fuente importada"
+  </dest>
+  <voice>
+    *: "Fuente importada"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_RESCAN
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rescan fonts"
+  </source>
+  <dest>
+    *: "Volver a buscar fuentes"
+  </dest>
+  <voice>
+    *: "Volver a buscar fuentes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_MEMORY
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fonts in memory"
+  </source>
+  <dest>
+    *: "Fuentes en memoria"
+  </dest>
+  <voice>
+    *: "Fuentes en memoria"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Font cache"
+  </source>
+  <dest>
+    *: "Caché de fuentes"
+  </dest>
+  <voice>
+    *: "Caché de fuentes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CLEAR_CACHE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Remove unused cached fonts?"
+  </source>
+  <dest>
+    *: "¿Borrar las fuentes en caché sin usar?"
+  </dest>
+  <voice>
+    *: "¿Borrar las fuentes en caché sin usar?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_FALLBACK_FONT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Fallback font"
+  </source>
+  <dest>
+    *: "Fuente de respaldo"
+  </dest>
+  <voice>
+    *: "Fuente de respaldo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Compatibility"
+  </source>
+  <dest>
+    *: "Compatibilidad"
+  </dest>
+  <voice>
+    *: "Compatibilidad"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_SOURCE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Source"
+  </source>
+  <dest>
+    *: "Origen"
+  </dest>
+  <voice>
+    *: "Origen"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BUNDLED
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included (SIL OFL)"
+  </source>
+  <dest>
+    *: "Incluida (SIL OFL)"
+  </dest>
+  <voice>
+    *: "Incluida (SIL OFL)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_BITMAP
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Included bitmap (X11)"
+  </source>
+  <dest>
+    *: "Bitmap incluida (X11)"
+  </dest>
+  <voice>
+    *: "Bitmap incluida (X11)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_IMPORTED_SRC
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Imported by you"
+  </source>
+  <dest>
+    *: "Importada por ti"
+  </dest>
+  <voice>
+    *: "Importada por ti"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_WEIGHTS
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Weights"
+  </source>
+  <dest>
+    *: "Grosores"
+  </dest>
+  <voice>
+    *: "Grosores"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COVERAGE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Characters"
+  </source>
+  <dest>
+    *: "Caracteres"
+  </dest>
+  <voice>
+    *: "Caracteres"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_VARIABLE
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Variable fonts: default style only"
+  </source>
+  <dest>
+    *: "Fuentes variables: solo su estilo base"
+  </dest>
+  <voice>
+    *: "Fuentes variables: solo su estilo base"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_DISK
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "On disk"
+  </source>
+  <dest>
+    *: "En disco"
+  </dest>
+  <voice>
+    *: "En disco"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_1
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Rockbox draws bitmap fonts only"
+  </source>
+  <dest>
+    *: "Rockbox solo dibuja fuentes bitmap"
+  </dest>
+  <voice>
+    *: "Rockbox solo dibuja fuentes bitmap"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_2
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "TTF/OTF are converted on the player"
+  </source>
+  <dest>
+    *: "TTF/OTF se convierten en el aparato"
+  </dest>
+  <voice>
+    *: "TTF/OTF se convierten en el aparato"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_4
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "No kerning or ligatures"
+  </source>
+  <dest>
+    *: "Sin kerning ni ligaduras"
+  </dest>
+  <voice>
+    *: "Sin kerning ni ligaduras"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_5
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Arabic, Hebrew, Indic: not shaped"
+  </source>
+  <dest>
+    *: "Árabe, hebreo, índicas: sin composición"
+  </dest>
+  <voice>
+    *: "Árabe, hebreo, índicas: sin composición"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_6
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Missing characters come from Inter"
+  </source>
+  <dest>
+    *: "Lo que falte se toma de Inter"
+  </dest>
+  <voice>
+    *: "Lo que falte se toma de Inter"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_COMPAT_7
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "Other themes keep their own fonts"
+  </source>
+  <dest>
+    *: "Los temas externos conservan sus fuentes"
+  </dest>
+  <voice>
+    *: "Los temas externos conservan sus fuentes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_PREVIEW_HINT
+  desc: Y1 Wheel typography
+  user: core
+  <source>
+    *: "OK: options · Back: return"
+  </source>
+  <dest>
+    *: "OK: opciones · Atrás: volver"
+  </dest>
+  <voice>
+    *: "OK: opciones · Atrás: volver"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TYPO_CANCEL
+  desc: Y1 Wheel typography: leave without applying
+  user: core
+  <source>
+    *: "Cancel"
+  </source>
+  <dest>
+    *: "Cancelar"
+  </dest>
+  <voice>
+    *: "Cancelar"
+  </voice>
+</phrase>

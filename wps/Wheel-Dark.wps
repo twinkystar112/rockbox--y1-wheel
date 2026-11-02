@@ -1,19 +1,25 @@
 # Wheel Dark - Now Playing for 480x360 (Innioasis Y1)
 # Original design for the Rockbox Y1 Wheel edition. GPLv2+.
+# "#@ old=new" lines adapt the line below them (Typography & Fonts settings).
 %wd
-%Fl(2,22-Inter-Medium.fnt)
-%Fl(3,22-Inter-SemiBold.fnt)
+#@ Wheel-Secondary.fnt=${secondary}
+%Fl(2,Wheel-Secondary.fnt)
+#@ Wheel-Title.fnt=${title}
+%Fl(3,Wheel-Title.fnt)
 %Fl(4,22-Wheel-Icons.fnt)
-%Fl(5,28-Inter-Bold.fnt)
-%Fl(6,18-Inter-Regular.fnt)
+#@ Wheel-Display.fnt=${display}
+%Fl(5,Wheel-Display.fnt)
+#@ Wheel-Meta.fnt=${meta}
+%Fl(6,Wheel-Meta.fnt)
 %Fl(7,18-Wheel-Icons.fnt)
 %Fl(8,110-Wheel-Icons.fnt)
-%Fl(9,18-Inter-Medium.fnt)
+#@ Wheel-Numeric.fnt=${numeric}
+%Fl(9,Wheel-Numeric.fnt)
 #
 # ---------- top bar ----------
 %V(0,0,480,38,-)%Vb(1c1c1f)
 %dr(0,37,-,1,38383c)
-%V(16,7,280,26,3)%Vf(f2f2f5)%Vb(1c1c1f)
+%V(16,2,280,32,3)%Vf(f2f2f5)%Vb(1c1c1f)
 %Sx(Now Playing)
 %V(300,7,124,24,4)%Vf(e5e5ea)%Vb(1c1c1f)
 %ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>
@@ -33,15 +39,15 @@
 %acO
 #
 # ---------- track text ----------
-%V(248,58,220,22,6)%Vf(8e8e93)
+%V(248,57,220,22,6)%Vf(8e8e93)
 %pp %Sx(of) %pe
-%V(248,86,220,34,5)%Vf(f2f2f5)
+%V(248,85,220,32,5)%Vf(f2f2f5)
 %s%?it<%it|%fn>
-%V(248,124,220,26,2)%Vf(accent)
+%V(248,122,220,26,2)%Vf(accent)
 %s%?ia<%ia|%?iA<%iA|>>
-%V(248,152,220,26,2)%Vf(a1a1a8)
+%V(248,150,220,26,2)%Vf(a1a1a8)
 %s%?id<%id|>
-%V(248,184,220,22,6)%Vf(8e8e93)
+%V(248,183,220,22,6)%Vf(8e8e93)
 %s%?iy<%iy · |>%?fc<MP1|MP2|MP3|AIFF|WAV|Ogg|FLAC|MPC|AC3|WavPack|ALAC|AAC|SHN|SID|ADX|NSF|Speex|SPC|APE|WMA|Opus|> · %fb kbps
 #
 # shuffle / repeat state (accent colour when active) + lyrics hint
@@ -51,31 +57,31 @@
 #  labelled viewport only runs when that viewport is shown)
 %V(282,224,40,24,7)%Vf(accent)
 %?mm<|F|G|E|F>%?Wy<%Vd(lyr)|>%?Wm<%?mv(1.5)<%Vd(vol)|%Vd(prog)>|%Vd(scrub)>
-%Vl(lyr,322,224,146,24,9)%Vf(accent)
+%Vl(lyr,322,223,146,22,6)%Vf(accent)
 %ar%Sx(Lyrics)
 #
 # ---------- progress, volume while the wheel turns, or scrubbing ----------
 #
 %Vl(prog,24,294,432,6,-)%Vf(accent)%Vb(3a3a3f)
 %pb(0,0,432,6,noborder)
-%Vl(prog,24,306,200,24,6)%Vf(a1a1a8)
+%Vl(prog,24,305,200,22,9)%Vf(a1a1a8)
 %pc
-%Vl(prog,256,306,200,24,6)%Vf(a1a1a8)
+%Vl(prog,256,305,200,22,9)%Vf(a1a1a8)
 %ar-%pr
 #
 %Vl(vol,24,286,30,24,7)%Vf(e5e5ea)
 R
 %Vl(vol,58,294,398,6,-)%Vf(accent)%Vb(3a3a3f)
 %pv(0,0,398,6,noborder)
-%Vl(vol,24,306,432,24,6)%Vf(a1a1a8)
+%Vl(vol,24,305,432,22,9)%Vf(a1a1a8)
 %ac%pv dB
 #
 # scrubbing: thicker bar with a knob, big times, a hint
 %Vl(scrub,24,290,432,12,-)%Vf(accent)%Vb(3a3a3f)
 %pb(0,0,432,12,noborder)
-%Vl(scrub,24,306,120,26,3)%Vf(f2f2f5)
+%Vl(scrub,24,308,120,22,9)%Vf(f2f2f5)
 %pc
-%Vl(scrub,144,308,192,24,6)%Vf(8e8e93)
+%Vl(scrub,144,307,192,22,6)%Vf(8e8e93)
 %ac%Sx(Scrubbing)
-%Vl(scrub,336,306,120,26,3)%Vf(f2f2f5)
+%Vl(scrub,336,308,120,22,9)%Vf(f2f2f5)
 %ar-%pr

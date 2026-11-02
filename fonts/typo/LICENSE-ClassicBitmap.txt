@@ -1,0 +1,4 @@
+Classic Bitmap = the X11 Adobe Helvetica bitmap fonts shipped with
+Rockbox (fonts/*.bdf). Copyright 1984-1989, 1994 Adobe Systems
+Incorporated; 1988, 1994 Digital Equipment Corporation. Licence:
+see COPYING-fonts.txt / fonts/COPYING in the Rockbox sources.

@@ -4,37 +4,34 @@ Versión de Rockbox para el **Innioasis Y1** (480×360, Android 4.2 / MT6572) ce
 menús al estilo de un reproductor de rueda clásico, recomendaciones y estadísticas hechas con tu
 propia biblioteca, letras sincronizadas, Bluetooth integrado y scrobbling a Last.fm con y sin conexión.
 
-Parte del port comunitario [multiwirth/rockbox-y1](https://github.com/multiwirth/rockbox-y1)
-(GPLv2+). Sin recursos de Apple ni de otros temas: diseño, iconos y presets son propios; las fuentes
-son Inter (SIL OFL).
+Construida sobre el port activo **[rockbox-y1/rockbox](https://github.com/rockbox-y1/rockbox)**
+(rama `rebase-upstream`, target `310|innioasisy1`, GPLv2+): se instala como la ROM Rockbox-Y1 y
+respeta sus botones tipo iPod, su Bluetooth y su Wi-Fi. Sin recursos de Apple ni de otros temas:
+diseño, iconos y presets son propios; las fuentes incluidas son libres (SIL OFL) y los bitmaps X11
+que ya trae Rockbox.
 
-> **Estado:** beta sin probar en hardware. El C compila para Android y el Java contra la API 17
-> (Android 4.2). La interfaz se ha probado en el simulador a 480×360 y el código de Last.fm, letras
-> y envío por Bluetooth pasa 38 pruebas contra servidores simulados (`utils/wheel/tests`). Lo que
-> depende de la radio del Y1 (Bluetooth real) solo puede verificarse en un Y1. Haz copia de la
-> tarjeta antes de instalar.
+> **Estado:** beta sin probar en hardware. El C compila para el objetivo Y1 y el Java contra la
+> API 19 (y las clases Wheel contra la 17). La interfaz se ha probado en el simulador a 480×360; el
+> código de Last.fm, letras, Wi-Fi bajo demanda y envío por Bluetooth pasa 52 pruebas contra
+> servidores simulados (`utils/wheel/tests`) y el conversor de fuentes 15
+> (`utils/wheel/typography/test_forge.py`). Lo que depende de la radio del Y1 solo puede
+> verificarse en un Y1. Haz copia de la tarjeta antes de instalar.
 
-> **Wi-Fi:** el Y1 tiene el chip, pero el firmware de fábrica no lo activa. Las ROM de la comunidad
-> (base `y1-ata-rom`, Rockbox-Y1) sí lo activan. Todo funciona sin conexión; para lo que necesita
-> internet (enviar scrobbles al momento, descargar letras, iniciar sesión con QR) se usa la conexión
-> que tenga Android: Wi-Fi si la ROM lo activa, o el internet del móvil por Bluetooth.
-
-> **Compatibilidad:** esta versión parte del port antiguo `multiwirth/rockbox-y1` (archivado en
-> enero de 2026) y se instala como allí: Y1 con root, `Generic.kl` modificado y el APK. **No es
-> compatible con la ROM actual Rockbox-Y1** (`rockbox-y1/rockbox`, v0.5 y nightlies): esa es otro
-> target (`innioasisy1`, botones tipo iPod, app de sistema firmada con la clave de plataforma, rutas
-> `/sdcard/.rockbox`, variantes Type A/Type B). Instalar este APK encima falla por firma y, con su
-> distribución de teclas, la rueda no se movería. Ver "Conflictos con el Y1" más abajo.
+> **Wi-Fi:** el Y1 tiene el chip; el firmware de fábrica no lo activa y la ROM Rockbox-Y1 sí.
+> Esta versión usa la red de `.rockbox/wifi.cfg` (la misma que los plugins de la ROM) y **enciende
+> el Wi-Fi solo mientras envía scrobbles o descarga una letra**, y lo apaga después. También sirve
+> el internet del móvil por Bluetooth.
 
 ## Controles
 | En… | Acción | Resultado |
 |---|---|---|
-| Listas | girar rápido | **salto por letras** (A, B, C… en grande) |
-| Listas | mantener Menú | opciones de la fila (reproducir a continuación, parecidas, enviar…) |
+| Listas | girar rápido | **salto por letras** (A, B, C… en grande, con la fuente de títulos) |
+| Listas | mantener el centro | opciones de la fila (reproducir a continuación, parecidas, enviar…) |
 | Reproduciendo | pulsar el centro | letras → avance rápido con la rueda → normal |
-| Reproduciendo | mantener Menú | menú de la canción (A continuación, Sonido, Temporizador…) |
+| Reproduciendo | mantener el centro | menú de la canción |
+| Reproduciendo | centro + Play | atajo (*hotkey*) de la ROM |
 | Cualquier sitio | Menú | atrás |
-| Cualquier sitio | mantener el centro 1 s | apagar la pantalla (igual que en el port original) |
+| Cualquier sitio | mantener el centro 1 s / 5 s | apagar pantalla / apagar (como en la ROM) |
 
 ## Qué incluye
 
@@ -92,10 +89,23 @@ Ajustes › Apariencia:
 * **Apariencia** clara / oscura / automática (oscura de 21:00 a 7:00), **color de acento**
   (7), **% de batería**, **clic de la rueda** y **salto por letras**.
 
+### Tipografía y fuentes
+Ajustes › Apariencia › Tipografía y fuentes: 8 estilos (Classic iPod, Apple Music, Spotify Modern,
+Hi‑Fi Minimal, Retro Tech, Editorial, Neo Minimal, Analog Soul) que se ven en la galería escritos
+con su propia fuente, personalización por rol (títulos, listas, artista y álbum, detalles,
+números: fuente, grosor y tamaño), espaciado, interlineado, cifras tabulares, renderizado suave /
+nítido / píxel, tamaños por pantalla, **vista previa real** antes de aplicar, perfiles propios y
+gestión de fuentes (cobertura, memoria, caché, importar tus `.ttf`/`.otf`). Las fuentes se
+convierten en el propio Y1. Las propietarias (Chicago, Geneva, SF Pro, Avenir Next) no se
+incluyen: si tienes las tuyas, cópialas a `/.rockbox/fonts/import/` y los estilos las usan.
+Detalles técnicos: [`docs/WHEEL-TYPOGRAPHY.md`](docs/WHEEL-TYPOGRAPHY.md).
+
 ### Bluetooth
 * Activar, dispositivos con estado en vivo, conectar, desconectar, olvidar, **buscar y emparejar**
   dentro de Rockbox (PIN 0000 o confirmación automáticos).
-* Reconexión automática, **pausa al desconectar** y reanudar al reconectar.
+* Reconexión automática, **pausa al desconectar** y reanudar al reconectar (en el Y1 usan el
+  ajuste de Rockbox "pausa al desconectar auriculares", que la ROM ya conecta al A2DP).
+* **Restablecer dispositivos Bluetooth** (la herramienta de la ROM) también desde esta pantalla.
 * **Enviar por Bluetooth** una canción o una lista entera a un móvil u ordenador emparejado
   (OBEX Object Push). Los móviles Android (Samsung incluidos) y los
   ordenadores lo aceptan; **los iPhone no reciben archivos por Bluetooth**.
@@ -104,8 +114,12 @@ Ajustes › Apariencia:
   Conexiones › Zona Wi-Fi y módem › Anclaje a red Bluetooth.
 
 ### Last.fm
-* **No necesita app intermedia**: el Y1 envía los scrobbles directamente a través del internet
-  del móvil por Bluetooth. Sin conexión, se guardan y se envían en cuanto la hay.
+* **No necesita app intermedia**: el Y1 envía los scrobbles directamente por Wi-Fi (encendido
+  solo para eso, con la red de `wifi.cfg`) o por el internet del móvil. Sin conexión, se guardan y
+  se envían en cuanto la hay; **Enviar ahora** enciende el Wi-Fi si hace falta.
+* Lee la API key/secret y el usuario de los `scrobble-*` de `wifi.cfg` si no hay `lastfm.cfg`
+  (nunca modifica `wifi.cfg`). Si usas también el plugin *Last.fm Scrobbler* de la ROM para subir
+  `.scrobbler.log`, usa solo uno de los dos para no duplicar escuchas.
 * Reglas de Last.fm: la pista dura más de 30 s y la escuchas la mitad o 4 minutos (tiempo real).
 * Cola en `.rockbox/.lastfm-queue.tsv`, lotes de 50, reintento tras errores temporales,
   "Escuchando ahora", **Me gusta** desde la canción.
@@ -113,17 +127,16 @@ Ajustes › Apariencia:
 * También escribe `/.scrobbler-wheel.log` (Audioscrobbler 1.1) **en UTC** como respaldo.
 * Compatible con **Libre.fm** u otro servicio compatible (`api_url` y `auth_url`).
 
-## Conflictos con el Y1 (revisados)
+## Conflictos con el Y1 (resueltos al pasar a rockbox-y1/rockbox)
 | Punto | Estado |
 |---|---|
-| Android 4.2.2 (API 17) | Compatible: el Java se compila contra la API 17. |
-| Centro de la rueda | Lo gestiona Java: pulsación corta = clic; mantener 1 s = apagar pantalla. Por eso las opciones van con **mantener Menú** (corregido). |
-| Rueda | Necesita el `Generic.kl` del port original (rueda = DPAD arriba/abajo). Con el `Rockbox.kl` de la ROM Rockbox-Y1 la rueda envía otros códigos y no funcionaría. |
-| Firmware de fábrica 3.x / Type B | Las instrucciones `sed` del port original buscan líneas que no existen en los `.kl` de 3.x; en esos Y1 hay que revisar el `Generic.kl` a mano. Los Y1 Type B (rueda de 1,8 V, vendidos con firmware anterior a 2.0.0) usan ROM propia. |
-| Wi-Fi | Solo con ROM de la comunidad que lo active; si no, internet del móvil por Bluetooth. |
+| Base | Ahora sobre la ROM activa (`innioasisy1`), no sobre el port archivado. Mismo APK de sistema firmado, mismas rutas (`/sdcard/.rockbox`), Type A y Type B como la ROM. |
+| Rueda y botones | Keymap de la ROM (`Rockbox.kl`, botones tipo iPod). El centro en Reproduciendo es una acción nueva (`ACTION_WPS_CYCLE_MODE`) que no quita el menú contextual ni el atajo de la ROM. |
+| Pausa al perder los auriculares BT | Un solo mecanismo: el de la ROM (A2DP → evento de auriculares). Las opciones de la pantalla Bluetooth cambian ese ajuste. |
+| Wi-Fi | El de la ROM, encendido bajo demanda con `wifi.cfg`; HTTPS con Java y, si falla, con el `gocurl` de la ROM. |
+| `.scrobbler.log` | El plugin de la ROM escribe ese archivo; esta versión usa `.scrobbler-wheel.log` (UTC). |
+| Simulador | Corregido un `defined(PLATFORM_ANDROID)` del port que rompía las compilaciones no Android. |
 | Anclaje Bluetooth (PAN) y envío de archivos (OPP) | Sin probar en el Y1: dependen de la pila Bluetooth de MediaTek. |
-| `.scrobbler.log` | El plugin de Rockbox escribe ese archivo con hora local; esta versión usa `.scrobbler-wheel.log` (UTC) para no mezclarlos (corregido). |
-| Instalación | Como app normal sobre un Y1 con root; no como ROM ni como app de sistema. |
 
 ## Configurar Last.fm
 1. Crea una API key gratuita en https://www.last.fm/api/account/create.
@@ -135,22 +148,19 @@ Ajustes › Apariencia:
 `python3 utils/wheel/upload_scrobbler_log.py /ruta/a/la/tarjeta/.scrobbler-wheel.log`
 (Last.fm no acepta escuchas de hace más de 14 días).
 
-## Compilar el APK
-GitHub Actions lo compila solo (`.github/workflows/build-apk.yml`): sube la rama `y1-wheel` a tu
-fork y descarga el artefacto `rockbox-y1-wheel-360p`.
+## Compilar
+Igual que la ROM Rockbox-Y1 (`android/y1/building.md`): con el NDK r10e–r17,
+`mkdir build && cd build && ../tools/configure --target=310 --lcdwidth=480 --lcdheight=360 --type=n`
+y después los pasos de `android/y1` (o el workflow `.github/workflows/build-roms.yml`, que genera
+las ROM Type A/Type B).
 
-A mano (Linux): `cd android && ./installToolchain.sh`, después
-`mkdir build && cd build && ../../tools/configure --target=201 --lcdwidth=480 --lcdheight=360 --type=n`
-y `make && make classes && make zip && make unsigned-apk && ../sign_apk_ci.sh`.
-
-Pruebas de Last.fm, letras y envío por Bluetooth en un PC (JDK + Python 3):
-`utils/wheel/tests/run.sh`.
+Pruebas en un PC: `utils/wheel/tests/run.sh` (JDK + Python 3) y
+`python3 utils/wheel/typography/test_forge.py` (gcc).
 
 ## Instalar
-Igual que el port original: Innioasis Updater / Y1 Helper, o `adb install rockbox.apk` en un Y1
-rooteado. Permisos nuevos: `BLUETOOTH`, `BLUETOOTH_ADMIN`, `ACCESS_NETWORK_STATE`, `INTERNET`.
-Si ya tenías Rockbox, borra `.rockbox/config.cfg` para aplicar el tema y los ajustes nuevos. La
-biblioteca se crea sola la primera vez.
+Como la ROM Rockbox-Y1 (Innioasis Updater / Y1 Helper). Si ya tenías Rockbox, borra
+`.rockbox/config.cfg` para aplicar el tema y los ajustes nuevos. La biblioteca se crea sola la
+primera vez.
 
 ## Para desarrolladores
 | Área | Archivos |
@@ -164,7 +174,8 @@ biblioteca se crea sola la primera vez.
 | Temas, .zip, escalado 320×240 | `apps/wheel/wheel_themes.c`, `lib/skin_parser/skin_parser.c`, `apps/gui/skin_engine/skin_parser.c`, `apps/gui/backdrop.c`, `firmware/common/zip.c` (deflate) |
 | Apariencia, salto por letras, teclado, diálogos | `apps/wheel/wheel_appearance.c`, `wheel_letterjump.c`, `wheel_keyboard.c`, `wheel_yesno.c` |
 | Capa de plataforma | `apps/wheel/wheel_connect.h`, `wheel_connect_stub.c` (demo del simulador), `apps/hosted/android/wheel_connect_android.c` (JNI) |
-| Lado Android | `android/src/org/rockbox/Helper/Wheel*.java` |
+| Lado Android | `android/y1/src/org/rockbox/Helper/Wheel*.java` (`WheelNet`: Wi-Fi bajo demanda) |
+| Tipografía | `apps/wheel/wheel_fontforge.c` (conversor), `wheel_typo.c` (registro, perfiles, temas), `wheel_typo_ui.c` (pantallas, vista previa), `fonts/typo/`, `utils/wheel/typography/` |
 | Etiquetas de skin nuevas | `%Lh %Lv %Wb %Wq %Wm %Wy %Wd %Wa..%Wo` en `lib/skin_parser/tag_table.*`, `apps/gui/skin_engine/skin_tokens.c` |
-| Tema | `wps/Wheel*.sbs/.wps`, `fonts/prebuilt/` (`utils/wheel/make_fonts.sh`) |
+| Tema | `wps/Wheel*.sbs/.wps` (plantillas con `#@`), `fonts/prebuilt/` (`utils/wheel/make_fonts.sh`) |
 | Pruebas | `utils/wheel/tests/` |

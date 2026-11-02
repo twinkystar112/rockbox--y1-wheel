@@ -47,6 +47,7 @@
 #include "string-extra.h"
 #include "wheel_art.h"
 #include "wheel_stats.h"
+#include "wheel_typo.h"
 
 /* ============================ the history ============================ */
 
@@ -670,9 +671,9 @@ static void show_summary(void)
         wheel_art_load(&card_art, songs[0].path);
     else
         card_art.valid = false;
-    if (card_font_big < 0) card_font_big = font_load(FONT_DIR "/64-Wheel-Letters.fnt");
-    if (card_font_mid < 0) card_font_mid = font_load(FONT_DIR "/28-Inter-Bold.fnt");
-    if (card_font_small < 0) card_font_small = font_load(FONT_DIR "/18-Inter-Medium.fnt");
+    card_font_big = typo_font(TU_JUMBO);
+    card_font_mid = typo_font(TU_DISPLAY_NP);
+    card_font_small = typo_font(TU_META);
 
     char pname[32];
     period_name(period, pname, sizeof(pname));

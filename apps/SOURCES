@@ -123,6 +123,10 @@ wheel/wheel_themes.c
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
 wheel/wheel_qr.c
 wheel/qrcodegen.c
+/* typography: fonts are converted on the player (needs malloc) */
+wheel/wheel_fontforge.c
+wheel/wheel_typo.c
+wheel/wheel_typo_ui.c
 #endif
 gui/viewport.c
 

@@ -1,14 +1,23 @@
 # Wheel - status bar + menus for 480x360 (Innioasis Y1)
 # Original design for the Rockbox Y1 Wheel edition. GPLv2+.
 # Fonts: Inter (SIL OFL) and the generated Wheel-Icons / Wheel-Row fonts.
+# A "#@ old=new" line adapts the line below it ("\s" = a space) for Settings > Appearance >
+# Typography & Fonts (which writes Wheel-Type.sbs); ${role} = that role's font.
 #
+#@ 40-Wheel-Row.fnt=${row}
 %Fl(2,40-Wheel-Row.fnt)
+#@ 40-Wheel-RowSel.fnt=${rowsel}
 %Fl(3,40-Wheel-RowSel.fnt)
 %Fl(4,22-Wheel-Icons.fnt)
 %Fl(5,110-Wheel-Icons.fnt)
-%Fl(6,18-Inter-Regular.fnt)
-%Fl(7,18-Inter-Medium.fnt)
-%Fl(8,22-Inter-SemiBold.fnt)
+#@ Wheel-Meta.fnt=${meta}
+%Fl(6,Wheel-Meta.fnt)
+#@ Wheel-Secondary.fnt=${secondary}
+%Fl(7,Wheel-Secondary.fnt)
+#@ Wheel-Title.fnt=${title}
+%Fl(8,Wheel-Title.fnt)
+#@ Wheel-Numeric.fnt=${numeric}
+%Fl(9,Wheel-Numeric.fnt)
 #
 # ---------- UI viewport: split screen on the main menu ----------
 %Vi(full,0,38,480,322,2)
@@ -16,10 +25,15 @@
 %?cs<%VI(half)|%VI(full)>
 #
 # ---------- list rows (40px). Values sit on the right, then the chevron ----------
+#@ 480,40)=480,${row_h})
 %Lb(item,480,40)
+#@ -,40,=-,${row_h},
 %Vl(item,0,0,-,40,2)%Vf(141416)%Vb(ffffff)
+#@ |\s\s\s%LT=|${pad}%LT %Lv\s\s=%Lv${rpad} ›\s\s=›${rpad}
 %?Lc<|   %LT%ar%?Lv<%Lv  |>%?Lh<›  |>>
+#@ -,40,=-,${row_h},
 %Vl(item,0,0,-,40,3)%Vg(accent2,accent,accenttext)
+#@ )\s\s\s%LT=)${pad}%LT %Lv\s\s=%Lv${rpad} ›\s\s=›${rpad}
 %?Lc<%Vs(gradient)   %LT%ar%?Lv<%Lv  |>%?Lh<›  |>|>
 #
 # ---------- right pane: what's playing (main menu only) ----------
@@ -33,15 +47,15 @@
 %Vl(note,280,92,184,112,5)%Vb(cfcfd6)%Vf(ffffff)
 %acO
 #
-%Vl(cap1,272,252,200,24,7)%Vf(141416)%Vb(f2f2f5)
+%Vl(cap1,272,247,200,26,7)%Vf(141416)%Vb(f2f2f5)
 %ac%s%?it<%it|%fn>
-%Vl(cap2,272,276,200,24,6)%Vf(6e6e73)%Vb(f2f2f5)
+%Vl(cap2,272,275,200,22,6)%Vf(6e6e73)%Vb(f2f2f5)
 %ac%s%?ia<%ia|%?iA<%iA|>>
 %Vl(mini,292,314,160,4,-)%Vf(accent)%Vb(d6d6dc)
 %pb(0,0,160,4,noborder)
 #
 # library being built on the first start
-%Vl(lib,272,252,200,48,6)%Vf(6e6e73)%Vb(f2f2f5)
+%Vl(lib,272,250,200,44,6)%Vf(6e6e73)%Vb(f2f2f5)
 %ac%Wd
 #
 # ---------- top bar ----------
@@ -51,7 +65,7 @@
 %?cs<%?C<%Vd(art)|%Vd(tile)%Vd(note)>|>
 %?cs<%?mp<%?Wd<%Vd(lib)|>|%Vd(cap1)%Vd(cap2)%Vd(mini)>|>
 %?St(battery percentage)<%Vd(pct)%Vd(icons_pct)|%Vd(icons)>
-%V(16,7,300,26,8)%Vf(141416)%Vb(f7f7f9)
+%V(16,2,300,32,8)%Vf(141416)%Vb(f7f7f9)
 %s%?Lt<%Lt|Rockbox>
 #
 # status icons: scrobbles waiting, Bluetooth headphones, play state
@@ -59,7 +73,7 @@
 %ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
 %Vl(icons_pct,250,7,124,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
 %ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
-%Vl(pct,376,9,50,22,7)%Vf(3a3a3f)%Vb(f7f7f9)
+%Vl(pct,376,8,50,22,9)%Vf(3a3a3f)%Vb(f7f7f9)
 %ar%?if(%bl,>,-1)<%bl%%|>
 #
 # battery (charging bolt while on the charger)

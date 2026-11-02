@@ -46,6 +46,7 @@
 #include "wheel_screens.h"
 #include "wheel_lyrics.h"
 #include "wheel_stats.h"
+#include "wheel_typo.h"
 #ifdef HAVE_TAGCACHE
 #include "tagcache.h"
 #endif
@@ -513,7 +514,11 @@ int wheel_bluetooth_screen(void)
 /* ------------------------------------------------------------------ */
 enum {
     LFM_ENABLED, LFM_ACCOUNT, LFM_PENDING, LFM_SENT, LFM_SYNC,
-    LFM_SEND_NOW, LFM_NOWPLAYING, LFM_LOG, LFM_COUNT
+    LFM_SEND_NOW, LFM_NOWPLAYING, LFM_LOG,
+#ifdef INNIOASIS_Y1
+    LFM_NOTE,   /* the ROM's own scrobbler plugin can upload the same plays */
+#endif
+    LFM_COUNT
 };
 static struct wheel_scrobble_status lfm;
 
@@ -576,6 +581,10 @@ static const char *lfm_get_name(int item, void *data, char *buf, size_t len)
         case LFM_LOG:
             snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%s", str(LANG_WHEEL_LFM_LOG), ON_OFF(lfm.write_log));
             break;
+#ifdef INNIOASIS_Y1
+        case LFM_NOTE:
+            return str(LANG_WHEEL_LFM_DOUBLE_WARN);
+#endif
         default:
             return "";
     }
@@ -634,6 +643,10 @@ static int lfm_action(int action, struct gui_synclist *lists)
                 splashf(HZ*2, "%s", lfm.signed_in ? str(LANG_WHEEL_LFM_OFFLINE)
                                                  : str(LANG_WHEEL_LFM_SETUP_HINT));
             }
+#ifdef INNIOASIS_Y1
+            else if (!lfm.online)   /* Wi-Fi switched on just for this */
+                splash(HZ*2, ID2P(LANG_WHEEL_LFM_WIFI_HINT));
+#endif
             break;
         case LFM_NOWPLAYING:
             wheel_scrobble_set_now_playing(!lfm.now_playing);
@@ -730,5 +743,6 @@ void wheel_init(void)
     done = true;
     wheel_lyrics_init();
     wheel_stats_init();
+    typo_init();     /* typography: falls back to the stock fonts if needed */
     wheel_appearance_apply(false);
 }

@@ -34,6 +34,7 @@
 #include "string-extra.h"
 #include "misc.h"
 #include "wheel_lyrics.h"
+#include "wheel_typo.h"
 #include "wheel_connect.h"
 #include "wheel_art.h"
 #include "lang.h"
@@ -288,8 +289,6 @@ bool wheel_wps_idle(void)
 
 /* ===================== full-screen lyrics (synced) ====================== */
 
-#define LY_FONT_BIG   FONT_DIR "/28-Inter-Bold.fnt"
-#define LY_FONT_SMALL FONT_DIR "/18-Inter-Medium.fnt"
 #define LY_MARGIN     24
 #define LY_TOP        76      /* lyrics area */
 #define LY_BOTTOM     (LCD_HEIGHT - 22)
@@ -472,16 +471,15 @@ static void draw_lyrics(int scroll_px, int cur, unsigned bg, const char *status)
 /* returns true if the user asked for scrub mode next */
 bool wheel_lyrics_screen(void)
 {
-    if (font_big < 0)
-        font_big = font_load(LY_FONT_BIG);
-    if (font_small < 0)
-        font_small = font_load(LY_FONT_SMALL);
+    /* fonts of the typography profile (lyrics line, details) */
+    font_big = typo_font(TU_LYRICS);
+    font_small = typo_font(TU_META);
     FOR_NB_SCREENS(i)
         viewportmanager_theme_enable(i, false, NULL);
 
     char shown_path[MAX_PATH] = "";
     int width = LCD_WIDTH - 2 * LY_MARGIN;
-    int rh = font_get(font_big >= 0 ? font_big : FONT_UI)->height + 6;
+    int rh = font_get(font_big >= 0 ? font_big : FONT_UI)->height + 2;
     int scroll = 0, target = 0, manual = 0;
     long manual_until = 0;
     bool fetching = false, to_scrub = false, done = false;

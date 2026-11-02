@@ -33,7 +33,7 @@ RSBS: no
 <main>
 wps.480x360x(16|24|32): Wheel.wps
 sbs.480x360x(16|24|32): Wheel.sbs
-Font.480x360x(16|24|32): 22-Inter-Medium.fnt
+Font.480x360x(16|24|32): Wheel-UI.fnt
 foreground color: 141416
 background color: ffffff
 line selector start color: 4a97fa
@@ -72,7 +72,7 @@ RSBS: no
 <main>
 wps.480x360x(16|24|32): Wheel-Dark.wps
 sbs.480x360x(16|24|32): Wheel-Dark.sbs
-Font.480x360x(16|24|32): 22-Inter-Medium.fnt
+Font.480x360x(16|24|32): Wheel-UI.fnt
 foreground color: f2f2f5
 background color: 0f0f11
 line selector start color: 4a97fa

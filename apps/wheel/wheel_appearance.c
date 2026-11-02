@@ -38,6 +38,7 @@
 #include "playlist.h"
 #include "metadata.h"
 #include "wheel_themes.h"
+#include "wheel_typo.h"
 
 #define WHEEL_LIGHT_CFG THEME_DIR "/Wheel.cfg"
 #define WHEEL_DARK_CFG  THEME_DIR "/Wheel-Dark.cfg"
@@ -134,6 +135,11 @@ void wheel_appearance_apply(bool force)
             changed = true;
         }
     }
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    /* the typography profile replaces the theme's skins and UI font */
+    if (typo_patch_settings_changed())
+        changed = true;
+#endif
 #ifdef HAVE_LCD_COLOR
     int a = global_settings.wheel_accent;
     if (a < 0 || a >= (int)ARRAYLEN(accents))
@@ -150,7 +156,7 @@ void wheel_appearance_apply(bool force)
 #endif
     if (changed || force)
     {
-        settings_apply(false);
+        settings_apply(true); /* (re)loads the UI font too */
         wheel_reload_skins();
         settings_save();
     }
@@ -174,7 +180,7 @@ bool wheel_appearance_check(void)
 }
 
 /* ------------------------------ screen ------------------------------ */
-enum { AP_THEME, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
+enum { AP_THEME, AP_TYPO, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
 
 static const char *choice_text(void *var, char *buf, size_t len)
 {
@@ -197,6 +203,12 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
         case AP_THEME:
             label = str(LANG_WHEEL_THEME);
             value = wheel_theme_current();
+            break;
+        case AP_TYPO:
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            label = str(LANG_WHEEL_TYPO);
+            value = typo_is_custom() ? typo_active()->name : "Wheel";
+#endif
             break;
         case AP_MODE:
             label = str(LANG_WHEEL_APPEARANCE);
@@ -226,7 +238,7 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
 static bool ap_get_nav(int item, void *data)
 {
     (void)data;
-    return item == AP_THEME;
+    return item == AP_THEME || item == AP_TYPO;
 }
 
 static int ap_action(int action, struct gui_synclist *lists)
@@ -244,6 +256,11 @@ static int ap_action(int action, struct gui_synclist *lists)
     {
         case AP_THEME:
             wheel_theme_screen();
+            break;
+        case AP_TYPO:
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            wheel_typography_screen();
+#endif
             break;
         case AP_MODE:
             global_settings.wheel_appearance = (global_settings.wheel_appearance + 1) % 3;
