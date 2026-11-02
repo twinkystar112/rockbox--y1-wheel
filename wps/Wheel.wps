@@ -19,11 +19,11 @@
 # ---------- top bar ----------
 %V(0,0,480,38,-)%Vb(f7f7f9)
 %dr(0,37,-,1,c8c8ce)
-%V(16,2,280,32,3)%Vf(141416)%Vb(f7f7f9)
+%V(16,2,280,32,3)%Vf(141415)%Vb(f7f7f9)
 %Sx(Now Playing)
-%V(300,7,124,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%V(300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
 %ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>
-%V(426,7,46,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%V(426,7,46,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
 %ar%?bc<N|%?bl<I|J|K|L|M>>
 #
 # ---------- artwork (soft shadow + cover, or a placeholder tile) ----------
@@ -35,7 +35,7 @@
 %Vl(art,24,60,200,200,-)
 %Cd
 %Vl(tile,24,60,200,200,-)%Vb(cfcfd6)
-%Vl(note,24,104,200,112,8)%Vb(cfcfd6)%Vf(ffffff)
+%Vl(note,24,104,200,112,8)%Vb(cfcfd6)%Vf(fffffe)
 %acO
 #
 # ---------- track text ----------

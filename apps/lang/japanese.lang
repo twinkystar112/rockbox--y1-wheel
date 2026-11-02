@@ -20657,3 +20657,129 @@
     *: "ほかの言語…"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Palette"
+  </source>
+  <dest>
+    *: "パレット"
+  </dest>
+  <voice>
+    *: "パレット"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE_PICK
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pick a palette"
+  </source>
+  <dest>
+    *: "パレットを選ぶ"
+  </dest>
+  <voice>
+    *: "パレットを選ぶ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_0
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Light or dark, with your accent"
+  </source>
+  <dest>
+    *: "ライトかダークに好きなアクセント"
+  </dest>
+  <voice>
+    *: "ライトかダークに好きなアクセント"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_1
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Garnet, lilac and café crème"
+  </source>
+  <dest>
+    *: "ガーネット、ライラック、カフェクリーム"
+  </dest>
+  <voice>
+    *: "ガーネット、ライラック、カフェクリーム"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_2
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Hot pink, peach and lilac"
+  </source>
+  <dest>
+    *: "ホットピンク、ピーチ、ライラック"
+  </dest>
+  <voice>
+    *: "ホットピンク、ピーチ、ライラック"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_3
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pine green and golden honey"
+  </source>
+  <dest>
+    *: "パイングリーンと金色のはちみつ"
+  </dest>
+  <voice>
+    *: "パイングリーンと金色のはちみつ"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_4
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Dark violet for late nights"
+  </source>
+  <dest>
+    *: "夜に映えるダークバイオレット"
+  </dest>
+  <voice>
+    *: "夜に映えるダークバイオレット"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_5
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Coral, tomato and a bit of sky"
+  </source>
+  <dest>
+    *: "コーラル、トマト、少しの空色"
+  </dest>
+  <voice>
+    *: "コーラル、トマト、少しの空色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_6
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Blush, rosewood and vanilla"
+  </source>
+  <dest>
+    *: "ブラッシュ、ローズウッド、バニラ"
+  </dest>
+  <voice>
+    *: "ブラッシュ、ローズウッド、バニラ"
+  </voice>
+</phrase>

@@ -203,7 +203,7 @@ static void draw_preview(const struct typo_profile *p, const int *f, int row_h)
             d->set_foreground(accent);
             d->fillrect(0, y, 264, row_h);
             d->set_drawmode(DRMODE_FG);
-            col = LCD_RGBPACK(255, 255, 255);
+            col = global_settings.lst_color;
         }
         int fr = i == 0 ? f[PV_ROWSEL] : f[PV_ROW];
         text(d, &vp, fr, col, 14, y, rows[i], 210);
@@ -752,7 +752,7 @@ static void draw_gallery(int sel, int top)
             d->set_foreground(global_settings.lse_color);
             d->fillrect(0, y, LCD_WIDTH, H);
             d->set_drawmode(DRMODE_FG);
-            col = sub = LCD_RGBPACK(255, 255, 255);
+            col = sub = global_settings.lst_color;
         }
         text(d, &vp, gal_font[i], col, 16, y + 2, gal[i].name, LCD_WIDTH - 60);
         /* the fonts it will really use (imported ones included) */

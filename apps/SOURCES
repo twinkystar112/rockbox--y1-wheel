@@ -127,6 +127,7 @@ wheel/qrcodegen.c
 wheel/wheel_fontforge.c
 wheel/wheel_typo.c
 wheel/wheel_typo_ui.c
+wheel/wheel_palette.c
 #endif
 gui/viewport.c
 

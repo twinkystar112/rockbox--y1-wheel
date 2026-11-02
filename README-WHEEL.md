@@ -89,6 +89,26 @@ Ajustes › Apariencia:
 * **Apariencia** clara / oscura / automática (oscura de 21:00 a 7:00), **color de acento**
   (7), **% de batería**, **clic de la rueda** y **salto por letras**.
 
+### Paletas
+Ajustes › Apariencia › **Paleta** abre "Elige una paleta": cada una con su miniatura en degradado
+y sus colores, y se aplica al pulsar (barra superior, fondo, textos, iconos, selector, portada de
+reserva, barra de progreso, sombras y las pantallas dibujadas en C):
+
+| Paleta | Carácter |
+|---|---|
+| **Wheel** | la clásica: clara u oscura con tu color de acento |
+| **Garnet Espresso** | granate profundo, lila y café crema |
+| **Petal Pop** | rosa intenso, melocotón y un toque de lila |
+| **Pine Nectar** | verde pino con miel dorada |
+| **Midnight Iris** | violeta oscuro para la noche (paleta oscura) |
+| **Citrus Sunset** | coral, tomate maduro y un poco de cielo |
+| **Rose Chai** | rosa suave, palo rosa y vainilla |
+
+Los colores están inspirados en las capturas de referencia, con nombres propios. Funciona junto
+con la tipografía: el tema `Wheel-Pal` se genera desde las plantillas `Wheel.sbs/.wps` con tu
+perfil de fuentes e interlineado y los colores de la paleta. Con una paleta activa, Apariencia y
+Color de acento muestran "Paleta"; pulsar cualquiera de los dos vuelve a la Wheel clásica.
+
 ### Idiomas
 Ajustes › Apariencia › **Idioma**: español, English, français, 简体中文, 日本語 y 한국어, todos con la
 interfaz Wheel completa traducida (`utils/wheel/i18n/`), más el resto de idiomas de Rockbox en
@@ -190,4 +210,5 @@ primera vez.
 | Traducciones | `utils/wheel/i18n/wheel_{fr,zh,ja,ko}.tsv` → `apply.py` → `apps/lang/*.lang` |
 | Etiquetas de skin nuevas | `%Lh %Lv %Wb %Wq %Wm %Wy %Wd %Wa..%Wo` en `lib/skin_parser/tag_table.*`, `apps/gui/skin_engine/skin_tokens.c` |
 | Tema | `wps/Wheel*.sbs/.wps` (plantillas con `#@`), `fonts/prebuilt/` (`utils/wheel/make_fonts.sh`) |
+| Paletas | `apps/wheel/wheel_palette.c` (tabla de colores por función, selector) → `wheel_typo.c` (`typo_generate_palette`: genera `Wheel-Pal`) |
 | Pruebas | `utils/wheel/tests/` |

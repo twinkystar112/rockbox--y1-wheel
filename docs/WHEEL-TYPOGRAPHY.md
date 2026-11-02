@@ -57,6 +57,13 @@ fuente con `typo_font(TU_…)`; los temas Wheel la reciben en la plantilla.
 `${row_h}` la altura de fila y `${pad}`/`${rpad}` el margen en espacios de la fuente de fila;
 `\s` es un espacio.
 
+Las paletas (Ajustes › Apariencia › Paleta) usan las mismas plantillas: cada color de
+`Wheel.sbs/.wps` es un **token de función** (barra, texto de la barra, iconos de la barra, texto
+1/2/3, iconos, fondo, panel, divisores, mosaico de portada, nota, pista de progreso, sombras) y
+`typo_generate_palette()` escribe `Wheel-Pal.*` con las fuentes del perfil y cada token cambiado
+por el color de la paleta (`apps/wheel/wheel_palette.c`). Un color nuevo en la plantilla debe
+reutilizar un token existente o añadirse a la tabla `tmpl[]` y a `make_dark.py`.
+
 ### Fuentes CJK
 `fonts/cjk/CJK-{SC,JP,KR}-{17,22}.fnt` (≈10 MB): Noto Sans SC/JP/KR (SIL OFL) recortadas a GB 2312,
 JIS X 0208 y el hangul de KS X 1001 (más símbolos, kana y puntuación de ancho completo), en dos

@@ -951,6 +951,7 @@ struct user_settings
     int  wheel_accent;          /* accent colour preset */
     bool wheel_letter_jump;     /* fast wheel spin jumps by first letter */
     bool wheel_theme_scale;     /* scale themes made for 320x240 */
+    int  wheel_palette;         /* colour palette, 0 = classic Wheel */
 #ifdef INNIOASIS_Y1
     int android_screen_timeout; /* Android screen timeout in seconds (0=never) */
 #endif

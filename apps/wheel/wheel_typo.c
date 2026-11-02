@@ -27,6 +27,7 @@
 #include "wheel_typo.h"
 #include "wheel_themes.h"
 #include "wheel_screens.h"
+#include "wheel_palette.h"
 
 #define FORGE_VERSION 4          /* bump when the forge output changes */
 #define MAX_FACES 96
@@ -951,7 +952,32 @@ static const char *skin_var(const char *name, const char files[TU_COUNT][64], in
     return NULL;
 }
 
-static bool gen_skin(const char *src, const char *dst, const char files[TU_COUNT][64], int row_h)
+/* colours: every 6-digit hex word the palette knows is replaced */
+static void recolour(char *out, size_t size)
+{
+    char res[512];
+    size_t o = 0;
+    for (const char *s = out; *s && o < sizeof(res) - 1; )
+    {
+        bool word = isxdigit((unsigned char)s[0]) && (s == out || !isalnum((unsigned char)s[-1]));
+        int n = 0;
+        while (word && n < 7 && isxdigit((unsigned char)s[n])) n++;
+        const char *m = (word && n == 6 && !isalnum((unsigned char)s[6])) ? wheel_palette_map(s) : NULL;
+        if (m && o + 6 < sizeof(res) - 1)
+        {
+            memcpy(res + o, m, 6);
+            o += 6;
+            s += 6;
+        }
+        else
+            res[o++] = *s++;
+    }
+    res[o] = '\0';
+    strlcpy(out, res, size);
+}
+
+static bool gen_skin(const char *src, const char *dst, const char files[TU_COUNT][64], int row_h,
+                     bool colour)
 {
     char *t = read_all(src, NULL, 65536);
     if (!t)
@@ -1023,6 +1049,8 @@ static bool gen_skin(const char *src, const char *dst, const char files[TU_COUNT
             }
             pending[0] = '\0';
         }
+        if (colour && out[0] != '#')
+            recolour(out, sizeof(out));
         size_t l = strlen(out);
         out[l] = '\n';
         ok = write(fd, out, l + 1) == (ssize_t)(l + 1);
@@ -1035,12 +1063,17 @@ static bool gen_skin(const char *src, const char *dst, const char files[TU_COUNT
     return ok;
 }
 
-static bool gen_theme_files(const char files[TU_COUNT][64], int row_h, int np_pct)
+static void skin_vars(const char files[TU_COUNT][64], int np_pct)
 {
     typo_np_positions(np_pct, skin_np);
     int sp = fnt_char_width(files[TU_ROW], ' ');
     skin_pad_px[0] = sp > 0 ? (14 + sp / 2) / sp : 3;
     skin_pad_px[1] = sp > 0 ? (10 + sp / 2) / sp : 2;
+}
+
+static bool gen_theme_files(const char files[TU_COUNT][64], int row_h, int np_pct)
+{
+    skin_vars(files, np_pct);
     static const char * const skins[] = { "Wheel", "Wheel-Dark" };
     static const char * const exts[] = { "sbs", "wps" };
     mkdir(WPS_DIR);
@@ -1050,7 +1083,7 @@ static bool gen_theme_files(const char files[TU_COUNT][64], int row_h, int np_pc
             char src[MAX_PATH], dst[MAX_PATH];
             snprintf(src, sizeof(src), WPS_DIR "/%s.%s", skins[i], exts[e]);
             snprintf(dst, sizeof(dst), WPS_DIR "/%s-Type.%s", skins[i], exts[e]);
-            if (!gen_skin(src, dst, files, row_h))
+            if (!gen_skin(src, dst, files, row_h, false))
                 return false;
         }
     return true;
@@ -1069,6 +1102,28 @@ static bool generated_present(void)
             return false;
     }
     return true;
+}
+
+static bool gen_palette_files(void)
+{
+    static const char * const exts[] = { "sbs", "wps" };
+    skin_vars((const char (*)[64])active_files, active.np_pct);
+    mkdir(WPS_DIR);
+    for (unsigned e = 0; e < ARRAYLEN(exts); e++)
+    {
+        char src[MAX_PATH], dst[MAX_PATH];
+        snprintf(src, sizeof(src), WPS_DIR "/Wheel.%s", exts[e]);
+        snprintf(dst, sizeof(dst), WPS_DIR "/Wheel-Pal.%s", exts[e]);
+        if (!gen_skin(src, dst, (const char (*)[64])active_files, typo_row_height(&active), true))
+            return false;
+    }
+    return true;
+}
+
+bool typo_generate_palette(void)
+{
+    load_active();
+    return wheel_palette_active() ? gen_palette_files() : true;
 }
 
 /* ----------------------------- settings ----------------------------- */
@@ -1101,7 +1156,21 @@ bool typo_patch_settings_changed(void)
     bool changed = false;
     char buf[MAX_FILENAME + 1];
     bool wheel = strstr((char *)global_settings.sbs_file, "Wheel") != NULL;
-    if (custom && wheel)
+    if (wheel && wheel_palette_active())
+    {   /* a palette: its generated skins (with the typography) and colours */
+        changed |= set_text(global_settings.sbs_file, "Wheel-Pal", sizeof(global_settings.sbs_file));
+        if (strstr((char *)global_settings.wps_file, "Wheel"))
+            changed |= set_text(global_settings.wps_file, "Wheel-Pal", sizeof(global_settings.wps_file));
+        changed |= wheel_palette_patch_colours();
+    }
+    else if (wheel && !strcmp((char *)global_settings.sbs_file, "Wheel-Pal"))
+    {   /* palette switched off without reloading the theme */
+        changed |= set_text(global_settings.sbs_file, custom ? "Wheel-Type" : "Wheel",
+                            sizeof(global_settings.sbs_file));
+        changed |= set_text(global_settings.wps_file, custom ? "Wheel-Type" : "Wheel",
+                            sizeof(global_settings.wps_file));
+    }
+    else if (custom && wheel)
     {
         if (!ends_with((char *)global_settings.sbs_file, "-Type"))
         {
@@ -1202,6 +1271,8 @@ bool typo_apply(const struct typo_profile *p)
         strlcpy(active_files[u], bi.file[u], sizeof(active_files[u]));
     active_loaded = true;
     custom = true;
+    if (wheel_palette_active())
+        gen_palette_files();
     typo_patch_settings_changed();
     reload_everything();
     return true;
@@ -1212,6 +1283,8 @@ void typo_restore_default(void)
     remove(TYPO_ACTIVE);
     active_loaded = false;
     load_active();
+    if (wheel_palette_active())
+        gen_palette_files();
     typo_patch_settings_changed();
     reload_everything();
 }
@@ -1220,6 +1293,8 @@ void typo_init(void)
 {
     typo_update_fallbacks(true);
     load_active();
+    if (wheel_palette_active() && !exists(WPS_DIR "/Wheel-Pal.sbs") && !gen_palette_files())
+        global_settings.wheel_palette = 0;
     if (custom && !generated_present())
     {   /* cache or theme files gone (card wiped?): back to the stock look */
         remove(TYPO_ACTIVE);

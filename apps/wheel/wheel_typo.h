@@ -139,6 +139,9 @@ bool typo_build_one(const struct typo_profile *p, enum typo_use u, char *file, i
 bool typo_apply(const struct typo_profile *p);
 /* back to the stock fonts */
 void typo_restore_default(void);
+/* writes wps/Wheel-Pal.sbs/.wps: the Wheel skins in the active palette's
+ * colours, with the active typography */
+bool typo_generate_palette(void);
 
 /* called after a Wheel theme config was loaded (light/dark switch):
  * points the theme at the generated files of the active profile */

@@ -44,6 +44,7 @@
 #include "viewport.h"
 #include "settings.h"
 #include "rbpaths.h"
+#include "rbunicode.h"
 
 #define MAX_LINES  400
 #define TEXT_SIZE  (24*1024)

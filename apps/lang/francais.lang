@@ -21096,3 +21096,129 @@
     *: "Plus de langues…"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Palette"
+  </source>
+  <dest>
+    *: "Palette"
+  </dest>
+  <voice>
+    *: "Palette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE_PICK
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pick a palette"
+  </source>
+  <dest>
+    *: "Choisir une palette"
+  </dest>
+  <voice>
+    *: "Choisir une palette"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_0
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Light or dark, with your accent"
+  </source>
+  <dest>
+    *: "Clair ou sombre, avec votre accent"
+  </dest>
+  <voice>
+    *: "Clair ou sombre, avec votre accent"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_1
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Garnet, lilac and café crème"
+  </source>
+  <dest>
+    *: "Grenat, lilas et café crème"
+  </dest>
+  <voice>
+    *: "Grenat, lilas et café crème"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_2
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Hot pink, peach and lilac"
+  </source>
+  <dest>
+    *: "Rose vif, pêche et lilas"
+  </dest>
+  <voice>
+    *: "Rose vif, pêche et lilas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_3
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pine green and golden honey"
+  </source>
+  <dest>
+    *: "Vert pin et miel doré"
+  </dest>
+  <voice>
+    *: "Vert pin et miel doré"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_4
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Dark violet for late nights"
+  </source>
+  <dest>
+    *: "Violet sombre pour la nuit"
+  </dest>
+  <voice>
+    *: "Violet sombre pour la nuit"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_5
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Coral, tomato and a bit of sky"
+  </source>
+  <dest>
+    *: "Corail, tomate et un peu de ciel"
+  </dest>
+  <voice>
+    *: "Corail, tomate et un peu de ciel"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_6
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Blush, rosewood and vanilla"
+  </source>
+  <dest>
+    *: "Rose poudré, bois de rose, vanille"
+  </dest>
+  <voice>
+    *: "Rose poudré, bois de rose, vanille"
+  </voice>
+</phrase>

@@ -21366,3 +21366,129 @@
     *: "更多语言…"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Palette"
+  </source>
+  <dest>
+    *: "配色"
+  </dest>
+  <voice>
+    *: "配色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE_PICK
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pick a palette"
+  </source>
+  <dest>
+    *: "选择配色"
+  </dest>
+  <voice>
+    *: "选择配色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_0
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Light or dark, with your accent"
+  </source>
+  <dest>
+    *: "浅色或深色，配上你的强调色"
+  </dest>
+  <voice>
+    *: "浅色或深色，配上你的强调色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_1
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Garnet, lilac and café crème"
+  </source>
+  <dest>
+    *: "石榴红、淡紫与咖啡奶油色"
+  </dest>
+  <voice>
+    *: "石榴红、淡紫与咖啡奶油色"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_2
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Hot pink, peach and lilac"
+  </source>
+  <dest>
+    *: "亮粉、蜜桃与淡紫"
+  </dest>
+  <voice>
+    *: "亮粉、蜜桃与淡紫"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_3
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pine green and golden honey"
+  </source>
+  <dest>
+    *: "松绿与金色蜂蜜"
+  </dest>
+  <voice>
+    *: "松绿与金色蜂蜜"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_4
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Dark violet for late nights"
+  </source>
+  <dest>
+    *: "深夜里的暗紫光"
+  </dest>
+  <voice>
+    *: "深夜里的暗紫光"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_5
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Coral, tomato and a bit of sky"
+  </source>
+  <dest>
+    *: "珊瑚、番茄红和一点天空蓝"
+  </dest>
+  <voice>
+    *: "珊瑚、番茄红和一点天空蓝"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_6
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Blush, rosewood and vanilla"
+  </source>
+  <dest>
+    *: "腮红粉、玫瑰木与香草"
+  </dest>
+  <voice>
+    *: "腮红粉、玫瑰木与香草"
+  </voice>
+</phrase>

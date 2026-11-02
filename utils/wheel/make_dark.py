@@ -6,6 +6,9 @@ MAP = {
     "f7f7f9": "1c1c1f",  # top bar
     "c8c8ce": "38383c",  # hairlines
     "141416": "f2f2f5",  # main text
+    "141415": "f2f2f5",  # top bar text
+    "3a3a3e": "e5e5ea",  # top bar icons
+    "fffffe": "8e8e93",  # note glyph on the placeholder tile
     "ffffff": "0f0f11",  # list background
     "f2f2f5": "18181b",  # side pane
     "d1d1d6": "2c2c2f",
@@ -21,8 +24,6 @@ def convert(src, dst):
     s = open(os.path.join(ROOT, src), encoding="utf-8").read()
     s = s.replace("# Wheel -", "# Wheel Dark -", 1)
     s = re.sub(r"\b(" + "|".join(MAP) + r")\b", lambda m: MAP[m.group(1)], s)
-    # the placeholder note glyph stays light on the dark tile
-    s = s.replace("%Vb(2c2c31)%Vf(0f0f11)", "%Vb(2c2c31)%Vf(8e8e93)")
     open(os.path.join(ROOT, dst), "w", encoding="utf-8").write(s)
 convert("Wheel.sbs", "Wheel-Dark.sbs")
 convert("Wheel.wps", "Wheel-Dark.wps")

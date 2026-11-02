@@ -1,6 +1,8 @@
 # Wheel - status bar + menus for 480x360 (Innioasis Y1)
 # Original design for the Rockbox Y1 Wheel edition. GPLv2+.
 # Fonts: Inter (SIL OFL) and the generated Wheel-Icons / Wheel-Row fonts.
+# Colours: Settings > Appearance > Palette rewrites them (see
+# apps/wheel/wheel_palette.c for which colour is which).
 # A "#@ old=new" line adapts the line below it ("\s" = a space) for Settings > Appearance >
 # Typography & Fonts (which writes Wheel-Type.sbs); ${role} = that role's font.
 #
@@ -44,7 +46,7 @@
 %Vl(art,280,56,184,184,-)%Vb(f2f2f5)
 %Cd
 %Vl(tile,280,56,184,184,-)%Vb(cfcfd6)
-%Vl(note,280,92,184,112,5)%Vb(cfcfd6)%Vf(ffffff)
+%Vl(note,280,92,184,112,5)%Vb(cfcfd6)%Vf(fffffe)
 %acO
 #
 %Vl(cap1,272,247,200,26,7)%Vf(141416)%Vb(f2f2f5)
@@ -65,17 +67,17 @@
 %?cs<%?C<%Vd(art)|%Vd(tile)%Vd(note)>|>
 %?cs<%?mp<%?Wd<%Vd(lib)|>|%Vd(cap1)%Vd(cap2)%Vd(mini)>|>
 %?St(battery percentage)<%Vd(pct)%Vd(icons_pct)|%Vd(icons)>
-%V(16,2,300,32,8)%Vf(141416)%Vb(f7f7f9)
+%V(16,2,300,32,8)%Vf(141415)%Vb(f7f7f9)
 %s%?Lt<%Lt|Rockbox>
 #
 # status icons: scrobbles waiting, Bluetooth headphones, play state
-%Vl(icons,300,7,124,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%Vl(icons,300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
 %ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
-%Vl(icons_pct,250,7,124,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%Vl(icons_pct,250,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
 %ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
-%Vl(pct,376,8,50,22,9)%Vf(3a3a3f)%Vb(f7f7f9)
+%Vl(pct,376,8,50,22,9)%Vf(3a3a3e)%Vb(f7f7f9)
 %ar%?if(%bl,>,-1)<%bl%%|>
 #
 # battery (charging bolt while on the charger)
-%V(426,7,46,24,4)%Vf(3a3a3f)%Vb(f7f7f9)
+%V(426,7,46,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
 %ar%?bc<N|%?bl<I|J|K|L|M>>

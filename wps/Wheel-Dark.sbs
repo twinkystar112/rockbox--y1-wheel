@@ -1,6 +1,8 @@
 # Wheel Dark - status bar + menus for 480x360 (Innioasis Y1)
 # Original design for the Rockbox Y1 Wheel edition. GPLv2+.
 # Fonts: Inter (SIL OFL) and the generated Wheel-Icons / Wheel-Row fonts.
+# Colours: Settings > Appearance > Palette rewrites them (see
+# apps/wheel/wheel_palette.c for which colour is which).
 # A "#@ old=new" line adapts the line below it ("\s" = a space) for Settings > Appearance >
 # Typography & Fonts (which writes Wheel-Type.sbs); ${role} = that role's font.
 #

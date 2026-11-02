@@ -7,7 +7,8 @@
  *                     \/            \/     \/    \/            \/
  *
  * Y1 Wheel edition - Appearance: light / dark / automatic theme, accent
- * colour, battery percentage, wheel clicker and letter jump.
+ * colour or a whole palette, battery percentage, wheel clicker and letter
+ * jump.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -44,6 +45,12 @@
 #include "tree.h"
 #include "filetypes.h"
 #include "wheel_typo.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "wheel_palette.h"
+#define PALETTE_ON() (wheel_palette_active() != NULL)
+#else
+#define PALETTE_ON() false
+#endif
 
 #define WHEEL_LIGHT_CFG THEME_DIR "/Wheel.cfg"
 #define WHEEL_DARK_CFG  THEME_DIR "/Wheel-Dark.cfg"
@@ -75,6 +82,8 @@ static bool is_night(void)
 
 static int wanted_variant(void)
 {
+    if (PALETTE_ON())
+        return 0; /* a palette brings its own light or dark colours */
     switch (global_settings.wheel_appearance)
     {
         case 1:  return 1;
@@ -151,7 +160,9 @@ void wheel_appearance_apply(bool force)
         a = 0;
     int lss = LCD_RGBPACK(accents[a][0], accents[a][1], accents[a][2]);
     int lse = LCD_RGBPACK(accents[a][3], accents[a][4], accents[a][5]);
-    if (lss != global_settings.lss_color || lse != global_settings.lse_color)
+    /* (a palette sets the selector colours itself) */
+    if (!PALETTE_ON() &&
+        (lss != global_settings.lss_color || lse != global_settings.lse_color))
     {
         global_settings.lss_color = lss;
         global_settings.lse_color = lse;
@@ -187,7 +198,7 @@ bool wheel_appearance_check(void)
 }
 
 /* ------------------------------ screen ------------------------------ */
-enum { AP_THEME, AP_TYPO, AP_LANG, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
+enum { AP_THEME, AP_PALETTE, AP_TYPO, AP_LANG, AP_MODE, AP_ACCENT, AP_BATTERY, AP_CLICK, AP_LETTERS, AP_COUNT };
 
 /* ----------------------------- language ----------------------------- */
 /* the languages the Wheel edition is translated into, by their own names
@@ -209,7 +220,7 @@ static const char *lang_name(void)
 static const char *lg_get_name(int item, void *data, char *buf, size_t len)
 {
     (void)data; (void)buf; (void)len;
-    return item < N_LANGS ? wheel_langs[item].name : str(LANG_WHEEL_LANG_MORE);
+    return item < N_LANGS ? wheel_langs[item].name : (const char *)str(LANG_WHEEL_LANG_MORE);
 }
 
 static int lg_action(int action, struct gui_synclist *lists)
@@ -279,6 +290,13 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
             label = str(LANG_WHEEL_THEME);
             value = wheel_theme_current();
             break;
+        case AP_PALETTE:
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            label = str(LANG_WHEEL_PALETTE);
+            value = wheel_palette_get(global_settings.wheel_palette) ?
+                    wheel_palette_get(global_settings.wheel_palette)->name : "Wheel";
+#endif
+            break;
         case AP_TYPO:
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
             label = str(LANG_WHEEL_TYPO);
@@ -292,10 +310,14 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
         case AP_MODE:
             label = str(LANG_WHEEL_APPEARANCE);
             value = choice_text(&global_settings.wheel_appearance, val, sizeof(val));
+            if (PALETTE_ON()) /* the palette decides; OK goes back to Wheel */
+                value = str(LANG_WHEEL_PALETTE);
             break;
         case AP_ACCENT:
             label = str(LANG_WHEEL_ACCENT);
             value = choice_text(&global_settings.wheel_accent, val, sizeof(val));
+            if (PALETTE_ON())
+                value = str(LANG_WHEEL_PALETTE);
             break;
         case AP_BATTERY:
             label = str(LANG_WHEEL_BATTERY_PERCENT);
@@ -317,7 +339,7 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
 static bool ap_get_nav(int item, void *data)
 {
     (void)data;
-    return item == AP_THEME || item == AP_TYPO || item == AP_LANG;
+    return item == AP_THEME || item == AP_PALETTE || item == AP_TYPO || item == AP_LANG;
 }
 
 static int ap_action(int action, struct gui_synclist *lists)
@@ -336,6 +358,11 @@ static int ap_action(int action, struct gui_synclist *lists)
         case AP_THEME:
             wheel_theme_screen();
             break;
+        case AP_PALETTE:
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            wheel_palette_screen();
+#endif
+            break;
         case AP_TYPO:
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
             wheel_typography_screen();
@@ -345,11 +372,18 @@ static int ap_action(int action, struct gui_synclist *lists)
             language_screen();
             break;
         case AP_MODE:
-            global_settings.wheel_appearance = (global_settings.wheel_appearance + 1) % 3;
-            wheel_appearance_apply(false);
-            break;
         case AP_ACCENT:
-            global_settings.wheel_accent = (global_settings.wheel_accent + 1) % 7;
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            if (PALETTE_ON())
+            {   /* first press: back to the classic Wheel colours */
+                wheel_palette_set(0);
+                break;
+            }
+#endif
+            if (gui_synclist_get_sel_pos(lists) == AP_MODE)
+                global_settings.wheel_appearance = (global_settings.wheel_appearance + 1) % 3;
+            else
+                global_settings.wheel_accent = (global_settings.wheel_accent + 1) % 7;
             wheel_appearance_apply(false);
             break;
         case AP_BATTERY:

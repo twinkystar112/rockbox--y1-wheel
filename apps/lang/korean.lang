@@ -21373,3 +21373,129 @@
     *: "더 많은 언어…"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Palette"
+  </source>
+  <dest>
+    *: "팔레트"
+  </dest>
+  <voice>
+    *: "팔레트"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PALETTE_PICK
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pick a palette"
+  </source>
+  <dest>
+    *: "팔레트 선택"
+  </dest>
+  <voice>
+    *: "팔레트 선택"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_0
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Light or dark, with your accent"
+  </source>
+  <dest>
+    *: "라이트 또는 다크에 나만의 강조색"
+  </dest>
+  <voice>
+    *: "라이트 또는 다크에 나만의 강조색"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_1
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Garnet, lilac and café crème"
+  </source>
+  <dest>
+    *: "가넷, 라일락, 카페 크림"
+  </dest>
+  <voice>
+    *: "가넷, 라일락, 카페 크림"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_2
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Hot pink, peach and lilac"
+  </source>
+  <dest>
+    *: "핫핑크, 피치, 라일락"
+  </dest>
+  <voice>
+    *: "핫핑크, 피치, 라일락"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_3
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Pine green and golden honey"
+  </source>
+  <dest>
+    *: "파인 그린과 황금빛 꿀"
+  </dest>
+  <voice>
+    *: "파인 그린과 황금빛 꿀"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_4
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Dark violet for late nights"
+  </source>
+  <dest>
+    *: "늦은 밤을 위한 다크 바이올렛"
+  </dest>
+  <voice>
+    *: "늦은 밤을 위한 다크 바이올렛"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_5
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Coral, tomato and a bit of sky"
+  </source>
+  <dest>
+    *: "코랄, 토마토, 약간의 하늘색"
+  </dest>
+  <voice>
+    *: "코랄, 토마토, 약간의 하늘색"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PAL_DESC_6
+  desc: Y1 Wheel palette
+  user: core
+  <source>
+    *: "Blush, rosewood and vanilla"
+  </source>
+  <dest>
+    *: "블러시, 로즈우드, 바닐라"
+  </dest>
+  <voice>
+    *: "블러시, 로즈우드, 바닐라"
+  </voice>
+</phrase>
