@@ -45,6 +45,7 @@
 #endif
 #include "wheel_connect.h"
 #include "wheel_screens.h"
+#include "wheel_flow.h"
 #include "wheel_lyrics.h"
 #include "wheel_stats.h"
 #include "wheel_typo.h"
@@ -59,10 +60,13 @@
 #define ON_OFF(b) ((b) ? (const char *)str(LANG_ON) : (const char *)str(LANG_OFF))
 
 /* ------------------------------------------------------------------ */
-/* Cover Flow                                                          */
+/* Album Flow: drawn by the firmware (wheel_flow.c); the PictureFlow    */
+/* plugin is only used where that can't run                            */
 /* ------------------------------------------------------------------ */
 int wheel_coverflow(void)
 {
+    if (wheel_flow_supported())
+        return wheel_album_flow();
     static const char * const paths[] = {
         PLUGIN_DIR "/demos/pictureflow.rock",
         VIEWERS_DIR "/pictureflow.rock",

@@ -17367,13 +17367,13 @@
   desc: Main menu: album art browser
   user: core
   <source>
-    *: "Cover Flow"
+    *: "Album Flow"
   </source>
   <dest>
-    *: "Cover Flow"
+    *: "专辑封面"
   </dest>
   <voice>
-    *: "Cover Flow"
+    *: "专辑封面"
   </voice>
 </phrase>
 <phrase>

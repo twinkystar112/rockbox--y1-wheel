@@ -118,6 +118,7 @@ wheel/wheel_art.c
 wheel/wheel_stats.c
 wheel/wheel_library.c
 wheel/wheel_listview.c
+wheel/wheel_flow.c
 wheel/wheel_foryou.c
 wheel/wheel_tools.c
 wheel/wheel_themes.c

@@ -38,6 +38,8 @@
 #include "audio.h"
 #include "metadata.h"
 #include "viewport.h"
+#include "skin_engine/skin_engine.h"
+#include "wps.h"
 #include "screens.h"
 #include "keyboard.h"
 #include "root_menu.h"
@@ -53,6 +55,7 @@
 #include "wheel_listview.h"
 #include "wheel_typo.h"
 #include "wheel_screens.h"
+#include "wheel_flow.h"
 
 #define W LCD_WIDTH
 #define H LCD_HEIGHT
@@ -748,12 +751,52 @@ static void theme_on(void)
 {
     FOR_NB_SCREENS(i)
         viewportmanager_theme_undo(i, false);
+    /* the status bar skin misses track changes while it is off (playback
+     * may have started here): redraw all of it, not just what changed */
+    wps_state_attach();
+    skin_request_full_update(CUSTOM_STATUSBAR);
 }
 
 enum { OPT_NEXT, OPT_LATER, OPT_SIMILAR, OPT_ALBUM, OPT_REMOVE, OPT_UP, OPT_DOWN, OPT_SEND,
-       OPT_SEND_ALL, OPT_COUNT };
+       OPT_SEND_ALL, OPT_VIEW, OPT_COUNT };
 
 static int nested_depth;
+/* the song the user was on when they switched views, -1 for none */
+static int switch_sel = -1;
+static int take_switch_sel(void)
+{
+    int i = switch_sel;
+    switch_sel = -1;
+    return i;
+}
+/* the classic list keeps the theme on; the other views turn it off */
+static bool themed_view;
+static void opts_theme_on(void)  { if (!themed_view) theme_on(); }
+static void opts_theme_off(void) { if (!themed_view) theme_off(); }
+
+static const int plv_lang[PLV_COUNT] = {
+    LANG_WHEEL_VIEW_WHEEL, LANG_WHEEL_VIEW_CLASSIC, LANG_WHEEL_COVERFLOW, LANG_WHEEL_VIEW_DISC,
+};
+
+const char *wheel_playlist_view_name(int view)
+{
+    return str(plv_lang[MAX(0, MIN(PLV_COUNT - 1, view))]);
+}
+
+bool wheel_pick_playlist_view(void)
+{
+    const char *items[PLV_COUNT];
+    int n = wheel_flow_supported() ? PLV_COUNT : PLV_FLOW;
+    for (int k = 0; k < n; k++)
+        items[k] = wheel_playlist_view_name(k);
+    int cur = MAX(0, MIN(n - 1, global_settings.wheel_pl_view));
+    int p = wheel_pick(str(LANG_WHEEL_PL_VIEW), items, n, cur);
+    if (p < 0 || p == cur)
+        return false;
+    global_settings.wheel_pl_view = p;
+    settings_save();
+    return true;
+}
 
 /* long press on a track */
 static int track_options(int i, bool *changed)
@@ -761,7 +804,7 @@ static int track_options(int i, bool *changed)
     static const int lang[OPT_COUNT] = {
         LANG_WHEEL_PLAY_NEXT, LANG_WHEEL_PLAY_LATER, LANG_WHEEL_SIMILAR,
         LANG_WHEEL_GOTO_ALBUM, LANG_WHEEL_REMOVE, LANG_WHEEL_MOVE_UP, LANG_WHEEL_MOVE_DOWN,
-        LANG_WHEEL_BT_SEND, LANG_WHEEL_BT_SEND_ALL,
+        LANG_WHEEL_BT_SEND, LANG_WHEEL_BT_SEND_ALL, LANG_WHEEL_CHANGE_VIEW,
     };
     int ids[OPT_COUNT], n = 0;
     const char *items[OPT_COUNT];
@@ -780,10 +823,12 @@ static int track_options(int i, bool *changed)
         ids[n++] = OPT_SEND;
         if (v.l->n > 1) ids[n++] = OPT_SEND_ALL;
     }
+    if (!v.lv->fixed)
+        ids[n++] = OPT_VIEW;
     for (int k = 0; k < n; k++)
         items[k] = str(lang[ids[k]]);
     const char *title = v.l->t[i].title[0] ? v.l->t[i].title : (const char *)str(LANG_WHEEL_SONG);
-    theme_on();
+    opts_theme_on();
     int pick = wheel_pick(title, items, n, 0);
     int ret = 0;
     if (pick >= 0)
@@ -811,8 +856,10 @@ static int track_options(int i, bool *changed)
                 break;
             }
             case OPT_ALBUM:
+                /* GO_TO_FILEBROWSER is 0, which means "stay" here: the root
+                 * menu sends GO_TO_PREVIOUS_BROWSER with a target to the files */
                 strlcpy(wheel_browse_target, v.l->t[i].path, MAX_PATH);
-                ret = GO_TO_FILEBROWSER;
+                ret = GO_TO_PREVIOUS_BROWSER;
                 break;
             case OPT_REMOVE:
                 if (queue)
@@ -860,16 +907,25 @@ static int track_options(int i, bool *changed)
                 wheel_bt_send_screen(all, v.l->n);
                 break;
             }
+            case OPT_VIEW:
+                if (wheel_pick_playlist_view())
+                {
+                    switch_sel = i;
+                    ret = WHEEL_VIEW_SWITCH;
+                }
+                break;
         }
     }
-    theme_off();
+    opts_theme_off();
     return ret;
 }
 
-int wheel_listview_show(struct wheel_lv *lv)
+static int show_wheel(struct wheel_lv *lv)
 {
     /* the nested "similar" view keeps the outer one's state */
     typeof(v) saved = v;
+    bool saved_themed = themed_view;
+    themed_view = false;
     memset(&v, 0, sizeof(v));
     v.lv = lv;
     v.l = lv->list;
@@ -895,7 +951,13 @@ int wheel_listview_show(struct wheel_lv *lv)
             v.btns[v.n_btn++] = BTN_SAVE;
     }
     find_playing();
-    if (lv->kind == LV_QUEUE && v.playing >= 0)
+    int carried = take_switch_sel();
+    if (carried >= 0 && carried < v.l->n)
+    {   /* coming from another view: the same song */
+        v.sel = v.n_btn + carried;
+        v.top = MAX(0, carried - 2);
+    }
+    else if (lv->kind == LV_QUEUE && v.playing >= 0)
     {   /* start on the current song, with a little of what came before */
         v.sel = v.n_btn + v.playing;
         v.top = MAX(0, v.playing - 2);
@@ -968,7 +1030,17 @@ int wheel_listview_show(struct wheel_lv *lv)
                 }
                 break;
             case ACTION_STD_CONTEXT:
-                if (v.sel >= v.n_btn && v.l->n > 0)
+                if (v.sel < v.n_btn && !lv->fixed)
+                {
+                    theme_on();
+                    if (wheel_pick_playlist_view())
+                    {
+                        ret = WHEEL_VIEW_SWITCH;
+                        done = true;
+                    }
+                    theme_off();
+                }
+                else if (v.sel >= v.n_btn && v.l->n > 0)
                 {
                     bool changed = false;
                     int r = track_options(v.sel - v.n_btn, &changed);
@@ -1034,7 +1106,284 @@ int wheel_listview_show(struct wheel_lv *lv)
     }
     theme_on();
     v = saved;
+    themed_view = saved_themed;
     return ret;
+}
+
+/* ===================== the other views of a list ===================== */
+
+/* load the queue and the tags; v must point at lv */
+static void prepare(struct wheel_lv *lv)
+{
+    memset(&v, 0, sizeof(v));
+    v.lv = lv;
+    v.l = lv->list;
+    load_fonts();
+    if (lv->kind == LV_QUEUE)
+        load_queue(v.l);
+    splash(0, ID2P(LANG_WAIT));
+    wheel_list_fill_meta(v.l);
+    find_playing();
+}
+
+/* play from track i; true when playback started */
+static bool play_at(int i, bool shuffle)
+{
+    struct wheel_lv *lv = v.lv;
+    if (lv->kind == LV_QUEUE)
+    {   /* the queue itself, not a copy of it */
+        if (shuffle)
+        {
+            playlist_shuffle(current_tick, -1);
+            playlist_start(0, 0, 0);
+        }
+        else
+            playlist_start(queue_abs_index(i), 0, 0);
+        return true;
+    }
+    if (lv->kind == LV_PLAYLIST_FILE && v.l->total > v.l->n)
+        return play_file(lv->file, i, shuffle);
+    return wheel_play_list(v.l, i, shuffle);
+}
+
+static const char *track_name(struct wheel_track *t)
+{
+    if (!t->meta)
+        wheel_track_fill_meta(t);
+    if (t->title[0])
+        return t->title;
+    const char *base = strrchr(t->path, '/');
+    return base ? base + 1 : t->path;
+}
+
+/* after options: the queue or the file may have changed */
+static void reload_after_options(bool changed)
+{
+    if (changed && v.lv->kind == LV_QUEUE)
+    {
+        load_queue(v.l);
+        wheel_list_fill_meta(v.l);
+    }
+    find_playing();
+}
+
+/* ------------------------- the classic text list ------------------------- */
+/* one line per song, "Shuffle" on top, a mark on the one playing */
+
+static int cl_result;
+
+static const char *cl_get_name(int item, void *data, char *buf, size_t len)
+{
+    (void)data;
+    if (item == 0)
+        return str(LANG_WHEEL_SHUFFLE);
+    if (item - 1 >= v.l->n)
+        return str(LANG_WHEEL_LIST_EMPTY);
+    /* the song playing gets a note on the right (themes may hide icons) */
+    if (item - 1 == v.playing)
+        snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "♪", track_name(&v.l->t[item - 1]));
+    else
+        strlcpy(buf, track_name(&v.l->t[item - 1]), len);
+    return buf;
+}
+
+static enum themable_icons cl_get_icon(int item, void *data)
+{
+    (void)data;
+    if (item == 0)
+        return Icon_Playlist;
+    return item - 1 == v.playing ? Icon_Audio : Icon_NOICON;
+}
+
+static int cl_action(int action, struct gui_synclist *lists)
+{
+    int item = gui_synclist_get_sel_pos(lists);
+    switch (action)
+    {
+        case ACTION_STD_MENU:
+            cl_result = GO_TO_ROOT;
+            return ACTION_STD_CANCEL;
+        case ACTION_TREE_WPS:
+            cl_result = GO_TO_WPS;
+            return ACTION_STD_CANCEL;
+        case ACTION_STD_OK:
+            if (v.l->n <= 0)
+                return ACTION_REDRAW;
+            if (item == 0 ? play_at(0, true) : play_at(item - 1, false))
+            {
+                cl_result = GO_TO_WPS;
+                return ACTION_STD_CANCEL;
+            }
+            return ACTION_REDRAW;
+        case ACTION_STD_CONTEXT:
+        {
+            int r = 0;
+            if (item == 0 || v.l->n <= 0)
+                r = wheel_pick_playlist_view() ? WHEEL_VIEW_SWITCH : 0;
+            else
+            {
+                bool changed = false;
+                v.sel = v.n_btn + item - 1;
+                r = track_options(item - 1, &changed);
+                reload_after_options(changed);
+                if (!r)
+                    gui_synclist_select_item(lists, MIN(v.sel - v.n_btn + 1, v.l->n));
+            }
+            if (r)
+            {
+                cl_result = r;
+                return ACTION_STD_CANCEL;
+            }
+            gui_synclist_set_nb_items(lists, v.l->n + 1);
+            gui_synclist_set_title(lists, v.lv->title, Icon_NOICON);
+            return ACTION_REDRAW;
+        }
+        case ACTION_NONE:
+        {
+            /* the mark follows playback; Up Next follows the queue */
+            int was = v.playing, n = v.l->n;
+            if (v.lv->kind == LV_QUEUE && playlist_amount() != v.l->total)
+            {
+                load_queue(v.l);
+                wheel_list_fill_meta(v.l);
+                gui_synclist_set_nb_items(lists, v.l->n + 1);
+            }
+            find_playing();
+            return (was != v.playing || n != v.l->n) ? ACTION_REDRAW : action;
+        }
+    }
+    return action;
+}
+
+static int show_classic(struct wheel_lv *lv)
+{
+    bool saved_themed = themed_view;
+    themed_view = true;
+    prepare(lv);
+    v.n_btn = 0;
+    cl_result = 0;
+    struct simplelist_info info;
+    simplelist_info_init(&info, (char *)lv->title, v.l->n + 1, NULL);
+    info.get_name = cl_get_name;
+    info.get_icon = cl_get_icon;
+    info.action_callback = cl_action;
+    info.timeout = HZ;
+    int carried = take_switch_sel();
+    info.selection = carried >= 0 && carried < v.l->n ? carried + 1 :
+                     v.playing >= 0 ? v.playing + 1 : (v.l->n > 0 ? 1 : 0);
+    push_current_activity(ACTIVITY_DATABASEBROWSER);
+    simplelist_show_list(&info);
+    if (cl_result && cl_result != WHEEL_VIEW_SWITCH)
+        pop_current_activity_without_refresh();
+    else
+        pop_current_activity();
+    themed_view = saved_themed;
+    return cl_result;
+}
+
+/* --------------------------- the cover views --------------------------- */
+
+static void lvf_text(struct wheel_flow_src *s, int i, struct wheel_flow_text *t)
+{
+    (void)s;
+    struct wheel_track *tr = &v.l->t[i];
+    strlcpy(t->title, track_name(tr), sizeof(t->title));
+    strlcpy(t->sub, tr->artist, sizeof(t->sub));
+    if (tr->len_ms)
+    {
+        unsigned sec = tr->len_ms / 1000;
+        snprintf(t->meta, sizeof(t->meta), "%u:%02u", sec / 60, sec % 60);
+    }
+}
+
+static bool lvf_track(struct wheel_flow_src *s, int i, char *path, size_t len)
+{
+    (void)s;
+    if (i < 0 || i >= v.l->n)
+        return false;
+    strlcpy(path, v.l->t[i].path, len);
+    return true;
+}
+
+static int lvf_ok(struct wheel_flow_src *s, int i, bool stay)
+{
+    (void)s;
+    if (!play_at(i, false))
+        return 0;
+    return stay ? 0 : GO_TO_WPS;
+}
+
+static int lvf_options(struct wheel_flow_src *s, int i)
+{
+    bool changed = false;
+    v.sel = v.n_btn + i;
+    int r = track_options(i, &changed);
+    reload_after_options(changed);
+    s->n = v.l->n;
+    if (!r)
+        s->sel = MAX(0, MIN(v.sel - v.n_btn, v.l->n - 1));
+    return r ? r : WHEEL_FLOW_CHANGED;
+}
+
+static int lvf_playing(struct wheel_flow_src *s)
+{
+    if (v.lv->kind == LV_QUEUE && playlist_amount() != v.l->total)
+    {
+        load_queue(v.l);
+        wheel_list_fill_meta(v.l);
+        s->n = v.l->n;
+    }
+    find_playing();
+    return v.playing;
+}
+
+static int show_cover_view(struct wheel_lv *lv, bool disc)
+{
+    bool saved_themed = themed_view;
+    themed_view = false;
+    prepare(lv);
+    v.n_btn = 0;
+    if (v.l->n <= 0)
+    {
+        themed_view = saved_themed;
+        return show_wheel(lv);   /* nothing to show covers of */
+    }
+    int carried = take_switch_sel();
+    struct wheel_flow_src s = {
+        .n = v.l->n, .sel = carried >= 0 && carried < v.l->n ? carried : MAX(0, v.playing),
+        .heading = lv->title,
+        .text = lvf_text, .track = lvf_track, .ok = lvf_ok,
+        .options = lvf_options, .playing = lvf_playing,
+    };
+    int r = disc ? wheel_disc_show(&s) : wheel_flow_show(&s);
+    themed_view = saved_themed;
+    return r;
+}
+
+/* playlists, mixes and Up Next open in the view picked in Appearance (or
+ * from a long press); album and folder lists always use the Wheel list */
+int wheel_listview_show(struct wheel_lv *lv)
+{
+    typeof(v) saved = v;
+    int view = lv->fixed ? PLV_WHEEL : global_settings.wheel_pl_view;
+    int r;
+    for (;;)
+    {
+        if ((view == PLV_FLOW || view == PLV_DISC) && !wheel_flow_supported())
+            view = PLV_WHEEL;
+        switch (view)
+        {
+            case PLV_CLASSIC: r = show_classic(lv); break;
+            case PLV_FLOW:    r = show_cover_view(lv, false); break;
+            case PLV_DISC:    r = show_cover_view(lv, true); break;
+            default:          r = show_wheel(lv); break;
+        }
+        if (r != WHEEL_VIEW_SWITCH)
+            break;
+        view = global_settings.wheel_pl_view;
+    }
+    v = saved;
+    return r;
 }
 
 /* ============================ entry points ============================ */
@@ -1097,7 +1446,8 @@ int wheel_open_folder(const char *dir, const char *title, const char *subtitle)
     closedir(d);
     l->total = l->n;
     qsort(l->t, l->n, sizeof(l->t[0]), name_cmp);
-    struct wheel_lv lv = { .title = title, .subtitle = subtitle, .kind = LV_MIX, .list = l };
+    struct wheel_lv lv = { .title = title, .subtitle = subtitle, .kind = LV_MIX, .list = l,
+                           .fixed = true };
     return wheel_listview_show(&lv);
 }
 

@@ -47,6 +47,8 @@ void wps_do_action(enum wps_do_action_type, bool updatewps);
 #define pause_action(update) wps_do_action(WPS_PAUSE, update)
 #define unpause_action(update) wps_do_action(WPS_PLAY, update)
 #define wps_do_playpause(update) wps_do_action(WPS_PLAYPAUSE, update)
+/* Y1 Wheel: track info for the skins when playback started elsewhere */
+void wps_state_attach(void);
 
 struct wps_state *get_wps_state(void);
 

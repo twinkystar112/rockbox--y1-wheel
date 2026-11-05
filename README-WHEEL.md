@@ -36,7 +36,7 @@ que ya trae Rockbox.
 ## Qué incluye
 
 ### Menú principal
-**Para ti**, Música, Cover Flow, Canciones aleatorias, Listas, Reproduciendo, Bluetooth, Ajustes y
+**Para ti**, Música, Portadas (Album Flow), Canciones aleatorias, Listas, Reproduciendo, Bluetooth, Ajustes y
 Extras (Archivos, Last.fm, Plugins, Accesos directos, Sistema…). Pantalla dividida con la carátula
 de lo que suena. Los valores (estado, número de canciones, duración) van alineados a la derecha y
 las filas que abren algo llevan chevrón.
@@ -67,6 +67,21 @@ con carátula, top artistas, tu hora favorita). Desde los rankings se reproduce 
   se pliega al bajar. La canción que suena lleva un ecualizador animado.
 * **A continuación**: la cola con la misma vista; quitar, subir y bajar canciones.
 * Reproducir a continuación / Añadir a la cola desde el navegador.
+
+### Portadas (Album Flow) y vistas de listas
+* **Portadas** (menú principal): todos los álbumes de la base de datos como carátulas en 3D; la
+  del centro mira de frente y las demás se giran hacia los lados, con reflejo. La rueda las desliza,
+  el centro abre el álbum y una pulsación larga ofrece Reproducir, Aleatorio, A continuación,
+  Después y **Ordenar** (artista, título, año, añadidos recientemente). Lo dibuja el propio
+  firmware; el plugin PictureFlow ya no hace falta.
+* Las **playlists, los mixes y A continuación** se pueden ver de cuatro formas
+  (Ajustes › Apariencia › **Vista de listas**, o pulsación larga › **Cambiar vista**):
+  **Lista Wheel** (la de siempre), **Lista clásica** (una línea por canción, «Aleatorio» arriba y
+  ♪ en la que suena), **Portadas** (el carrusel con las canciones) e **Historias en disco**: una
+  tarjeta por canción con la carátula impresa en un disco que gira mientras suena, fondo
+  desenfocado y barras de progreso arriba. En las historias el centro reproduce o pausa sin salir,
+  y al acabar la canción pasa sola a la siguiente tarjeta.
+* Los álbumes y carpetas siempre se abren en la Lista Wheel.
 
 ### Letras sincronizadas
 Pantalla completa al estilo Spotify (fondo del color de la carátula, línea actual resaltada,
@@ -237,6 +252,7 @@ primera vez.
 | Para ti, mixes | `apps/wheel/wheel_foryou.c`, `wheel_library.c` (índice de la base de datos, familias de géneros) |
 | Estadísticas e historial | `apps/wheel/wheel_stats.c` |
 | Vista de lista, playlists, cola | `apps/wheel/wheel_listview.c` |
+| Portadas (Album Flow), historias en disco | `apps/wheel/wheel_flow.c` |
 | Letras, modos de Reproduciendo | `apps/wheel/wheel_lyrics.c` |
 | Sonido, temporizador, envío BT | `apps/wheel/wheel_tools.c`, `lib/rbcodec/dsp/eqs/` |
 | Temas, .zip, escalado 320×240 | `apps/wheel/wheel_themes.c`, `lib/skin_parser/skin_parser.c`, `apps/gui/skin_engine/skin_parser.c`, `apps/gui/backdrop.c`, `firmware/common/zip.c` (deflate) |

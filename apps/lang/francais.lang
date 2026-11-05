@@ -17097,13 +17097,13 @@
   desc: Main menu: album art browser
   user: core
   <source>
-    *: "Cover Flow"
+    *: "Album Flow"
   </source>
   <dest>
-    *: "Cover Flow"
+    *: "Pochettes"
   </dest>
   <voice>
-    *: "Cover Flow"
+    *: "Pochettes"
   </voice>
 </phrase>
 <phrase>

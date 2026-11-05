@@ -53,6 +53,7 @@
  * the light/dark setting) */
 #define PALETTE_ON() (PALETTE_ANY() && !wheel_palette_is_dynamic())
 #include "wheel_custom.h"
+#include "wheel_listview.h"
 #else
 #define PALETTE_ANY() false
 #define PALETTE_ON() false
@@ -213,9 +214,9 @@ bool wheel_appearance_check(void)
 }
 
 /* ------------------------------ screen ------------------------------ */
-enum { AP_THEME, AP_PALETTE, AP_FINISH, AP_BACKGROUND, AP_TYPO, AP_NOWPLAYING, AP_MAINMENU,
-       AP_LOOKS, AP_LANG, AP_MODE, AP_ACCENT, AP_BATTERY, AP_WHEEL, AP_IDLE, AP_LETTERS,
-       AP_COUNT };
+enum { AP_THEME, AP_PALETTE, AP_FINISH, AP_BACKGROUND, AP_TYPO, AP_NOWPLAYING, AP_PLVIEW,
+       AP_MAINMENU, AP_LOOKS, AP_LANG, AP_MODE, AP_ACCENT, AP_BATTERY, AP_WHEEL, AP_IDLE,
+       AP_LETTERS, AP_COUNT };
 
 /* ----------------------------- language ----------------------------- */
 /* the languages the Wheel edition is translated into, by their own names
@@ -331,6 +332,10 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
             label = str(LANG_WHEEL_MAIN_MENU);
             value = wheel_custom_value(WCV_MENU, val, sizeof(val));
             break;
+        case AP_PLVIEW:
+            label = str(LANG_WHEEL_PL_VIEW);
+            value = wheel_playlist_view_name(global_settings.wheel_pl_view);
+            break;
         case AP_LOOKS:
             label = str(LANG_WHEEL_LOOKS);
             break;
@@ -383,7 +388,7 @@ static bool ap_get_nav(int item, void *data)
     (void)data;
     return item == AP_THEME || item == AP_PALETTE || item == AP_FINISH ||
            item == AP_BACKGROUND || item == AP_TYPO || item == AP_NOWPLAYING ||
-           item == AP_MAINMENU || item == AP_LOOKS || item == AP_LANG || item == AP_WHEEL ||
+           item == AP_PLVIEW || item == AP_MAINMENU || item == AP_LOOKS || item == AP_LANG || item == AP_WHEEL ||
            item == AP_IDLE;
 }
 
@@ -420,6 +425,7 @@ static int ap_action(int action, struct gui_synclist *lists)
         case AP_FINISH:     wheel_finish_screen(); break;
         case AP_BACKGROUND: wheel_background_screen(); break;
         case AP_NOWPLAYING: wheel_np_screen(); break;
+        case AP_PLVIEW:     wheel_pick_playlist_view(); break;
         case AP_MAINMENU:   wheel_mainmenu_screen(); break;
         case AP_LOOKS:      wheel_looks_screen(); break;
         case AP_WHEEL:      wheel_wheelclick_screen(); break;

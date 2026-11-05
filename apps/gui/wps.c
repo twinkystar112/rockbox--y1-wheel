@@ -1180,6 +1180,19 @@ static void track_info_callback(unsigned short id, void *param)
     skin_request_full_update(WPS);
 }
 
+static void wps_state_events(void)
+{
+    /* add the WPS track event callbacks (once: duplicates are ignored) */
+    add_event(PLAYBACK_EVENT_TRACK_CHANGE, track_info_callback);
+    add_event(PLAYBACK_EVENT_NEXTTRACKID3_AVAILABLE, track_info_callback);
+    /* Use the same callback as ..._TRACK_CHANGE for when remaining handles have
+       finished */
+    add_event(PLAYBACK_EVENT_CUR_TRACK_READY, track_info_callback);
+#ifdef AUDIO_FAST_SKIP_PREVIEW
+    add_event(PLAYBACK_EVENT_TRACK_SKIP, track_info_callback);
+#endif
+}
+
 static void wps_state_init(void)
 {
     struct wps_state *state = get_wps_state();
@@ -1196,13 +1209,20 @@ static void wps_state_init(void)
     }
     /* We'll be updating due to restore initialized with true */
     skin_request_full_update(WPS);
-    /* add the WPS track event callbacks */
-    add_event(PLAYBACK_EVENT_TRACK_CHANGE, track_info_callback);
-    add_event(PLAYBACK_EVENT_NEXTTRACKID3_AVAILABLE, track_info_callback);
-    /* Use the same callback as ..._TRACK_CHANGE for when remaining handles have
-       finished */
-    add_event(PLAYBACK_EVENT_CUR_TRACK_READY, track_info_callback);
-#ifdef AUDIO_FAST_SKIP_PREVIEW
-    add_event(PLAYBACK_EVENT_TRACK_SKIP, track_info_callback);
-#endif
+    wps_state_events();
+}
+
+/* Y1 Wheel: playback can start on screens of its own (the cover views,
+ * "Play next" with nothing playing) before Now Playing was ever opened; the
+ * status bar skin reads the track from the WPS state, so fill it in */
+void wps_state_attach(void)
+{
+    struct wps_state *state = get_wps_state();
+    if (audio_status() & AUDIO_STATUS_PLAY)
+    {
+        state->id3 = audio_current_track();
+        state->nid3 = audio_next_track();
+        skin_request_full_update(WPS);
+    }
+    wps_state_events();
 }

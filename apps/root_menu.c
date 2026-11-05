@@ -1203,7 +1203,9 @@ void root_menu(void)
             }
 
             case GO_TO_PREVIOUS_BROWSER:
-                next_screen = previous_browser;
+                /* Y1 Wheel: "Go to album" from a list view (GO_TO_FILEBROWSER
+                 * is 0, which menus take as "stay") */
+                next_screen = wheel_browse_target[0] ? GO_TO_FILEBROWSER : previous_browser;
                 break;
 
             case GO_TO_PREVIOUS_MUSIC:

@@ -17188,13 +17188,13 @@
   desc: Main menu: album art browser
   user: core
   <source>
-    *: "Cover Flow"
+    *: "Album Flow"
   </source>
   <dest>
-    *: "Cover Flow"
+    *: "Portadas"
   </dest>
   <voice>
-    *: "Cover Flow"
+    *: "Portadas"
   </voice>
 </phrase>
 <phrase>
@@ -23845,5 +23845,145 @@
   </dest>
   <voice>
     *: "Funciones de red"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_PL_VIEW
+  desc: Wheel: how playlists are shown
+  user: core
+  <source>
+    *: "Playlist view"
+  </source>
+  <dest>
+    *: "Vista de listas"
+  </dest>
+  <voice>
+    *: "Vista de listas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_VIEW_WHEEL
+  desc: Wheel: playlist view
+  user: core
+  <source>
+    *: "Wheel list"
+  </source>
+  <dest>
+    *: "Lista Wheel"
+  </dest>
+  <voice>
+    *: "Lista Wheel"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_VIEW_CLASSIC
+  desc: Wheel: playlist view
+  user: core
+  <source>
+    *: "Classic list"
+  </source>
+  <dest>
+    *: "Lista clásica"
+  </dest>
+  <voice>
+    *: "Lista clásica"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_VIEW_DISC
+  desc: Wheel: playlist view
+  user: core
+  <source>
+    *: "Disc stories"
+  </source>
+  <dest>
+    *: "Historias en disco"
+  </dest>
+  <voice>
+    *: "Historias en disco"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_CHANGE_VIEW
+  desc: Wheel: list options
+  user: core
+  <source>
+    *: "Change view"
+  </source>
+  <dest>
+    *: "Cambiar vista"
+  </dest>
+  <voice>
+    *: "Cambiar vista"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SORT_ALBUMS
+  desc: Wheel: Album Flow options
+  user: core
+  <source>
+    *: "Sort albums"
+  </source>
+  <dest>
+    *: "Ordenar álbumes"
+  </dest>
+  <voice>
+    *: "Ordenar álbumes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SORT_ARTIST
+  desc: Wheel: Album Flow sort
+  user: core
+  <source>
+    *: "By artist"
+  </source>
+  <dest>
+    *: "Por artista"
+  </dest>
+  <voice>
+    *: "Por artista"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SORT_TITLE
+  desc: Wheel: Album Flow sort
+  user: core
+  <source>
+    *: "By album title"
+  </source>
+  <dest>
+    *: "Por título del álbum"
+  </dest>
+  <voice>
+    *: "Por título del álbum"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SORT_YEAR
+  desc: Wheel: Album Flow sort
+  user: core
+  <source>
+    *: "By year (newest)"
+  </source>
+  <dest>
+    *: "Por año (recientes)"
+  </dest>
+  <voice>
+    *: "Por año (recientes)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_SORT_ADDED
+  desc: Wheel: Album Flow sort
+  user: core
+  <source>
+    *: "Recently added"
+  </source>
+  <dest>
+    *: "Añadidos recientemente"
+  </dest>
+  <voice>
+    *: "Añadidos recientemente"
   </voice>
 </phrase>

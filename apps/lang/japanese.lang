@@ -16658,13 +16658,13 @@
   desc: Main menu: album art browser
   user: core
   <source>
-    *: "Cover Flow"
+    *: "Album Flow"
   </source>
   <dest>
-    *: "Cover Flow"
+    *: "アルバムアート"
   </dest>
   <voice>
-    *: "Cover Flow"
+    *: "アルバムアート"
   </voice>
 </phrase>
 <phrase>

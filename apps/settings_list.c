@@ -2697,6 +2697,10 @@ const struct settings_list settings[] = {
     OFFON_SETTING(0, wheel_accel, LANG_WHEEL_ACCEL, false, "wheel acceleration", NULL),
     INT_SETTING(0, wheel_idle, LANG_WHEEL_IDLE, 0, "wheel idle screen", UNIT_INT,
                 0, 4, 1, NULL, NULL, NULL),
+    INT_SETTING(0, wheel_pl_view, LANG_WHEEL_PL_VIEW, 0, "wheel playlist view", UNIT_INT,
+                0, 3, 1, NULL, NULL, NULL),
+    INT_SETTING(0, wheel_flow_sort, LANG_WHEEL_SORT_ALBUMS, 0, "wheel album flow sort",
+                UNIT_INT, 0, 3, 1, NULL, NULL, NULL),
     /* SONORA */
     TEXT_SETTING(0, sonora_books_dir, "sonora audiobooks folder", "", NULL, NULL),
     TEXT_SETTING(0, sonora_podcasts_dir, "sonora podcasts folder", "", NULL, NULL),

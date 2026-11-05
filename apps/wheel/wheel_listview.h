@@ -1,4 +1,4 @@
-/* Y1 Wheel edition - Spotify-style playlist view. GPLv2+ */
+/* Y1 Wheel edition - the playlist views. GPLv2+ */
 #ifndef WHEEL_LISTVIEW_H
 #define WHEEL_LISTVIEW_H
 #include <stdbool.h>
@@ -13,7 +13,14 @@ struct wheel_lv {
     enum wheel_lv_kind kind;
     const char *file;         /* LV_PLAYLIST_FILE */
     struct wheel_list *list;
+    bool fixed;               /* always the Wheel list (albums, folders) */
 };
+
+/* how playlists, mixes and Up Next are shown (Settings > Appearance) */
+enum { PLV_WHEEL, PLV_CLASSIC, PLV_FLOW, PLV_DISC, PLV_COUNT };
+const char *wheel_playlist_view_name(int view);
+/* asks; true when the user picked a different view */
+bool wheel_pick_playlist_view(void);
 
 /* the shared big list (cleared) for building mixes */
 struct wheel_list *wheel_lv_list(void);

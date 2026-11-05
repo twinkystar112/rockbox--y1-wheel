@@ -978,6 +978,8 @@ struct user_settings
     int  wheel_sensitivity;     /* wheel: low, normal, high */
     bool wheel_accel;           /* faster spins move further */
     int  wheel_idle;            /* idle screen after: off, 15 s, 30 s, 1 min, 2 min */
+    int  wheel_pl_view;         /* playlists: Wheel list, classic list, Album Flow, discs */
+    int  wheel_flow_sort;       /* Album Flow: artist, title, year, recently added */
     /* SONORA: audiobooks and podcasts */
     char sonora_books_dir[MAX_PATH];    /* "" = HOME/Audiobooks */
     char sonora_podcasts_dir[MAX_PATH]; /* "" = HOME/Podcasts */

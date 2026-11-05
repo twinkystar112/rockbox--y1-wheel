@@ -17374,13 +17374,13 @@
   desc: Main menu: album art browser
   user: core
   <source>
-    *: "Cover Flow"
+    *: "Album Flow"
   </source>
   <dest>
-    *: "Cover Flow"
+    *: "앨범 커버"
   </dest>
   <voice>
-    *: "Cover Flow"
+    *: "앨범 커버"
   </voice>
 </phrase>
 <phrase>
