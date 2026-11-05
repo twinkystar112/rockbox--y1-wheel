@@ -26,7 +26,7 @@
 extern JNIEnv *env_ptr;
 
 static jclass cls;
-static jmethodID m_supported, m_begin, m_end, m_start, m_poll, m_cancel;
+static jmethodID m_supported, m_begin, m_begin_state, m_end, m_start, m_poll, m_cancel;
 
 static void clear_exc(void)
 {
@@ -52,13 +52,14 @@ static bool init(void)
     cls = e->NewGlobalRef(env_ptr, local);
     e->DeleteLocalRef(env_ptr, local);
     m_supported = e->GetStaticMethodID(env_ptr, cls, "supported", "()Z");
-    m_begin     = e->GetStaticMethodID(env_ptr, cls, "begin", "()Z");
+    m_begin     = e->GetStaticMethodID(env_ptr, cls, "beginAsync", "()V");
+    m_begin_state = e->GetStaticMethodID(env_ptr, cls, "beginState", "()I");
     m_end       = e->GetStaticMethodID(env_ptr, cls, "end", "()V");
     m_start     = e->GetStaticMethodID(env_ptr, cls, "start", "(Ljava/lang/String;Ljava/lang/String;)Z");
     m_poll      = e->GetStaticMethodID(env_ptr, cls, "poll", "()[J");
     m_cancel    = e->GetStaticMethodID(env_ptr, cls, "cancel", "()V");
     clear_exc();
-    if (!m_supported || !m_begin || !m_end || !m_start || !m_poll || !m_cancel)
+    if (!m_supported || !m_begin || !m_begin_state || !m_end || !m_start || !m_poll || !m_cancel)
     {
         cls = NULL;
         return false;
@@ -79,9 +80,18 @@ bool sonora_net_begin(void)
 {
     if (!init())
         return false;
-    bool r = (*env_ptr)->CallStaticBooleanMethod(env_ptr, cls, m_begin);
+    /* polled, so playback keeps decoding while Wi-Fi comes up */
+    (*env_ptr)->CallStaticVoidMethod(env_ptr, cls, m_begin);
     clear_exc();
-    return r;
+    for (int waited = 0; waited < 45 * HZ; waited += HZ / 5)
+    {
+        sleep(HZ / 5);
+        int state = (*env_ptr)->CallStaticIntMethod(env_ptr, cls, m_begin_state);
+        clear_exc();
+        if (state != 0)
+            return state == 1;
+    }
+    return false;
 }
 
 void sonora_net_end(void)

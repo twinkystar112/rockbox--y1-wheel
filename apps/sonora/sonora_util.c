@@ -336,6 +336,8 @@ void sonora_safe_name(const char *in, char *out, size_t len)
     size_t o = 0;
     if (!len)
         return;
+    while (*in == '.' || *in == ' ')
+        in++; /* a leading dot would make a hidden file */
     for (; *in && o + 1 < len; in++)
     {
         unsigned char c = (unsigned char)*in;

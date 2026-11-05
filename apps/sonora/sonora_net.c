@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include "config.h"
 #include "system.h"
 #include "kernel.h"
@@ -214,33 +215,48 @@ static void episode_ext(const struct cand *c, char *ext, size_t len)
         strlcpy(ext, "mp3", len);
 }
 
+/* snprintf that refuses to hand back a cut-off path */
+static bool fmt_path(char *out, size_t len, const char *fmt, ...)
+{
+    va_list ap;
+    va_start(ap, fmt);
+    int r = vsnprintf(out, len, fmt, ap);
+    va_end(ap);
+    return r >= 0 && (size_t)r < len;
+}
+
 static bool download(const struct cand *c, int i, int n)
 {
     struct sonora_show *sh = sonora_show_at(c->show);
     if (!sh)
         return false;
     char dir[MAX_PATH], name[96], ext[8], path[MAX_PATH], part[MAX_PATH];
-    snprintf(dir, sizeof(dir), "%s/%s", sonora_podcasts_root(), sh->folder);
+    if (!fmt_path(dir, sizeof(dir), "%s/%s", sonora_podcasts_root(), sh->folder))
+        return false;
     if (!dir_exists(sonora_podcasts_root()))
         mkdir(sonora_podcasts_root());
     if (!dir_exists(dir))
         mkdir(dir);
     sonora_safe_name(c->title, name, 80);
     episode_ext(c, ext, sizeof(ext));
-    snprintf(path, sizeof(path), "%s/%s.%s", dir, name, ext);
-    for (int k = 2; file_exists(path) && k < 100; k++)
-        snprintf(path, sizeof(path), "%s/%s (%d).%s", dir, name, k, ext);
-    snprintf(part, sizeof(part), "%s.part", path);
+    /* a name nothing on the card uses yet, for the file and for its .part:
+     * a download never writes over a file that is already there */
+    bool ok = false;
+    for (int k = 1; k < 100 && !ok; k++)
+    {
+        bool fits = k == 1 ? fmt_path(path, sizeof(path), "%s/%s.%s", dir, name, ext)
+                           : fmt_path(path, sizeof(path), "%s/%s (%d).%s", dir, name, k, ext);
+        if (!fits || !fmt_path(part, sizeof(part), "%s.part", path))
+            return false;
+        ok = !file_exists(path) && !file_exists(part);
+    }
+    if (!ok)
+        return false;
     struct prog p = { i, n, current_tick - HZ };
     int rc = sonora_net_fetch(c->url, part, on_progress, &p);
-    if (rc != 200)
+    if (rc != 200 || file_exists(path) || rename(part, path) < 0)
     {
-        remove(part);
-        return false;
-    }
-    if (rename(part, path) < 0)
-    {
-        remove(part);
+        remove(part); /* only ever our own .part */
         return false;
     }
     int fd = open(path, O_RDONLY);
@@ -279,6 +295,7 @@ int sonora_refresh_screen(void)
     splash(0, ID2P(LANG_SONORA_CONNECTING));
     if (!sonora_net_begin())
     {
+        sonora_net_end(); /* every begin is paired with an end */
         splash(HZ * 3, ID2P(LANG_SONORA_NO_WIFI));
         return 0;
     }
@@ -296,8 +313,12 @@ int sonora_refresh_screen(void)
             continue;
         splashf(0, str(LANG_SONORA_CHECKING), sh->title);
         char path[MAX_PATH], part[MAX_PATH];
-        snprintf(path, sizeof(path), "%s/%s.xml", feeddir, sh->folder);
-        snprintf(part, sizeof(part), "%s.part", path);
+        if (!fmt_path(path, sizeof(path), "%s/%s.xml", feeddir, sh->folder) ||
+            !fmt_path(part, sizeof(part), "%s.part", path))
+        {
+            failed++;
+            continue;
+        }
         if (sonora_net_fetch(sh->url, part, NULL, NULL) != 200)
         {   /* keep the copy from last time */
             remove(part);
@@ -397,7 +418,8 @@ int sonora_cleanup_downloads(bool ask)
                 continue;
             int n = 0;
             for (int i = 0; i < sonora_downloads_count(); i++)
-                if (!strcmp(sonora_download_at(i)->show, sh->folder))
+                if (sonora_download_at(i)->size >= 0 &&
+                    !strcmp(sonora_download_at(i)->show, sh->folder))
                     idx[n++] = i;
             qsort(idx, n, sizeof(int), dl_newer);
             for (int k = sh->keep; k < n; k++)
@@ -428,7 +450,7 @@ int sonora_cleanup_downloads(bool ask)
         if (sonora_download_may_delete(victims[i], sonora_podcasts_root()) &&
             remove(victims[i]) == 0)
         {
-            sonora_download_forget(victims[i]);
+            sonora_download_removed(victims[i]);
             removed++;
         }
     }

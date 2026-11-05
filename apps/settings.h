@@ -989,6 +989,7 @@ struct user_settings
     int  sonora_checkpoint;     /* save progress every N seconds while playing */
     bool sonora_autonext;       /* podcasts: queue the next unplayed episodes */
     bool sonora_network;        /* feed refresh and downloads (off by default) */
+    bool sonora_menu_added;     /* SONORA items added to a saved menu order once */
 #ifdef INNIOASIS_Y1
     int android_screen_timeout; /* Android screen timeout in seconds (0=never) */
 #endif

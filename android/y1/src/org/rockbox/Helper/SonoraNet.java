@@ -55,15 +55,40 @@ public class SonoraNet
         try { return WheelNet.reachable(); } catch (Throwable t) { return false; }
     }
 
-    /* blocking: Wi-Fi on if needed */
-    public static boolean begin()
+    /* Wi-Fi on if needed. Can take many seconds, so it runs on its own
+     * thread: a blocking JNI call would stall every Rockbox thread,
+     * audio decoding included. 0 = working, 1 = online, 2 = failed. */
+    private static volatile int sBegin = 2;
+
+    public static synchronized void beginAsync()
     {
-        try { return WheelNet.acquire(); } catch (Throwable t) { return false; }
+        if (sBegin == 0)
+            return;
+        sBegin = 0;
+        new Thread(new Runnable() {
+            public void run() {
+                boolean ok;
+                try { ok = WheelNet.acquire(); } catch (Throwable t) { ok = false; }
+                sBegin = ok ? 1 : 2;
+            }
+        }, "sonora-wifi").start();
     }
 
+    public static int beginState()
+    {
+        return sBegin;
+    }
+
+    /* always called after beginAsync(), even when it failed (WheelNet counts
+     * users). On a thread: release() waits for a slow acquire() to finish,
+     * and the native side must not wait with it. */
     public static void end()
     {
-        try { WheelNet.release(); } catch (Throwable t) { }
+        new Thread(new Runnable() {
+            public void run() {
+                try { WheelNet.release(); } catch (Throwable t) { }
+            }
+        }, "sonora-wifi-off").start();
     }
 
     public static synchronized boolean start(final String url, final String out)

@@ -25,6 +25,9 @@
 #include "string-extra.h"
 #include "config.h"
 #include "misc.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "sonora/sonora.h"
+#endif
 #include "wheel/wheel_gel.h"
 #include "system.h"
 #include "lcd.h"
@@ -369,6 +372,9 @@ static bool clean_shutdown(enum shutdown_type sd_type,
         talk_disable(true);
 
     status_save(true);
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    sonora_shutdown(); /* SONORA: book / episode position at power-off */
+#endif
 
 #if CONFIG_CHARGING && !defined(HAVE_POWEROFF_WHILE_CHARGING)
     if(!charger_inserted())

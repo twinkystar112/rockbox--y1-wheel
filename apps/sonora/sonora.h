@@ -24,6 +24,7 @@ enum sonora_kind { SK_MUSIC = 0, SK_BOOK, SK_EPISODE };
 /* ------------------------------- core ------------------------------- */
 void sonora_init(void);                 /* once, from wheel_init() */
 void sonora_tick(void);                 /* often, from get_action() */
+void sonora_shutdown(void);             /* from clean_shutdown() */
 const char *sonora_books_root(void);    /* real paths, no trailing slash */
 void sonora_reload_roots(void);
 const char *sonora_podcasts_root(void);
@@ -112,7 +113,7 @@ int  sonora_mark_current(void);
  * only works where the port can reach the internet (Wi-Fi) */
 bool sonora_net_supported(void);
 bool sonora_net_begin(void);           /* Wi-Fi on if needed; false = no network */
-void sonora_net_end(void);
+void sonora_net_end(void);             /* after every begin, even a failed one */
 /* blocking fetch to a file; returns HTTP-like status (200 ok), <0 error.
  * progress(done, total) may be NULL; returning false cancels */
 int  sonora_net_fetch(const char *url, const char *out_path,

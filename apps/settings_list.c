@@ -2714,6 +2714,7 @@ const struct settings_list settings[] = {
                 UNIT_SEC, 15, 300, 15, NULL, NULL, NULL),
     OFFON_SETTING(0, sonora_autonext, LANG_SONORA_AUTONEXT, false, "sonora podcast autoplay", NULL),
     OFFON_SETTING(0, sonora_network, LANG_SONORA_NETWORK, false, "sonora network", NULL),
+    OFFON_SETTING(0, sonora_menu_added, LANG_SONORA_AUDIOBOOKS, false, "sonora menu added", NULL),
     OFFON_SETTING(0, wheel_theme_scale, LANG_WHEEL_THEME_SCALE, true,
                   "theme scaling", NULL),
 #ifdef INNIOASIS_Y1

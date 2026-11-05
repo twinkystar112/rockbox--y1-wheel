@@ -450,6 +450,35 @@ static void test_store(void)
     char sneaky[MAX_PATH]; snprintf(sneaky, sizeof(sneaky), "%s/../Tea/ep1.mp3", managed);
     d = sonora_download_add(sneaky); d->size = 10;
     CHECK(!sonora_download_may_delete(sneaky, managed));
+
+    /* removed episodes stay as history: never offered or deleted again */
+    save_text(ep, "0123456789");
+    d = sonora_download_find(ep); d->size = 10; strlcpy(d->guid, "g-1", sizeof(d->guid));
+    CHECK(sonora_download_may_delete(ep, managed));
+    int before = sonora_downloads_present();
+    sonora_download_removed(ep);
+    CHECK(!sonora_download_may_delete(ep, managed));
+    CHECK(sonora_download_find_guid("g-1") != NULL);
+    CHECK(sonora_downloads_present() == before - 1);
+    CHECK(sonora_downloads_save() && sonora_downloads_load());
+    CHECK(sonora_download_find(ep) && sonora_download_find(ep)->size == -1);
+    d = sonora_download_add(ep); /* downloaded again under the same name */
+    CHECK(d && d->size == 0 && !d->guid[0]);
+    /* a full manifest makes room by forgetting removed history, never live rows */
+    for (int i = 0; sonora_downloads_count() < SONORA_MAX_DOWNLOADS; i++)
+    {
+        char p2[MAX_PATH]; snprintf(p2, sizeof(p2), "%s/Tea/old%d.mp3", managed, i);
+        struct sonora_download *o = sonora_download_add(p2);
+        o->size = (i % 2) ? 5 : -1; fake_now++; o->when = (uint32_t)fake_now;
+    }
+    int live = sonora_downloads_present();
+    CHECK(sonora_download_add("/x/new.mp3") != NULL);
+    CHECK(sonora_downloads_present() == live + 1); /* a removed row made room */
+    for (int i = 0; i < sonora_downloads_count(); i++)
+        if (sonora_download_at(i)->size == -1 && !strcmp(sonora_download_at(i)->path, "/x/new.mp3"))
+            CHECK(0);
+    char p0[MAX_PATH]; snprintf(p0, sizeof(p0), "%s/Tea/old0.mp3", managed);
+    CHECK(sonora_download_find(p0) == NULL); /* the oldest removed one went */
 }
 
 /* --------------------------------- util ----------------------------------- */
@@ -465,6 +494,10 @@ static void test_util(void)
     CHECK_STR(out, "a<b &AB x y");
     sonora_safe_name("What? Who: Me/You.. ", out, sizeof(out));
     CHECK_STR(out, "What_ Who_ Me_You");
+    sonora_safe_name("..NET Rocks", out, sizeof(out));
+    CHECK_STR(out, "NET Rocks"); /* never a hidden file */
+    sonora_safe_name("...", out, sizeof(out));
+    CHECK_STR(out, "untitled");
     sonora_fmt_time(out, sizeof(out), 3723000); CHECK_STR(out, "1:02:03");
     sonora_fmt_time(out, sizeof(out), 61000); CHECK_STR(out, "1:01");
     CHECK(sonora_is_audio("x.M4B") && !sonora_is_audio("x.jpg") && !sonora_is_audio("noext"));

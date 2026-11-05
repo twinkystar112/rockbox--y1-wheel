@@ -485,14 +485,50 @@ struct sonora_download *sonora_download_add(const char *path)
 {
     struct sonora_download *d = sonora_download_find(path);
     if (d)
+    {
+        if (d->size < 0)
+        {   /* the same name downloaded again: a fresh row */
+            memset(d, 0, sizeof(*d));
+            field(d->path, path, sizeof(d->path));
+            d->when = sonora_now();
+        }
         return d;
+    }
     if (n_downloads >= SONORA_MAX_DOWNLOADS)
-        return NULL;
+    {   /* full: forget the oldest episode that was already removed */
+        int victim = -1;
+        for (int i = 0; i < n_downloads; i++)
+            if (downloads[i].size < 0 && (victim < 0 || downloads[i].when < downloads[victim].when))
+                victim = i;
+        if (victim < 0)
+            return NULL;
+        downloads[victim] = downloads[--n_downloads];
+    }
     d = &downloads[n_downloads++];
     memset(d, 0, sizeof(*d));
     field(d->path, path, sizeof(d->path));
     d->when = sonora_now();
     return d;
+}
+
+void sonora_download_removed(const char *path)
+{   /* keep the row (its guid and date) so a refresh never offers the
+     * episode again; size -1 = no longer on the card */
+    struct sonora_download *d = sonora_download_find(path);
+    if (d)
+    {
+        d->size = -1;
+        d->when = sonora_now();
+    }
+}
+
+int sonora_downloads_present(void)
+{
+    int n = 0;
+    for (int i = 0; i < n_downloads; i++)
+        if (downloads[i].size >= 0)
+            n++;
+    return n;
 }
 
 void sonora_download_forget(const char *path)
@@ -508,7 +544,7 @@ void sonora_download_forget(const char *path)
 bool sonora_download_may_delete(const char *path, const char *managed_dir)
 {
     struct sonora_download *d = sonora_download_find(path);
-    if (!d || !managed_dir || !managed_dir[0])
+    if (!d || d->size < 0 || !managed_dir || !managed_dir[0])
         return false;
     size_t l = strlen(managed_dir);
     while (l > 1 && managed_dir[l - 1] == '/')

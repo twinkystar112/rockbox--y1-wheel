@@ -74,6 +74,7 @@ static struct {
     long pause_tick, last_save;
     int32_t music_speed;
     bool speed_touched;
+    bool music_seen;                /* a song played this session */
     volatile bool track_changed;
     int sleep_mode;                 /* 0, minutes, SONORA_SLEEP_CHAPTER/_FILE */
     long sleep_deadline;
@@ -201,6 +202,15 @@ void sonora_init(void)
 
 /* ------------------------------- speed -------------------------------- */
 
+/* The speed music goes back to. Only taken from a song that actually played
+ * in this session: right after boot Rockbox's "resume playback" restores the
+ * last saved speed, which may be a book's. */
+static void remember_music_speed(void)
+{
+    st.music_speed = (st.music_seen && dsp_timestretch_available())
+                     ? dsp_get_timestretch() : PITCH_SPEED_100;
+}
+
 static void apply_speed(int32_t speed)
 {
     if (speed <= 0)
@@ -223,6 +233,18 @@ static int32_t show_speed_of(const char *episode)
         *slash = '\0';
     struct sonora_show *s = sonora_show_find(folder);
     return s ? s->speed : 0;
+}
+
+static bool same_show(const char *a, const char *b)
+{
+    size_t l = strlen(podcasts_root);
+    if (!under(a, podcasts_root) || !under(b, podcasts_root))
+        return false;
+    a += l + 1;
+    b += l + 1;
+    const char *ea = strchr(a, '/'), *eb = strchr(b, '/');
+    size_t la = ea ? (size_t)(ea - a) : strlen(a), lb = eb ? (size_t)(eb - b) : strlen(b);
+    return la == lb && !strncmp(a, b, la);
 }
 
 uint32_t sonora_item_speed(const char *key, enum sonora_kind kind)
@@ -268,8 +290,10 @@ bool sonora_set_item_speed(const char *key, enum sonora_kind kind, int32_t speed
             sonora_shows_save();
         }
     }
-    if (st.kind == kind && !strcmp(st.key, key))
+    if (st.kind == kind && kind == SK_BOOK && !strcmp(st.key, key))
         apply_speed(speed);
+    else if (st.kind == kind && kind == SK_EPISODE && same_show(st.key, key))
+        apply_speed(speed); /* the show's speed: the episode playing now too */
     return true;
 }
 
@@ -354,6 +378,17 @@ void sonora_save_now(void)
     st.last_save = current_tick;
 }
 
+/* from clean_shutdown(): the position at power-off, not the last checkpoint */
+void sonora_shutdown(void)
+{
+    if (!inited || st.kind == SK_MUSIC || !st.key[0])
+        return;
+    struct mp3entry *id3 = audio_status() ? audio_current_track() : NULL;
+    if (id3 && !strcmp(id3->path, st.file))
+        st.elapsed = id3->elapsed;
+    sonora_save_now();
+}
+
 void sonora_mark(const char *key, char kind, char state)
 {
     struct sonora_progress *p = sonora_progress_get(key, kind);
@@ -380,6 +415,7 @@ void sonora_seek(long ms)
 {
     if (!(audio_status() & AUDIO_STATUS_PLAY))
         return;
+    st.pause_tick = 0; /* moved on purpose: no extra rewind on resume */
     audio_pre_ff_rewind();
     audio_ff_rewind(ms > 0 ? ms : 0);
 }
@@ -460,11 +496,13 @@ static void track_changed(struct mp3entry *id3)
     st.elapsed = id3->elapsed;
     st.length = id3->length;
 
+    st.pause_tick = 0; /* a new item: no "back after a pause" rewind */
+    if (k == SK_MUSIC)
+        st.music_seen = true;
     if (k != SK_MUSIC)
     {
         if (prev == SK_MUSIC)
-            st.music_speed = dsp_timestretch_available() ? dsp_get_timestretch()
-                                                         : PITCH_SPEED_100;
+            remember_music_speed();
         apply_speed((int32_t)sonora_item_speed(key, k));
         st.speed_touched = true;
         load_chapters(id3->path);
@@ -503,7 +541,8 @@ static void check_finished(void)
         done = (st.file_index < 0 || st.file_index == st.nfiles - 1) &&
                st.elapsed + 3000 >= st.length;
     else if (st.kind == SK_EPISODE)
-        done = st.elapsed >= st.length / 100 * 95;
+        done = st.length >= 10000 &&
+               (uint64_t)st.elapsed * 100 >= (uint64_t)st.length * 95;
     if (done)
     {
         record();
@@ -551,8 +590,14 @@ static void fade_and_pause(void)
 
 static void check_sleep(bool playing)
 {
-    if (!st.sleep_mode || !playing)
+    if (!st.sleep_mode)
         return;
+    if (!playing)
+    {   /* ran out while you had paused yourself: nothing left to do */
+        if (st.sleep_mode > 0 && TIME_AFTER(current_tick, st.sleep_deadline))
+            st.sleep_mode = 0;
+        return;
+    }
     bool fire = false;
     /* the fade takes ~3 s of real time: start it early enough that the
      * pause lands on the boundary, at whatever speed is playing */
@@ -641,19 +686,19 @@ void sonora_tick(void)
 
 /* ------------------------------ starting ------------------------------ */
 
-static void save_music_queue(void)
+static bool save_music_queue(void)
 {
     if (sonora_current_kind() != SK_MUSIC || !(audio_status() & AUDIO_STATUS_PLAY))
-        return;
+        return false;
     int n = playlist_amount();
     if (n <= 0)
-        return;
+        return false;
     char path[MAX_PATH], tmp[MAX_PATH];
     sonora_data_path("music-queue.m3u8", path, sizeof(path));
     snprintf(tmp, sizeof(tmp), "%s.tmp", path);
     int fd = open(tmp, O_WRONLY | O_CREAT | O_TRUNC, 0666);
     if (fd < 0)
-        return;
+        return false;
     fdprintf(fd, "#EXTM3U\n");
     int first = playlist_get_first_index(NULL);
     struct playlist_track_info info;
@@ -666,7 +711,7 @@ static void save_music_queue(void)
     struct mp3entry *id3 = audio_current_track();
     struct sonora_progress *p = sonora_progress_get(MUSIC_KEY, SK_MUSIC_C);
     if (!p)
-        return;
+        return true;
     p->index = playlist_get_display_index() - 1;
     p->pos_ms = id3 ? id3->elapsed : 0;
     p->state = SP_PLAYING;
@@ -674,6 +719,7 @@ static void save_music_queue(void)
     if (id3 && id3->title)
         sonora_clean(p->title, id3->title, sizeof(p->title));
     sonora_progress_save();
+    return true;
 }
 
 bool sonora_music_saved(void)
@@ -723,13 +769,34 @@ static uint32_t rewound(const struct sonora_progress *p, uint32_t pos)
     return pos;
 }
 
+/* Starting a book or episode replaces Rockbox's single queue. A playing
+ * music queue is saved for "Resume music"; a stopped but edited one gets
+ * Rockbox's usual "erase the playlist?" question first. */
+static bool may_replace_queue(void)
+{
+    if (save_music_queue())
+        return true;
+    if (audio_status() || playlist_amount() <= 0)
+        return true;
+    struct playlist_track_info info;
+    if (playlist_get_track_info(NULL, playlist_get_first_index(NULL), &info) == 0 &&
+        sonora_kind_of_path(info.filename) != SK_MUSIC)
+        return true; /* SONORA's own queue */
+    return warn_on_pl_erase();
+}
+
 bool sonora_play_book(struct sonora_book *b, int how, const char *file, uint32_t pos_ms)
 {
     if (!b)
         return false;
+    /* a copy: the "erase playlist?" question below runs the UI loop, and a
+     * library rescan there would rewrite the array b points into */
+    struct sonora_book book = *b;
+    b = &book;
     if (st.kind != SK_MUSIC && st.key[0])
         sonora_save_now(); /* the item being left, before its timeline goes */
-    save_music_queue();
+    if (!may_replace_queue())
+        return false;
     st.book_key[0] = '\0'; /* reload: the folder may have changed */
     int n = load_book(b->path);
     if (n <= 0)
@@ -762,7 +829,8 @@ bool sonora_play_book(struct sonora_book *b, int how, const char *file, uint32_t
     st.done_flagged = false;
     /* speed before the first sample plays */
     if (st.kind == SK_MUSIC)
-        st.music_speed = dsp_timestretch_available() ? dsp_get_timestretch() : PITCH_SPEED_100;
+        remember_music_speed();
+    st.pause_tick = 0;
     apply_speed((int32_t)sonora_item_speed(b->path, SK_BOOK));
     st.speed_touched = true;
     start_queue(book_files, n, index, pos);
@@ -773,7 +841,8 @@ bool sonora_play_episode_at(const char *path, int how, uint32_t at_ms)
 {
     if (st.kind != SK_MUSIC && st.key[0])
         sonora_save_now(); /* the item being left */
-    save_music_queue();
+    if (!may_replace_queue())
+        return false;
     struct sonora_progress *p = sonora_progress_get(path, SK_EPISODE_C);
     uint32_t pos = 0;
     if (how == SONORA_RESUME && p && p->state == SP_PLAYING)
@@ -806,7 +875,8 @@ bool sonora_play_episode_at(const char *path, int how, uint32_t at_ms)
     }
     st.done_flagged = false;
     if (st.kind == SK_MUSIC)
-        st.music_speed = dsp_timestretch_available() ? dsp_get_timestretch() : PITCH_SPEED_100;
+        remember_music_speed();
+    st.pause_tick = 0;
     apply_speed((int32_t)sonora_item_speed(path, SK_EPISODE));
     st.speed_touched = true;
     start_queue(files, n, 0, pos);

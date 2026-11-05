@@ -707,6 +707,53 @@ static const char * const wheel_default_order[] = {
 };
 static struct menu_item_ex *root_menu__[MAX_MENU_ITEMS];
 
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+/* SONORA: a main menu order saved before SONORA existed lists none of its
+ * items, so they would never show. Add them once; after that the user's
+ * own order (hidden items included) is left alone. */
+static void root_menu_add_sonora_once(void)
+{
+    if (global_settings.sonora_menu_added)
+        return;
+    global_settings.sonora_menu_added = true;
+    unsigned n = MENU_GET_COUNT(root_menu_.flags);
+    if (!n)
+    {
+        settings_save();
+        return;
+    }
+    const struct menu_item_ex *mine[3] = { &sonora_continue_item, &sonora_books_item,
+                                           &sonora_podcasts_item };
+    for (int k = 0; k < 3; k++)
+    {
+        bool have = false;
+        for (unsigned i = 0; i < n; i++)
+            have |= root_menu__[i] == mine[k];
+        if (have || n >= MAX_MENU_ITEMS)
+            continue;
+        /* Continue first; Audiobooks / Podcasts after Music (or at the end) */
+        unsigned at = 0;
+        if (k > 0)
+        {
+            at = n;
+            for (unsigned i = 0; i < n; i++)
+                if (
+#ifdef HAVE_TAGCACHE
+                    root_menu__[i] == (struct menu_item_ex *)&wheel_music ||
+#endif
+                    root_menu__[i] == mine[1])
+                    at = i + 1;
+        }
+        memmove(&root_menu__[at + 1], &root_menu__[at], (n - at) * sizeof(root_menu__[0]));
+        root_menu__[at] = (struct menu_item_ex *)mine[k];
+        n++;
+    }
+    root_menu_.flags = (root_menu_.flags & ~(MENU_COUNT_MASK << MENU_COUNT_SHIFT)) |
+                       MENU_ITEM_COUNT(n);
+    settings_save();
+}
+#endif
+
 struct menu_table *root_menu_get_options(int *nb_options)
 {
     *nb_options = MAX_MENU_ITEMS;
@@ -1102,6 +1149,9 @@ void root_menu(void)
 
     push_current_activity(ACTIVITY_MAINMENU);
     wheel_init(); /* Y1 Wheel: lyrics, appearance */
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    root_menu_add_sonora_once();
+#endif
     next_screen = root_menu_setup_screens();
 
     while (true)

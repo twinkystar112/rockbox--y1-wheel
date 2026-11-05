@@ -23348,13 +23348,13 @@
   desc: SONORA podcasts
   user: core
   <source>
-    *: "%d shows added"
+    *: "Shows added: %d"
   </source>
   <dest>
-    *: "%d programas añadidos"
+    *: "Programas añadidos: %d"
   </dest>
   <voice>
-    *: "%d programas añadidos"
+    *: "Programas añadidos: %d"
   </voice>
 </phrase>
 <phrase>
@@ -23474,13 +23474,13 @@
   desc: SONORA podcasts
   user: core
   <source>
-    *: "Remove %d played downloads?"
+    *: "Remove played downloads (%d)?"
   </source>
   <dest>
-    *: "¿Quitar %d descargas escuchadas?"
+    *: "¿Quitar descargas escuchadas (%d)?"
   </dest>
   <voice>
-    *: "¿Quitar %d descargas escuchadas?"
+    *: "¿Quitar descargas escuchadas (%d)?"
   </voice>
 </phrase>
 <phrase>
@@ -23488,13 +23488,13 @@
   desc: SONORA podcasts
   user: core
   <source>
-    *: "%d files removed"
+    *: "Files removed: %d"
   </source>
   <dest>
-    *: "%d archivos quitados"
+    *: "Archivos quitados: %d"
   </dest>
   <voice>
-    *: "%d archivos quitados"
+    *: "Archivos quitados: %d"
   </voice>
 </phrase>
 <phrase>
@@ -23628,13 +23628,13 @@
   desc: SONORA network
   user: core
   <source>
-    *: "Download %d new episodes?"
+    *: "New episodes: %d. Download them?"
   </source>
   <dest>
-    *: "¿Descargar %d episodios nuevos?"
+    *: "Episodios nuevos: %d. ¿Descargarlos?"
   </dest>
   <voice>
-    *: "¿Descargar %d episodios nuevos?"
+    *: "Episodios nuevos: %d. ¿Descargarlos?"
   </voice>
 </phrase>
 <phrase>
@@ -23670,13 +23670,13 @@
   desc: SONORA network
   user: core
   <source>
-    *: "%d of %d downloaded"
+    *: "Downloaded: %d of %d"
   </source>
   <dest>
-    *: "%d de %d descargados"
+    *: "Descargados: %d de %d"
   </dest>
   <voice>
-    *: "%d de %d descargados"
+    *: "Descargados: %d de %d"
   </voice>
 </phrase>
 <phrase>

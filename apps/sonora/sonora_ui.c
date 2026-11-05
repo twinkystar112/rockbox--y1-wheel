@@ -67,6 +67,8 @@ struct sscreen {
     int filter;
 };
 
+static struct sonora_book *book_or_file(const char *key);
+
 static struct sscreen pool[6];
 static int depth;
 
@@ -235,8 +237,9 @@ static void need_timestretch(void)
     /* what the port's own Timestretch setting does on the Y1 */
     splash(HZ, ID2P(LANG_SONORA_RESTARTING));
     sleep(HZ / 2);
-    system("am force-stop org.rockbox");
-    system("monkey -p org.rockbox -c android.intent.category.LAUNCHER 1");
+    if (system("am force-stop org.rockbox") != 0 ||
+        system("monkey -p org.rockbox -c android.intent.category.LAUNCHER 1") != 0)
+        splash(HZ * 2, ID2P(LANG_SONORA_RESTART_NEEDED));
 #else
     splash(HZ * 2, ID2P(LANG_SONORA_RESTART_NEEDED));
 #endif
@@ -286,8 +289,8 @@ static const char *chapter_name(struct sscreen *s, int row, char *buf, size_t le
         return two(buf, len, title, NULL);
     }
     struct sonora_chapter *ch = book_ch;
-    if (s->tag[row] == CH_CURRENT)
-        sonora_current_chapters(&ch);
+    if (s->tag[row] == CH_CURRENT && i >= sonora_current_chapters(&ch))
+        return ""; /* the track changed under this list */
     if (ch[i].title[0])
         strlcpy(title, ch[i].title, sizeof(title));
     else
@@ -413,13 +416,7 @@ static int bm_ok(struct sscreen *s, int row)
     }
     if (s->kind == SK_EPISODE)
         return sonora_play_episode_at(b->key, SONORA_AT, b->pos_ms) ? R_WPS : R_STAY;
-    struct sonora_book *book = sonora_book_find(b->key);
-    if (!book)
-    {
-        sonora_books_scan(true);
-        book = sonora_book_find(b->key);
-    }
-    return sonora_play_book(book, SONORA_AT, b->cur, b->pos_ms) ? R_WPS : R_STAY;
+    return sonora_play_book(book_or_file(b->key), SONORA_AT, b->cur, b->pos_ms) ? R_WPS : R_STAY;
 }
 
 static int bm_ctx(struct sscreen *s, int row)
@@ -573,6 +570,29 @@ int sonora_mark_current(void)
 
 /* =============================== Continue ============================== */
 
+/* a book from the library, or an .m4b played from Files (not in the
+ * Audiobooks folder): then the file itself is the book */
+static struct sonora_book *book_or_file(const char *key)
+{
+    struct sonora_book *b = sonora_book_find(key);
+    if (!b)
+    {
+        sonora_books_scan(true);
+        b = sonora_book_find(key);
+    }
+    if (!b && file_exists(key))
+    {
+        static struct sonora_book loose;
+        memset(&loose, 0, sizeof(loose));
+        strlcpy(loose.path, key, sizeof(loose.path));
+        sonora_basename_noext(key, loose.title, sizeof(loose.title));
+        loose.single = true;
+        loose.nfiles = 1;
+        b = &loose;
+    }
+    return b;
+}
+
 static int cont_rows[24];
 enum { C_ITEM = 1, C_MUSIC, C_EMPTY };
 
@@ -607,12 +627,7 @@ static int play_progress(struct sonora_progress *p)
 {
     if (p->kind == SK_EPISODE_C)
         return sonora_play_episode(p->key, SONORA_RESUME) ? R_WPS : R_STAY;
-    struct sonora_book *b = sonora_book_find(p->key);
-    if (!b)
-    {
-        sonora_books_scan(true);
-        b = sonora_book_find(p->key);
-    }
+    struct sonora_book *b = book_or_file(p->key);
     if (!b)
     {
         splash(HZ * 2, ID2P(LANG_SONORA_MISSING));
@@ -647,7 +662,13 @@ int sonora_continue_screen(void)
     s->build = cont_build;
     s->name = cont_name;
     s->ok = cont_ok;
-    return to_root(run(s));
+    push_current_activity(ACTIVITY_DATABASEBROWSER);
+    int r = run(s);
+    if (r == R_WPS)
+        pop_current_activity_without_refresh();
+    else
+        pop_current_activity();
+    return to_root(r);
 }
 
 /* ============================== Audiobooks ============================= */
@@ -1020,7 +1041,7 @@ static int episode_options(const char *path)
             }
             if (yesno_pop(ID2P(LANG_SONORA_DELETE_DOWNLOAD)) && remove(path) == 0)
             {
-                sonora_download_forget(path);
+                sonora_download_removed(path);
                 sonora_downloads_save();
                 splash(HZ, ID2P(LANG_SONORA_DELETED));
             }
@@ -1174,7 +1195,8 @@ static const char *new_name(struct sscreen *s, int row, char *buf, size_t len)
 static void dl_build(struct sscreen *s)
 {
     for (int i = 0; i < sonora_downloads_count(); i++)
-        add(s, D_DL, i);
+        if (sonora_download_at(i)->size >= 0)
+            add(s, D_DL, i);
     if (!s->n)
         add(s, D_EMPTY, 0);
 }
@@ -1186,7 +1208,10 @@ static const char *dl_name(struct sscreen *s, int row, char *buf, size_t len)
     struct sonora_download *d = sonora_download_at(s->arg[row]);
     char t[96], right[16];
     sonora_basename_noext(d->path, t, sizeof(t));
-    snprintf(right, sizeof(right), "%lld MB", d->size / (1024 * 1024));
+    if (d->size >= 1024 * 1024)
+        snprintf(right, sizeof(right), "%lld MB", d->size / (1024 * 1024));
+    else
+        snprintf(right, sizeof(right), "%lld KB", (d->size + 1023) / 1024);
     return two(buf, len, t, right);
 }
 
@@ -1281,11 +1306,12 @@ static void pods_build(struct sscreen *s)
     int nnew = sonora_new_episodes(eps, MAX_EPS);
     add(s, D_NEW, nnew);
     add(s, D_SHOWS, sonora_shows_count());
-    if (sonora_downloads_count())
-        add(s, D_DOWNLOADS, sonora_downloads_count());
+    int ndl = sonora_downloads_present();
+    if (ndl)
+        add(s, D_DOWNLOADS, ndl);
     add(s, D_OPML, 0);
     add(s, D_REFRESH, 0);
-    if (sonora_downloads_count())
+    if (ndl)
         add(s, D_CLEANUP, 0);
     add(s, D_SETTINGS, 0);
 }

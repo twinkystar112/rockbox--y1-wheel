@@ -104,6 +104,11 @@ starts with `# sonora-format=1`. Each save goes to a temporary file and keeps a
   Episodes you copied yourself are never deleted ("You copied this file:
   SONORA never deletes it"), and neither are unplayed ones. The port's own
   `poddl -delete` is not used.
+- A download only ever writes to a name nothing on the card uses yet: the
+  file and its `.part` are both checked, and over-long paths are refused
+  rather than cut short.
+- A deleted episode stays in the manifest as history (size -1), so a later
+  refresh never offers it again.
 
 ## Network (off by default)
 
@@ -150,6 +155,12 @@ plays and goes back to the music speed afterwards. It is never written to
 - Podcast episode titles come from the file's tags, else the file name.
 - The first library scan reads the tags of every book. Later scans use the
   cache.
+- A book split into disc folders (`Book/CD1`, `Book/CD2`) is read as an
+  author folder holding two books. Put all the files in one folder instead.
+- Rockbox's own *Rewind on pause* setting still works as well, so turning it
+  on adds its rewind to SONORA's.
+- A refreshed feed with no publish dates offers its newest 3 (or "keep N")
+  episodes on every refresh, minus those already in the manifest.
 - Output is still 44.1 kHz / 16-bit; hi-res files are resampled.
 - How timestretch performs on the Y1's MT6572 at 1.5–2× is unmeasured.
 - Spanish and English translations are complete. Other languages show the
@@ -157,7 +168,7 @@ plays and goes back to the music speed afterwards. It is never written to
 
 ## Tests
 
-- `utils/sonora/tests`: `make check` runs 93 checks.
+- `utils/sonora/tests`: `make check` runs 105 checks.
   - Covers: chapter readers on generated MP4 (moov first/last, co64, UTF-16),
     ID3 v2.3/2.4 and cue files (120 tracks, multi-FILE); OPML/RSS
     (entities, CDATA, dates); the data store (atomic save, `.bak` fallback,

@@ -113,6 +113,9 @@ struct sonora_download *sonora_download_find(const char *path);
 struct sonora_download *sonora_download_find_guid(const char *guid);
 struct sonora_download *sonora_download_add(const char *path);
 void sonora_download_forget(const char *path);
+/* deleted from the card: kept as history (size -1) so it is not offered again */
+void sonora_download_removed(const char *path);
+int  sonora_downloads_present(void);  /* rows whose file should be on the card */
 /* true only if path is in the manifest, inside managed_dir, and its size on
  * the card is the recorded size */
 bool sonora_download_may_delete(const char *path, const char *managed_dir);
