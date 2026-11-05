@@ -102,6 +102,7 @@ gui/statusbar-skinned.c
 #if (CONFIG_PLATFORM&PLATFORM_ANDROID)||defined(INNIOASIS_Y1)
 hosted/android/notification.c
 hosted/android/wheel_connect_android.c
+hosted/android/sonora_net_android.c
 #else
 wheel/wheel_connect_stub.c
 #endif
@@ -122,6 +123,16 @@ wheel/wheel_tools.c
 wheel/wheel_themes.c
 wheel/wheel_gel.c
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+/* SONORA: audiobooks and podcasts on the same playback engine
+ * (hosted builds: it uses malloc for feeds and OPML files) */
+sonora/sonora_util.c
+sonora/sonora_chapters.c
+sonora/sonora_feed.c
+sonora/sonora_data.c
+sonora/sonora_library.c
+sonora/sonora_core.c
+sonora/sonora_ui.c
+sonora/sonora_net.c
 wheel/wheel_qr.c
 wheel/qrcodegen.c
 /* typography: fonts are converted on the player (needs malloc) */

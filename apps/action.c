@@ -33,6 +33,9 @@
 #include "appevents.h"
 #include "button.h"
 #include "action.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "sonora/sonora.h"
+#endif
 #include "kernel.h"
 #include "core_alloc.h"
 
@@ -1292,6 +1295,9 @@ int get_action(int context, int timeout)
 
     action = do_backlight(&action_last, &current, action);
 
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    sonora_tick(); /* progress checkpoints, sleep timer (rate-limited) */
+#endif
     return action;
 }
 

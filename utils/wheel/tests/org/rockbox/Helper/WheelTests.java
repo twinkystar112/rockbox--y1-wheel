@@ -381,6 +381,41 @@ public class WheelTests
         check(r == WheelSend.REJECTED, "declined on the phone: reported as rejected");
     }
 
+    /* SONORA: one download at a time, polled by the native side */
+    static long[] sonoraWait() throws InterruptedException
+    {
+        long[] v = SonoraNet.poll();
+        for (int i = 0; i < 200 && v[0] == 0; i++)
+        {
+            Thread.sleep(50);
+            v = SonoraNet.poll();
+        }
+        return v;
+    }
+
+    static void testSonoraNet() throws Exception
+    {
+        String base = "http://127.0.0.1:" + httpPort;
+        File out = new File(sd, "episode.mp3.part");
+        check(SonoraNet.start(base + "/sonora/episode", out.getPath()), "SONORA download starts");
+        long[] v = sonoraWait();
+        byte[] got = java.nio.file.Files.readAllBytes(out.toPath());
+        boolean same = got.length == 300 * 1024;
+        for (int i = 0; same && i < got.length; i++)
+            same = got[i] == (byte) ((i * 7) & 0xff);
+        check(v[0] == 1 && v[3] == 200 && v[1] == 300 * 1024 && v[2] == 300 * 1024 && same,
+              "SONORA download: whole file, byte for byte, progress counted");
+        out.delete();
+        check(SonoraNet.start(base + "/sonora/redirect", out.getPath()), "SONORA redirect starts");
+        v = sonoraWait();
+        check(v[0] == 1 && out.length() == 300 * 1024, "SONORA follows a redirect");
+        out.delete();
+        check(SonoraNet.start(base + "/sonora/missing", out.getPath()), "SONORA 404 starts");
+        v = sonoraWait();
+        check(v[0] == 2 && v[3] == 404, "SONORA reports a 404 as failed");
+        out.delete();
+    }
+
     public static void main(String[] args) throws Exception
     {
         httpPort = Integer.parseInt(args[0]);
@@ -390,6 +425,7 @@ public class WheelTests
         testLyrics();
         testWifiOnDemand();
         testSend();
+        testSonoraNet();
         System.out.println(passed + " passed, " + failed + " failed");
         System.exit(failed == 0 ? 0 : 1);
     }

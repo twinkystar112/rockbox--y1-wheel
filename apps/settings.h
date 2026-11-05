@@ -978,6 +978,17 @@ struct user_settings
     int  wheel_sensitivity;     /* wheel: low, normal, high */
     bool wheel_accel;           /* faster spins move further */
     int  wheel_idle;            /* idle screen after: off, 15 s, 30 s, 1 min, 2 min */
+    /* SONORA: audiobooks and podcasts */
+    char sonora_books_dir[MAX_PATH];    /* "" = HOME/Audiobooks */
+    char sonora_podcasts_dir[MAX_PATH]; /* "" = HOME/Podcasts */
+    int  sonora_rewind;         /* seconds back when resuming after a pause */
+    int  sonora_book_back;      /* Prev / Next without chapters, seconds */
+    int  sonora_book_fwd;
+    int  sonora_pod_back;
+    int  sonora_pod_fwd;
+    int  sonora_checkpoint;     /* save progress every N seconds while playing */
+    bool sonora_autonext;       /* podcasts: queue the next unplayed episodes */
+    bool sonora_network;        /* feed refresh and downloads (off by default) */
 #ifdef INNIOASIS_Y1
     int android_screen_timeout; /* Android screen timeout in seconds (0=never) */
 #endif

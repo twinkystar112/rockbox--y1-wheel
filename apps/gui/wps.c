@@ -48,6 +48,12 @@
 #include "playback.h"
 #include "splash.h"
 #include "cuesheet.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "sonora/sonora.h"
+#else
+#define sonora_wps_skip(d) false
+#define sonora_wps_hotkey() false
+#endif
 #include "ata_idle_notify.h"
 #include "root_menu.h"
 #include "backdrop.h"
@@ -827,6 +833,12 @@ long gui_wps_show(void)
                 break;
             case ACTION_WPS_HOTKEY:
             {
+                /* SONORA: Centre+Play = bookmark (books) / played (podcasts) */
+                if (sonora_wps_hotkey())
+                {
+                    update = true;
+                    break;
+                }
                 hotkey = true;
                 int act = HK_CTX_GET(0, global_settings.context_wps);
                 if (act == HOTKEY_OFF)
@@ -966,7 +978,7 @@ long gui_wps_show(void)
                     ab_jump_to_A_marker();
                     break;
                 }
-                else /* ...otherwise, do it normally */
+                else if (!sonora_wps_skip(-1)) /* SONORA: chapters / seconds */
                     play_hop(-1);
                 break;
 
@@ -985,7 +997,7 @@ long gui_wps_show(void)
                         break;
                     }
                 }
-                else /* ...otherwise, do it normally */
+                else if (!sonora_wps_skip(1)) /* SONORA: chapters / seconds */
                     play_hop(1);
                 break;
                 /* next / prev directories */

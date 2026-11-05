@@ -66,6 +66,9 @@
 #include "wheel/wheel_screens.h"
 #include "wheel/wheel_connect.h"
 #include "wheel/wheel_listview.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "sonora/sonora.h"
+#endif
 #ifdef HAVE_RTC_ALARM
 #include "rtc.h"
 #endif
@@ -595,6 +598,24 @@ MENUITEM_FUNCTION(wheel_coverflow_item, MENU_FUNC_CHECK_RETVAL,
                   ID2P(LANG_WHEEL_COVERFLOW), wheel_coverflow, NULL, Icon_NOICON);
 MENUITEM_FUNCTION(wheel_shuffle_item, MENU_FUNC_CHECK_RETVAL,
                   ID2P(LANG_WHEEL_SHUFFLE_SONGS), wheel_shuffle_songs, NULL, Icon_NOICON);
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+/* SONORA: Continue (only while something is half-listened), Audiobooks,
+ * Podcasts */
+static int sonora_continue_callback(int action, const struct menu_item_ex *this_item,
+                                    struct gui_synclist *this_list)
+{
+    (void)this_item; (void)this_list;
+    if (action == ACTION_REQUEST_MENUITEM && !sonora_continue_available())
+        return ACTION_EXIT_MENUITEM;
+    return action;
+}
+MENUITEM_FUNCTION(sonora_continue_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_SONORA_CONTINUE),
+                  sonora_continue_screen, sonora_continue_callback, Icon_NOICON);
+MENUITEM_FUNCTION(sonora_books_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_SONORA_AUDIOBOOKS),
+                  sonora_books_screen, NULL, Icon_NOICON);
+MENUITEM_FUNCTION(sonora_podcasts_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_SONORA_PODCASTS),
+                  sonora_podcasts_screen, NULL, Icon_NOICON);
+#endif
 static int wheel_bt_item_callback(int action, const struct menu_item_ex *this_item,
                                   struct gui_synclist *this_list)
 {
@@ -636,6 +657,11 @@ static struct menu_table menu_table[] = {
     { "music", &wheel_music },
 #endif
     { "foryou", &wheel_foryou_item },
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    { "continue", &sonora_continue_item },
+    { "audiobooks", &sonora_books_item },
+    { "podcasts", &sonora_podcasts_item },
+#endif
     { "coverflow", &wheel_coverflow_item },
     { "shuffle", &wheel_shuffle_item },
     { "bluetooth", &wheel_bt_item },
@@ -667,8 +693,14 @@ static struct menu_table menu_table[] = {
 /* Y1 Wheel default main menu: music first, tools tucked into Extras.
  * Everything in menu_table can still be re-added with "root menu order". */
 static const char * const wheel_default_order[] = {
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    "continue",
+#endif
 #ifdef HAVE_TAGCACHE
     "foryou", "music",
+#endif
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    "audiobooks", "podcasts",
 #endif
     "coverflow", "shuffle", "playlists", "wps",
     "bluetooth", "settings", "extras",

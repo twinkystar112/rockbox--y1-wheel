@@ -15,7 +15,7 @@ H="$ROOT/android/y1/src/org/rockbox/Helper"
 javac -nowarn -encoding UTF-8 -d "$OUT/classes" \
   $(find "$HERE/fakes" -name '*.java') \
   $(find "$JSON_JAVA/org/json" -name '*.java') \
-  "$H/WheelScrobbler.java" "$H/WheelLyrics.java" "$H/WheelSend.java" "$H/WheelNet.java" "$H/Logger.java" \
+  "$H/WheelScrobbler.java" "$H/WheelLyrics.java" "$H/WheelSend.java" "$H/WheelNet.java" "$H/SonoraNet.java" "$H/Logger.java" \
   "$HERE/org/rockbox/Helper/WheelTests.java" 2>&1 | grep -v "^Note:" || true
 HTTP_PORT=${HTTP_PORT:-18431}; OBEX_PORT=${OBEX_PORT:-18432}
 python3 "$HERE/mock_services.py" $HTTP_PORT $OBEX_PORT "$OUT/received" &

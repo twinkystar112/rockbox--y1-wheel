@@ -42,6 +42,9 @@
 #include "onplay.h"
 #include "wheel/wheel_connect.h"
 #include "wheel/wheel_screens.h"
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#include "sonora/sonora.h"
+#endif
 #include "filetypes.h"
 #include "fileop.h"
 #include "open_plugin.h"
@@ -1296,7 +1299,56 @@ MENUITEM_FUNCTION(wheel_love_item, 0, ID2P(LANG_WHEEL_LOVE),
 static int wheel_sound(void) { wheel_eq_screen(); return 0; }
 MENUITEM_FUNCTION(wheel_sound_item, 0, ID2P(LANG_WHEEL_SOUND),
                   wheel_sound, NULL, Icon_NOICON);
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+/* ---- SONORA: audiobook / podcast extras, shown only while one plays ---- */
+static int sonora_only_callback(int action, const struct menu_item_ex *this_item,
+                                struct gui_synclist *this_list)
+{
+    (void)this_item; (void)this_list;
+    if (action == ACTION_REQUEST_MENUITEM && sonora_current_kind() == SK_MUSIC)
+        return ACTION_EXIT_MENUITEM;
+    return action;
+}
+static int sonora_chapters_item_fn(void)
+{
+    return sonora_chapters_screen() ? WHEEL_EXIT_MENU : 0;
+}
+MENUITEM_FUNCTION(sonora_chapters_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_SONORA_CHAPTERS),
+                  sonora_chapters_item_fn, sonora_only_callback, Icon_NOICON);
+static int sonora_bookmarks_item_fn(void)
+{
+    return sonora_bookmarks_screen() ? WHEEL_EXIT_MENU : 0;
+}
+MENUITEM_FUNCTION(sonora_bookmarks_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_SONORA_BOOKMARKS),
+                  sonora_bookmarks_item_fn, sonora_only_callback, Icon_NOICON);
+static int sonora_bookmark_add_fn(void)
+{
+    sonora_bookmark_add_current();
+    return WHEEL_EXIT_MENU;
+}
+MENUITEM_FUNCTION(sonora_bookmark_add_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_SONORA_ADD_BOOKMARK),
+                  sonora_bookmark_add_fn, sonora_only_callback, Icon_NOICON);
+static int sonora_speed_fn(void) { sonora_speed_screen(); return 0; }
+MENUITEM_FUNCTION(sonora_speed_item, 0, ID2P(LANG_SONORA_SPEED),
+                  sonora_speed_fn, sonora_only_callback, Icon_NOICON);
+static int sonora_mark_fn(void)
+{
+    sonora_mark_current();
+    return WHEEL_EXIT_MENU;
+}
+static int sonora_mark_callback(int action, const struct menu_item_ex *this_item,
+                                struct gui_synclist *this_list)
+{
+    return sonora_only_callback(action, this_item, this_list);
+}
+MENUITEM_FUNCTION(sonora_mark_item, MENU_FUNC_CHECK_RETVAL, ID2P(LANG_SONORA_MARK_FINISHED),
+                  sonora_mark_fn, sonora_mark_callback, Icon_NOICON);
+/* the sleep timer pauses with a short fade instead of switching the
+ * player off, and can wait for the end of a chapter or file */
+static int wheel_sleep(void) { sonora_sleep_screen(); return 0; }
+#else
 static int wheel_sleep(void) { wheel_sleep_screen(); return 0; }
+#endif
 MENUITEM_FUNCTION(wheel_sleep_item, 0, ID2P(LANG_SLEEP_TIMER),
                   wheel_sleep, NULL, Icon_NOICON);
 static int wheel_send_current(void)
@@ -1314,7 +1366,14 @@ MENUITEM_FUNCTION(wheel_send_item, 0, ID2P(LANG_WHEEL_BT_SEND),
 
 MAKE_ONPLAYMENU( wps_onplay_menu, ID2P(LANG_ONPLAY_MENU_TITLE),
            onplaymenu_callback, Icon_Audio,
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+           &sonora_chapters_item, &sonora_bookmark_add_item, &sonora_bookmarks_item,
+           &sonora_speed_item,
+#endif
            &wheel_upnext_item, &wheel_sound_item, &wheel_sleep_item,
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+           &sonora_mark_item,
+#endif
            &wheel_goto_album_item, &wheel_goto_artist_item,
            &wheel_love_item, &wheel_send_item,
            &wps_playlist_menu, &cat_playlist_menu,

@@ -41,6 +41,7 @@
 #include "root_menu.h"
 #ifdef HAVE_SPECIAL_DIRS
 #include "filesystem-app.h"
+#include "sonora/sonora.h"
 #endif
 #include "wheel_connect.h"
 #include "wheel_screens.h"
@@ -743,6 +744,9 @@ void wheel_init(void)
     done = true;
     wheel_lyrics_init();
     wheel_stats_init();
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    sonora_init();   /* audiobooks and podcasts */
+#endif
     typo_init();     /* typography: falls back to the stock fonts if needed */
     wheel_appearance_apply(false);
 }

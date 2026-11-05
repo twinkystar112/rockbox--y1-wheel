@@ -131,6 +131,21 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/control/obex_reject":
             state["obex_reject"] = q.get("on") == "1"
             return self.send_json({})
+        if u.path == "/sonora/episode":
+            # 300 KB of a repeating pattern, no Content-Length shortcuts
+            data = bytes((i * 7) & 0xff for i in range(300 * 1024))
+            self.send_response(200)
+            self.send_header("Content-Type", "audio/mpeg")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
+        if u.path == "/sonora/redirect":
+            self.send_response(302)
+            self.send_header("Location", "/sonora/episode?via=redirect")
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
         if u.path == "/api/get":
             key = (q.get("artist_name", "").lower(), q.get("track_name", "").lower())
             if key in LYRICS:

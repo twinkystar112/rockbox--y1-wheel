@@ -36,6 +36,7 @@
 #include "thread.h"
 #include "settings.h"
 #include "wheel/wheel_connect.h"
+#include "sonora/sonora.h"
 
 extern JNIEnv *env_ptr;
 
@@ -507,6 +508,8 @@ static void wheel_track_finished(unsigned short id, void *param)
     struct track_event *te = (struct track_event *)param;
     if (!te->id3 || (te->flags & TEF_REWIND) || !media_class || !m_track_end)
         return;
+    if (sonora_kind_of_path(te->id3->path) != SK_MUSIC)
+        return; /* SONORA: audiobooks and podcasts are not scrobbled */
     (*env_ptr)->CallStaticVoidMethod(env_ptr, media_class, m_track_end,
             (jint)te->id3->elapsed, (jint)te->id3->length,
             (jboolean)((te->flags & TEF_AUTO_SKIP) != 0));

@@ -40,6 +40,7 @@
 #include "settings.h"
 #include "timefuncs.h"
 #include "font.h"
+#include "sonora/sonora.h"
 #include "viewport.h"
 #include "screen_access.h"
 #include "rbpaths.h"
@@ -97,6 +98,10 @@ static void track_finished(unsigned short id, void *param)
     struct mp3entry *id3 = te->id3;
     if (!id3 || (te->flags & TEF_REWIND) || !id3->path[0])
         return;
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    if (sonora_kind_of_path(id3->path) != SK_MUSIC)
+        return; /* books and podcasts are not songs: no music stats */
+#endif
     unsigned long played = id3->elapsed / 1000, len = id3->length / 1000;
     if (played < 10)
         return; /* a skip, not a listen */

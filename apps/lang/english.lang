@@ -22773,3 +22773,1207 @@
     *: "Turn to adjust · OK: next · Back: done"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_SONORA_CONTINUE
+  desc: SONORA menu
+  user: core
+  <source>
+    *: "Continue"
+  </source>
+  <dest>
+    *: "Continue"
+  </dest>
+  <voice>
+    *: "Continue"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_AUDIOBOOKS
+  desc: SONORA menu
+  user: core
+  <source>
+    *: "Audiobooks"
+  </source>
+  <dest>
+    *: "Audiobooks"
+  </dest>
+  <voice>
+    *: "Audiobooks"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_PODCASTS
+  desc: SONORA menu
+  user: core
+  <source>
+    *: "Podcasts"
+  </source>
+  <dest>
+    *: "Podcasts"
+  </dest>
+  <voice>
+    *: "Podcasts"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_IN_PROGRESS
+  desc: SONORA books
+  user: core
+  <source>
+    *: "In progress"
+  </source>
+  <dest>
+    *: "In progress"
+  </dest>
+  <voice>
+    *: "In progress"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_ALL_BOOKS
+  desc: SONORA books
+  user: core
+  <source>
+    *: "All books"
+  </source>
+  <dest>
+    *: "All books"
+  </dest>
+  <voice>
+    *: "All books"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_AUTHORS
+  desc: SONORA books
+  user: core
+  <source>
+    *: "Authors"
+  </source>
+  <dest>
+    *: "Authors"
+  </dest>
+  <voice>
+    *: "Authors"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_AUTHOR
+  desc: SONORA books
+  user: core
+  <source>
+    *: "Author"
+  </source>
+  <dest>
+    *: "Author"
+  </dest>
+  <voice>
+    *: "Author"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_FINISHED
+  desc: SONORA books
+  user: core
+  <source>
+    *: "Finished"
+  </source>
+  <dest>
+    *: "Finished"
+  </dest>
+  <voice>
+    *: "Finished"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_UNKNOWN_AUTHOR
+  desc: SONORA books
+  user: core
+  <source>
+    *: "Unknown author"
+  </source>
+  <dest>
+    *: "Unknown author"
+  </dest>
+  <voice>
+    *: "Unknown author"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NO_BOOKS
+  desc: SONORA books
+  user: core
+  <source>
+    *: "No audiobooks yet. Put them in %s: one folder or one file per book."
+  </source>
+  <dest>
+    *: "No audiobooks yet. Put them in %s: one folder or one file per book."
+  </dest>
+  <voice>
+    *: "No audiobooks yet. Put them in %s: one folder or one file per book."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NONE_HERE
+  desc: SONORA lists
+  user: core
+  <source>
+    *: "Nothing here yet"
+  </source>
+  <dest>
+    *: "Nothing here yet"
+  </dest>
+  <voice>
+    *: "Nothing here yet"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SCANNING
+  desc: SONORA books
+  user: core
+  <source>
+    *: "Reading"
+  </source>
+  <dest>
+    *: "Reading"
+  </dest>
+  <voice>
+    *: "Reading"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_RESUME
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Resume"
+  </source>
+  <dest>
+    *: "Resume"
+  </dest>
+  <voice>
+    *: "Resume"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_PLAY
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Play"
+  </source>
+  <dest>
+    *: "Play"
+  </dest>
+  <voice>
+    *: "Play"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_PLAY_START
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Play from the start"
+  </source>
+  <dest>
+    *: "Play from the start"
+  </dest>
+  <voice>
+    *: "Play from the start"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_CHAPTERS
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Chapters"
+  </source>
+  <dest>
+    *: "Chapters"
+  </dest>
+  <voice>
+    *: "Chapters"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_CHAPTER
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Chapter"
+  </source>
+  <dest>
+    *: "Chapter"
+  </dest>
+  <voice>
+    *: "Chapter"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_BOOKMARKS
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Bookmarks"
+  </source>
+  <dest>
+    *: "Bookmarks"
+  </dest>
+  <voice>
+    *: "Bookmarks"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_ADD_BOOKMARK
+  desc: SONORA bookmarks
+  user: core
+  <source>
+    *: "Add bookmark here"
+  </source>
+  <dest>
+    *: "Add bookmark here"
+  </dest>
+  <voice>
+    *: "Add bookmark here"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_BOOKMARK_ADDED
+  desc: SONORA bookmarks
+  user: core
+  <source>
+    *: "Bookmark added"
+  </source>
+  <dest>
+    *: "Bookmark added"
+  </dest>
+  <voice>
+    *: "Bookmark added"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DELETE_BOOKMARK
+  desc: SONORA bookmarks
+  user: core
+  <source>
+    *: "Delete this bookmark?"
+  </source>
+  <dest>
+    *: "Delete this bookmark?"
+  </dest>
+  <voice>
+    *: "Delete this bookmark?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SPEED
+  desc: SONORA speed
+  user: core
+  <source>
+    *: "Speed"
+  </source>
+  <dest>
+    *: "Speed"
+  </dest>
+  <voice>
+    *: "Speed"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SPEED_NEEDS_TS
+  desc: SONORA speed
+  user: core
+  <source>
+    *: "Speed needs Timestretch. Turn it on? Rockbox restarts."
+  </source>
+  <dest>
+    *: "Speed needs Timestretch. Turn it on? Rockbox restarts."
+  </dest>
+  <voice>
+    *: "Speed needs Timestretch. Turn it on? Rockbox restarts."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_RESTARTING
+  desc: SONORA speed
+  user: core
+  <source>
+    *: "Restarting Rockbox…"
+  </source>
+  <dest>
+    *: "Restarting Rockbox…"
+  </dest>
+  <voice>
+    *: "Restarting Rockbox…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_RESTART_NEEDED
+  desc: SONORA speed
+  user: core
+  <source>
+    *: "Restart Rockbox to finish"
+  </source>
+  <dest>
+    *: "Restart Rockbox to finish"
+  </dest>
+  <voice>
+    *: "Restart Rockbox to finish"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_MARK_FINISHED
+  desc: SONORA marks
+  user: core
+  <source>
+    *: "Mark as finished"
+  </source>
+  <dest>
+    *: "Mark as finished"
+  </dest>
+  <voice>
+    *: "Mark as finished"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_MARK_PLAYED
+  desc: SONORA marks
+  user: core
+  <source>
+    *: "Mark as played"
+  </source>
+  <dest>
+    *: "Mark as played"
+  </dest>
+  <voice>
+    *: "Mark as played"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_MARK_UNPLAYED
+  desc: SONORA marks
+  user: core
+  <source>
+    *: "Mark as not started"
+  </source>
+  <dest>
+    *: "Mark as not started"
+  </dest>
+  <voice>
+    *: "Mark as not started"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_MARKED_FINISHED
+  desc: SONORA marks
+  user: core
+  <source>
+    *: "Marked as finished"
+  </source>
+  <dest>
+    *: "Marked as finished"
+  </dest>
+  <voice>
+    *: "Marked as finished"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_MARKED_PLAYED
+  desc: SONORA marks
+  user: core
+  <source>
+    *: "Marked as played"
+  </source>
+  <dest>
+    *: "Marked as played"
+  </dest>
+  <voice>
+    *: "Marked as played"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_LENGTH
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Length"
+  </source>
+  <dest>
+    *: "Length"
+  </dest>
+  <voice>
+    *: "Length"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_FILES
+  desc: SONORA book page
+  user: core
+  <source>
+    *: "Files"
+  </source>
+  <dest>
+    *: "Files"
+  </dest>
+  <voice>
+    *: "Files"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_LEFT
+  desc: SONORA times
+  user: core
+  <source>
+    *: "%s left"
+  </source>
+  <dest>
+    *: "%s left"
+  </dest>
+  <voice>
+    *: "%s left"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_MISSING
+  desc: SONORA books
+  user: core
+  <source>
+    *: "Not found on the card any more"
+  </source>
+  <dest>
+    *: "Not found on the card any more"
+  </dest>
+  <voice>
+    *: "Not found on the card any more"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NO_CHAPTERS
+  desc: SONORA chapters
+  user: core
+  <source>
+    *: "No chapter list in this file"
+  </source>
+  <dest>
+    *: "No chapter list in this file"
+  </dest>
+  <voice>
+    *: "No chapter list in this file"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_LAST_CHAPTER
+  desc: SONORA chapters
+  user: core
+  <source>
+    *: "Last chapter"
+  </source>
+  <dest>
+    *: "Last chapter"
+  </dest>
+  <voice>
+    *: "Last chapter"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_END_OF_CHAPTER
+  desc: SONORA sleep
+  user: core
+  <source>
+    *: "End of chapter"
+  </source>
+  <dest>
+    *: "End of chapter"
+  </dest>
+  <voice>
+    *: "End of chapter"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_END_OF_FILE
+  desc: SONORA sleep
+  user: core
+  <source>
+    *: "End of this file"
+  </source>
+  <dest>
+    *: "End of this file"
+  </dest>
+  <voice>
+    *: "End of this file"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SLEEP_SET
+  desc: SONORA sleep
+  user: core
+  <source>
+    *: "Pausing in %d min"
+  </source>
+  <dest>
+    *: "Pausing in %d min"
+  </dest>
+  <voice>
+    *: "Pausing in %d min"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SLEEP_SET_CHAPTER
+  desc: SONORA sleep
+  user: core
+  <source>
+    *: "Pausing at the end of the chapter"
+  </source>
+  <dest>
+    *: "Pausing at the end of the chapter"
+  </dest>
+  <voice>
+    *: "Pausing at the end of the chapter"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SLEEP_SET_FILE
+  desc: SONORA sleep
+  user: core
+  <source>
+    *: "Pausing at the end of the file"
+  </source>
+  <dest>
+    *: "Pausing at the end of the file"
+  </dest>
+  <voice>
+    *: "Pausing at the end of the file"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SLEEP_OFF
+  desc: SONORA sleep
+  user: core
+  <source>
+    *: "Sleep timer off"
+  </source>
+  <dest>
+    *: "Sleep timer off"
+  </dest>
+  <voice>
+    *: "Sleep timer off"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_RESUME_MUSIC
+  desc: SONORA continue
+  user: core
+  <source>
+    *: "Resume music"
+  </source>
+  <dest>
+    *: "Resume music"
+  </dest>
+  <voice>
+    *: "Resume music"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NOTHING_TO_CONTINUE
+  desc: SONORA continue
+  user: core
+  <source>
+    *: "Nothing in progress yet"
+  </source>
+  <dest>
+    *: "Nothing in progress yet"
+  </dest>
+  <voice>
+    *: "Nothing in progress yet"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NEW_EPISODES
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "New episodes"
+  </source>
+  <dest>
+    *: "New episodes"
+  </dest>
+  <voice>
+    *: "New episodes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SHOWS
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Shows"
+  </source>
+  <dest>
+    *: "Shows"
+  </dest>
+  <voice>
+    *: "Shows"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_EPISODE
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Episode"
+  </source>
+  <dest>
+    *: "Episode"
+  </dest>
+  <voice>
+    *: "Episode"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DOWNLOADS
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Downloads"
+  </source>
+  <dest>
+    *: "Downloads"
+  </dest>
+  <voice>
+    *: "Downloads"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_IMPORT_OPML
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Import OPML"
+  </source>
+  <dest>
+    *: "Import OPML"
+  </dest>
+  <voice>
+    *: "Import OPML"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NO_OPML
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "No .opml file found in %s"
+  </source>
+  <dest>
+    *: "No .opml file found in %s"
+  </dest>
+  <voice>
+    *: "No .opml file found in %s"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_IMPORTED
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "%d shows added"
+  </source>
+  <dest>
+    *: "%d shows added"
+  </dest>
+  <voice>
+    *: "%d shows added"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NO_PODCASTS
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "No podcasts yet. Put each show in its own folder in %s, or import an OPML file."
+  </source>
+  <dest>
+    *: "No podcasts yet. Put each show in its own folder in %s, or import an OPML file."
+  </dest>
+  <voice>
+    *: "No podcasts yet. Put each show in its own folder in %s, or import an OPML file."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NOT_DOWNLOADED
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "No episodes on the card yet"
+  </source>
+  <dest>
+    *: "No episodes on the card yet"
+  </dest>
+  <voice>
+    *: "No episodes on the card yet"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_KEEP
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Keep downloads"
+  </source>
+  <dest>
+    *: "Keep downloads"
+  </dest>
+  <voice>
+    *: "Keep downloads"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_ALL
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "All"
+  </source>
+  <dest>
+    *: "All"
+  </dest>
+  <voice>
+    *: "All"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DELETE_DOWNLOAD
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Delete this download"
+  </source>
+  <dest>
+    *: "Delete this download"
+  </dest>
+  <voice>
+    *: "Delete this download"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NOT_OURS
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "You copied this file: SONORA never deletes it"
+  </source>
+  <dest>
+    *: "You copied this file: SONORA never deletes it"
+  </dest>
+  <voice>
+    *: "You copied this file: SONORA never deletes it"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DELETED
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Deleted"
+  </source>
+  <dest>
+    *: "Deleted"
+  </dest>
+  <voice>
+    *: "Deleted"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_CLEANUP
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Remove played downloads"
+  </source>
+  <dest>
+    *: "Remove played downloads"
+  </dest>
+  <voice>
+    *: "Remove played downloads"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_REMOVE_N
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "Remove %d played downloads?"
+  </source>
+  <dest>
+    *: "Remove %d played downloads?"
+  </dest>
+  <voice>
+    *: "Remove %d played downloads?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_REMOVED_N
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "%d files removed"
+  </source>
+  <dest>
+    *: "%d files removed"
+  </dest>
+  <voice>
+    *: "%d files removed"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NOTHING_TO_REMOVE
+  desc: SONORA podcasts
+  user: core
+  <source>
+    *: "No played downloads to remove"
+  </source>
+  <dest>
+    *: "No played downloads to remove"
+  </dest>
+  <voice>
+    *: "No played downloads to remove"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_REFRESH
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Refresh feeds"
+  </source>
+  <dest>
+    *: "Refresh feeds"
+  </dest>
+  <voice>
+    *: "Refresh feeds"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NETWORK_OFF
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Network features are off (SONORA settings)"
+  </source>
+  <dest>
+    *: "Network features are off (SONORA settings)"
+  </dest>
+  <voice>
+    *: "Network features are off (SONORA settings)"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NO_WIFI
+  desc: SONORA network
+  user: core
+  <source>
+    *: "No network: Wi-Fi is missing or not set up in .rockbox/wifi.cfg"
+  </source>
+  <dest>
+    *: "No network: Wi-Fi is missing or not set up in .rockbox/wifi.cfg"
+  </dest>
+  <voice>
+    *: "No network: Wi-Fi is missing or not set up in .rockbox/wifi.cfg"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NO_FEEDS
+  desc: SONORA network
+  user: core
+  <source>
+    *: "No shows with a feed. Import an OPML file first."
+  </source>
+  <dest>
+    *: "No shows with a feed. Import an OPML file first."
+  </dest>
+  <voice>
+    *: "No shows with a feed. Import an OPML file first."
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_CONNECTING
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Connecting…"
+  </source>
+  <dest>
+    *: "Connecting…"
+  </dest>
+  <voice>
+    *: "Connecting…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_CHECKING
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Checking %s…"
+  </source>
+  <dest>
+    *: "Checking %s…"
+  </dest>
+  <voice>
+    *: "Checking %s…"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_REFRESH_FAILED
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Some feeds could not be read"
+  </source>
+  <dest>
+    *: "Some feeds could not be read"
+  </dest>
+  <voice>
+    *: "Some feeds could not be read"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NOTHING_NEW
+  desc: SONORA network
+  user: core
+  <source>
+    *: "No new episodes"
+  </source>
+  <dest>
+    *: "No new episodes"
+  </dest>
+  <voice>
+    *: "No new episodes"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DOWNLOAD_N
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Download %d new episodes?"
+  </source>
+  <dest>
+    *: "Download %d new episodes?"
+  </dest>
+  <voice>
+    *: "Download %d new episodes?"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DOWNLOADING_PCT
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Downloading %d of %d: %d%%"
+  </source>
+  <dest>
+    *: "Downloading %d of %d: %d%%"
+  </dest>
+  <voice>
+    *: "Downloading %d of %d: %d%%"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DOWNLOADING_MB
+  desc: SONORA network
+  user: core
+  <source>
+    *: "Downloading %d of %d: %d MB"
+  </source>
+  <dest>
+    *: "Downloading %d of %d: %d MB"
+  </dest>
+  <voice>
+    *: "Downloading %d of %d: %d MB"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DOWNLOADED_N
+  desc: SONORA network
+  user: core
+  <source>
+    *: "%d of %d downloaded"
+  </source>
+  <dest>
+    *: "%d of %d downloaded"
+  </dest>
+  <voice>
+    *: "%d of %d downloaded"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_SETTINGS
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "SONORA settings"
+  </source>
+  <dest>
+    *: "SONORA settings"
+  </dest>
+  <voice>
+    *: "SONORA settings"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_BOOKS_FOLDER
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Audiobooks folder"
+  </source>
+  <dest>
+    *: "Audiobooks folder"
+  </dest>
+  <voice>
+    *: "Audiobooks folder"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_PODCASTS_FOLDER
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Podcasts folder"
+  </source>
+  <dest>
+    *: "Podcasts folder"
+  </dest>
+  <voice>
+    *: "Podcasts folder"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_DEFAULT_FOLDER
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Default"
+  </source>
+  <dest>
+    *: "Default"
+  </dest>
+  <voice>
+    *: "Default"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_REWIND
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Rewind after a pause"
+  </source>
+  <dest>
+    *: "Rewind after a pause"
+  </dest>
+  <voice>
+    *: "Rewind after a pause"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_BOOK_SKIP_BACK
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Books: Prev goes back"
+  </source>
+  <dest>
+    *: "Books: Prev goes back"
+  </dest>
+  <voice>
+    *: "Books: Prev goes back"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_BOOK_SKIP_FWD
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Books: Next goes ahead"
+  </source>
+  <dest>
+    *: "Books: Next goes ahead"
+  </dest>
+  <voice>
+    *: "Books: Next goes ahead"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_POD_SKIP_BACK
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Podcasts: Prev goes back"
+  </source>
+  <dest>
+    *: "Podcasts: Prev goes back"
+  </dest>
+  <voice>
+    *: "Podcasts: Prev goes back"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_POD_SKIP_FWD
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Podcasts: Next goes ahead"
+  </source>
+  <dest>
+    *: "Podcasts: Next goes ahead"
+  </dest>
+  <voice>
+    *: "Podcasts: Next goes ahead"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_CHECKPOINT
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Save progress every"
+  </source>
+  <dest>
+    *: "Save progress every"
+  </dest>
+  <voice>
+    *: "Save progress every"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_AUTONEXT
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Podcasts: play the next episode"
+  </source>
+  <dest>
+    *: "Podcasts: play the next episode"
+  </dest>
+  <voice>
+    *: "Podcasts: play the next episode"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_SONORA_NETWORK
+  desc: SONORA settings
+  user: core
+  <source>
+    *: "Network features"
+  </source>
+  <dest>
+    *: "Network features"
+  </dest>
+  <voice>
+    *: "Network features"
+  </voice>
+</phrase>
