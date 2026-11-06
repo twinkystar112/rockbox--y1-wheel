@@ -1206,7 +1206,7 @@ static const char *dl_name(struct sscreen *s, int row, char *buf, size_t len)
     if (s->tag[row] == D_EMPTY)
         return str(LANG_SONORA_NONE_HERE);
     struct sonora_download *d = sonora_download_at(s->arg[row]);
-    char t[96], right[16];
+    char t[96], right[24];
     sonora_basename_noext(d->path, t, sizeof(t));
     if (d->size >= 1024 * 1024)
         snprintf(right, sizeof(right), "%lld MB", d->size / (1024 * 1024));

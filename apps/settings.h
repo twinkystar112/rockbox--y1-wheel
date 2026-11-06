@@ -240,7 +240,7 @@ enum {  ALARM_START_WPS = 0,
 #endif
 
 /* form a "virtual pointer" out of a language ID */
-#define ID2P(id) (VIRT_PTR + id)
+#define ID2P(id) (VIRT_PTR + (id))
 
 /* resolve a pointer which could be a virtualized ID or a literal */
 #define P2STR(p) (char *)((p>=VIRT_PTR && p<VIRT_PTR+VIRT_SIZE) ? str(p-VIRT_PTR) : p)

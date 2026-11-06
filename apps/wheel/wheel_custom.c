@@ -61,11 +61,6 @@
 #define BOOT_TXT    WHEEL_DIR "/boot.txt"
 #define BOOT_PIC    WHEEL_DIR "/boot-picture.txt"
 
-static unsigned rgbl(unsigned c)
-{
-    return LCD_RGBPACK((c >> 16) & 0xff, (c >> 8) & 0xff, c & 0xff);
-}
-
 /* ------------------------------ option lists ------------------------------ */
 /* a row: a setting cycled with OK, or a screen to open */
 struct opt {
@@ -248,7 +243,7 @@ static const char *wall_text(char *buf, size_t len)
 {
     const char *p = global_settings.wheel_wallpaper;
     const char *slash = strrchr(p, '/');
-    strlcpy(buf, p[0] ? (slash ? slash + 1 : p) : str(LANG_WHEEL_WALL_NONE), len);
+    strlcpy(buf, p[0] ? (slash ? slash + 1 : p) : (const char *)str(LANG_WHEEL_WALL_NONE), len);
     return buf;
 }
 
@@ -621,7 +616,7 @@ static void look_save_new(void)
     for (char *c = name; *c; c++)   /* (a file name) */
         if (strchr("/\\:*?\"<>|", *c))
             *c = '-';
-    splash(HZ, ID2P(look_save(name) ? LANG_WHEEL_LOOK_SAVED : LANG_FAILED));
+    splash(HZ, look_save(name) ? ID2P(LANG_WHEEL_LOOK_SAVED) : ID2P(LANG_FAILED));
 }
 
 static char looks_names[24][64];
@@ -667,14 +662,14 @@ static const char *look_pick(const char *title, const char *current)
 static const char *day_text(char *buf, size_t len)
 {
     strlcpy(buf, global_settings.wheel_look_day[0] ? global_settings.wheel_look_day
-                                                   : str(LANG_WHEEL_LOOK_NONE), len);
+                                                   : (const char *)str(LANG_WHEEL_LOOK_NONE), len);
     return buf;
 }
 
 static const char *night_text(char *buf, size_t len)
 {
     strlcpy(buf, global_settings.wheel_look_night[0] ? global_settings.wheel_look_night
-                                                     : str(LANG_WHEEL_LOOK_NONE), len);
+                                                     : (const char *)str(LANG_WHEEL_LOOK_NONE), len);
     return buf;
 }
 
@@ -1149,7 +1144,7 @@ static const char *boot_pic_text(char *buf, size_t len)
     char pic[MAX_PATH];
     read_small(BOOT_PIC, pic, sizeof(pic));
     const char *slash = strrchr(pic, '/');
-    strlcpy(buf, pic[0] ? (slash ? slash + 1 : pic) : str(LANG_WHEEL_BOOT_DEFAULT), len);
+    strlcpy(buf, pic[0] ? (slash ? slash + 1 : pic) : (const char *)str(LANG_WHEEL_BOOT_DEFAULT), len);
     return buf;
 }
 

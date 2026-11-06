@@ -241,9 +241,17 @@ Pruebas en un PC: `utils/wheel/tests/run.sh` (JDK + Python 3) y
 `python3 utils/wheel/typography/test_forge.py` (gcc).
 
 ## Instalar
-Como la ROM Rockbox-Y1 (Innioasis Updater / Y1 Helper). Si ya tenías Rockbox, borra
-`.rockbox/config.cfg` para aplicar el tema y los ajustes nuevos. La biblioteca se crea sola la
-primera vez.
+Igual que Rockbox-Y1 y con los mismos archivos. El flujo `.github/workflows/build-wheel.yml` los
+genera en GitHub con el toolchain oficial del port (NDK r10e, API 19):
+
+* `update_360p.zip`: cópialo a `.rockbox/update.zip` y entra en **Extras › Sistema › Actualizar
+  firmware**. Se instala en segundo plano y el Y1 se reinicia solo.
+* `rom_360p.zip` / `rom_type_b_360p.zip`: instalación completa con MTKClient o SP Flash Tool, como
+  la ROM Rockbox-Y1 (solo si marcas «roms» al lanzar el flujo).
+
+Si ya tenías Rockbox, borra `.rockbox/config.cfg` para aplicar el tema y los ajustes nuevos. La
+biblioteca se crea sola la primera vez. Copia de seguridad y vuelta atrás:
+`android/y1/WHEEL-INSTALL.md`.
 
 ## Para desarrolladores
 | Área | Archivos |

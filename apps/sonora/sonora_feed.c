@@ -206,7 +206,16 @@ long sonora_rfc822_time(const char *s)
     else if (!strncmp(s, "MDT", 3)) off = -6 * 3600;
     else if (!strncmp(s, "PST", 3)) off = -8 * 3600;
     else if (!strncmp(s, "PDT", 3)) off = -7 * 3600;
-    return days_from_civil(year, mon, day) * 86400 + hh * 3600 + mm * 60 + ss - off;
+    /* the Y1 is 32-bit: long is 32 bits, so keep junk out of the arithmetic
+       and the result inside 1970..2038 */
+    if (year < 1970 || year > 2100 || hh < 0 || hh > 23 || mm < 0 || mm > 59 ||
+        ss < 0 || ss > 60 || off < -18 * 3600 || off > 18 * 3600)
+        return 0;
+    long long t = (long long)days_from_civil(year, mon, day) * 86400 +
+                  hh * 3600 + mm * 60 + ss - off;
+    if (t <= 0)
+        return 0;
+    return t > 0x7fffffffLL ? 0x7fffffffL : (long)t;
 }
 
 long sonora_duration_secs(const char *s)
@@ -224,9 +233,12 @@ long sonora_duration_secs(const char *s)
             break;
         s = e + 1;
     }
-    if (n == 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
-    if (n == 2) return parts[0] * 60 + parts[1];
-    return parts[0];
+    for (int i = 0; i < n; i++)            /* junk guard (32-bit long) */
+        if (parts[i] < 0 || parts[i] > 10000000)
+            return 0;
+    long long t = n == 3 ? (long long)parts[0] * 3600 + parts[1] * 60 + parts[2]
+                : n == 2 ? (long long)parts[0] * 60 + parts[1] : parts[0];
+    return t > 0x7fffffffLL ? 0x7fffffffL : (long)t;
 }
 
 /* -------------------------------- RSS -------------------------------- */

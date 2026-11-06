@@ -1,0 +1,139 @@
+name: Build Y1 Wheel + SONORA
+
+# Builds the same files as the Rockbox-Y1 nightlies (build-roms.yml), from
+# this branch: update_360p.zip (install from the Y1's Firmware Update menu),
+# rockbox.apk and, on request, the full-flash ROM zips.
+#
+# Runs on every push to y1-wheel, or by hand from the Actions tab
+# ("Run workflow"; tick "roms" for the full-flash zips too).
+
+on:
+  push:
+    branches: [ "y1-wheel" ]
+  workflow_dispatch:
+    inputs:
+      roms:
+        description: "Also build the full-flash ROM zips (type A and type B)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ANDROID_SDK_PATH: /usr/local/lib/android/sdk
+      ANDROID_NDK_PATH: /home/runner/android-ndk-r10e
+      ANDROID_NDK_ROOT: /home/runner/android-ndk-r10e
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: cache android SDK/NDK
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/android-sdk
+          ~/android-ndk-r10e
+        key: ${{ runner.os }}-android-sdk-ndk-${{ hashFiles('android/y1/installToolchain.sh') }}
+        restore-keys: |
+          ${{ runner.os }}-android-sdk-ndk-
+
+    - name: prepare build environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y lib32z1 openjdk-17-jdk golang-go zip file
+        java --version
+        cd android/y1
+        yes | ./installToolchain.sh
+
+    - name: build go tools (gocurl, poddl)
+      run: |
+        mkdir -p android/y1/build
+        cd android/y1/build
+        export GOPATH=$PWD/go CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=6
+        git clone https://github.com/rockbox-y1/gocurl.git
+        (cd gocurl && git checkout json-data && go build -ldflags '-s -w' -o gocurl)
+        git clone https://codeberg.org/rockbox-y1/download-podcast.git
+        cd download-podcast
+        git checkout patches
+        git clone https://github.com/rockbox-y1/id3-go.git
+        (cd id3-go && git checkout patches)
+        go build -o poddl
+
+    - name: build rockbox (480x360)
+      run: |
+        cd android/y1/build
+        ../../../tools/configure --target=310 --lcdwidth=480 --lcdheight=360 --type=n
+        make clean
+        make
+        make classes
+        make zip
+        make unsigned-apk
+        APKSIGNER=apksigner
+        command -v apksigner >/dev/null 2>&1 || \
+          APKSIGNER="$ANDROID_SDK_PATH/build-tools/$(ls -1 "$ANDROID_SDK_PATH/build-tools" | tail -1)/apksigner"
+        "$APKSIGNER" sign --key ../platform.pk8 --cert ../platform.x509.pem rockbox_unsigned.apk
+        cp rockbox_unsigned.apk rockbox.apk
+
+    - name: check the binaries are 32-bit ARM
+      run: |
+        cd android/y1/build
+        file libs/armeabi/librockbox.so gocurl/gocurl download-podcast/poddl
+        for f in libs/armeabi/librockbox.so gocurl/gocurl download-podcast/poddl; do
+          file "$f" | grep -q 'ELF 32-bit LSB.*ARM' || { echo "$f is not 32-bit ARM"; exit 1; }
+        done
+        unzip -l libs/armeabi/libmisc.so | grep -q 'sdcard/.rockbox/themes/Wheel.cfg'
+
+    - name: bundle update_360p.zip
+      run: |
+        cd android/y1/build
+        rm -rf update update.zip update_360p.zip
+        mkdir update
+        wget -q https://github.com/rockbox-y1/rockbox/releases/download/stock-menu/better-Y_3.1.2_v1.1.0-dev1_patched.apk
+        cp better-Y_*.apk com.innioasis.y1.apk
+        cp -r libs update/libs
+        cp com.innioasis*.apk update/.
+        cp rockbox.apk update/rockbox.apk
+        for f in install-recovery.sh 99Y1ButtonScript switch-to-stock.sh update.sh Rockbox.kl Stock.kl; do
+          cp ../scripts/$f update/.
+        done
+        cp gocurl/gocurl update/.
+        cp download-podcast/poddl update/.
+        zip -r update.zip update/*
+        rm -rf update
+        mv update.zip update_360p.zip
+        unzip -l update_360p.zip | grep -q 'update/libs/armeabi/librockbox.so'
+        sha256sum update_360p.zip rockbox.apk | tee SHA256SUMS.txt
+
+    - name: bundle full-flash ROMs
+      if: ${{ inputs.roms }}
+      run: |
+        android/y1/wheel-build-rom.sh type-a-base rom_360p.zip
+        android/y1/wheel-build-rom.sh type-b-base rom_type_b_360p.zip
+        sha256sum rom_360p.zip rom_type_b_360p.zip | tee -a android/y1/build/SHA256SUMS.txt
+
+    - name: keep the files as a workflow artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: y1-wheel-${{ github.run_number }}
+        path: |
+          android/y1/build/update_360p.zip
+          android/y1/build/rockbox.apk
+          android/y1/build/SHA256SUMS.txt
+          rom_360p.zip
+          rom_type_b_360p.zip
+        if-no-files-found: warn
+
+    - name: publish a pre-release
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        files="android/y1/build/update_360p.zip android/y1/build/rockbox.apk android/y1/build/SHA256SUMS.txt"
+        for f in rom_360p.zip rom_type_b_360p.zip; do [ -f "$f" ] && files="$files $f"; done
+        gh release create "wheel-${GITHUB_RUN_NUMBER}" $files \
+          --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease \
+          --title "Y1 Wheel + SONORA build ${GITHUB_RUN_NUMBER}" \
+          --notes-file android/y1/WHEEL-INSTALL.md

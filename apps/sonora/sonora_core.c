@@ -695,7 +695,8 @@ static bool save_music_queue(void)
         return false;
     char path[MAX_PATH], tmp[MAX_PATH];
     sonora_data_path("music-queue.m3u8", path, sizeof(path));
-    snprintf(tmp, sizeof(tmp), "%s.tmp", path);
+    if (snprintf(tmp, sizeof(tmp), "%s.tmp", path) >= (int)sizeof(tmp))
+        return false;                  /* never let tmp collapse onto path */
     int fd = open(tmp, O_WRONLY | O_CREAT | O_TRUNC, 0666);
     if (fd < 0)
         return false;
