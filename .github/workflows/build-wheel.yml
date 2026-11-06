@@ -23,6 +23,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     env:
       ANDROID_SDK_PATH: /usr/local/lib/android/sdk
       ANDROID_NDK_PATH: /home/runner/android-ndk-r10e
@@ -42,9 +43,12 @@ jobs:
           ${{ runner.os }}-android-sdk-ndk-
 
     - name: prepare build environment
+      timeout-minutes: 25
       run: |
-        sudo apt-get update
-        sudo apt-get install -y lib32z1 openjdk-17-jdk golang-go zip file
+        # retries and timeouts: an Ubuntu mirror that stalls must not hang the job
+        APT="-o Acquire::Retries=5 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30"
+        sudo apt-get $APT update
+        sudo apt-get $APT install -y lib32z1 openjdk-17-jdk golang-go zip file
         java --version
         cd android/y1
         yes | ./installToolchain.sh
