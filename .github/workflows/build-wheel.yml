@@ -2,20 +2,14 @@ name: Build Y1 Wheel + SONORA
 
 # Builds the same files as the Rockbox-Y1 nightlies (build-roms.yml), from
 # this branch: update_360p.zip (install from the Y1's Firmware Update menu),
-# rockbox.apk and, on request, the full-flash ROM zips.
+# rockbox.apk and the full-flash ROM zips (type A and type B).
 #
-# Runs on every push to y1-wheel, or by hand from the Actions tab
-# ("Run workflow"; tick "roms" for the full-flash zips too).
+# Runs on every push to y1-wheel, or by hand from the Actions tab.
 
 on:
   push:
     branches: [ "y1-wheel" ]
   workflow_dispatch:
-    inputs:
-      roms:
-        description: "Also build the full-flash ROM zips (type A and type B)"
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -113,7 +107,6 @@ jobs:
         sha256sum update_360p.zip rockbox.apk | tee SHA256SUMS.txt
 
     - name: bundle full-flash ROMs
-      if: ${{ inputs.roms }}
       run: |
         android/y1/wheel-build-rom.sh type-a-base rom_360p.zip
         android/y1/wheel-build-rom.sh type-b-base rom_type_b_360p.zip

@@ -13,7 +13,7 @@ can go back.
 |---|---|
 | `update_360p.zip` | Normal install/update on a Y1 that already runs Rockbox-Y1 |
 | `rockbox.apk` | Only for manual (adb) installs; it is also inside the update zip |
-| `rom_360p.zip`, `rom_type_b_360p.zip` | Full flash with MTKClient / SP Flash Tool (built only when "roms" is ticked) |
+| `rom_360p.zip`, `rom_type_b_360p.zip` | Full flash with MTKClient / SP Flash Tool |
 | `SHA256SUMS.txt` | Checksums of the files above |
 
 ## Before you start: back up
