@@ -244,8 +244,11 @@ Pruebas en un PC: `utils/wheel/tests/run.sh` (JDK + Python 3) y
 Igual que Rockbox-Y1 y con los mismos archivos. El flujo `.github/workflows/build-wheel.yml` los
 genera en GitHub con el toolchain oficial del port (NDK r10e, API 19):
 
-* `update_360p.zip`: cópialo a `.rockbox/update.zip` y entra en **Extras › Sistema › Actualizar
-  firmware**. Se instala en segundo plano y el Y1 se reinicia solo.
+* `update_360p.zip`: borra antes la carpeta `.rockbox/update` si existe (una actualización
+  anterior puede dejarla y entonces el Y1 no consigue descomprimir la nueva), cópialo a
+  `.rockbox/update.zip` y entra en **Extras › Sistema › Actualizar firmware**. Se instala en
+  segundo plano, tarda unos minutos y el Y1 se reinicia solo. Cada paso queda en
+  `.rockbox/update.log`.
 * `rom_360p.zip` / `rom_type_b_360p.zip`: instalación completa con MTKClient o SP Flash Tool, como
   la ROM Rockbox-Y1.
 

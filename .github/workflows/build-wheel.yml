@@ -100,7 +100,14 @@ jobs:
         done
         cp gocurl/gocurl update/.
         cp download-podcast/poddl update/.
-        zip -r update.zip update/*
+        # no folder entries: the Y1's unzip stops with "can't create
+        # directory ... File exists" when a folder from an earlier update is
+        # still on the card (files alone create their folders as needed)
+        zip -q -d update/libs/armeabi/libmisc.so '*/' || true
+        zip -r -D update.zip update/*
+        for z in update.zip update/libs/armeabi/libmisc.so; do
+          if unzip -Z1 "$z" | grep -q '/$'; then echo "$z still has folder entries"; exit 1; fi
+        done
         rm -rf update
         mv update.zip update_360p.zip
         unzip -l update_360p.zip | grep -q 'update/libs/armeabi/librockbox.so'

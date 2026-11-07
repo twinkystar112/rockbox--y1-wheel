@@ -28,15 +28,34 @@ the new program files and replaces the bundled themes, fonts and languages in `.
 
 ## Install (same as Rockbox-Y1)
 
-1. Copy `update_360p.zip` into the `.rockbox` folder on the Y1 and rename it to `update.zip`.
-2. Eject the Y1 safely and unplug it.
-3. On the Y1: **Main menu › Extras › System › Firmware Update**. On plain Rockbox-Y1 it's
-   **Main Menu › System › Firmware Update**.
-4. The update runs in the background and the Y1 restarts by itself when it is done.
-5. If you came from plain Rockbox-Y1, your old `config.cfg` keeps the old theme. To start with
+1. In the `.rockbox` folder on the Y1, delete the `update` folder and any old `update.zip`, if
+   they are there. An earlier update can leave the `update` folder behind, and then the Y1 can't
+   unpack the new one (see "If the update hangs" below).
+2. Copy `update_360p.zip` into `.rockbox` and rename it to `update.zip`. On Windows, if file
+   extensions are hidden, rename it to just `update`.
+3. Eject the Y1 safely and unplug it.
+4. On the Y1: **Main menu › Extras › System › Firmware Update**. On plain Rockbox-Y1 it's
+   **Main Menu › System › Firmware Update**. Answer **Yes** to "Do you want to update the system?".
+5. The update runs in the background with no progress bar and takes several minutes. The Y1
+   restarts by itself when it is done. Don't switch it off or connect it to a computer meanwhile.
+6. If you came from plain Rockbox-Y1, your old `config.cfg` keeps the old theme. To start with
    the Wheel defaults, delete `.rockbox/config.cfg` (you backed it up) and restart.
 
 First install on a Y1 without Rockbox, or no "Firmware Update" entry: use the full flash below.
+
+### If the update hangs
+
+Every step is written to `.rockbox/update.log`. If the Y1 hasn't restarted after about
+20 minutes, hold the power button to restart it and look at the end of that file.
+
+* `unzip: can't create directory 'update/libs/': File exists` means a leftover `update` folder
+  stopped the unpacking (step 1). The update script that comes with older Rockbox-Y1 versions
+  carries on anyway and removes the Rockbox app, so Rockbox stays on its logo. Fix it with a
+  full flash (below), then delete the `update` folder before updating again.
+* The update script in this build checks every file first. If one is missing it writes
+  `!! Update stopped. Nothing on the system was changed.` and leaves Rockbox as it was. This
+  protects the updates after this one: the first update always runs the script that is already
+  on the Y1.
 
 ## Full flash (fresh install)
 
