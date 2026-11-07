@@ -20,13 +20,6 @@
 #define WHEEL_GEL_H
 
 #include <stdbool.h>
-#ifdef __PCTOOL__
-#define wheel_role_colour(c) (c)
-#else
-#include "screen_access.h"
-
-/* glossy finish switched on and a Wheel theme in use */
-bool wheel_aero_on(void);
 
 /* colours that change while the skin is loaded ("wrNN" in a skin, see
  * parse_color()): the palette that follows the cover sets them */
@@ -35,6 +28,15 @@ bool wheel_aero_on(void);
 #define WHEEL_ROLE_ACCENT2  18  /* "accent2" (lss) */
 #define WHEEL_ROLE_ACCENTTX 19  /* "accenttext" (lst) */
 #define WHEEL_ROLES         20
+
+#ifdef __PCTOOL__
+#define wheel_role_colour(c) (c)
+#else
+#include "screen_access.h"
+
+/* glossy finish switched on and a Wheel theme in use */
+bool wheel_aero_on(void);
+
 /* c itself, or the current colour of the role it names */
 unsigned wheel_role_colour(unsigned c);
 void wheel_role_set(int role, unsigned lcd_colour);

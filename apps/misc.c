@@ -1822,9 +1822,14 @@ bool parse_color(enum screen_type screen, char *text, int *value)
     {
         /* Y1 Wheel: themes can follow the user's accent colour
          * (the line selector colours) */
+#ifndef __PCTOOL__
         if (!strcmp(text, "accent"))      { *value = global_settings.lse_color; return true; }
         if (!strcmp(text, "accent2"))     { *value = global_settings.lss_color; return true; }
         if (!strcmp(text, "accenttext"))  { *value = global_settings.lst_color; return true; }
+#else   /* checkwps: no settings, any colour will do */
+        if (!strcmp(text, "accent") || !strcmp(text, "accent2") || !strcmp(text, "accenttext"))
+            { *value = 0; return true; }
+#endif
         /* "wr00".."wr19": colours set while the skin is shown (wheel_gel.h) */
         if (text[0] == 'w' && text[1] == 'r' && isdigit(text[2]) && isdigit(text[3]) &&
             !text[4] && (text[2] - '0') * 10 + text[3] - '0' < WHEEL_ROLES)
