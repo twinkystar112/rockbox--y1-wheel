@@ -13,4 +13,9 @@ void wheel_wps_scrub(int dir);
 bool wheel_wps_idle(void);
 bool wheel_lyrics_screen(void);
 void wheel_lyrics_open(void);   /* from the Now Playing menu */
+/* %Wk(label): the sung line and the next one, wrapped (karaoke layout) */
+struct screen;
+struct viewport;
+void wheel_lyrics_draw_karaoke(struct screen *d, struct viewport *vp,
+                               struct viewport *next_vp, bool full);
 #endif

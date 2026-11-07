@@ -2584,6 +2584,7 @@ static int skin_element_callback(struct skin_element* element, void* data)
                     break;
                 case SKIN_TOKEN_VIEWPORT_ENABLE:
                 case SKIN_TOKEN_UIVIEWPORT_ENABLE:
+                case SKIN_TOKEN_WHEEL_KARAOKE:
                     token->value.data = get_param(element, 0)->data.text;
                     break;
                 case SKIN_TOKEN_IMAGE_PRELOAD_DISPLAY:

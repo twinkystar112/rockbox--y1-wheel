@@ -46,6 +46,8 @@
 #include "rbpaths.h"
 #include "string-extra.h"
 #include "pathfuncs.h"
+#include "rbunicode.h"
+#include <ctype.h>
 #include "yesno.h"
 #include "filetypes.h"
 #include "wheel_gel.h"
@@ -73,7 +75,10 @@ static void update_row_metrics(void)
     row_gap = MAX(20, (21 * pct + 50) / 100);
 }
 #define COVER      112
-#define DURATION_CACHE ROCKBOX_DIR "/wheel-playlists.tsv"
+/* (-2: since songs named another way are found too, older counts and
+ *  durations may be short) */
+#define DURATION_CACHE ROCKBOX_DIR "/wheel-playlists-2.tsv"
+#define DURATION_CACHE_OLD ROCKBOX_DIR "/wheel-playlists.tsv"
 
 WHEEL_LIST_DEFINE(lv_main, 1000);
 WHEEL_LIST_DEFINE(lv_nested, 120);
@@ -322,6 +327,205 @@ static bool is_playlist_name(const char *name)
     return ext && (!strcasecmp(ext, ".m3u") || !strcasecmp(ext, ".m3u8"));
 }
 
+/* ---------------------- where a playlist's songs are ----------------------
+ * Playlists made on a computer, a phone or another player name the songs
+ * their own way: "C:\Users\Ana\Music\...", "file:///D:/M%C3%BAsica/...",
+ * "/storage/emulated/0/Music/...", "/Music/..." (Rockbox players, from the
+ * card's root), ANSI names in a .m3u. The songs are looked for on the card
+ * as they are: as Rockbox reads playlists first; then from the card's root;
+ * then dropping the computer's own folders ("C:/Users/Ana") until the rest
+ * is found on the card or in one of its folders. What worked for one song
+ * is tried first for the next; after a few songs that can't be found
+ * anywhere the deep search stops, so a broken playlist opens quickly. */
+
+#define CARD_BASES 24
+static struct
+{
+    char root[MAX_PATH];             /* the card ("/sdcard" on the Y1) */
+    char bases[CARD_BASES][96];      /* root and its top folders */
+    int n_bases;
+    int drop, base;                  /* what worked last (-1: nothing yet) */
+    int misses;
+} rs;
+
+static void resolve_begin(void)
+{
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(HAVE_SPECIAL_DIRS)
+    char buf[MAX_PATH];
+    const char *r = handle_special_dirs(HOME_DIR, 0, buf, sizeof(buf));
+    strlcpy(rs.root, r, sizeof(rs.root));
+#else
+    strlcpy(rs.root, "/", sizeof(rs.root));
+#endif
+    size_t n = strlen(rs.root);
+    while (n > 1 && rs.root[n - 1] == '/')
+        rs.root[--n] = '\0';
+    rs.drop = rs.base = -1;
+    rs.misses = 0;
+    rs.n_bases = 0;
+    strlcpy(rs.bases[rs.n_bases++], rs.root, sizeof(rs.bases[0]));
+    DIR *d = opendir(rs.root);
+    if (!d)
+        return;
+    struct dirent *e;
+    while ((e = readdir(d)) && rs.n_bases < CARD_BASES)
+    {
+        const char *nm = (const char *)e->d_name;
+        if (nm[0] == '.' || !strcasecmp(nm, "Android") || !strcasecmp(nm, "LOST.DIR"))
+            continue;
+        char path[MAX_PATH];
+        snprintf(path, sizeof(path), "%s/%s", strcmp(rs.root, "/") ? rs.root : "", nm);
+        if (strlen(path) < sizeof(rs.bases[0]) && dir_exists(path))
+            strlcpy(rs.bases[rs.n_bases++], path, sizeof(rs.bases[0]));
+    }
+    closedir(d);
+}
+
+static bool valid_utf8(const unsigned char *p)
+{
+    while (*p)
+    {
+        int n = *p < 0x80 ? 0 : (*p & 0xe0) == 0xc0 ? 1 : (*p & 0xf0) == 0xe0 ? 2 :
+                (*p & 0xf8) == 0xf0 ? 3 : -1;
+        if (n < 0)
+            return false;
+        p++;
+        while (n--)
+            if ((*p++ & 0xc0) != 0x80)
+                return false;
+    }
+    return true;
+}
+
+/* Windows-1252 -> UTF-8 (Latin-1 plus curly quotes, dashes, euro... in
+ * 0x80-0x9f) */
+static unsigned char *cp1252_decode(const unsigned char *in, unsigned char *out, int size)
+{
+    static const unsigned short c1[32] = {
+        0x20ac, 0x81, 0x201a, 0x192, 0x201e, 0x2026, 0x2020, 0x2021,
+        0x2c6, 0x2030, 0x160, 0x2039, 0x152, 0x8d, 0x17d, 0x8f,
+        0x90, 0x2018, 0x2019, 0x201c, 0x201d, 0x2022, 0x2013, 0x2014,
+        0x2dc, 0x2122, 0x161, 0x203a, 0x153, 0x9d, 0x17e, 0x178 };
+    unsigned char *end = out + size - 4;
+    for (; *in && out < end; in++)
+    {
+        unsigned c = *in;
+        out = utf8encode(c >= 0x80 && c < 0xa0 ? c1[c - 0x80] : c, out);
+    }
+    return out;
+}
+
+static int hexval(int c)
+{
+    return c >= '0' && c <= '9' ? c - '0' : c >= 'a' && c <= 'f' ? c - 'a' + 10 :
+           c >= 'A' && c <= 'F' ? c - 'A' + 10 : -1;
+}
+
+static bool join_exists(char *out, size_t len, const char *base, const char *rest)
+{
+    snprintf(out, len, "%s/%s", strcmp(base, "/") ? base : "", rest);
+    return file_exists(out);
+}
+
+/* one line of a playlist -> a song's path on the card; false: not found
+ * (out then holds the best guess, for the list to show its name) */
+static bool resolve_track(char *out, size_t len, const char *line, const char *dir,
+                          bool utf8)
+{
+    char a[MAX_PATH], b[MAX_PATH];
+    const char *p = line;
+    /* "file:///C:/..." (URL, %-escaped) */
+    bool url = !strncasecmp(p, "file:", 5);
+    if (url)
+    {
+        p += 5;
+        while (*p == '/' && p[1] == '/') p++;
+        if (p[0] == '/' && isalpha((unsigned char)p[1]) && p[2] == ':')
+            p++;                                 /* "/C:/..." */
+    }
+    size_t n = 0;
+    for (; *p && n < sizeof(a) - 1; p++)
+    {
+        int h1, h2;
+        if (url && *p == '%' && (h1 = hexval(p[1])) >= 0 && (h2 = hexval(p[2])) >= 0)
+        {
+            a[n++] = h1 * 16 + h2;
+            p += 2;
+        }
+        else
+            a[n++] = *p == '\\' ? '/' : *p;
+    }
+    a[n] = '\0';
+    /* ANSI names (a .m3u from Windows): to UTF-8. Western Windows
+     * (cp1252) unless the codepage setting names another script - its
+     * default, UTF-8, would turn every accent into "?" */
+    if (!utf8 && !valid_utf8((unsigned char *)a))
+    {
+        int cp = global_settings.default_codepage;
+        unsigned char *e;
+        if (cp == UTF_8 || cp == ISO_8859_1 || cp == WIN_1252)
+            e = cp1252_decode((unsigned char *)a, (unsigned char *)b, sizeof(b) - 1);
+        else
+            e = iso_decode_ex((unsigned char *)a, (unsigned char *)b, cp,
+                              strlen(a), sizeof(b) - 1);
+        *e = '\0';
+        strlcpy(a, b, sizeof(a));
+    }
+    /* a drive letter: the rest is from the root of some drive */
+    char *q = a;
+    bool drive = isalpha((unsigned char)q[0]) && q[1] == ':';
+    if (drive)
+        q += 2;
+
+    /* 1. as Rockbox reads it: absolute, or next to the playlist */
+    if (q[0] == '/' && !drive)
+        strlcpy(b, q, sizeof(b));
+    else if (q[0] == '/')
+        snprintf(b, sizeof(b), "%s%s", strcmp(rs.root, "/") ? rs.root : "", q);
+    else
+        snprintf(b, sizeof(b), "%s%s", dir, q);
+    path_remove_dot_segments(b, b);
+    strlcpy(out, b, len);
+    if (file_exists(b))
+        return true;
+
+    /* the rest only for absolute names that point somewhere else */
+    if (q[0] != '/' && !drive)
+        return false;
+    while (*q == '/') q++;
+    /* 2. what worked for the songs before */
+    if (rs.drop >= 0)
+    {
+        const char *r = q;
+        for (int k = 0; k < rs.drop && r; k++)
+            if ((r = strchr(r, '/'))) r++;
+        if (r && *r && join_exists(b, sizeof(b), rs.bases[rs.base], r))
+        {
+            strlcpy(out, b, len);
+            return true;
+        }
+    }
+    if (rs.misses >= 5)
+        return false;                            /* this playlist is beyond help */
+    /* 3. drop leading folders until the rest is on the card or in one of
+     *    its folders ("/storage/emulated/0/Music/x" -> "Music/x") */
+    const char *r = q;
+    for (int k = 0; r && *r && k < 8; k++)
+    {
+        for (int bi = 0; bi < rs.n_bases; bi++)
+            if (join_exists(b, sizeof(b), rs.bases[bi], r))
+            {
+                rs.drop = k;
+                rs.base = bi;
+                strlcpy(out, b, len);
+                return true;
+            }
+        if ((r = strchr(r, '/'))) r++;
+    }
+    rs.misses++;
+    return false;
+}
+
 /* read a .m3u/.m3u8 into the list; returns the number of entries */
 int wheel_load_playlist_file(const char *file, struct wheel_list *l)
 {
@@ -330,29 +534,39 @@ int wheel_load_playlist_file(const char *file, struct wheel_list *l)
     int fd = open_utf8(file, O_RDONLY);
     if (fd < 0)
         return 0;
+    /* UTF-8: a .m3u8, or a byte order mark (open_utf8 skipped it) */
+    const char *ext = strrchr(file, '.');
+    bool utf8 = (ext && !strcasecmp(ext, ".m3u8")) || lseek(fd, 0, SEEK_CUR) > 0;
     strlcpy(dir, file, sizeof(dir));
     char *slash = strrchr(dir, '/');
     if (slash) slash[1] = '\0';
+    resolve_begin();
+    long t0 = current_tick;
+    int lost = 0;
     while (read_line(fd, line, sizeof(line)) > 0)
     {
         char *p = line;
         while (*p == ' ' || *p == '\t') p++;
         if (!*p || *p == '#') continue;
         size_t len = strlen(p);
-        while (len && (p[len - 1] == '\r' || p[len - 1] == ' ')) p[--len] = '\0';
-        for (char *q = p; *q; q++) if (*q == '\\') *q = '/';
+        while (len && (p[len - 1] == '\r' || p[len - 1] == ' ' || p[len - 1] == '\t'))
+            p[--len] = '\0';
+        if (!len) continue;
         l->total++;
         if (l->n >= l->max) continue;
         struct wheel_track *t = &l->t[l->n++];
-        if (p[0] == '/')
-            strlcpy(t->path, p, sizeof(t->path));
-        else
-            snprintf(t->path, sizeof(t->path), "%s%s", dir, p);
+        if (!resolve_track(t->path, sizeof(t->path), p, dir, utf8))
+            lost++;
         t->title[0] = t->artist[0] = '\0';
         t->len_ms = 0;
         t->meta = false;
+        if ((l->n & 31) == 0)
+            yield();
     }
     close(fd);
+    char what[64];
+    snprintf(what, sizeof(what), "playlist: %d songs, %d not found", l->n, lost);
+    wheel_perf(what, lost ? HZ : current_tick - t0);   /* (always noted when songs are missing) */
     return l->total;
 }
 
@@ -465,6 +679,7 @@ static void cache_store(const char *file, int count, unsigned long secs)
     fdprintf(out, "%s\t%ld\t%d\t%lu\n", file, fsize, count, secs);
     close(out);
     rename(DURATION_CACHE ".tmp", DURATION_CACHE);
+    remove(DURATION_CACHE_OLD);
 }
 
 /* ============================= the screen ============================= */

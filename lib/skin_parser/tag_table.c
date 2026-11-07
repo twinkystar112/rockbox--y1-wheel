@@ -227,6 +227,8 @@ static const struct tag_info legal_tags[] =
     TAG(SKIN_TOKEN_WHEEL_LYRIC_P1,         "Wn", "", SKIN_REFRESH_DYNAMIC),
     TAG(SKIN_TOKEN_WHEEL_LYRIC_P2,         "Wo", "", SKIN_REFRESH_DYNAMIC),
     TAG(SKIN_TOKEN_WHEEL_HAS_LYRICS,       "Wy", "", SKIN_REFRESH_DYNAMIC),
+    /* the sung lyric line and the next, wrapped; S = viewport with the next line's font */
+    TAG(SKIN_TOKEN_WHEEL_KARAOKE,          "Wk", "S", SKIN_REFRESH_DYNAMIC),
     TAG(SKIN_TOKEN_WHEEL_LIBRARY_STATUS,   "Wd", "", SKIN_REFRESH_DYNAMIC),
     TAG(SKIN_TOKEN_LIST_NEEDS_SCROLLBAR,  "LB", BAR_PARAMS, SKIN_REFRESH_DYNAMIC),
 

@@ -54,78 +54,77 @@
 #
 # ---------- artwork (soft shadow + cover, or a placeholder tile) ----------
 # ("#@aero" lines: the glossy finish has a reflection instead of the shadow)
-%V(24,52,126,126,-)
-#@aero %dr(4,5,122,121,e6e6ea)=#
-%dr(4,5,122,121,e6e6ea)
-#@aero %dr(2,3,122,121,d4d4da)=#
-%dr(2,3,122,121,d4d4da)
-%Cl(0,0,120,120,c,c)
+%V(24,50,154,154,-)
+#@aero %dr(4,5,150,149,e6e6ea)=#
+%dr(4,5,150,149,e6e6ea)
+#@aero %dr(2,3,150,149,d4d4da)=#
+%dr(2,3,150,149,d4d4da)
+%Cl(0,0,148,148,c,c)
 %?C<%Vd(art)|%Vd(tile)%Vd(note)>
-#@aero 120,120,-)=120,134,-)
-%Vl(art,24,52,120,120,-)
+#@aero 148,148,-)=148,160,-)
+%Vl(art,24,50,148,148,-)
 %Cd
-%Vl(tile,24,52,120,120,-)%Vb(cfcfd6)
+%Vl(tile,24,50,148,148,-)%Vb(cfcfd6)
 %dr(0,0,-,-,cfcfd6)
-%Vl(note,24,57,120,110,8)%Vb(cfcfd6)%Vf(fffffe)
+%Vl(note,24,69,148,110,8)%Vb(cfcfd6)%Vf(fffffe)
 %Vs(none)%dr(0,0,-,-,cfcfd6)%acO
 #
 # ---------- the song, beside the cover ----------
-%V(164,52,292,32,5)%Vf(141416)
+%V(190,56,266,32,5)%Vf(141416)
 %s%?it<%it|%fn>
-%V(164,88,292,26,2)%Vf(accent)
+%V(190,94,266,26,2)%Vf(accent)
 %s%?ia<%ia|%?iA<%iA|>>
-%V(164,116,292,26,2)%Vf(6e6e73)
+%V(190,122,266,26,2)%Vf(6e6e73)
 %s%?St(wheel np album)<%?id<%id|>|>
-%V(164,150,200,22,6)%Vf(8e8e93)
+%V(190,170,176,22,6)%Vf(8e8e93)
 %pp %Sx(of) %pe
 # shuffle / repeat (the %Vd switches sit on this always-visible line)
-%V(364,148,92,24,7)%Vf(accent)
+%V(366,168,90,24,7)%Vf(accent)
 %ar%?ps<E |>%?mm<|F|G|E|F>%?Wy<%Vd(kara)|%Vd(nolyr)>%?Wm<%?mv(1.5)<%Vd(vol)|%?St(wheel np bar)<%Vd(prog)|%Vd(progt)>>|%Vd(scrub)>
 #
-# ---------- karaoke: the line being sung, big, between the ones around it ----------
-%Vl(kara,24,190,432,22,6)%Vf(8e8e93)
-%ac%s%?Wp<%Wp|>
-%Vl(kara,24,216,432,32,5)%Vf(accent)
-%ac%s%?Wc<%Wc|· · ·>
-%Vl(kara,24,254,432,22,6)%Vf(8e8e93)
-%ac%s%?Wn<%Wn|>
+# ---------- karaoke: the line being sung (big) and the next one ----------
+# (%Wk draws both, wrapping long lines instead of scrolling them; the next
+#  line takes the font of the kara_next viewport, which is never shown)
+%Vl(kara,24,210,432,98,5)%Vf(accent)
+%Vs(none)%Wk(kara_next)
+%Vl(kara_next,24,210,432,22,2)
 #
 # no lyrics: say so, and what comes next
-%Vl(nolyr,24,206,432,26,2)%Vf(8e8e93)
+%Vl(nolyr,24,236,432,26,2)%Vf(8e8e93)
 %ac%Sx(No lyrics for this song)
-%Vl(nolyr,24,238,432,22,6)%Vf(8e8e93)
+%Vl(nolyr,24,268,432,22,6)%Vf(8e8e93)
 %ac%s%?It<%Sx(Up Next): %It|>
 #
-# ---------- progress, volume while the wheel turns, or scrubbing ----------
+# ---------- progress, volume while the wheel turns, or scrubbing (at the bottom) ----------
 #
-%Vl(prog,24,294,432,6,-)%Vf(accent)%Vb(dcdce1)
+%Vl(prog,24,318,432,6,-)%Vf(accent)%Vb(dcdce1)
 %pb(0,0,432,6,noborder)
-%Vl(prog,24,305,200,22,9)%Vf(6e6e73)
+%Vl(prog,24,330,200,22,9)%Vf(6e6e73)
 %pc
-%Vl(prog,256,305,200,22,9)%Vf(6e6e73)
+%Vl(prog,256,330,200,22,9)%Vf(6e6e73)
 %ar-%pr
 #
 # the thick progress bar
-%Vl(progt,24,290,432,12,-)%Vf(accent)%Vb(dcdce1)
+%Vl(progt,24,314,432,12,-)%Vf(accent)%Vb(dcdce1)
 %pb(0,0,432,12,noborder)
-%Vl(progt,24,308,200,22,9)%Vf(6e6e73)
+%Vl(progt,24,331,200,22,9)%Vf(6e6e73)
 %pc
-%Vl(progt,256,308,200,22,9)%Vf(6e6e73)
+%Vl(progt,256,331,200,22,9)%Vf(6e6e73)
 %ar-%pr
 #
-%Vl(vol,24,286,30,24,7)%Vf(3a3a3f)
+%Vl(vol,24,310,30,24,7)%Vf(3a3a3f)
 R
-%Vl(vol,58,294,398,6,-)%Vf(accent)%Vb(dcdce1)
+%Vl(vol,58,318,398,6,-)%Vf(accent)%Vb(dcdce1)
 %pv(0,0,398,6,noborder)
-%Vl(vol,24,305,432,22,9)%Vf(6e6e73)
+%Vl(vol,24,330,432,22,9)%Vf(6e6e73)
 %ac%pv dB
 #
 # scrubbing: thicker bar with a knob, big times, a hint
-%Vl(scrub,24,290,432,12,-)%Vf(accent)%Vb(dcdce1)
+%Vl(scrub,24,314,432,12,-)%Vf(accent)%Vb(dcdce1)
 %pb(0,0,432,12,noborder)
-%Vl(scrub,24,308,120,22,9)%Vf(141416)
+%Vl(scrub,24,331,120,22,9)%Vf(141416)
 %pc
-%Vl(scrub,144,307,192,22,6)%Vf(8e8e93)
+%Vl(scrub,144,330,192,22,6)%Vf(8e8e93)
 %ac%Sx(Scrubbing)
-%Vl(scrub,336,308,120,22,9)%Vf(141416)
+%Vl(scrub,336,331,120,22,9)%Vf(141416)
 %ar-%pr

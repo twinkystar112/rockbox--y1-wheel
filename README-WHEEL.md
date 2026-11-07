@@ -74,6 +74,12 @@ con carátula, top artistas, tu hora favorita). Desde los rankings se reproduce 
   texto oscuro, o color intenso con texto blanco. La cabecera
   se pliega al bajar. La canción que suena lleva un ecualizador animado.
 * **A continuación**: la cola con la misma vista; quitar, subir y bajar canciones.
+* **Playlists hechas en otros sitios**: encuentra las canciones aunque la lista las nombre a su
+  manera: rutas de Windows (`C:\Users\…\Music\…`), URL (`file:///D:/M%C3%BAsica/…`), rutas
+  del móvil (`/storage/emulated/0/Music/…`), las de otros reproductores Rockbox (`/Music/…`)
+  y nombres con acentos en `.m3u` de Windows (ANSI). Quita las carpetas del ordenador hasta dar
+  con la canción en la tarjeta. Las que no encuentra quedan anotadas en
+  `.rockbox/wheel-perf.log` ("playlist: N songs, M not found").
 * Reproducir a continuación / Añadir a la cola desde el navegador.
 
 ### Portadas (Album Flow) y vistas de listas
@@ -166,8 +172,9 @@ plano de siempre.
   debajo del 10 %, con un rayo al lado mientras carga.
 * **Ahora suena**: diseño **Clásico**, **Portada grande** (centrada, estilo nano),
   **Minimalista** (solo texto), **Vinilo** (la portada es la etiqueta redonda de un disco) o
-  **Karaoke** (el clásico con la letra debajo: la línea que suena grande, la anterior y la
-  siguiente);
+  **Karaoke** (portada más grande, la línea que suena en grande y la siguiente debajo; las
+  líneas largas pasan a varias filas, sin desplazarse, y si no caben se escriben más pequeñas
+  para que se lea todo);
   mostrar u ocultar álbum, "año · formato · bitrate" y la **siguiente canción**; barra de
   progreso fina o gruesa.
 * **Menú principal**: **panel derecho** con la portada, un **reloj** grande, **"A

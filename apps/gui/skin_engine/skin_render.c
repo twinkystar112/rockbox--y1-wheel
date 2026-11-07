@@ -34,6 +34,9 @@
 #include "settings.h"
 #include "skin_display.h"
 #include "wheel/wheel_gel.h"
+#ifndef __PCTOOL__
+#include "wheel/wheel_lyrics.h"
+#endif
 #include "skin_engine.h"
 #include "skin_parser.h"
 #include "tag_table.h"
@@ -313,6 +316,18 @@ static bool do_non_text_tags(struct gui_wps *gwps, struct skin_draw_info *info,
             break;
         }
 #endif
+        case SKIN_TOKEN_WHEEL_KARAOKE:
+#ifndef __PCTOOL__
+            /* Y1 Wheel: wrapped lyrics, drawn in C (wheel_lyrics.c) */
+            if (do_refresh && gwps->display->screen_type == SCREEN_MAIN)
+            {
+                struct skin_viewport *nv = skin_find_item(
+                        SKINOFFSETTOPTR(skin_buffer, token->value.data), SKIN_FIND_VP, data);
+                wheel_lyrics_draw_karaoke(gwps->display, &skin_vp->vp, nv ? &nv->vp : NULL,
+                        (info->refresh_type & SKIN_REFRESH_ALL) == SKIN_REFRESH_ALL);
+            }
+#endif
+            break;
         case SKIN_TOKEN_DRAW_INBUILTBAR:
             gui_statusbar_draw(&(statusbars.statusbars[gwps->display->screen_type]),
                                info->refresh_type == SKIN_REFRESH_ALL,

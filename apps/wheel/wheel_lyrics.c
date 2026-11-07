@@ -20,6 +20,7 @@
  * of the License, or (at your option) any later version.
  *
  ****************************************************************************/
+#include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
@@ -531,11 +532,9 @@ bool wheel_lyrics_available(void)
     return n_lines > 0;
 }
 
-/* rel = -2..2 around the line being sung now */
-const char *wheel_lyrics_line(int rel)
+/* the line being sung now, -1 before the first */
+static int sung_line(void)
 {
-    if (!wheel_lyrics_available())
-        return NULL;
     struct mp3entry *id3 = audio_current_track();
     long pos = id3 ? (long)id3->elapsed : 0;
     int cur = -1;
@@ -548,11 +547,164 @@ const char *wheel_lyrics_line(int rel)
     else
         for (int i = 0; i < n_lines && lines[i].ms <= pos; i++)
             cur = i;
+    return cur;
+}
+
+/* rel = -2..2 around the line being sung now */
+const char *wheel_lyrics_line(int rel)
+{
+    if (!wheel_lyrics_available())
+        return NULL;
+    int cur = sung_line();
     int want = cur + rel;
     if (want < 0 || want >= n_lines)
         return NULL;
     const char *t = text + lines[want].off;
     return *t ? t : NULL;
+}
+
+/* ------------------------ karaoke (%Wk in a skin) ------------------------
+ * The line being sung in the viewport's font and colour, and the next one
+ * under it in the font of the viewport the tag names, dimmed. Long lines
+ * wrap onto more rows (centred, never scrolling sideways), so a whole line
+ * can always be read. Drawn again only when the line changes (or the skin
+ * asks for everything): nothing to do between lines. */
+
+/* breaks s into rows that fit width: returns the row count (at most max);
+ * a last row that still doesn't hold the rest ends in "..." */
+static int wrap_rows(struct screen *d, const char *s, int width,
+                     char rows[][96], int max, bool *cut)
+{
+    int n = 0;
+    if (cut)
+        *cut = false;
+    while (*s == ' ') s++;
+    while (*s && n < max)
+    {
+        int fit = 0, len = strlen(s), w, h;
+        /* the longest run of whole words that fits */
+        for (int i = 1; i <= len; i++)
+        {
+            if (i < len && s[i] != ' ')
+                continue;
+            if (i >= (int)sizeof(rows[0]))
+                break;
+            char tmp[96];
+            memcpy(tmp, s, i); tmp[i] = '\0';
+            d->getstringsize(tmp, &w, &h);
+            if (w > width)
+                break;
+            fit = i;
+        }
+        if (fit == 0)
+        {   /* one word wider than the screen: cut it */
+            fit = 1;
+            for (int i = 1; i <= len && i < (int)sizeof(rows[0]) - 1; i++)
+            {
+                char tmp[96];
+                memcpy(tmp, s, i); tmp[i] = '\0';
+                d->getstringsize(tmp, &w, &h);
+                if (w > width) break;
+                fit = i;
+            }
+            /* (don't split a UTF-8 character) */
+            while (fit > 1 && (s[fit] & 0xc0) == 0x80) fit--;
+        }
+        bool last = n == max - 1 && s[fit] && s[fit + strspn(s + fit, " ")];
+        memcpy(rows[n], s, fit);
+        rows[n][fit] = '\0';
+        if (last && cut)
+            *cut = true;
+        if (last)
+        {   /* make room for "..." */
+            char tmp[100];
+            for (;;)
+            {
+                snprintf(tmp, sizeof(tmp), "%s...", rows[n]);
+                d->getstringsize(tmp, &w, &h);
+                int l = strlen(rows[n]);
+                if (w <= width || l <= 1) break;
+                do l--; while (l > 1 && (rows[n][l] & 0xc0) == 0x80);
+                rows[n][l] = '\0';
+            }
+            strlcat(rows[n], "...", sizeof(rows[0]));
+        }
+        n++;
+        s += fit;
+        while (*s == ' ') s++;
+    }
+    return n;
+}
+
+void wheel_lyrics_draw_karaoke(struct screen *d, struct viewport *vp,
+                               struct viewport *next_vp, bool full)
+{
+    static int last_cur = -2;
+    static char last_track[MAX_PATH];
+    if (!wheel_lyrics_available())
+        return;
+    int cur = sung_line();
+    if (!full && cur == last_cur && !strcmp(last_track, track_path))
+        return;
+    last_cur = cur;
+    strlcpy(last_track, track_path, sizeof(last_track));
+
+    int w = vp->width, h = vp->height;
+    int old_font = vp->font;
+    unsigned fg = vp->fg_pattern;
+    d->set_drawmode(DRMODE_SOLID | DRMODE_INVERSEVID);
+    d->fillrect(0, 0, w, h);                 /* (the backdrop, if there is one) */
+
+    const char *now = cur >= 0 ? text + lines[cur].off : NULL;
+    if (!now || !*now)
+        now = "\xc2\xb7 \xc2\xb7 \xc2\xb7";      /* between lines: a pause */
+    const char *next = cur + 1 < n_lines ? text + lines[cur + 1].off : NULL;
+
+    static char rows[5][96];
+    int fh, fw;
+    bool cut;
+    d->getstringsize("Ag", &fw, &fh);
+    int n1 = wrap_rows(d, now, w - 8, rows, MAX(1, MIN(5, h / fh)), &cut);
+    if (cut && next_vp)
+    {   /* too long for the big letters: the smaller ones, so all of it shows */
+        vp->font = next_vp->font;
+        d->getstringsize("Ag", &fw, &fh);
+        n1 = wrap_rows(d, now, w - 8, rows, MAX(1, MIN(5, h / fh)), NULL);
+    }
+    d->set_drawmode(DRMODE_FG);
+    int y = 0;
+    for (int i = 0; i < n1 && y + fh <= h; i++, y += fh)
+    {
+        int tw, th;
+        d->getstringsize(rows[i], &tw, &th);
+        d->putsxy((w - tw) / 2, y, rows[i]);
+    }
+    if (next && *next)
+    {
+        if (next_vp)
+            vp->font = next_vp->font;
+        d->getstringsize("Ag", &fw, &fh);
+        y += 6;
+        int left = (h - y) / MAX(1, fh);
+        if (left > 0)
+        {
+            int n2 = wrap_rows(d, next, w - 8, rows, MIN(2, left), NULL);
+            /* the next line dimmed: between the text and page colours */
+            unsigned dim = LCD_RGBPACK(
+                (RGB_UNPACK_RED(global_settings.fg_color) + RGB_UNPACK_RED(vp->bg_pattern)) / 2,
+                (RGB_UNPACK_GREEN(global_settings.fg_color) + RGB_UNPACK_GREEN(vp->bg_pattern)) / 2,
+                (RGB_UNPACK_BLUE(global_settings.fg_color) + RGB_UNPACK_BLUE(vp->bg_pattern)) / 2);
+            d->set_foreground(dim);
+            for (int i = 0; i < n2 && y + fh <= h; i++, y += fh)
+            {
+                int tw, th;
+                d->getstringsize(rows[i], &tw, &th);
+                d->putsxy((w - tw) / 2, y, rows[i]);
+            }
+        }
+    }
+    vp->font = old_font;
+    d->set_foreground(fg);
 }
 
 /* --------------------------- Now Playing modes ------------------------- */
