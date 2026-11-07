@@ -38,8 +38,10 @@ the new program files and replaces the bundled themes, fonts and languages in `.
    **Main Menu › System › Firmware Update**. Answer **Yes** to "Do you want to update the system?".
 5. The update runs in the background with no progress bar and takes several minutes. The Y1
    restarts by itself when it is done. Don't switch it off or connect it to a computer meanwhile.
-6. If you came from plain Rockbox-Y1, your old `config.cfg` keeps the old theme. To start with
-   the Wheel defaults, delete `.rockbox/config.cfg` (you backed it up) and restart.
+6. If you came from plain Rockbox-Y1, your old `config.cfg` keeps the old theme and menus: only
+   screens Wheel draws itself (Album Flow, for example) show the new look. To start with the
+   Wheel defaults, rename `.rockbox/config.cfg` to `config-old.cfg` and restart; Rockbox then
+   creates a new one with the Wheel theme.
 
 First install on a Y1 without Rockbox, or no "Firmware Update" entry: use the full flash below.
 

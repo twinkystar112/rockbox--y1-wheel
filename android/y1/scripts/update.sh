@@ -69,11 +69,6 @@ chmod 644 /system/app/org.rockbox.apk
 chown root:root /system/app/org.rockbox.apk
 echo "++ Updated rockbox apk"
 
-if ls $UPD/com.innioasis.y1*.apk >/dev/null 2>&1; then
-  pm install $UPD/com.innioasis.y1*.apk
-  echo "++ Updated stock apk"
-fi
-
 cp $UPD/install-recovery.sh /system/etc/install-recovery.sh
 chmod 755 /system/etc/install-recovery.sh
 mkdir -p /system/etc/init.d
@@ -92,6 +87,13 @@ cp $UPD/Rockbox.kl /system/usr/keylayout/Rockbox.kl
 cp $UPD/Stock.kl /system/usr/keylayout/Stock.kl
 cp $UPD/Rockbox.kl /system/usr/keylayout/Generic.kl
 echo "++ Updated keylayouts"
+
+# last: installing the Innioasis app takes minutes; if it is cut short
+# (restart, power) everything Rockbox needs is already in place
+if ls $UPD/com.innioasis.y1*.apk >/dev/null 2>&1; then
+  pm install $UPD/com.innioasis.y1*.apk
+  echo "++ Updated stock apk"
+fi
 
 cd $RB
 remove_tree "$UPD" || echo "!! could not remove $UPD (delete it by hand)"
