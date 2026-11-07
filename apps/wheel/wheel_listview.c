@@ -147,15 +147,47 @@ static int text_w(struct screen *d, struct viewport *vp, int f, const char *s)
     return w;
 }
 
-static void pill(struct screen *d, int x, int y, int w, int h, unsigned col)
+/* the page follows the theme: light or dark from its background colour */
+static bool page_light(void)
 {
-    int r = h / 2;
-    bool gel = wheel_aero_on(); /* glossy capsule */
-    d->set_foreground(col);
+    unsigned bg = global_settings.bg_color;
+    return RGB_UNPACK_RED(bg) * 3 + RGB_UNPACK_GREEN(bg) * 6 + RGB_UNPACK_BLUE(bg) > 128 * 10;
+}
+
+/* colour of row y of the header band: the cover's tint fading into the
+ * page - deep with white text when dark, a pastel with dark text when light */
+static unsigned band_colour(unsigned tint, int y, int hh, bool full)
+{
+    unsigned bg = global_settings.bg_color;
+    int pct;
+    if (page_light())
+        pct = full ? 42 - y * 34 / hh : 34;
+    else
+        pct = full ? 100 - y * 70 / hh : 100;
+    return mixc(tint, bg, pct);
+}
+
+/* a raised glossy button: rounded corners, a thin rim, a bright top half
+ * fading down to a waterline, the colour deepest just under it and lit
+ * again towards the bottom */
+static unsigned button_row(unsigned base, int k, int h)
+{
+    unsigned white = LCD_RGBPACK(255, 255, 255), black = LCD_RGBPACK(0, 0, 0);
+    int mid = h / 2;
+    if (k <= 0)
+        return mixc(white, base, 72);              /* the lit upper edge */
+    if (k < mid)
+        return mixc(white, base, 50 - 26 * (k - 1) / MAX(1, mid - 1));
+    int t = (k - mid) * 100 / MAX(1, h - 1 - mid);
+    return mixc(mixc(black, base, 10), mixc(white, base, 16), 100 - t);
+}
+
+static void gel_button(struct screen *d, int x, int y, int w, int h, unsigned base,
+                       unsigned rim, unsigned tint, int hh, bool full)
+{
+    const int r = 8;
     for (int i = 0; i < h; i++)
     {
-        if (gel)
-            d->set_foreground(wheel_gel_row(col, col, i, h, 90));
         int dy = i < r ? r - i : (i >= h - r ? i - (h - r) + 1 : 0);
         int inset = 0;
         if (dy)
@@ -164,7 +196,20 @@ static void pill(struct screen *d, int x, int y, int w, int h, unsigned col)
             while ((s + 1) * (s + 1) <= k) s++;
             inset = r - s;
         }
-        d->hline(x + inset, x + w - 1 - inset, y + i);
+        unsigned under = band_colour(tint, y + i, hh, full);
+        unsigned body = (i == 0 || i == h - 1) ? rim : button_row(base, i - 1, h - 2);
+        d->set_foreground(body);
+        d->hline(x + inset + 1, x + w - 2 - inset, y + i);
+        /* the rim at the sides, softened into the band at the corners */
+        d->set_foreground(dy ? (unsigned)mixc(rim, under, 70) : rim);
+        d->drawpixel(x + inset, y + i);
+        d->drawpixel(x + w - 1 - inset, y + i);
+        if (inset > 0)
+        {
+            d->set_foreground(mixc(rim, under, 30));
+            d->drawpixel(x + inset - 1, y + i);
+            d->drawpixel(x + w - inset, y + i);
+        }
     }
 }
 
@@ -501,14 +546,17 @@ static unsigned header_tint(void)
 static void draw_header(struct screen *d, struct viewport *vp, bool full)
 {
     unsigned white = LCD_RGBPACK(255, 255, 255);
-    unsigned bg = global_settings.bg_color;
+    bool light = page_light();
+    /* text on the band: white on the deep tint, the theme's on the pastel */
+    unsigned ink = light ? (unsigned)global_settings.fg_color : white;
+    unsigned ink2 = light ? mixc(global_settings.fg_color, global_settings.bg_color, 62)
+                          : mixc(white, v.tint, 78);
     int hh = full ? HDR_FULL : HDR_SMALL;
     /* tinted band fading into the page colour */
     d->set_drawmode(DRMODE_SOLID);
     for (int y = 0; y < hh; y++)
     {
-        int pct = full ? 100 - (y * 35 / hh) : 100;
-        d->set_foreground(mixc(v.tint, bg, pct));
+        d->set_foreground(band_colour(v.tint, y, hh, full));
         d->hline(0, W - 1, y);
     }
     int cs = full ? COVER : 40;
@@ -556,10 +604,12 @@ static void draw_header(struct screen *d, struct viewport *vp, bool full)
     {
         int tx = cx + cs + 16, tw = W - tx - 16;
         if (v.lv->subtitle)
-            text_fit(d, vp, f_med, mixc(white, v.tint, 72), tx, 24, tw, v.lv->subtitle);
-        text_fit(d, vp, f_title, white, tx, 46, tw, v.lv->title);
-        text_fit(d, vp, f_reg, mixc(white, v.tint, 82), tx, 82, tw, stats);
-        /* buttons */
+            text_fit(d, vp, f_med, ink2, tx, 24, tw, v.lv->subtitle);
+        text_fit(d, vp, f_title, ink, tx, 46, tw, v.lv->title);
+        text_fit(d, vp, f_reg, ink2, tx, 82, tw, stats);
+        /* buttons: the one the wheel is on in the accent colour, the others
+         * pearl grey (or smoke when dark) */
+        unsigned black = LCD_RGBPACK(0, 0, 0);
         int bx = tx;
         for (int i = 0; i < v.n_btn; i++)
         {
@@ -569,18 +619,37 @@ static void draw_header(struct screen *d, struct viewport *vp, bool full)
             int w = text_w(d, vp, f_med, s) + 28;
             if (bx + w > W - 8) break;
             bool on = v.sel == i;
+            unsigned base, rim, label;
+            if (on)
+            {
+                base = global_settings.lse_color;
+                rim = mixc(black, base, 45);
+                label = global_settings.lst_color;
+            }
+            else if (light)
+            {
+                base = mixc(LCD_RGBPACK(0xe4, 0xe4, 0xea), v.tint, 93);
+                rim = LCD_RGBPACK(0x98, 0x98, 0xa2);
+                label = LCD_RGBPACK(0x1c, 0x1c, 0x1f);
+            }
+            else
+            {
+                base = mixc(LCD_RGBPACK(0x3c, 0x3c, 0x43), v.tint, 85);
+                rim = LCD_RGBPACK(0x0e, 0x0e, 0x11);
+                label = LCD_RGBPACK(0xf2, 0xf2, 0xf5);
+            }
             d->set_drawmode(DRMODE_SOLID);
-            pill(d, bx, 112, w, 30, on ? global_settings.lse_color : mixc(white, v.tint, 22));
+            gel_button(d, bx, 112, w, 30, base, rim, v.tint, hh, full);
             d->set_drawmode(DRMODE_FG);
-            text_fit(d, vp, f_med, on ? (unsigned)global_settings.lst_color : white, bx + 14, 117, w, s);
+            text_fit(d, vp, f_med, label, bx + 14, 117, w, s);
             bx += w + 8;
         }
     }
     else
     {
         int tx = cx + cs + 12, tw = W - tx - 16;
-        text_fit(d, vp, f_semi, white, tx, 6, tw, v.lv->title);
-        text_fit(d, vp, f_reg, mixc(white, v.tint, 80), tx, 31, tw, stats);
+        text_fit(d, vp, f_semi, ink, tx, 6, tw, v.lv->title);
+        text_fit(d, vp, f_reg, ink2, tx, 31, tw, stats);
     }
 }
 

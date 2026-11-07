@@ -69,7 +69,9 @@ con carátula, top artistas, tu hora favorita). Desde los rankings se reproduce 
 ### Listas y cola
 * Las playlists muestran **número de canciones y duración** (`17 · 12 min`).
 * **Vista de lista tipo Spotify**: carátula (o mosaico de 4 álbumes), nombre, canciones y horas,
-  botones Reproducir / Aleatorio / Guardar y todas las pistas con artista y duración. La cabecera
+  botones con relieve y brillo Reproducir / Aleatorio / Guardar (el elegido en el color de acento)
+  y todas las pistas con artista y duración. Sigue el modo claro u oscuro: cabecera pastel con
+  texto oscuro, o color intenso con texto blanco. La cabecera
   se pliega al bajar. La canción que suena lleva un ecualizador animado.
 * **A continuación**: la cola con la misma vista; quitar, subir y bajar canciones.
 * Reproducir a continuación / Añadir a la cola desde el navegador.
