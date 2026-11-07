@@ -39,4 +39,11 @@ int  wheel_disc_show(struct wheel_flow_src *s);   /* one disc per card */
 /* main menu: every album in the database */
 int  wheel_album_flow(void);
 
+/* a view started playback (the cover views give the decoder room) */
+void wheel_flow_play_started(void);
+/* false while the screen is off: animations stop, so the battery lasts */
+bool wheel_screen_on(void);
+/* logs work that took over ~150 ms to .rockbox/wheel-perf.log */
+void wheel_perf(const char *what, long ticks);
+
 #endif

@@ -8,7 +8,7 @@ Mapping (ASCII letters so skins can type them directly):
   A chevron   B play      C pause     D stop      E shuffle   F repeat
   G repeat1   H headphones I batt0    J batt1     K batt2     L batt3
   M batt4     N charging  O note      P ffwd      Q rewind    R speaker
-  S sync(up)  T check     U dot
+  S sync(up)  T check     U dot       V bolt (charging, beside the battery)
 """
 import struct, sys, math
 from PIL import Image, ImageDraw
@@ -125,6 +125,17 @@ def g_battery(s, level, charging=False):
     return finish(im, w, s)
 
 
+def g_bolt(s):
+    w = max(6, int(s * 0.5)); im, d = canvas(w, s); S = SS
+    top, bot = s * 0.14 * S, s * 0.88 * S
+    l, r = w * 0.08 * S, w * 0.92 * S
+    mid = (top + bot) / 2
+    d.polygon([(l + (r - l) * 0.62, top), (l, mid + (bot - top) * 0.06),
+               (l + (r - l) * 0.46, mid + (bot - top) * 0.06), (l + (r - l) * 0.34, bot),
+               (r, mid - (bot - top) * 0.08), (l + (r - l) * 0.55, mid - (bot - top) * 0.08)], fill=255)
+    return finish(im, w, s)
+
+
 def g_note(s):
     w = s; im, d = canvas(w, s); S = SS
     t = max(2, s // 12) * S
@@ -197,12 +208,12 @@ GLYPHS = {
     'K': lambda s: g_battery(s, 2), 'L': lambda s: g_battery(s, 3),
     'M': lambda s: g_battery(s, 4), 'N': lambda s: g_battery(s, 0, True),
     'O': g_note, 'P': g_ff, 'Q': lambda s: g_ff(s, True), 'R': g_speaker,
-    'S': g_sync, 'T': g_check, 'U': g_dot,
+    'S': g_sync, 'T': g_check, 'U': g_dot, 'V': g_bolt,
 }
 
 
 def build(size, out):
-    first, last = ord(' '), ord('U')
+    first, last = ord(' '), ord('V')
     height = size
     ascent = int(size * 0.8)
     bits = bytearray()

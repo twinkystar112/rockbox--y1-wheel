@@ -48,10 +48,10 @@ struct wheel_palette {
 
 /* the "Vinyl" Now Playing layout: where the record is (wps/Wheel-NP-Vinyl.wps
  * puts the round cover label at its centre) */
-#define VINYL_CX      132
+#define VINYL_CX      142
 #define VINYL_CY      199
-#define VINYL_R       146
-#define VINYL_LABEL_R 58
+#define VINYL_R       128
+#define VINYL_LABEL_R 76
 
 int wheel_palette_count(void);
 /* the palettes after the fixed ones: the cover's, and "My palette" */

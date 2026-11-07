@@ -35,6 +35,7 @@
 #include "lang.h"
 #include "action.h"
 #include "file.h"
+#include "dir.h"
 #include "font.h"
 #include "lcd.h"
 #include "misc.h"
@@ -64,11 +65,73 @@
 #include "wheel_listview.h"
 #include "wheel_screens.h"
 #include "wheel_flow.h"
+#include "wheel_palette.h"
 
 #if defined(HAVE_ALBUMART) && defined(HAVE_LCD_COLOR) && (LCD_DEPTH == 16) && \
     (LCD_PIXELFORMAT == RGB565) && (CONFIG_PLATFORM & PLATFORM_HOSTED)
 #define FLOW_OK 1
 #endif
+
+/* ---------------------- slow spots, for real players ---------------------- */
+/* Anything that takes longer than ~150 ms goes to .rockbox/wheel-perf.log
+ * (kept under 64 KB), so tests on the Y1 can say what was slow. */
+#define PERF_LOG ROCKBOX_DIR "/wheel-perf.log"
+void wheel_perf(const char *what, long ticks)
+{
+    if (ticks < HZ * 15 / 100)   /* only what the user could feel */
+        return;
+    int fd = open(PERF_LOG, O_WRONLY | O_CREAT | O_APPEND, 0666);
+    if (fd < 0)
+        return;
+    if (ffilesize(fd) > 64 * 1024)
+    {
+        close(fd);
+        fd = open(PERF_LOG, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+        if (fd < 0)
+            return;
+    }
+    fdprintf(fd, "%6ld s  %-34s %6ld ms\n", current_tick / HZ, what, ticks * 1000 / HZ);
+    close(fd);
+}
+
+bool wheel_screen_on(void)
+{
+#if defined(HAVE_LCD_ENABLE) || defined(HAVE_LCD_SLEEP)
+    return lcd_active();
+#else
+    return true;
+#endif
+}
+
+/* Rockbox threads take turns on one processor: while a song the user just
+ * picked is loading, the views hold back their own heavy work (covers) so
+ * the decoder gets the time. */
+static long play_t0;
+void wheel_flow_play_started(void)
+{
+    play_t0 = current_tick ? current_tick : 1;
+}
+static bool audio_starting(void)
+{
+    if (!play_t0)
+        return false;
+    long dt = current_tick - play_t0;
+    struct mp3entry *id3 = audio_current_track();
+    if ((audio_status() & (AUDIO_STATUS_PLAY | AUDIO_STATUS_PAUSE)) == AUDIO_STATUS_PLAY &&
+        id3 && id3->elapsed > 0)
+    {
+        play_t0 = 0;
+        wheel_perf("play: first sound after", dt);
+        return false;
+    }
+    if (dt > 8 * HZ)
+    {
+        play_t0 = 0;
+        wheel_perf("play: still silent after", dt);
+        return false;
+    }
+    return true;
+}
 
 #ifdef FLOW_OK
 
@@ -138,6 +201,10 @@ static inline fb_data blend(fb_data fg, fb_data bg, int a)
     uint32_t r = (b + (((f - b) * (uint32_t)a) >> 5)) & 0x07E0F81F;
     return (fb_data)(r | (r >> 16));
 }
+
+/* light theme: Album Flow follows it (see flow_pick_mode) */
+static bool flow_light;
+static fb_data ui_bg, ui_fg;
 
 static inline fb_data rgb(int r, int g, int b)
 {
@@ -427,6 +494,86 @@ static struct slot *slot_victim(void)
     return best;
 }
 
+/* -------------------------- covers kept on the card -------------------------- */
+/* On the player a cover costs a lot: the song's tags are read to find the
+ * picture, then the JPEG is decoded and scaled. Each cover made is kept as
+ * raw pixels in .rockbox/wheel/thumbs, in at most 1024 files of ~62 KB that
+ * are reused by hash (a newer song takes the place of an older one). */
+#define THUMB_DIR    ROCKBOX_DIR "/wheel/thumbs"
+#define THUMB_FILES  1024
+#define THUMB_MAGIC  0x31485457u     /* "WTH1" */
+struct thumb_head {
+    uint32_t magic, key, size, tint, art, side;
+};
+static int thumb_dir = -1;           /* -1 unknown, 0 can't, 1 ready */
+
+static uint32_t track_size(const char *path)
+{
+    int fd = open(path, O_RDONLY);
+    if (fd < 0)
+        return 0;
+    uint32_t n = (uint32_t)ffilesize(fd);
+    close(fd);
+    return n;
+}
+
+static void thumb_name(uint32_t h, char *buf, size_t len)
+{
+    snprintf(buf, len, THUMB_DIR "/%03x.thm", (unsigned)(h % THUMB_FILES));
+}
+
+/* 1: picture read, 0: known to have none, -1: not kept (or changed) */
+static int thumb_read(uint32_t h, uint32_t size, fb_data *px, unsigned *tint)
+{
+    char name[MAX_PATH];
+    thumb_name(h, name, sizeof(name));
+    int fd = open(name, O_RDONLY);
+    if (fd < 0)
+        return -1;
+    struct thumb_head hd;
+    int r = -1;
+    if (read(fd, &hd, sizeof(hd)) == (ssize_t)sizeof(hd) && hd.magic == THUMB_MAGIC &&
+        hd.key == h && hd.size == size && hd.side == CS)
+    {
+        if (!hd.art)
+            r = 0;
+        else if (read(fd, px, CS * CS * sizeof(fb_data)) == (ssize_t)(CS * CS * sizeof(fb_data)))
+        {
+            *tint = hd.tint;
+            r = 1;
+        }
+    }
+    close(fd);
+    return r;
+}
+
+static void thumb_write(uint32_t h, uint32_t size, const fb_data *px, unsigned tint, bool art)
+{
+    if (thumb_dir < 0)
+    {
+        if (!dir_exists(THUMB_DIR))
+        {
+            mkdir(ROCKBOX_DIR "/wheel");
+            mkdir(THUMB_DIR);
+        }
+        thumb_dir = dir_exists(THUMB_DIR) ? 1 : 0;
+    }
+    if (thumb_dir <= 0)
+        return;
+    char name[MAX_PATH];
+    thumb_name(h, name, sizeof(name));
+    int fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    if (fd < 0)
+        return;
+    struct thumb_head hd = { THUMB_MAGIC, h, size, tint, art ? 1 : 0, CS };
+    bool ok = write(fd, &hd, sizeof(hd)) == (ssize_t)sizeof(hd);
+    if (ok && art)
+        ok = write(fd, px, CS * CS * sizeof(fb_data)) == (ssize_t)(CS * CS * sizeof(fb_data));
+    close(fd);
+    if (!ok)
+        remove(name);
+}
+
 static struct slot *slot_load(struct wheel_flow_src *s, int i)
 {
     char path[MAX_PATH], key[MAX_PATH];
@@ -447,8 +594,19 @@ static struct slot *slot_load(struct wheel_flow_src *s, int i)
     if (!v)
         return NULL;
     v->gen = 0;
-    bool have = path[0] && art_find(path, key, sizeof(key));
     v->art = false;
+    uint32_t h = 0, size = 0;
+    int kept = -1;
+    if (path[0])
+    {
+        h = hash_str(path);
+        size = track_size(path);
+        if (size)
+            kept = thumb_read(h, size, v->px, &v->tint);
+    }
+    if (kept == 1)
+        v->art = true;          /* key stays "": no sharing with art_find keys */
+    bool have = kept < 0 && path[0] && art_find(path, key, sizeof(key));
     if (have)
     {
         for (int k = 0; k < SLOTS; k++)
@@ -467,6 +625,8 @@ static struct slot *slot_load(struct wheel_flow_src *s, int i)
         key[0] = '\0';
         stand_in(v->px, CS, path[0] ? hash_str(path) : (uint32_t)i, &v->tint);
     }
+    if (kept < 0 && size)
+        thumb_write(h, size, v->px, v->tint, v->art);
     strlcpy(v->path, path, sizeof(v->path));
     strlcpy(v->key, key, sizeof(v->key));
     v->item = i;
@@ -526,7 +686,7 @@ static void put_col_span(const fb_data *col, int sx, long ytop_q8, long h_q8, in
         tv = MAX(0, MIN(CS - 1, tv));
         fb_data c = col[tv * CS];
         if (shade < 32)
-            c = blend(c, 0, shade);
+            c = blend(c, flow_light ? ui_bg : 0, shade);
         fb_data *p = &fb[y * fb_stride + sx];
         /* soft top and bottom edges */
         int cov = 256;
@@ -610,14 +770,47 @@ static void draw_cover(const fb_data *tex, long xc, long zc, long deg)
 
 static unsigned bg_tint, bg_target;
 
+/* Album Flow follows the rest of the interface: on a light theme the
+ * backdrop is a pale wash of the cover's colour over the theme's
+ * background and the words use the theme's text colour */
+static fb_data ui_dim, ui_faint;
+static fb_data rgb24(unsigned c)
+{
+    return rgb((c >> 16) & 255, (c >> 8) & 255, c & 255);
+}
+static void flow_pick_mode(void)
+{
+    /* the colours the Wheel skins are drawn in right now: the palette, or
+     * the classic look in its light or dark form (Appearance) */
+    const struct wheel_palette *p = wheel_palette_active();
+    if (!p)
+        p = wheel_palette_classic(global_settings.wheel_appearance == 1 ||
+                                  (global_settings.wheel_appearance == 2 && wheel_is_night()));
+    flow_light = p && !p->dark;
+    ui_bg = rgb24(p ? p->c[PR_BG] : 0xffffff);
+    ui_fg = rgb24(p ? p->c[PR_TEXT] : 0x141416);
+    ui_dim = rgb24(p ? p->c[PR_TEXT2] : 0x6e6e73);
+    ui_faint = rgb24(p ? p->c[PR_TEXT3] : 0x8e8e93);
+}
+
 static void draw_backdrop(void)
 {
     int r0 = R8(bg_tint), g0 = G8(bg_tint), b0 = B8(bg_tint);
+    /* what the gradient fades into */
+    int rb = 10, gb = 10, bb = 12;
+    if (flow_light)
+    {
+        rb = R8(ui_bg); gb = G8(ui_bg); bb = B8(ui_bg);
+        /* a pastel of the cover: mostly the background, some of the colour */
+        r0 = (r0 * 45 + rb * 55) / 100;
+        g0 = (g0 * 45 + gb * 55) / 100;
+        b0 = (b0 * 45 + bb * 55) / 100;
+    }
     for (int y = 0; y < H; y++)
     {
-        /* the cover's colour high up, near black under the covers */
+        /* the cover's colour high up, the background under the covers */
         int k = y < flow_cy ? 100 - y * 45 / flow_cy : MAX(0, 55 - (y - flow_cy) * 70 / (H - flow_cy));
-        int r = 10 + (r0 - 10) * k / 100, g = 10 + (g0 - 10) * k / 100, b = 12 + (b0 - 12) * k / 100;
+        int r = rb + (r0 - rb) * k / 100, g = gb + (g0 - gb) * k / 100, b = bb + (b0 - bb) * k / 100;
         fb_data *line = &fb[y * fb_stride];
         fb_data c[4];
         for (int i = 0; i < 4; i++)
@@ -693,6 +886,12 @@ static void flow_draw(struct wheel_flow_src *s, long pos, int sel, int *missing)
     /* words */
     unsigned white = LCD_RGBPACK(255, 255, 255);
     unsigned dim = LCD_RGBPACK(190, 190, 196), faint = LCD_RGBPACK(140, 140, 150);
+    if (flow_light)
+    {
+        white = ui_fg;
+        dim = ui_dim;
+        faint = ui_faint;
+    }
     if (s->heading)
         text_at(f_small, faint, SC(14), SC(8), W / 2, 0, s->heading);
     char cnt[24];
@@ -719,6 +918,7 @@ static void clamp_sel(struct wheel_flow_src *s)
 
 int wheel_flow_show(struct wheel_flow_src *s)
 {
+    flow_pick_mode();
     load_fonts();
     cur_gen++;
     clamp_sel(s);
@@ -729,8 +929,14 @@ int wheel_flow_show(struct wheel_flow_src *s)
     theme_off();
     while (!done && s->n > 0)
     {
-        int missing;
-        flow_draw(s, pos, s->sel, &missing);
+        int missing = -1;
+        long t0 = current_tick;
+        bool screen = wheel_screen_on();
+        if (screen)
+        {
+            flow_draw(s, pos, s->sel, &missing);
+            wheel_perf("flow: frame", current_tick - t0);
+        }
         long target = s->sel * 256L, diff = target - pos;
         bool moving = diff != 0;
         if (moving)
@@ -740,12 +946,26 @@ int wheel_flow_show(struct wheel_flow_src *s)
                 step = diff > 0 ? MIN(20, diff) : MAX(-20, diff);
             pos += step;
         }
-        /* one cover per frame; none while flying past */
-        bool load = missing >= 0 && labs(diff) < 3 * 256;
-        if (load)
+        /* one cover per frame; none while flying past or while the song
+         * just picked is loading */
+        bool hold = missing >= 0 && audio_starting();
+        if (missing >= 0 && !hold && labs(diff) < 3 * 256)
+        {
+            long t1 = current_tick;
             slot_load(s, missing);
-        bool busy = moving || missing >= 0 || bg_tint != bg_target;
-        int a = get_action(CONTEXT_STD, busy ? 1 : HZ / 2);
+            wheel_perf("flow: cover", current_tick - t1);
+        }
+        bool busy = moving || (missing >= 0 && !hold) || bg_tint != bg_target;
+        /* rest at least as long as the frame took: on the player the
+         * decoder runs in the same turns as this loop */
+        long work = current_tick - t0;
+        int tmo = busy ? (int)MAX(1, MIN(work, HZ / 5)) : (hold ? HZ / 10 : HZ / 2);
+        if (!screen)
+        {
+            pos = s->sel * 256L;   /* no animation to finish */
+            tmo = HZ;
+        }
+        int a = get_action(CONTEXT_STD, tmo);
         switch (a)
         {
             case ACTION_STD_NEXT:
@@ -1077,15 +1297,19 @@ int wheel_disc_show(struct wheel_flow_src *s)
     int shown = -1, ret = 0, n_seen = s->n, slide = 0;
     long ang = 0, vel = 0, last = current_tick;
     int was_playing = -1;
+    int pending = -1;              /* card whose song was picked, not playing yet */
+    long pending_t = 0;
     bool done = false;
     theme_off();
     while (!done && s->n > 0)
     {
+        long t0 = current_tick;
         if (shown != s->sel)
         {
             slide = shown < 0 ? 0 : (s->sel > shown ? SC(90) : -SC(90));
             shown = s->sel;
             disc_prepare(s, shown);
+            wheel_perf("disc: cover", current_tick - t0);
             ang = 0;
         }
         int playing = s->playing ? s->playing(s) : -1;
@@ -1104,8 +1328,14 @@ int wheel_disc_show(struct wheel_flow_src *s)
         }
         was_playing = playing;
         bool on_card = playing == shown;
-        bool rolling = on_card &&
-            (audio_status() & (AUDIO_STATUS_PLAY | AUDIO_STATUS_PAUSE)) == AUDIO_STATUS_PLAY;
+        audio_starting();   /* notes how long the song took to start */
+        if (pending >= 0 && (playing == pending || TIME_AFTER(current_tick, pending_t + 4 * HZ)))
+            pending = -1;
+        bool starting = pending >= 0 && pending == shown && !on_card;
+        /* it spins as soon as the song is picked: on the player it can take
+         * a moment before the sound starts */
+        bool rolling = starting || (on_card &&
+            (audio_status() & (AUDIO_STATUS_PLAY | AUDIO_STATUS_PAUSE)) == AUDIO_STATUS_PLAY);
         long now = current_tick, dt = MIN(HZ / 4, now - last);
         last = now;
         long want = rolling ? SPIN : 0;
@@ -1113,7 +1343,15 @@ int wheel_disc_show(struct wheel_flow_src *s)
         if (labs(want - vel) < 64)
             vel = want;
         ang += vel * dt / HZ;
-        disc_draw(s, shown, ang, slide, on_card);
+        bool screen = wheel_screen_on();
+        if (screen)
+        {
+            long td = current_tick;
+            disc_draw(s, shown, ang, slide, on_card);
+            wheel_perf("disc: frame", current_tick - td);
+        }
+        else
+            slide = 0, vel = 0;
         if (slide)
         {
             slide = slide * 2 / 3;
@@ -1121,6 +1359,10 @@ int wheel_disc_show(struct wheel_flow_src *s)
                 slide = 0;
         }
         int tmo = (slide || vel) ? HZ / 15 : (on_card ? HZ / 4 : HZ / 2);
+        if (slide || vel)   /* rest at least as long as the frame took */
+            tmo = MAX(tmo, (int)MIN(current_tick - t0, HZ / 5));
+        if (!screen)
+            tmo = HZ;
         int a = get_action(CONTEXT_STD, tmo);
         switch (a)
         {
@@ -1135,8 +1377,12 @@ int wheel_disc_show(struct wheel_flow_src *s)
             case ACTION_STD_OK:
                 if (on_card)   /* as the Now Playing screen does it */
                     wps_do_playpause(false);
+                else if (starting)
+                    break;     /* still loading: a second press would start it over */
                 else if (s->ok)
                 {
+                    pending = s->sel;
+                    pending_t = current_tick;
                     ret = s->ok(s, s->sel, true);
                     load_fonts();
                     if (ret == WHEEL_FLOW_CHANGED)
@@ -1507,12 +1753,16 @@ int wheel_album_flow(void)
         return 0;
     }
     splash(0, ID2P(LANG_WAIT));
+    long t0 = current_tick;
     if (!albums_build())
     {
         splash(HZ * 2, ID2P(LANG_WHEEL_NEED_LIBRARY));
         return 0;
     }
     albums_sort();
+    char what[48];
+    snprintf(what, sizeof(what), "albums: list %d", n_albs);
+    wheel_perf(what, current_tick - t0);
     static int last_sel;
     struct wheel_flow_src s = {
         .n = n_albs, .sel = MIN(last_sel, n_albs - 1), .heading = str(LANG_ALBUMS),

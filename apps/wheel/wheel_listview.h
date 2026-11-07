@@ -39,4 +39,10 @@ bool wheel_playlist_cached(const char *file, int *count, unsigned long *secs);
 void wheel_format_duration(unsigned long secs, char *buf, size_t len);
 int  wheel_pick(const char *title, const char * const *items, int n, int sel);
 
+/* back from Now Playing: opens the list the music was started from and
+ * returns what it returned; *after is the screen behind that list.
+ * WHEEL_NO_ORIGIN: the music didn't come from a Wheel list */
+#define WHEEL_NO_ORIGIN (-1000)
+int wheel_back_from_wps(int *after);
+
 #endif

@@ -21,12 +21,36 @@
 # ---------- top bar ----------
 %V(0,0,480,38,-)%Vb(f7f7f9)
 %dr(0,37,-,1,c8c8ce)
-%V(16,2,280,32,3)%Vf(141415)%Vb(f7f7f9)
-%Sx(Now Playing)
-%V(300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
-%ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>
-%V(426,7,46,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
-%ar%?bc<N|%?bl<I|J|K|L|M>>
+# (Settings > Appearance > Top bar: battery percentage and clock)
+%?St(battery percentage)<%Vd(tb_pct)%?St(wheel bar clock)<%Vd(tb_icons_pc)|%Vd(tb_icons_p)>|%?St(wheel bar clock)<%Vd(tb_icons_c)|%Vd(tb_icons)>>
+%?St(wheel bar clock)<%Vd(tb_title_c)%Vd(tb_clock)|%?St(battery percentage)<%Vd(tb_title_p)|%Vd(tb_title)>>
+%Vd(tb_bat)%?bc<%Vd(tb_ok)|%?if(%bl,<,11)<%Vd(tb_low)|%?if(%bl,<,21)<%Vd(tb_mid)|%Vd(tb_ok)>>>
+%Vl(tb_title,16,2,280,32,3)%Vf(141415)%Vb(f7f7f9)
+%s%Sx(Now Playing)
+%Vl(tb_title_p,16,2,230,32,3)%Vf(141415)%Vb(f7f7f9)
+%s%Sx(Now Playing)
+%Vl(tb_title_c,16,2,164,32,3)%Vf(141415)%Vb(f7f7f9)
+%s%Sx(Now Playing)
+%Vl(tb_clock,184,8,112,22,9)%Vf(141415)%Vb(f7f7f9)
+%ac%?St(time format)<%cH:%cM|%cl:%cM>
+%Vl(tb_icons,300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>%?bc< V|>
+%Vl(tb_icons_p,250,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>%?bc< V|>
+%Vl(tb_icons_c,300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>%?bc< V|>
+%Vl(tb_icons_pc,300,7,74,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<D|B|C|P|Q|B|C>%?bc< V|>
+%Vl(tb_pct,376,8,50,22,9)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?if(%bl,>,-1)<%bl%%|>
+%Vl(tb_bat,430,10,44,18,-)%Vf(3a3a3e)%Vb(f7f7f9)
+%dr(0,0,38,18,3a3a3e)%dr(2,2,34,14,f7f7f9)%dr(0,0,1,1,f7f7f9)%dr(37,0,1,1,f7f7f9)%dr(0,17,1,1,f7f7f9)%dr(37,17,1,1,f7f7f9)%dr(38,5,3,8,3a3a3e)%dr(40,5,1,1,f7f7f9)%dr(40,12,1,1,f7f7f9)
+%Vl(tb_ok,433,13,32,12,-)%Vf(2fbf5b)%Vb(f7f7f9)
+%bl(0,0,32,12,noborder)
+%Vl(tb_mid,433,13,32,12,-)%Vf(f0a020)%Vb(f7f7f9)
+%bl(0,0,32,12,noborder)
+%Vl(tb_low,433,13,32,12,-)%Vf(e5413a)%Vb(f7f7f9)
+%bl(0,0,32,12,noborder)
 #
 #
 # ---------- just the words ----------

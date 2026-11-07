@@ -292,13 +292,13 @@ void wheel_background_screen(void)
 
 /* ------------------------------- Now Playing ------------------------------- */
 static const int layout_names[] = { LANG_WHEEL_NP_L0, LANG_WHEEL_NP_L1, LANG_WHEEL_NP_L2,
-                                    LANG_WHEEL_NP_L3 };
+                                    LANG_WHEEL_NP_L3, LANG_WHEEL_NP_L4 };
 static const int bar_names[] = { LANG_WHEEL_NP_BAR_0, LANG_WHEEL_NP_BAR_1 };
 
 void wheel_np_screen(void)
 {
     static const struct opt opts[] = {
-        { LANG_WHEEL_NP_LAYOUT, &global_settings.wheel_np_layout, NULL, 4, layout_names, remake,
+        { LANG_WHEEL_NP_LAYOUT, &global_settings.wheel_np_layout, NULL, ARRAYLEN(layout_names), layout_names, remake,
           NULL, NULL },
         { LANG_WHEEL_NP_ALBUM, NULL, &global_settings.wheel_np_album, 0, NULL, redraw, NULL, NULL },
         { LANG_WHEEL_NP_DETAILS, NULL, &global_settings.wheel_np_details, 0, NULL, redraw, NULL, NULL },
@@ -825,6 +825,9 @@ static void click_preview(void)
     system_sound_play(SOUND_KEYCLICK);
 }
 
+static const int np_centre_names[] = { LANG_WHEEL_NP_BACK_LIST, LANG_WHEEL_NP_LYRICS_SEEK };
+static const int np_menu_names[] = { LANG_MAIN_MENU, LANG_WHEEL_NP_BACK_LIST };
+
 void wheel_wheelclick_screen(void)
 {
     static const struct opt opts[] = {
@@ -834,6 +837,10 @@ void wheel_wheelclick_screen(void)
         { LANG_WHEEL_SENSITIVITY, &global_settings.wheel_sensitivity, NULL, 3, sens_names,
           NULL, NULL, NULL },
         { LANG_WHEEL_ACCEL, NULL, &global_settings.wheel_accel, 0, NULL, NULL, NULL, NULL },
+        { LANG_WHEEL_NP_CENTRE, &global_settings.wheel_np_centre, NULL, 2, np_centre_names,
+          NULL, NULL, NULL },
+        { LANG_WHEEL_NP_MENU, &global_settings.wheel_np_menu, NULL, 2, np_menu_names,
+          NULL, NULL, NULL },
     };
     options_screen(LANG_WHEEL_WHEEL_CLICK, opts, ARRAYLEN(opts));
 }
@@ -1199,6 +1206,38 @@ static void boot_preview(void)
         viewportmanager_theme_undo(i, true);
 }
 
+/* -------------------------------- top bar -------------------------------- */
+static const char *bar_name_text(char *buf, size_t len)
+{
+    strlcpy(buf, global_settings.wheel_bar_name[0] ? global_settings.wheel_bar_name :
+                 (const char *)str(LANG_WHEEL_BAR_NAME_DEFAULT), len);
+    return buf;
+}
+
+static void bar_name_edit(void)
+{
+    char name[sizeof(global_settings.wheel_bar_name)];
+    strlcpy(name, global_settings.wheel_bar_name, sizeof(name));
+    if (kbd_input(name, sizeof(name), NULL) < 0)
+        return;
+    /* an empty name, or "Rockbox" itself, means the usual title */
+    if (!strcmp(name, str(LANG_WHEEL_BAR_NAME_DEFAULT)))
+        name[0] = '\0';
+    strlcpy(global_settings.wheel_bar_name, name, sizeof(global_settings.wheel_bar_name));
+    settings_save();
+    redraw();
+}
+
+void wheel_topbar_screen(void)
+{
+    static const struct opt opts[] = {
+        { LANG_WHEEL_BATTERY_PERCENT, NULL, &global_settings.wheel_battery_percent, 0, NULL, redraw, NULL, NULL },
+        { LANG_WHEEL_BAR_CLOCK, NULL, &global_settings.wheel_bar_clock, 0, NULL, redraw, NULL, NULL },
+        { LANG_WHEEL_BAR_NAME, NULL, NULL, 0, NULL, NULL, bar_name_edit, bar_name_text },
+    };
+    options_screen(LANG_WHEEL_TOP_BAR, opts, ARRAYLEN(opts));
+}
+
 void wheel_idleboot_screen(void)
 {
     static const struct opt opts[] = {
@@ -1246,7 +1285,7 @@ const char *wheel_custom_value(int which, char *buf, size_t len)
         case WCV_FINISH:     return finish_text(buf, len);
         case WCV_BACKGROUND: return wall_text(buf, len);
         case WCV_NP:
-            strlcpy(buf, str(layout_names[MAX(0, MIN(3, global_settings.wheel_np_layout))]), len);
+            strlcpy(buf, str(layout_names[MAX(0, MIN((int)ARRAYLEN(layout_names) - 1, global_settings.wheel_np_layout))]), len);
             break;
         case WCV_MENU:
             strlcpy(buf, str(pane_names[MAX(0, MIN(3, global_settings.wheel_pane))]), len);

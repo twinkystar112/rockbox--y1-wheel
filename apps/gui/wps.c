@@ -741,7 +741,9 @@ long gui_wps_show(void)
     long last_left = 0, last_right = 0;
     struct wps_state *state = get_wps_state();
 
-    ab_reset_markers();
+    /* Y1 Wheel: a loop made from the menu survives leaving Now Playing */
+    if (!wheel_ab_active())
+        ab_reset_markers();
     wheel_wps_reset_mode(); /* Y1 Wheel: always open on the normal view */
 
     wps_state_init();
@@ -821,6 +823,13 @@ long gui_wps_show(void)
         button = do_party_mode(button); /* block select actions in party mode */
 
         button = action_wpsab_single(button); /* iPods/X5/M5 */
+
+        /* Y1 Wheel: what the centre and Menu buttons do (Wheel and click):
+         * classic Rockbox, or lyrics/seeking and "back" like an iPod */
+        if (button == ACTION_WPS_CYCLE_MODE && global_settings.wheel_np_centre == 0)
+            button = ACTION_WPS_BROWSE;
+        else if (button == ACTION_WPS_MENU && global_settings.wheel_np_menu == 1)
+            button = ACTION_WPS_BROWSE;
 
         switch(button)
         {
@@ -970,6 +979,9 @@ long gui_wps_show(void)
                 /* prev / restart */
             case ACTION_WPS_SKIPPREV:
                 last_left = current_tick;
+                /* Y1 Wheel: the buttons always change song; that ends a loop */
+                if (ab_repeat_mode_enabled())
+                    wheel_ab_stop();
 
                 /* if we're in A/B repeat mode and the current position
                    is past the A marker, jump back to the A marker... */
@@ -986,6 +998,8 @@ long gui_wps_show(void)
                    OR if skip length set, hop by predetermined amount. */
             case ACTION_WPS_SKIPNEXT:
                 last_right = current_tick;
+                if (ab_repeat_mode_enabled())
+                    wheel_ab_stop();
 
                 /* if we're in A/B repeat mode and the current position is
                    before the A marker, jump to the A marker... */

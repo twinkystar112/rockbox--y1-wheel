@@ -53,6 +53,7 @@
 #include "tagcache.h"
 #endif
 #include "rbpaths.h"
+#include "onplay.h"
 #ifdef INNIOASIS_Y1
 #include "reset-bluetooth-android.h"
 #endif
@@ -753,4 +754,5 @@ void wheel_init(void)
 #endif
     typo_init();     /* typography: falls back to the stock fonts if needed */
     wheel_appearance_apply(false);
+    wheel_ab_boot(); /* an A-B loop doesn't outlive a restart */
 }

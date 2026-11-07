@@ -83,12 +83,7 @@ static void build_rows(void)
     fy.rows[fy.n_rows++] = FY_DECADES;
     fy.rows[fy.n_rows++] = FY_SMART;
     fy.rows[fy.n_rows++] = FY_STATS;
-    if (fy_daily.n > 0)
-    {
-        fy.rows[fy.n_rows++] = FY_PICKS_HEADER;
-        for (int i = 0; i < N_PICKS && i < fy_daily.n; i++)
-            fy.rows[fy.n_rows++] = FY_PICK + i;
-    }
+    /* today's songs are their own section (FY_DAILY), not rows down here */
 }
 
 static const char *fy_get_name(int item, void *data, char *buf, size_t len)
@@ -118,7 +113,14 @@ static const char *fy_get_name(int item, void *data, char *buf, size_t len)
                 strlcpy(buf, str(LANG_WHEEL_CONTINUE), len);
             return buf;
         }
-        case FY_DAILY:      return str(LANG_WHEEL_DAILY_MIX);
+        case FY_DAILY:
+            if (fy_daily.n > 0)
+            {
+                snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%d %s", str(LANG_WHEEL_PICKS_TODAY),
+                         fy_daily.n, str(fy_daily.n == 1 ? LANG_WHEEL_SONG : LANG_WHEEL_SONGS));
+                return buf;
+            }
+            return str(LANG_WHEEL_PICKS_TODAY);
         case FY_SIMILAR:
             snprintf(buf, len, "%s" LIST_VALUE_SEP_STR "%s", str(LANG_WHEEL_SIMILAR_TO), fy.last_title);
             return buf;
@@ -385,7 +387,7 @@ static int fy_open(int row)
                 return GO_TO_WPS;
             return GO_TO_WPS; /* the root loop resumes the last playlist */
         case FY_DAILY:
-            return show_mix(&fy_daily, str(LANG_WHEEL_DAILY_MIX), str(LANG_WHEEL_FOR_YOU),
+            return show_mix(&fy_daily, str(LANG_WHEEL_PICKS_TODAY), str(LANG_WHEEL_FOR_YOU),
                             fy_daily.n > 0);
         case FY_SIMILAR:
         {

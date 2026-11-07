@@ -676,7 +676,9 @@ static unsigned backdrop_hash(const struct wheel_palette *p, bool aero, bool vin
     h = fnv(h, aero | vinyl << 1 | pic << 2 | p->dark << 3);
     h = fnv(h, wheel_gloss_pct());
     h = fnv(h, LCD_WIDTH << 16 | LCD_HEIGHT);
-    h = fnv(h, 4); /* look version */
+    h = fnv(h, 5); /* look version */
+    h = fnv(h, VINYL_CX << 20 | VINYL_CY << 10 | VINYL_R);   /* the record's place */
+    h = fnv(h, VINYL_LABEL_R);
     if (pic)
     {
         for (const char *c = wall.path; *c; c++)

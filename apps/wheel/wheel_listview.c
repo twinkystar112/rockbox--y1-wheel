@@ -206,6 +206,7 @@ bool wheel_play_list(struct wheel_list *l, int start, bool shuffle)
 {
     if (l->n <= 0)
         return false;
+    long t0 = current_tick;
     if (playlist_create(NULL, NULL) < 0)
         return false;
     struct playlist_insert_context ctx;
@@ -222,6 +223,8 @@ bool wheel_play_list(struct wheel_list *l, int start, bool shuffle)
         start = 0;
     }
     playlist_start(MAX(0, MIN(start, playlist_amount() - 1)), 0, 0);
+    wheel_flow_play_started();
+    wheel_perf("play: make the playlist", current_tick - t0);
     return true;
 }
 
@@ -241,6 +244,7 @@ static bool play_file(const char *file, int start, bool shuffle)
         start = 0;
     }
     playlist_start(MAX(0, MIN(start, playlist_amount() - 1)), 0, 0);
+    wheel_flow_play_started();
     return true;
 }
 
@@ -714,6 +718,10 @@ static void load_queue(struct wheel_list *l)
         if (playlist_get_track_info(NULL, idx, &info) < 0)
             continue;
         struct wheel_track *t = &l->t[l->n++];
+        /* the same song in the same place keeps its details: switching
+         * views or a growing queue doesn't read every song's tags again */
+        if (t->meta && !strcmp(t->path, info.filename))
+            continue;
         strlcpy(t->path, info.filename, sizeof(t->path));
         t->title[0] = t->artist[0] = '\0';
         t->len_ms = 0;
@@ -760,6 +768,7 @@ static void theme_on(void)
 enum { OPT_NEXT, OPT_LATER, OPT_SIMILAR, OPT_ALBUM, OPT_REMOVE, OPT_UP, OPT_DOWN, OPT_SEND,
        OPT_SEND_ALL, OPT_VIEW, OPT_COUNT };
 
+static void note_origin(struct wheel_lv *lv);
 static int nested_depth;
 /* the song the user was on when they switched views, -1 for none */
 static int switch_sel = -1;
@@ -957,7 +966,7 @@ static int show_wheel(struct wheel_lv *lv)
         v.sel = v.n_btn + carried;
         v.top = MAX(0, carried - 2);
     }
-    else if (lv->kind == LV_QUEUE && v.playing >= 0)
+    else if (v.playing >= 0)
     {   /* start on the current song, with a little of what came before */
         v.sel = v.n_btn + v.playing;
         v.top = MAX(0, v.playing - 2);
@@ -973,10 +982,12 @@ static int show_wheel(struct wheel_lv *lv)
     bool done = false, moved = false;
     while (!done)
     {
-        draw();
+        bool screen = wheel_screen_on();
+        if (screen)
+            draw();
         int count = v.n_btn + v.l->n;
         bool busy = v.fill_next < v.l->n || v.playing >= 0;
-        int a = get_action(CONTEXT_STD, busy ? HZ / 8 : HZ / 2);
+        int a = get_action(CONTEXT_STD, !screen ? HZ : busy ? HZ / 8 : HZ / 2);
         switch (a)
         {
             case ACTION_STD_NEXT:
@@ -1001,7 +1012,7 @@ static int show_wheel(struct wheel_lv *lv)
                             bool ok = lv->kind == LV_PLAYLIST_FILE && v.l->total > v.l->n
                                     ? play_file(lv->file, 0, sh)
                                     : wheel_play_list(v.l, 0, sh);
-                            if (ok) { ret = GO_TO_WPS; done = true; }
+                            if (ok) { note_origin(lv); ret = GO_TO_WPS; done = true; }
                             break;
                         }
                         case BTN_SAVE:
@@ -1020,12 +1031,15 @@ static int show_wheel(struct wheel_lv *lv)
                     if (lv->kind == LV_QUEUE)
                     {
                         playlist_start(queue_abs_index(i), 0, 0);
+                        wheel_flow_play_started();
                         ret = GO_TO_WPS;
                     }
                     else if (lv->kind == LV_PLAYLIST_FILE && v.l->total > v.l->n)
                         ret = play_file(lv->file, i, false) ? GO_TO_WPS : 0;
                     else
                         ret = wheel_play_list(v.l, i, false) ? GO_TO_WPS : 0;
+                    if (ret == GO_TO_WPS)
+                        note_origin(lv);
                     done = ret != 0;
                 }
                 break;
@@ -1110,6 +1124,60 @@ static int show_wheel(struct wheel_lv *lv)
     return ret;
 }
 
+/* ============== where Now Playing goes back to (the list) ============== */
+/* Back from Now Playing opens the list the music was started from, not the
+ * main menu. The record is dropped as soon as another playlist plays. */
+static struct {
+    int kind;                 /* LV_*, -1: none */
+    char file[MAX_PATH];      /* playlist file */
+    char title[96];
+    char first[MAX_PATH];     /* the playlist's first song, to recognise it */
+    int amount;
+    bool shuffle;             /* shuffle then (turning it on or off reorders) */
+} origin = { .kind = -1 };
+
+static void note_origin(struct wheel_lv *lv)
+{
+    struct playlist_track_info info;
+    origin.kind = -1;
+    if (!lv || playlist_amount() <= 0 || playlist_get_track_info(NULL, 0, &info) < 0)
+        return;
+    origin.kind = lv->kind;
+    strlcpy(origin.file, lv->file ? lv->file : "", sizeof(origin.file));
+    strlcpy(origin.title, lv->title ? lv->title : "", sizeof(origin.title));
+    strlcpy(origin.first, info.filename, sizeof(origin.first));
+    origin.amount = playlist_amount();
+    origin.shuffle = global_settings.playlist_shuffle;
+}
+
+static int queue_view_titled(const char *title);
+
+int wheel_back_from_wps(int *after)
+{
+    *after = GO_TO_ROOT;
+    if (origin.kind < 0)
+        return WHEEL_NO_ORIGIN;
+    struct playlist_track_info info;
+    bool same = playlist_amount() >= origin.amount &&
+                playlist_get_track_info(NULL, 0, &info) >= 0 &&
+                !strcmp(info.filename, origin.first);
+    /* the same songs in another order: shuffle was turned on or off since */
+    if (!same && playlist_amount() == origin.amount &&
+        global_settings.playlist_shuffle != origin.shuffle)
+        same = true;
+    if (!same)
+    {   /* something else plays now */
+        origin.kind = -1;
+        return WHEEL_NO_ORIGIN;
+    }
+    if (origin.kind == LV_PLAYLIST_FILE && origin.file[0] && file_exists(origin.file))
+    {
+        *after = GO_TO_PLAYLISTS_SCREEN;
+        return wheel_open_playlist_file(origin.file);
+    }
+    return queue_view_titled(origin.title[0] ? origin.title : (const char *)str(LANG_WHEEL_UP_NEXT));
+}
+
 /* ===================== the other views of a list ===================== */
 
 /* load the queue and the tags; v must point at lv */
@@ -1119,15 +1187,27 @@ static void prepare(struct wheel_lv *lv)
     v.lv = lv;
     v.l = lv->list;
     load_fonts();
+    long t0 = current_tick;
     if (lv->kind == LV_QUEUE)
         load_queue(v.l);
     splash(0, ID2P(LANG_WAIT));
     wheel_list_fill_meta(v.l);
     find_playing();
+    char what[48];
+    snprintf(what, sizeof(what), "view: open %d songs", v.l->n);
+    wheel_perf(what, current_tick - t0);
 }
 
 /* play from track i; true when playback started */
+static bool play_at_(int i, bool shuffle);
 static bool play_at(int i, bool shuffle)
+{
+    bool ok = play_at_(i, shuffle);
+    if (ok)
+        note_origin(v.lv);
+    return ok;
+}
+static bool play_at_(int i, bool shuffle)
 {
     struct wheel_lv *lv = v.lv;
     if (lv->kind == LV_QUEUE)
@@ -1139,6 +1219,7 @@ static bool play_at(int i, bool shuffle)
         }
         else
             playlist_start(queue_abs_index(i), 0, 0);
+        wheel_flow_play_started();
         return true;
     }
     if (lv->kind == LV_PLAYLIST_FILE && v.l->total > v.l->n)
@@ -1388,17 +1469,22 @@ int wheel_listview_show(struct wheel_lv *lv)
 
 /* ============================ entry points ============================ */
 
-int wheel_queue_view(void)
+static int queue_view_titled(const char *title)
 {
     if (playlist_amount() <= 0)
     {
         splash(HZ * 2, ID2P(LANG_WHEEL_NOTHING_PLAYING));
         return GO_TO_PREVIOUS;
     }
-    struct wheel_lv lv = { .title = str(LANG_WHEEL_UP_NEXT), .subtitle = str(LANG_WHEEL_QUEUE),
+    struct wheel_lv lv = { .title = title, .subtitle = str(LANG_WHEEL_QUEUE),
                            .kind = LV_QUEUE, .list = &lv_main };
     int r = wheel_listview_show(&lv);
     return r ? r : GO_TO_PREVIOUS;
+}
+
+int wheel_queue_view(void)
+{
+    return queue_view_titled(str(LANG_WHEEL_UP_NEXT));
 }
 
 int wheel_open_playlist_file(const char *file)

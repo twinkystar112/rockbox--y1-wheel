@@ -10,6 +10,7 @@ void wheel_background_screen(void);  /* own background image */
 void wheel_np_screen(void);          /* Now Playing layout and details */
 void wheel_mainmenu_screen(void);    /* right pane, items and order */
 void wheel_looks_screen(void);       /* saved looks, day and night */
+void wheel_topbar_screen(void);      /* battery %, clock, name */
 void wheel_wheelclick_screen(void);  /* click sound, sensitivity */
 void wheel_idleboot_screen(void);    /* idle screen, startup image */
 

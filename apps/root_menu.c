@@ -66,6 +66,7 @@
 #include "wheel/wheel_screens.h"
 #include "wheel/wheel_connect.h"
 #include "wheel/wheel_listview.h"
+#include "wheel/wheel_stats.h"
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
 #include "sonora/sonora.h"
 #endif
@@ -596,6 +597,8 @@ MENUITEM_FUNCTION(wheel_foryou_item, MENU_FUNC_CHECK_RETVAL,
                   ID2P(LANG_WHEEL_FOR_YOU), wheel_foryou_screen, NULL, Icon_NOICON);
 MENUITEM_FUNCTION(wheel_coverflow_item, MENU_FUNC_CHECK_RETVAL,
                   ID2P(LANG_WHEEL_COVERFLOW), wheel_coverflow, NULL, Icon_NOICON);
+MENUITEM_FUNCTION(wheel_stats_item, MENU_FUNC_CHECK_RETVAL,
+                  ID2P(LANG_WHEEL_STATS), wheel_stats_screen, NULL, Icon_NOICON);
 MENUITEM_FUNCTION(wheel_shuffle_item, MENU_FUNC_CHECK_RETVAL,
                   ID2P(LANG_WHEEL_SHUFFLE_SONGS), wheel_shuffle_songs, NULL, Icon_NOICON);
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
@@ -664,6 +667,7 @@ static struct menu_table menu_table[] = {
 #endif
     { "coverflow", &wheel_coverflow_item },
     { "shuffle", &wheel_shuffle_item },
+    { "stats", &wheel_stats_item },
     { "bluetooth", &wheel_bt_item },
     { "extras", &wheel_extras_item },
     { "lastfm", &wheel_lastfm_item },
@@ -693,6 +697,7 @@ static struct menu_table menu_table[] = {
 /* Y1 Wheel default main menu: music first, tools tucked into Extras.
  * Everything in menu_table can still be re-added with "root menu order". */
 static const char * const wheel_default_order[] = {
+    "wps", "playlists",          /* Now Playing first, then your playlists */
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
     "continue",
 #endif
@@ -702,7 +707,7 @@ static const char * const wheel_default_order[] = {
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
     "audiobooks", "podcasts",
 #endif
-    "coverflow", "shuffle", "playlists", "wps",
+    "coverflow", "shuffle",
     "bluetooth", "settings", "extras",
 };
 static struct menu_item_ex *root_menu__[MAX_MENU_ITEMS];
@@ -753,6 +758,37 @@ static void root_menu_add_sonora_once(void)
     settings_save();
 }
 #endif
+
+/* Now Playing first and Playlists second (the default order since then):
+ * a main menu order saved before gets them moved to the top once, the rest
+ * of it as it was; after that the user's own order is left alone */
+static void root_menu_np_first_once(void)
+{
+    if (global_settings.wheel_menu_np_first)
+        return;
+    global_settings.wheel_menu_np_first = true;
+    unsigned n = MENU_GET_COUNT(root_menu_.flags);
+    const struct menu_item_ex *top[2] = { &wps_item, &playlists };
+    for (int k = 1; n && k >= 0; k--)
+    {   /* (Playlists first, so that Now Playing ends up above it) */
+        unsigned at = n;
+        for (unsigned i = 0; i < n; i++)
+            if (root_menu__[i] == top[k])
+                at = i;
+        if (at == n)
+        {   /* it was hidden: show it again */
+            if (n >= MAX_MENU_ITEMS)
+                continue;
+            n++;
+        }
+        memmove(&root_menu__[1], &root_menu__[0], at * sizeof(root_menu__[0]));
+        root_menu__[0] = (struct menu_item_ex *)top[k];
+    }
+    if (n)
+        root_menu_.flags = (root_menu_.flags & ~(MENU_COUNT_MASK << MENU_COUNT_SHIFT)) |
+                           MENU_ITEM_COUNT(n);
+    settings_save();
+}
 
 struct menu_table *root_menu_get_options(int *nb_options)
 {
@@ -1151,6 +1187,7 @@ void root_menu(void)
     wheel_init(); /* Y1 Wheel: lyrics, appearance */
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
     root_menu_add_sonora_once();
+    root_menu_np_first_once();
 #endif
     next_screen = root_menu_setup_screens();
 
@@ -1169,6 +1206,9 @@ void root_menu(void)
                  * button to be handled by HOST instead of rockbox */
                 ignore_back_button_stub(true);
 
+                /* the bar shows the menu's title: the user's own name, if any */
+                root_menu_desc.desc = global_settings.wheel_bar_name[0] ?
+                    (unsigned char *)global_settings.wheel_bar_name : ID2P(LANG_ROCKBOX_TITLE);
                 next_screen = do_menu(&root_menu_, &selected, NULL, false);
 
                 ignore_back_button_stub(false);
@@ -1203,8 +1243,23 @@ void root_menu(void)
             }
 
             case GO_TO_PREVIOUS_BROWSER:
-                /* Y1 Wheel: "Go to album" from a list view (GO_TO_FILEBROWSER
-                 * is 0, which menus take as "stay") */
+                /* Y1 Wheel: back from Now Playing opens the list the music
+                 * came from (a playlist, Up Next, a mix...) */
+                if (!wheel_browse_target[0] && last_screen == GO_TO_WPS)
+                {
+                    int after;
+                    int r = wheel_back_from_wps(&after);
+                    if (r != WHEEL_NO_ORIGIN)
+                    {
+                        last_screen = after;   /* once: not again from here */
+                        if (r == GO_TO_PREVIOUS || r == GO_TO_FILEBROWSER)
+                            r = after;        /* backed out of the list */
+                        next_screen = r;
+                        break;
+                    }
+                }
+                /* "Go to album" from a list view (GO_TO_FILEBROWSER is 0,
+                 * which menus take as "stay") */
                 next_screen = wheel_browse_target[0] ? GO_TO_FILEBROWSER : previous_browser;
                 break;
 

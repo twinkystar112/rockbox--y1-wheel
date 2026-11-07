@@ -27,8 +27,11 @@ que ya trae Rockbox.
 |---|---|---|
 | Listas | girar rápido | **salto por letras** (A, B, C… en grande, con la fuente de títulos) |
 | Listas | mantener el centro | opciones de la fila (reproducir a continuación, parecidas, enviar…) |
-| Reproduciendo | pulsar el centro | letras → avance rápido con la rueda → normal |
-| Reproduciendo | mantener el centro | menú de la canción |
+| Reproduciendo | pulsar el centro | vuelve a la lista que suena (o, si lo eliges en *Rueda y clic*: letras → avance rápido → normal) |
+| Reproduciendo | Menú | menú principal (o la lista que suena, en *Rueda y clic*) |
+| Reproduciendo | anterior / siguiente | cambia de canción (también termina un bucle A-B) |
+| Reproduciendo | mantener el centro | menú de la canción: **Letra**, **Repetir**, **Aleatorio**, **Repetir un trozo**… |
+| Reproduciendo | mantener Menú | pantalla rápida de Rockbox: aleatorio (izquierda), repetir (derecha) |
 | Reproduciendo | centro + Play | atajo (*hotkey*) de la ROM |
 | Cualquier sitio | Menú | atrás |
 | Cualquier sitio | mantener el centro 1 s / 5 s | apagar pantalla / apagar (como en la ROM) |
@@ -36,13 +39,16 @@ que ya trae Rockbox.
 ## Qué incluye
 
 ### Menú principal
-**Para ti**, Música, Portadas (Album Flow), Canciones aleatorias, Listas, Reproduciendo, Bluetooth, Ajustes y
-Extras (Archivos, Last.fm, Plugins, Accesos directos, Sistema…). Pantalla dividida con la carátula
+**Reproduciendo** y **Listas** primero; después Seguir, **Para ti**, Música, Portadas (Album Flow),
+Audiolibros, Podcasts, Canciones aleatorias, Ajustes y Extras (Archivos, Last.fm, Plugins, Accesos
+directos, Sistema…). **Tus estadísticas** y Bluetooth se pueden añadir en Apariencia › Menú
+principal › Elementos y orden. (Un orden guardado de antes recibe Reproduciendo y Listas arriba una
+sola vez; el resto se respeta.) Pantalla dividida con la carátula
 de lo que suena. Los valores (estado, número de canciones, duración) van alineados a la derecha y
 las filas que abren algo llevan chevrón.
 
 ### Para ti (todo se calcula en el reproductor, sin internet)
-* **Seguir escuchando** y **Elegidas para hoy**: 6 canciones de tu mix diario.
+* **Seguir escuchando** y **Elegidas para hoy**: una sección con las canciones de tu mix diario.
 * **Tu mix diario**: tus artistas más escuchados del último mes y música parecida. Cambia cada día.
 * **Parecidas a…** (estilo Genius): parte de la última canción y puntúa por género, familia de
   géneros, artista, época y cuánto la escuchas, sin que un artista acapare la lista.
@@ -85,9 +91,20 @@ con carátula, top artistas, tu hora favorita). Desde los rankings se reproduce 
 
 ### Letras sincronizadas
 Pantalla completa al estilo Spotify (fondo del color de la carátula, línea actual resaltada,
-desplazamiento suave). Lee archivos `.lrc` junto a la canción. Si no hay y existe conexión, las
-busca en **LRCLIB** (base de datos abierta) **solo cuando abres las letras** y las guarda como
-`.lrc`, así funcionan sin conexión desde entonces.
+desplazamiento suave), o debajo de la canción con el diseño **Karaoke** de Ahora suena. Acceso
+rápido: primera opción del menú de la canción (mantener el centro). Lee archivos `.lrc` junto a la
+canción y, si no hay, las letras **incrustadas** en el archivo: MP3 (USLT, SYLT sincronizadas,
+TXXX LYRICS), FLAC/Ogg (LYRICS) y M4A (©lyr). Las letras sin tiempos avanzan al ritmo de la
+canción. Si no hay ninguna y existe conexión, las busca en **LRCLIB** (base de datos abierta)
+**solo cuando abres las letras** y las guarda como `.lrc`, así funcionan sin conexión desde
+entonces.
+
+### Repetir, aleatorio y repetir un trozo
+En el menú de la canción, como en Rockbox: **Repetir** (no, todo, una, aleatorio, A-B) y
+**Aleatorio**. **Repetir un trozo**: la primera vez marca dónde empieza, la segunda dónde acaba
+(desde ahí repite ese trozo sin cortes, con las marcas en la barra de progreso) y la tercera lo
+quita y deja la repetición que tenías. Cambiar de canción también lo quita, y si apagas en medio
+se recupera la repetición anterior al encender.
 
 ### Sonido
 Menú de la canción › **Sonido**: ecualizador on/off, **17 presets originales** (Bass Boost, Vocal,
@@ -136,12 +153,19 @@ cambia entre las dos) y para todas las paletas: los temas `Wheel-Aero`, `Wheel-D
 plano de siempre.
 
 ### Más personalización (Ajustes › Apariencia)
-* **Imagen de fondo**: una foto o dibujo tuyo (JPEG o BMP de `Pictures`, `DCIM`, `Download`…)
+* **Imagen de fondo**: una foto o dibujo tuyo (JPEG o BMP de `Pictures`, `DCIM`, `Download`…;
+  mejor 480×360 en horizontal y JPEG "estándar", no progresivo)
   detrás de menús y Ahora suena, recortada para llenar la pantalla, desenfocada o nítida y con
   intensidad suave / media / fuerte para que el texto siempre se lea; la barra superior se vuelve
   de cristal sobre ella.
+* **Barra superior**: **porcentaje de batería**, **hora** (en el centro, con el formato de
+  Ajustes › Hora y fecha) y el **nombre** que se ve en el menú principal en lugar de "Rockbox".
+  La batería se dibuja como una pila con su nivel: verde, ámbar por debajo del 20 % y roja por
+  debajo del 10 %, con un rayo al lado mientras carga.
 * **Ahora suena**: diseño **Clásico**, **Portada grande** (centrada, estilo nano),
-  **Minimalista** (solo texto) o **Vinilo** (la portada es la etiqueta redonda de un disco);
+  **Minimalista** (solo texto), **Vinilo** (la portada es la etiqueta redonda de un disco) o
+  **Karaoke** (el clásico con la letra debajo: la línea que suena grande, la anterior y la
+  siguiente);
   mostrar u ocultar álbum, "año · formato · bitrate" y la **siguiente canción**; barra de
   progreso fina o gruesa.
 * **Menú principal**: **panel derecho** con la portada, un **reloj** grande, **"A
@@ -255,6 +279,10 @@ genera en GitHub con el toolchain oficial del port (NDK r10e, API 19):
 Si ya tenías Rockbox, borra `.rockbox/config.cfg` para aplicar el tema y los ajustes nuevos. La
 biblioteca se crea sola la primera vez. Copia de seguridad y vuelta atrás:
 `android/y1/WHEEL-INSTALL.md`.
+
+Si algo va lento, lo que tarda más de ~150 ms (abrir una lista, preparar una carátula, el primer
+sonido tras darle a Reproducir…) queda anotado con su tiempo en `.rockbox/wheel-perf.log`
+(máximo 64 KB): mándalo junto con lo que estabas haciendo.
 
 ## Para desarrolladores
 | Área | Archivos |

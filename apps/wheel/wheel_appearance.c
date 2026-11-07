@@ -370,9 +370,15 @@ static const char *ap_get_name(int item, void *data, char *buf, size_t len)
             if (PALETTE_ANY())
                 value = str(LANG_WHEEL_PALETTE);
             break;
-        case AP_BATTERY:
+        case AP_BATTERY:   /* battery %, clock and the bar's name */
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            label = str(LANG_WHEEL_TOP_BAR);
+            value = global_settings.wheel_bar_name[0] ? global_settings.wheel_bar_name :
+                    (const char *)str(LANG_WHEEL_BAR_NAME_DEFAULT);
+#else
             label = str(LANG_WHEEL_BATTERY_PERCENT);
             value = choice_text(&global_settings.wheel_battery_percent, val, sizeof(val));
+#endif
             break;
         case AP_LETTERS:
             label = str(LANG_WHEEL_LETTER_JUMP);
@@ -389,7 +395,11 @@ static bool ap_get_nav(int item, void *data)
     return item == AP_THEME || item == AP_PALETTE || item == AP_FINISH ||
            item == AP_BACKGROUND || item == AP_TYPO || item == AP_NOWPLAYING ||
            item == AP_PLVIEW || item == AP_MAINMENU || item == AP_LOOKS || item == AP_LANG || item == AP_WHEEL ||
-           item == AP_IDLE;
+           item == AP_IDLE
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+           || item == AP_BATTERY
+#endif
+           ;
 }
 
 static int ap_action(int action, struct gui_synclist *lists)
@@ -448,6 +458,10 @@ static int ap_action(int action, struct gui_synclist *lists)
             wheel_appearance_apply(false);
             break;
         case AP_BATTERY:
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+            wheel_topbar_screen();
+            break;
+#endif
             global_settings.wheel_battery_percent = !global_settings.wheel_battery_percent;
             viewportmanager_theme_changed(THEME_STATUSBAR); /* just redraw */
             settings_save();

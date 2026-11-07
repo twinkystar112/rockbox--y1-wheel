@@ -95,6 +95,12 @@ void onplay_show_playlist_cat_menu(const char* track_name, int attr,
 void onplay_show_playlist_menu(const char* path, int attr, void (*playlist_insert_cb));
 
 int wps_context_menu_do_setting(void *param);
+/* Y1 Wheel: a part of the song is being looped (A-B) from the menu */
+bool wheel_ab_active(void);
+/* Y1 Wheel: at start, an A-B repeat left from before goes back to the old repeat */
+void wheel_ab_boot(void);
+/* Y1 Wheel: leave A-B repeat, back to the repeat mode from before */
+void wheel_ab_stop(void);
 #ifdef HAVE_HOTKEY
 int tree_context_menu_do_setting(void *param);
 #endif

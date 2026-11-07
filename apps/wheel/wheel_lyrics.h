@@ -12,4 +12,5 @@ bool wheel_wps_cycle_mode(void);
 void wheel_wps_scrub(int dir);
 bool wheel_wps_idle(void);
 bool wheel_lyrics_screen(void);
+void wheel_lyrics_open(void);   /* from the Now Playing menu */
 #endif

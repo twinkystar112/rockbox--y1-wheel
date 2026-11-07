@@ -42,6 +42,8 @@
 #include "onplay.h"
 #include "wheel/wheel_connect.h"
 #include "wheel/wheel_screens.h"
+#include "wheel/wheel_lyrics.h"
+#include "abrepeat.h"
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
 #include "sonora/sonora.h"
 #endif
@@ -1363,12 +1365,174 @@ static int wheel_send_current(void)
 }
 MENUITEM_FUNCTION(wheel_send_item, 0, ID2P(LANG_WHEEL_BT_SEND),
                   wheel_send_current, NULL, Icon_NOICON);
+static int wheel_lyrics_item_open(void)
+{
+    wheel_lyrics_open();
+    return 0;
+}
+MENUITEM_FUNCTION(wheel_lyrics_item, 0, ID2P(LANG_WHEEL_LYRICS),
+                  wheel_lyrics_item_open, NULL, Icon_NOICON);
+
+/* Y1 Wheel: the classic Rockbox controls near the top - repeat (off, all,
+ * one song, shuffle, A-B) and shuffle, as in Playback Settings */
+MENUITEM_SETTING(wheel_repeat_item, &global_settings.repeat_mode, NULL);
+MENUITEM_SETTING(wheel_shuffle_item, &global_settings.playlist_shuffle, NULL);
+
+#ifdef AB_REPEAT_ENABLE
+/* ...and looping a part of the song: the first time marks where it starts,
+ * the second where it ends (then it repeats that part), the third stops it.
+ * The repeat mode it had before comes back afterwards (and at the next
+ * start, if the player was switched off in the middle of a loop). */
+static int ab_state;                 /* 0 none, 1 start marked, 2 looping */
+static unsigned long ab_song;        /* the song the marks belong to */
+
+static unsigned long ab_path_key(const struct mp3entry *id3)
+{
+    unsigned long h = 5381;
+    if (id3)
+        for (const char *c = id3->path; *c; c++)
+            h = h * 33 + (unsigned char)*c;
+    return h;
+}
+
+static unsigned long ab_song_key(void)
+{
+    return ab_path_key(audio_current_track());
+}
+
+static int ab_current_state(void)
+{
+    /* repeat changed somewhere else, or another song: no loop any more */
+    if (ab_state && (!ab_repeat_mode_enabled() || ab_song != ab_song_key()))
+        ab_state = 0;
+    return ab_state;
+}
+
+bool wheel_ab_active(void)
+{
+    return ab_current_state() != 0;
+}
+
+static void ab_set_repeat(int mode)
+{
+    if (mode < 0 || mode >= NUM_REPEAT_MODES)
+        mode = REPEAT_OFF;
+    if (global_settings.repeat_mode == mode)
+        return;
+    global_settings.repeat_mode = mode;
+    /* (what the repeat setting does when it changes) */
+    if ((audio_status() & AUDIO_STATUS_PLAY) == AUDIO_STATUS_PLAY)
+        audio_flush_and_reload_tracks();
+}
+
+static int ab_prev_repeat(void)
+{
+    int m = global_settings.wheel_ab_prev;
+    return (m == REPEAT_AB || m < 0 || m >= NUM_REPEAT_MODES) ? REPEAT_OFF : m;
+}
+
+/* leaves A-B repeat (from the menu or chosen in Repeat): no marks, the
+ * repeat mode from before. Skipping a song does this, so the buttons always
+ * go to the next / previous song as usual. */
+void wheel_ab_stop(void)
+{
+    ab_state = 0;
+    ab_reset_markers();
+    if (global_settings.repeat_mode == REPEAT_AB)
+        ab_set_repeat(ab_prev_repeat());
+}
+
+/* another song started while a loop was on (picked from a list, say):
+ * the loop belonged to the other one, so stop it - or A-B, which repeats
+ * the song, would keep playing this one over and over */
+static void ab_track_changed(unsigned short id, void *param)
+{
+    (void)id;
+    struct mp3entry *id3 = ((struct track_event *)param)->id3;
+    if (ab_state && ab_song != ab_path_key(id3))
+        wheel_ab_stop();
+}
+
+void wheel_ab_boot(void)
+{
+    add_event(PLAYBACK_EVENT_TRACK_CHANGE, ab_track_changed);
+    if (global_settings.repeat_mode == REPEAT_AB)
+    {   /* the marks don't survive a restart: back to the old repeat */
+        global_settings.repeat_mode = ab_prev_repeat();
+    }
+}
+
+static int wheel_ab_loop(void)
+{
+    struct mp3entry *id3 = audio_current_track();
+    if (!id3 || !(audio_status() & AUDIO_STATUS_PLAY))
+        return 0;
+    char a[16], b[16];
+    unsigned int pa = 0, pb = 0;
+    switch (ab_current_state())
+    {
+        case 0:
+            if (!ab_repeat_mode_enabled())
+                global_settings.wheel_ab_prev = global_settings.repeat_mode;
+            ab_reset_markers();
+            ab_set_repeat(REPEAT_AB);
+            ab_set_A_marker(id3->elapsed);
+            ab_song = ab_song_key();
+            ab_state = 1;
+            settings_save();
+            ab_get_A_marker(&pa);
+            format_time(a, sizeof(a), pa);
+            splashf(HZ * 2, str(LANG_WHEEL_AB_START_SET), a);
+            break;
+        case 1:
+            ab_set_B_marker(id3->elapsed);
+            ab_state = 2;
+            ab_get_A_marker(&pa);
+            ab_get_B_marker(&pb);
+            /* back to the start now - dropping the audio already decoded
+             * past the end, or that would still be heard first (the loop
+             * itself is seamless: it jumps as the decoder reaches the end) */
+            audio_pre_ff_rewind();
+            audio_ff_rewind(pa);
+            format_time(a, sizeof(a), pa);
+            format_time(b, sizeof(b), pb);
+            splashf(HZ * 2, str(LANG_WHEEL_AB_LOOPING), a, b);
+            break;
+        default:
+            wheel_ab_stop();
+            settings_save();
+            splash(HZ, ID2P(LANG_WHEEL_AB_OFF));
+            break;
+    }
+    return 0;
+}
+
+static char *wheel_ab_name(int selected_item, void *data, char *buffer, size_t buffer_len)
+{
+    (void)selected_item; (void)data;
+    static const int ids[] = { LANG_WHEEL_AB_MARK_START, LANG_WHEEL_AB_MARK_END,
+                               LANG_WHEEL_AB_CLEAR };
+    strlcpy(buffer, str(ids[ab_current_state()]), buffer_len);
+    return buffer;
+}
+MENUITEM_FUNCTION_DYNTEXT(wheel_ab_item, 0, wheel_ab_loop, wheel_ab_name, NULL, NULL,
+                          NULL, Icon_NOICON);
+#else
+bool wheel_ab_active(void) { return false; }
+void wheel_ab_boot(void) { }
+void wheel_ab_stop(void) { }
+#endif
 
 MAKE_ONPLAYMENU( wps_onplay_menu, ID2P(LANG_ONPLAY_MENU_TITLE),
            onplaymenu_callback, Icon_Audio,
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)
            &sonora_chapters_item, &sonora_bookmark_add_item, &sonora_bookmarks_item,
            &sonora_speed_item,
+#endif
+           &wheel_lyrics_item,
+           &wheel_repeat_item, &wheel_shuffle_item,
+#ifdef AB_REPEAT_ENABLE
+           &wheel_ab_item,
 #endif
            &wheel_upnext_item, &wheel_sound_item, &wheel_sleep_item,
 #if (CONFIG_PLATFORM & PLATFORM_HOSTED)

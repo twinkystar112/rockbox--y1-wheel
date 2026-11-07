@@ -1168,7 +1168,7 @@ static void scheme_signature(const char *name, char *buf, size_t size)
     {
         static const char * const tpl[] = {
             "Wheel.sbs", "Wheel.wps", "Wheel-NP-Big.wps", "Wheel-NP-Minimal.wps",
-            "Wheel-NP-Vinyl.wps",
+            "Wheel-NP-Vinyl.wps", "Wheel-NP-Karaoke.wps",
         };
         int l = global_settings.wheel_np_layout;
         for (unsigned i = 0; i < ARRAYLEN(tpl); i++)
@@ -1215,7 +1215,7 @@ static bool scheme_current(const char *name)
 }
 
 static const char * const np_templates[] = {
-    "Wheel", "Wheel-NP-Big", "Wheel-NP-Minimal", "Wheel-NP-Vinyl",
+    "Wheel", "Wheel-NP-Big", "Wheel-NP-Minimal", "Wheel-NP-Vinyl", "Wheel-NP-Karaoke",
 };
 
 static bool gen_scheme(const char *name)

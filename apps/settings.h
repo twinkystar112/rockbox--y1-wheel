@@ -947,6 +947,8 @@ struct user_settings
     bool playback_log; /* ROCKBOX_DIR/playback.log for tracks played */
     /* Y1 Wheel */
     bool wheel_battery_percent; /* show battery % in the status bar */
+    bool wheel_bar_clock;       /* show the time in the status bar */
+    char wheel_bar_name[32];    /* the bar's title in the main menu ("" = Rockbox) */
     int  wheel_appearance;      /* 0 light, 1 dark, 2 automatic (night = dark) */
     int  wheel_accent;          /* accent colour preset */
     bool wheel_letter_jump;     /* fast wheel spin jumps by first letter */
@@ -977,6 +979,8 @@ struct user_settings
     int  wheel_click_sound;     /* tick, clack, bubble, drop, wood */
     int  wheel_sensitivity;     /* wheel: low, normal, high */
     bool wheel_accel;           /* faster spins move further */
+    int  wheel_np_centre;       /* Now Playing centre: 0 back to the list (classic), 1 lyrics/seek */
+    int  wheel_np_menu;         /* Now Playing Menu: 0 main menu (classic), 1 back to the list */
     int  wheel_idle;            /* idle screen after: off, 15 s, 30 s, 1 min, 2 min */
     int  wheel_pl_view;         /* playlists: Wheel list, classic list, Album Flow, discs */
     int  wheel_flow_sort;       /* Album Flow: artist, title, year, recently added */
@@ -992,6 +996,8 @@ struct user_settings
     bool sonora_autonext;       /* podcasts: queue the next unplayed episodes */
     bool sonora_network;        /* feed refresh and downloads (off by default) */
     bool sonora_menu_added;     /* SONORA items added to a saved menu order once */
+    bool wheel_menu_np_first;   /* Now Playing + Playlists moved to the top once */
+    int wheel_ab_prev;          /* the repeat mode before looping a part (A-B) */
 #ifdef INNIOASIS_Y1
     int android_screen_timeout; /* Android screen timeout in seconds (0=never) */
 #endif

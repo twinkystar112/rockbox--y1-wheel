@@ -23987,3 +23987,227 @@
     *: "Añadidos recientemente"
   </voice>
 </phrase>
+<phrase>
+  id: LANG_WHEEL_NP_CENTRE
+  desc: Wheel: what the centre button does in Now Playing
+  user: core
+  <source>
+    *: "Centre button in Now Playing"
+  </source>
+  <dest>
+    *: "Botón central en Ahora suena"
+  </dest>
+  <voice>
+    *: "Botón central en Ahora suena"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_MENU
+  desc: Wheel: what the Menu button does in Now Playing
+  user: core
+  <source>
+    *: "Menu button in Now Playing"
+  </source>
+  <dest>
+    *: "Botón Menú en Ahora suena"
+  </dest>
+  <voice>
+    *: "Botón Menú en Ahora suena"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_BACK_LIST
+  desc: Wheel: Now Playing button choice
+  user: core
+  <source>
+    *: "Back to the list"
+  </source>
+  <dest>
+    *: "Volver a la lista"
+  </dest>
+  <voice>
+    *: "Volver a la lista"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_LYRICS_SEEK
+  desc: Wheel: Now Playing button choice
+  user: core
+  <source>
+    *: "Lyrics and seeking"
+  </source>
+  <dest>
+    *: "Letra y avance"
+  </dest>
+  <voice>
+    *: "Letra y avance"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NO_LYRICS_HINT
+  desc: Wheel: splash, how to add lyrics
+  user: core
+  <source>
+    *: "No lyrics: add a .lrc file next to the song, or lyrics to its tags"
+  </source>
+  <dest>
+    *: "Sin letra: añade un archivo .lrc junto a la canción o la letra en sus etiquetas"
+  </dest>
+  <voice>
+    *: "Sin letra: añade un archivo .lrc junto a la canción o la letra en sus etiquetas"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_TOP_BAR
+  desc: Wheel: status bar options
+  user: core
+  <source>
+    *: "Top bar"
+  </source>
+  <dest>
+    *: "Barra superior"
+  </dest>
+  <voice>
+    *: "Barra superior"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BAR_CLOCK
+  desc: Wheel: show the time in the bar
+  user: core
+  <source>
+    *: "Clock"
+  </source>
+  <dest>
+    *: "Hora"
+  </dest>
+  <voice>
+    *: "Hora"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BAR_NAME
+  desc: Wheel: the bar title instead of Rockbox
+  user: core
+  <source>
+    *: "Name"
+  </source>
+  <dest>
+    *: "Nombre"
+  </dest>
+  <voice>
+    *: "Nombre"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_BAR_NAME_DEFAULT
+  desc: Wheel: no custom bar name
+  user: core
+  <source>
+    *: "Rockbox"
+  </source>
+  <dest>
+    *: "Rockbox"
+  </dest>
+  <voice>
+    *: "Rockbox"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_NP_L4
+  desc: Y1 Wheel now playing
+  user: core
+  <source>
+    *: "Karaoke"
+  </source>
+  <dest>
+    *: "Karaoke"
+  </dest>
+  <voice>
+    *: "Karaoke"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_AB_MARK_START
+  desc: Wheel: Now Playing menu, loop a part of the song (A-B), first step
+  user: core
+  <source>
+    *: "Loop a part: mark the start"
+  </source>
+  <dest>
+    *: "Repetir un trozo: marcar inicio"
+  </dest>
+  <voice>
+    *: "Repetir un trozo: marcar inicio"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_AB_MARK_END
+  desc: Wheel: Now Playing menu, loop a part, second step
+  user: core
+  <source>
+    *: "Loop a part: mark the end"
+  </source>
+  <dest>
+    *: "Repetir un trozo: marcar final"
+  </dest>
+  <voice>
+    *: "Repetir un trozo: marcar final"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_AB_CLEAR
+  desc: Wheel: Now Playing menu, stop the A-B loop
+  user: core
+  <source>
+    *: "Stop looping the part"
+  </source>
+  <dest>
+    *: "Dejar de repetir el trozo"
+  </dest>
+  <voice>
+    *: "Dejar de repetir el trozo"
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_AB_START_SET
+  desc: Wheel: splash, %s = time
+  user: core
+  <source>
+    *: "Start set at %s"
+  </source>
+  <dest>
+    *: "Inicio marcado en %s"
+  </dest>
+  <voice>
+    *: ""
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_AB_LOOPING
+  desc: Wheel: splash, %s = times
+  user: core
+  <source>
+    *: "Looping %s to %s"
+  </source>
+  <dest>
+    *: "Repitiendo de %s a %s"
+  </dest>
+  <voice>
+    *: ""
+  </voice>
+</phrase>
+<phrase>
+  id: LANG_WHEEL_AB_OFF
+  desc: Wheel: splash
+  user: core
+  <source>
+    *: "Loop stopped"
+  </source>
+  <dest>
+    *: "Bucle quitado"
+  </dest>
+  <voice>
+    *: "Bucle quitado"
+  </voice>
+</phrase>

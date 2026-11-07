@@ -94,18 +94,41 @@
 %?cs<%?St(wheel pane)<%Vd(pane)|%Vd(pane)|%Vd(pane)|>|>
 %?cs<%?St(wheel pane)<%?C<%Vd(art)|%Vd(tile)%Vd(note)>|%Vd(clock)|%?mp<%Vd(clock)|%Vd(next)>|>|>
 %?cs<%?St(wheel pane)<%?mp<%?Wd<%Vd(lib)|>|%Vd(cap1)%Vd(cap2)%Vd(mini)>|%?mp<|%Vd(cap1)%Vd(cap2)%Vd(mini)>|%?mp<|%Vd(mini)>|>|>
-%?St(battery percentage)<%Vd(pct)%Vd(icons_pct)|%Vd(icons)>
-%V(16,2,300,32,8)%Vf(141415)%Vb(f7f7f9)
-%s%?Lt<%Lt|Rockbox>
+# (Settings > Appearance > Top bar: battery percentage, clock and the name
+#  shown on the main menu instead of "Rockbox")
+%?St(battery percentage)<%Vd(pct)%?St(wheel bar clock)<%Vd(icons_pct_c)|%Vd(icons_pct)>|%?St(wheel bar clock)<%Vd(icons_c)|%Vd(icons)>>
+%?St(wheel bar clock)<%Vd(title_c)%Vd(barclock)|%?St(battery percentage)<%Vd(title_p)|%Vd(title)>>
+%Vd(bat)%?bc<%Vd(bat_ok)|%?if(%bl,<,11)<%Vd(bat_low)|%?if(%bl,<,21)<%Vd(bat_mid)|%Vd(bat_ok)>>>
+# (each title ends before the icons, which sit further left with the percentage)
+%Vl(title,16,2,280,32,8)%Vf(141415)%Vb(f7f7f9)
+%s%?Lt<%Lt|%?St(wheel bar name)<%St(wheel bar name)|Rockbox>>
+%Vl(title_p,16,2,230,32,8)%Vf(141415)%Vb(f7f7f9)
+%s%?Lt<%Lt|%?St(wheel bar name)<%St(wheel bar name)|Rockbox>>
+%Vl(title_c,16,2,164,32,8)%Vf(141415)%Vb(f7f7f9)
+%s%?Lt<%Lt|%?St(wheel bar name)<%St(wheel bar name)|Rockbox>>
+%Vl(barclock,184,8,112,22,9)%Vf(141415)%Vb(f7f7f9)
+%ac%?St(time format)<%cH:%cM|%cl:%cM>
 #
-# status icons: scrobbles waiting, Bluetooth headphones, play state
+# status icons: scrobbles waiting, Bluetooth headphones, play state, and a
+# bolt while on the charger
 %Vl(icons,300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
-%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
+%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>%?bc< V|>
 %Vl(icons_pct,250,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
-%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>
+%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>%?bc< V|>
+%Vl(icons_c,300,7,124,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>%?bc< V|>
+%Vl(icons_pct_c,300,7,74,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
+%ar%?Wq<S |>%?Wb<H |>%?mp<|B|C|P|Q|B|C>%?bc< V|>
 %Vl(pct,376,8,50,22,9)%Vf(3a3a3e)%Vb(f7f7f9)
 %ar%?if(%bl,>,-1)<%bl%%|>
 #
-# battery (charging bolt while on the charger)
-%V(426,7,46,24,4)%Vf(3a3a3e)%Vb(f7f7f9)
-%ar%?bc<N|%?bl<I|J|K|L|M>>
+# battery: an outlined cell with a rounded tip, filled to the charge level -
+# green, amber below 20 %, red below 10 % (green while charging)
+%Vl(bat,430,10,44,18,-)%Vf(3a3a3e)%Vb(f7f7f9)
+%dr(0,0,38,18,3a3a3e)%dr(2,2,34,14,f7f7f9)%dr(0,0,1,1,f7f7f9)%dr(37,0,1,1,f7f7f9)%dr(0,17,1,1,f7f7f9)%dr(37,17,1,1,f7f7f9)%dr(38,5,3,8,3a3a3e)%dr(40,5,1,1,f7f7f9)%dr(40,12,1,1,f7f7f9)
+%Vl(bat_ok,433,13,32,12,-)%Vf(2fbf5b)%Vb(f7f7f9)
+%bl(0,0,32,12,noborder)
+%Vl(bat_mid,433,13,32,12,-)%Vf(f0a020)%Vb(f7f7f9)
+%bl(0,0,32,12,noborder)
+%Vl(bat_low,433,13,32,12,-)%Vf(e5413a)%Vb(f7f7f9)
+%bl(0,0,32,12,noborder)
