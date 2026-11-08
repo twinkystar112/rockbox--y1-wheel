@@ -34,6 +34,9 @@ int  wheel_playlists_screen(void);
 int  wheel_open_folder(const char *dir, const char *title, const char *subtitle);
 
 bool wheel_play_list(struct wheel_list *l, int start, bool shuffle);
+/* a song's path with the card's real folders ("<HOME>/..." expanded), as
+ * playback needs it; returns path itself or buf */
+const char *wheel_real_path(const char *path, char *buf, size_t len);
 int  wheel_load_playlist_file(const char *file, struct wheel_list *l);
 bool wheel_playlist_cached(const char *file, int *count, unsigned long *secs);
 void wheel_format_duration(unsigned long secs, char *buf, size_t len);

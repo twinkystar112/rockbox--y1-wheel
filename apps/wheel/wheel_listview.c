@@ -130,7 +130,8 @@ static int text_fit(struct screen *d, struct viewport *vp, int f, unsigned col,
     d->getstringsize(buf, &w, &h);
     if (w > max_w)
     {
-        size_t len = strlen(buf);
+        /* room for the "…" (3 bytes and its end) after the cut */
+        size_t len = MIN(strlen(buf), sizeof(buf) - 4 + 1);
         while (len > 0)
         {
             do { len--; } while (len > 0 && ((unsigned char)buf[len] & 0xC0) == 0x80);
@@ -252,6 +253,22 @@ int wheel_pick(const char *title, const char * const *items, int n, int sel)
 
 /* =========================== playing a list =========================== */
 
+/* A song's path with the card's real folders. The file functions understand
+ * "<HOME>" (the catalog's default folder, "<HOME>/Playlists") only at the
+ * very start of a path, but playback reads a song's path as relative to its
+ * own list and makes it "/<HOME>/..." - nothing would play. Every path
+ * handed to playback goes through here, as Rockbox's own catalog does
+ * (playlist_catalog.c). */
+const char *wheel_real_path(const char *path, char *buf, size_t len)
+{
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(HAVE_SPECIAL_DIRS)
+    return handle_special_dirs(path, 0, buf, len);
+#else
+    (void)buf; (void)len;
+    return path;
+#endif
+}
+
 bool wheel_play_list(struct wheel_list *l, int start, bool shuffle)
 {
     if (l->n <= 0)
@@ -262,8 +279,9 @@ bool wheel_play_list(struct wheel_list *l, int start, bool shuffle)
     struct playlist_insert_context ctx;
     if (playlist_insert_context_create(NULL, &ctx, PLAYLIST_INSERT_LAST, false, false) < 0)
         return false;
+    char rp[MAX_PATH];
     for (int i = 0; i < l->n; i++)
-        playlist_insert_context_add(&ctx, l->t[i].path);
+        playlist_insert_context_add(&ctx, wheel_real_path(l->t[i].path, rp, sizeof(rp)));
     playlist_insert_context_release(&ctx);
     if (playlist_amount() <= 0)
         return false;
@@ -280,8 +298,8 @@ bool wheel_play_list(struct wheel_list *l, int start, bool shuffle)
 
 static bool play_file(const char *file, int start, bool shuffle)
 {
-    char dir[MAX_PATH];
-    strlcpy(dir, file, sizeof(dir));
+    char dir[MAX_PATH], real[MAX_PATH];
+    strlcpy(dir, wheel_real_path(file, real, sizeof(real)), sizeof(dir));
     char *slash = strrchr(dir, '/');
     if (!slash)
         return false;
@@ -307,14 +325,17 @@ static void queue_tracks(struct wheel_list *l, int from, int count, bool next)
         return;
     }
     int pos = next ? PLAYLIST_INSERT_FIRST : PLAYLIST_INSERT_LAST;
+    char rp[MAX_PATH];
     if (next)
     {   /* insert in reverse so they keep their order */
         for (int i = from + count - 1; i >= from; i--)
-            playlist_insert_track(NULL, l->t[i].path, pos, false, false);
+            playlist_insert_track(NULL, wheel_real_path(l->t[i].path, rp, sizeof(rp)),
+                                  pos, false, false);
     }
     else
         for (int i = from; i < from + count; i++)
-            playlist_insert_track(NULL, l->t[i].path, pos, false, false);
+            playlist_insert_track(NULL, wheel_real_path(l->t[i].path, rp, sizeof(rp)),
+                                  pos, false, false);
     playlist_sync(NULL);
     splash(HZ, next ? ID2P(LANG_WHEEL_ADDED_NEXT) : ID2P(LANG_WHEEL_ADDED_QUEUE));
 }
@@ -456,6 +477,20 @@ static bool resolve_track(char *out, size_t len, const char *line, const char *d
             a[n++] = *p == '\\' ? '/' : *p;
     }
     a[n] = '\0';
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED) && defined(HAVE_SPECIAL_DIRS)
+    /* songs that earlier versions of Wheel wrote as "<HOME>/..." (or that
+     * a saved queue holds as "/<HOME>/...") */
+    {
+        const size_t hl = sizeof(HOME_DIR) - 1;
+        const char *h = (a[0] == '/' && !strncmp(a + 1, HOME_DIR, hl)) ? a + 1 : a;
+        if (!strncmp(h, HOME_DIR, hl))
+        {
+            const char *r = handle_special_dirs(h, 0, b, sizeof(b));
+            if (r == b)
+                strlcpy(a, b, sizeof(a));
+        }
+    }
+#endif
     /* ANSI names (a .m3u from Windows): to UTF-8. Western Windows
      * (cp1252) unless the codepage setting names another script - its
      * default, UTF-8, would turn every accent into "?" */
@@ -526,10 +561,103 @@ static bool resolve_track(char *out, size_t len, const char *line, const char *d
     return false;
 }
 
+/* ------------------------- reading a playlist file -------------------------
+ * Lines end as Rockbox's own reader ends them: "\n", "\r\n" or a lone "\r"
+ * (old Mac files). A line too long for the buffer is still one line: its
+ * start is kept, the rest skipped (it used to come back as extra songs).
+ * The reader also says where each line starts and ends in the file, so a
+ * song can be removed or moved without rewriting the others. */
+struct pl_rd
+{
+    int fd;
+    unsigned char buf[512];
+    int n, i;
+    long base;               /* file offset of buf[0] */
+    bool eof;
+    int brk;                 /* how the last line ended: 0 file end, 1 \n, 2 \r\n, 3 \r */
+};
+
+static void pl_rd_init(struct pl_rd *r, int fd)
+{
+    r->fd = fd;
+    r->n = r->i = 0;
+    r->base = lseek(fd, 0, SEEK_CUR);
+    r->eof = false;
+}
+
+static int pl_rd_peek(struct pl_rd *r)
+{
+    if (r->i >= r->n)
+    {
+        if (r->eof)
+            return -1;
+        r->base += r->n;
+        r->i = 0;
+        r->n = read(r->fd, r->buf, sizeof(r->buf));
+        if (r->n <= 0)
+        {
+            r->n = 0;
+            r->eof = true;
+            return -1;
+        }
+    }
+    return r->buf[r->i];
+}
+
+/* the next line: its first bytes into head; start/end: where it starts and
+ * where the next one does */
+static bool pl_rd_line(struct pl_rd *r, char *head, size_t hsize, long *start, long *end)
+{
+    if (pl_rd_peek(r) < 0)
+        return false;
+    *start = r->base + r->i;
+    size_t k = 0;
+    int c;
+    r->brk = 0;
+    while ((c = pl_rd_peek(r)) >= 0)
+    {
+        r->i++;
+        if (c == '\n')
+        {
+            r->brk = 1;
+            break;
+        }
+        if (c == '\r')
+        {
+            r->brk = 3;
+            if (pl_rd_peek(r) == '\n')
+            {
+                r->i++;
+                r->brk = 2;
+            }
+            break;
+        }
+        if (k + 1 < hsize)
+            head[k++] = c;
+    }
+    head[k] = '\0';
+    *end = r->base + r->i;
+    return true;
+}
+
+/* a song's line, trimmed - or NULL for an empty line or a comment (as
+ * Rockbox reads playlists) */
+static char *pl_song(char *line)
+{
+    char *p = line;
+    while (*p == ' ' || *p == '\t') p++;
+    if (!*p || *p == '#')
+        return NULL;
+    size_t len = strlen(p);
+    while (len && (p[len - 1] == ' ' || p[len - 1] == '\t'))
+        p[--len] = '\0';
+    return len ? p : NULL;
+}
+
 /* read a .m3u/.m3u8 into the list; returns the number of entries */
 int wheel_load_playlist_file(const char *file, struct wheel_list *l)
 {
-    char line[MAX_PATH + 16], dir[MAX_PATH];
+    char line[MAX_PATH + 16], dir[MAX_PATH], real[MAX_PATH];
     l->n = l->total = 0;
     int fd = open_utf8(file, O_RDONLY);
     if (fd < 0)
@@ -537,21 +665,22 @@ int wheel_load_playlist_file(const char *file, struct wheel_list *l)
     /* UTF-8: a .m3u8, or a byte order mark (open_utf8 skipped it) */
     const char *ext = strrchr(file, '.');
     bool utf8 = (ext && !strcasecmp(ext, ".m3u8")) || lseek(fd, 0, SEEK_CUR) > 0;
-    strlcpy(dir, file, sizeof(dir));
+    /* songs named from the playlist's folder ("..\Music\x.mp3") are looked
+     * for from its real folder: "<HOME>/Playlists/../Music/x.mp3" can be
+     * opened, but not played (see wheel_real_path) */
+    strlcpy(dir, wheel_real_path(file, real, sizeof(real)), sizeof(dir));
     char *slash = strrchr(dir, '/');
     if (slash) slash[1] = '\0';
     resolve_begin();
     long t0 = current_tick;
     int lost = 0;
-    while (read_line(fd, line, sizeof(line)) > 0)
+    struct pl_rd rd;
+    pl_rd_init(&rd, fd);
+    long ls, le;
+    while (pl_rd_line(&rd, line, sizeof(line), &ls, &le))
     {
-        char *p = line;
-        while (*p == ' ' || *p == '\t') p++;
-        if (!*p || *p == '#') continue;
-        size_t len = strlen(p);
-        while (len && (p[len - 1] == '\r' || p[len - 1] == ' ' || p[len - 1] == '\t'))
-            p[--len] = '\0';
-        if (!len) continue;
+        char *p = pl_song(line);
+        if (!p) continue;
         l->total++;
         if (l->n >= l->max) continue;
         struct wheel_track *t = &l->t[l->n++];
@@ -568,6 +697,152 @@ int wheel_load_playlist_file(const char *file, struct wheel_list *l)
     snprintf(what, sizeof(what), "playlist: %d songs, %d not found", l->n, lost);
     wheel_perf(what, lost ? HZ : current_tick - t0);   /* (always noted when songs are missing) */
     return l->total;
+}
+
+/* ----------------------- changing a playlist file -----------------------
+ * Removing or moving a song touches only that song's lines (the song and
+ * the "#EXTINF" lines just above it): the file keeps the way it names its
+ * songs ("..\Music\..."), its comments, line breaks and byte order mark,
+ * and the songs past the list's limit. Before Wheel first changes a
+ * playlist, the file as it was is copied to .rockbox/playlist-backup. */
+
+#define PL_BACKUP_DIR ROCKBOX_DIR "/playlist-backup"
+
+struct pl_span { long s, e; bool brk; };
+
+/* "#EXTINF:..." and the like belong to the song below them; "#EXTM3U",
+ * "#EXTENC" and HLS tags belong to the file */
+static bool pl_attached(const char *line)
+{
+    while (*line == ' ' || *line == '\t') line++;
+    return !strncasecmp(line, "#EXT", 4) && strncasecmp(line, "#EXTM3U", 7) &&
+           strncasecmp(line, "#EXTENC", 7) && strncasecmp(line, "#EXT-X-", 7);
+}
+
+/* where songs a and b are (b < 0: only a), counted as the list counts them */
+static bool pl_find(int fd, int a, int b, struct pl_span *sa, struct pl_span *sb,
+                    const char **eol)
+{
+    static const char *const brks[4] = { NULL, "\n", "\r\n", "\r" };
+    char line[MAX_PATH + 16];
+    struct pl_rd rd;
+    pl_rd_init(&rd, fd);
+    long ls, le, ext = -1;
+    bool got_a = false, got_b = b < 0;
+    int k = 0;
+    while (pl_rd_line(&rd, line, sizeof(line), &ls, &le))
+    {
+        if (!*eol && rd.brk)
+            *eol = brks[rd.brk];
+        if (pl_song(line))
+        {
+            struct pl_span s = { ext >= 0 ? ext : ls, le, rd.brk != 0 };
+            if (k == a) { *sa = s; got_a = true; }
+            if (k == b) { *sb = s; got_b = true; }
+            if (got_a && got_b && *eol)
+                break;
+            k++;
+            ext = -1;
+        }
+        else if (pl_attached(line))
+        {
+            if (ext < 0)
+                ext = ls;
+        }
+        else
+            ext = -1;
+    }
+    if (!*eol)
+        *eol = "\n";
+    return got_a && got_b;
+}
+
+static bool pl_copy(int in, int out, long s, long e)
+{
+    char buf[1024];
+    if (s >= e)
+        return true;
+    if (lseek(in, s, SEEK_SET) != s)
+        return false;
+    while (s < e)
+    {
+        int n = read(in, buf, MIN((long)sizeof(buf), e - s));
+        if (n <= 0 || write(out, buf, n) != n)
+            return false;
+        s += n;
+    }
+    return true;
+}
+
+/* the playlist as it was before Wheel first changed it */
+static bool pl_backup(const char *file, int in, long size)
+{
+    const char *name = strrchr(file, '/');
+    name = name ? name + 1 : file;
+    char bak[MAX_PATH];
+    snprintf(bak, sizeof(bak), PL_BACKUP_DIR "/%s", name);
+    if (file_exists(bak))
+        return true;                 /* the first version is the one to keep */
+    if (!dir_exists(PL_BACKUP_DIR))
+        mkdir(PL_BACKUP_DIR);
+    int out = open(bak, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    if (out < 0)
+        return false;
+    bool ok = pl_copy(in, out, 0, size);
+    if (close(out) < 0)
+        ok = false;
+    if (!ok)
+        remove(bak);
+    return ok;
+}
+
+/* remove song i (to < 0), or swap it with song to; false: nothing changed */
+static bool pl_edit(const char *file, int i, int to)
+{
+    int in = open(file, O_RDONLY);
+    if (in < 0)
+        return false;
+    long size = lseek(in, 0, SEEK_END);
+    unsigned char bom[3];
+    long base = 0;
+    lseek(in, 0, SEEK_SET);
+    if (read(in, bom, 3) == 3 && bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf)
+        base = 3;
+    lseek(in, base, SEEK_SET);
+    int a = to < 0 ? i : MIN(i, to), b = to < 0 ? -1 : MAX(i, to);
+    struct pl_span sa = { 0, 0, false }, sb = { 0, 0, false };
+    const char *eol = NULL;
+    if (size < 0 || !pl_find(in, a, b, &sa, &sb, &eol))
+    {
+        close(in);
+        return false;
+    }
+    bool backed_up = pl_backup(file, in, size);
+    char tmp[MAX_PATH];
+    snprintf(tmp, sizeof(tmp), "%s.tmp", file);
+    int out = open(tmp, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    if (out < 0)
+    {
+        close(in);
+        return false;
+    }
+    bool ok = pl_copy(in, out, 0, base) && pl_copy(in, out, base, sa.s);
+    if (b < 0)
+        ok = ok && pl_copy(in, out, sa.e, size);
+    else                    /* song b, what lay between them, song a, the rest */
+        ok = ok && pl_copy(in, out, sb.s, sb.e) &&
+             (sb.brk || write(out, eol, strlen(eol)) == (ssize_t)strlen(eol)) &&
+             pl_copy(in, out, sa.e, sb.s) && pl_copy(in, out, sa.s, sa.e) &&
+             pl_copy(in, out, sb.e, size);
+    close(in);
+    if (close(out) < 0)
+        ok = false;
+    if (ok && rename(tmp, file) < 0)
+        /* a file system that won't rename over a file: only with the copy kept */
+        ok = backed_up && remove(file) == 0 && rename(tmp, file) == 0;
+    if (!ok)
+        remove(tmp);
+    return ok;
 }
 
 static bool write_playlist(const char *file, struct wheel_list *l)
@@ -1160,12 +1435,13 @@ static int track_options(int i, bool *changed)
                     playlist_delete(NULL, queue_abs_index(i));
                     *changed = true;
                 }
-                else
+                else if (pl_edit(v.lv->file, i, -1))
                 {
                     memmove(&v.l->t[i], &v.l->t[i + 1], (v.l->n - i - 1) * sizeof(v.l->t[0]));
                     v.l->n--; v.l->total--;
-                    write_playlist(v.lv->file, v.l);
                 }
+                else
+                    splash(HZ * 2, ID2P(LANG_FAILED));
                 break;
             case OPT_UP:
             case OPT_DOWN:
@@ -1176,12 +1452,16 @@ static int track_options(int i, bool *changed)
                     playlist_move(NULL, queue_abs_index(i), queue_abs_index(to));
                     *changed = true;
                 }
-                else
+                else if (pl_edit(v.lv->file, i, to))
                 {
                     struct wheel_track tmp = v.l->t[i];
                     v.l->t[i] = v.l->t[to];
                     v.l->t[to] = tmp;
-                    write_playlist(v.lv->file, v.l);
+                }
+                else
+                {
+                    splash(HZ * 2, ID2P(LANG_FAILED));
+                    break;
                 }
                 v.sel += to - i;
                 break;
@@ -1824,8 +2104,9 @@ int wheel_open_folder(const char *dir, const char *title, const char *subtitle)
 /* ------------------------- the Playlists screen ------------------------- */
 
 #define MAX_PLAYLISTS 200
+#define PL_NAME 256        /* a whole file name: a cut one can't be opened */
 static struct {
-    char names[MAX_PLAYLISTS][64];
+    char names[MAX_PLAYLISTS][PL_NAME];
     int n;
     bool have_queue;
 } pls;
@@ -1842,14 +2123,16 @@ static void scan_playlists(void)
     {
         if (e->d_name[0] == '.' || !is_playlist_name((char *)e->d_name))
             continue;
-        strlcpy(pls.names[pls.n++], (char *)e->d_name, 64);
+        if (strlen((char *)e->d_name) >= PL_NAME)
+            continue;
+        strlcpy(pls.names[pls.n++], (char *)e->d_name, PL_NAME);
     }
     closedir(dir);
     /* alphabetical */
     for (int i = 1; i < pls.n; i++)
         for (int j = i; j > 0 && strcasecmp(pls.names[j - 1], pls.names[j]) > 0; j--)
         {
-            char tmp[64];
+            char tmp[PL_NAME];
             strcpy(tmp, pls.names[j]);
             strcpy(pls.names[j], pls.names[j - 1]);
             strcpy(pls.names[j - 1], tmp);
@@ -1872,7 +2155,7 @@ static const char *pl_get_name(int item, void *data, char *buf, size_t len)
     }
     if (item >= pls.n)
         return str(LANG_WHEEL_NO_PLAYLISTS);
-    char name[64], path[MAX_PATH], val[48];
+    char name[PL_NAME], path[MAX_PATH], val[48];
     strlcpy(name, pls.names[item], sizeof(name));
     char *dot = strrchr(name, '.');
     if (dot) *dot = '\0';

@@ -557,15 +557,17 @@ const unsigned char* utf8decode(const unsigned char *utf8, ucschar_t *ucs)
             code = 0xfffd;
         }
 
-        while (tail-- && ((c = *utf8++) != 0)) {
+        while (tail--) {
+            c = *utf8;
             if ((c & 0xc0) == 0x80) {
                 /* Valid continuation character. */
                 code = (code << 6) | (c & 0x3f);
-
+                utf8++;
             } else {
-                /* Invalid continuation char */
+                /* Invalid continuation char, or the end of the string: stop
+                 * before it, so a character cut short (a name cut to fit a
+                 * buffer) never steps past the terminating zero */
                 code = 0xfffd;
-                utf8--;
                 break;
             }
         }

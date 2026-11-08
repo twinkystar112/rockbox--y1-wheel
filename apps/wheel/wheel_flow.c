@@ -298,7 +298,7 @@ static int text_at(int f, unsigned col, int x, int y, int max_w, int align, cons
     d->getstringsize(buf, &w, &h);
     if (w > max_w)
     {
-        size_t len = strlen(buf);
+        size_t len = MIN(strlen(buf), sizeof(buf) - 4 + 1);  /* room for the "…" */
         while (len > 0)
         {
             do { len--; } while (len > 0 && ((unsigned char)buf[len] & 0xC0) == 0x80);
@@ -1706,12 +1706,15 @@ static int alb_options(struct wheel_flow_src *s, int i)
                     ret = GO_TO_WPS;
                 break;
             }
+            char rp[MAX_PATH];
             if (pick == AO_NEXT)
                 for (int k = l->n - 1; k >= 0; k--)
-                    playlist_insert_track(NULL, l->t[k].path, PLAYLIST_INSERT_FIRST, false, false);
+                    playlist_insert_track(NULL, wheel_real_path(l->t[k].path, rp, sizeof(rp)),
+                                          PLAYLIST_INSERT_FIRST, false, false);
             else
                 for (int k = 0; k < l->n; k++)
-                    playlist_insert_track(NULL, l->t[k].path, PLAYLIST_INSERT_LAST, false, false);
+                    playlist_insert_track(NULL, wheel_real_path(l->t[k].path, rp, sizeof(rp)),
+                                          PLAYLIST_INSERT_LAST, false, false);
             playlist_sync(NULL);
             splash(HZ, pick == AO_NEXT ? ID2P(LANG_WHEEL_ADDED_NEXT) : ID2P(LANG_WHEEL_ADDED_QUEUE));
             break;

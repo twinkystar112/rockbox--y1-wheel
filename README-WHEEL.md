@@ -80,6 +80,16 @@ con carátula, top artistas, tu hora favorita). Desde los rankings se reproduce 
   y nombres con acentos en `.m3u` de Windows (ANSI). Quita las carpetas del ordenador hasta dar
   con la canción en la tarjeta. Las que no encuentra quedan anotadas en
   `.rockbox/wheel-perf.log` ("playlist: N songs, M not found").
+* Las rutas **relativas a la playlist** (`..\Music\canción.mp3`, como las guarda MediaMonkey) se
+  buscan desde la carpeta real de la tarjeta (`/sdcard/Playlists`), igual que el catálogo de
+  Rockbox. Antes se quedaban como `<HOME>/…`: se veían en la lista pero no sonaban. Las playlists
+  que versiones anteriores guardaron con `<HOME>/…` también suenan.
+* **Quitar, subir y bajar** en una playlist cambian solo las líneas de esa canción (y su
+  `#EXTINF`): el archivo conserva sus rutas, comentarios, saltos de línea y marca BOM, y las
+  canciones que pasen de 1000. La primera vez que Wheel cambia una playlist guarda el original
+  en `.rockbox/playlist-backup/`.
+* Lee los saltos de línea como Rockbox (`\n`, `\r\n` o `\r` sueltos); una línea demasiado larga
+  cuenta como una sola canción. Los nombres de playlist largos se abren enteros.
 * Reproducir a continuación / Añadir a la cola desde el navegador.
 
 ### Portadas (Album Flow) y vistas de listas

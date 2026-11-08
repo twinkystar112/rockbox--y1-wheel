@@ -138,7 +138,7 @@ static void text(struct screen *d, struct viewport *vp, int font, unsigned col, 
         strlcpy(buf, s, sizeof(buf));
         int w, h;
         d->getstringsize((unsigned char *)buf, &w, &h);
-        size_t l = strlen(buf);
+        size_t l = MIN(strlen(buf), sizeof(buf) - 4 + 1);  /* room for the "…" */
         while (w > maxw && l > 1)
         {
             do l--; while (l > 1 && (buf[l] & 0xc0) == 0x80);

@@ -931,7 +931,7 @@ static void put_fit(struct screen *d, int x, int y, int maxw, int font, const ch
     font_getstringsize((unsigned char *)buf, &w, &h, font);
     if (w > maxw)
     {
-        size_t n = strlen(buf);
+        size_t n = MIN(strlen(buf), sizeof(buf) - 4 + 1);  /* room for the "…" */
         while (n > 0)
         {
             do n--; while (n > 0 && (buf[n] & 0xc0) == 0x80); /* whole UTF-8 chars */
