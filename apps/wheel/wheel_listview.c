@@ -867,8 +867,14 @@ static const char *catalog_dir(void)
     const char *dir = global_settings.playlist_catalog_dir;
     if (!dir[0])
         dir = PLAYLIST_CATALOG_DEFAULT_DIR;
-    if (!dir_exists(dir))
-        mkdir(dir);
+    /* checked once: the list asks for it for every row it draws */
+    static char made[MAX_PATH];
+    if (strcmp(made, dir))
+    {
+        if (!dir_exists(dir))
+            mkdir(dir);
+        strlcpy(made, dir, sizeof(made));
+    }
     return dir;
 }
 
@@ -899,31 +905,59 @@ static long file_size(const char *file)
     return size;
 }
 
-/* duration cache: path \t size \t count \t seconds */
-bool wheel_playlist_cached(const char *file, int *count, unsigned long *secs)
+/* duration cache: path \t size \t count \t seconds. Kept in memory: the
+ * Playlists screen asks for every row it draws, and each file access on
+ * the card is slow. */
+static char dc_text[16 * 1024];
+static int dc_len = -1;               /* -1: not read yet */
+
+static void dc_load(void)
 {
-    char line[MAX_PATH + 64];
-    long fsize = file_size(file);
-    if (fsize < 0)
-        return false;
+    if (dc_len >= 0)
+        return;
+    dc_len = 0;
     int fd = open(DURATION_CACHE, O_RDONLY);
     if (fd < 0)
-        return false;
-    bool found = false;
-    while (!found && read_line(fd, line, sizeof(line)) > 0)
-    {
-        char *t1 = strchr(line, '\t');
-        if (!t1) continue;
-        *t1 = '\0';
-        if (strcmp(line, file)) continue;
-        long size = strtol(t1 + 1, &t1, 10);
-        if (size != fsize) break;
-        *count = strtol(t1 + 1, &t1, 10);
-        *secs = strtoul(t1 + 1, NULL, 10);
-        found = true;
-    }
+        return;
+    int n = read(fd, dc_text, sizeof(dc_text) - 1);
     close(fd);
-    return found;
+    if (n > 0)
+    {
+        dc_len = n;
+        if (n == (int)sizeof(dc_text) - 1)      /* cut: drop the last line */
+            while (dc_len > 0 && dc_text[dc_len - 1] != '\n')
+                dc_len--;
+    }
+    dc_text[dc_len] = '\0';
+}
+
+static bool dc_find(const char *file, long fsize, int *count, unsigned long *secs)
+{
+    dc_load();
+    size_t fl = strlen(file);
+    for (const char *l = dc_text; *l; )
+    {
+        const char *e = strchr(l, '\n');
+        if (!e) e = l + strlen(l);
+        if (!strncmp(l, file, fl) && l[fl] == '\t')
+        {
+            char *p;
+            long size = strtol(l + fl + 1, &p, 10);
+            if (size != fsize)
+                return false;
+            *count = strtol(p + 1, &p, 10);
+            *secs = strtoul(p + 1, NULL, 10);
+            return true;
+        }
+        l = *e ? e + 1 : e;
+    }
+    return false;
+}
+
+bool wheel_playlist_cached(const char *file, int *count, unsigned long *secs)
+{
+    long fsize = file_size(file);
+    return fsize >= 0 && dc_find(file, fsize, count, secs);
 }
 
 static void cache_store(const char *file, int count, unsigned long secs)
@@ -955,6 +989,7 @@ static void cache_store(const char *file, int count, unsigned long secs)
     close(out);
     rename(DURATION_CACHE ".tmp", DURATION_CACHE);
     remove(DURATION_CACHE_OLD);
+    dc_len = -1;                      /* read it again when next asked */
 }
 
 /* ============================= the screen ============================= */
@@ -2051,6 +2086,13 @@ int wheel_queue_view(void)
     return queue_view_titled(str(LANG_WHEEL_UP_NEXT));
 }
 
+static unsigned path_hash(const char *p)
+{
+    unsigned h = 2166136261u;
+    while (*p) h = (h ^ (unsigned char)*p++) * 16777619u;
+    return h;
+}
+
 int wheel_open_playlist_file(const char *file)
 {
     char title[96];
@@ -2058,7 +2100,23 @@ int wheel_open_playlist_file(const char *file)
     strlcpy(title, base ? base + 1 : file, sizeof(title));
     char *dot = strrchr(title, '.');
     if (dot) *dot = '\0';
-    wheel_load_playlist_file(file, &lv_main);
+    /* the same file, unchanged, and the list still holds it (back from Now
+     * Playing): no need to read it and look up every song again */
+    static struct { char file[MAX_PATH]; long size; int n; unsigned h0, h1; } last;
+    long size = file_size(file);
+    struct wheel_list *l = &lv_main;
+    bool kept = size >= 0 && size == last.size && l->n > 0 && l->n == last.n &&
+                !strcmp(file, last.file) && path_hash(l->t[0].path) == last.h0 &&
+                path_hash(l->t[l->n - 1].path) == last.h1;
+    if (!kept)
+    {
+        wheel_load_playlist_file(file, l);
+        last.n = l->n;
+        last.size = size;
+        strlcpy(last.file, file, sizeof(last.file));
+        last.h0 = l->n > 0 ? path_hash(l->t[0].path) : 0;
+        last.h1 = l->n > 0 ? path_hash(l->t[l->n - 1].path) : 0;
+    }
     struct wheel_lv lv = { .title = title, .subtitle = str(LANG_PLAYLIST),
                            .kind = LV_PLAYLIST_FILE, .file = file, .list = &lv_main };
     return wheel_listview_show(&lv);
@@ -2107,6 +2165,7 @@ int wheel_open_folder(const char *dir, const char *title, const char *subtitle)
 #define PL_NAME 256        /* a whole file name: a cut one can't be opened */
 static struct {
     char names[MAX_PLAYLISTS][PL_NAME];
+    long size[MAX_PLAYLISTS];          /* read when the folder is read */
     int n;
     bool have_queue;
 } pls;
@@ -2137,6 +2196,12 @@ static void scan_playlists(void)
             strcpy(pls.names[j], pls.names[j - 1]);
             strcpy(pls.names[j - 1], tmp);
         }
+    for (int i = 0; i < pls.n; i++)
+    {
+        char path[MAX_PATH];
+        snprintf(path, sizeof(path), "%s/%s", catalog_dir(), pls.names[i]);
+        pls.size[i] = file_size(path);
+    }
 }
 
 static const char *pl_get_name(int item, void *data, char *buf, size_t len)
@@ -2161,7 +2226,7 @@ static const char *pl_get_name(int item, void *data, char *buf, size_t len)
     if (dot) *dot = '\0';
     snprintf(path, sizeof(path), "%s/%s", catalog_dir(), pls.names[item]);
     int count; unsigned long secs;
-    if (wheel_playlist_cached(path, &count, &secs))
+    if (pls.size[item] >= 0 && dc_find(path, pls.size[item], &count, &secs))
     {
         char dur[24];
         wheel_format_duration(secs, dur, sizeof(dur));

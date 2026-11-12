@@ -59,6 +59,13 @@ public class WheelBluetooth
     private static final long[] RETRY_DELAYS_MS = { 4000, 12000, 30000, 60000 };
     private static final long RESUME_WINDOW_MS = 10 * 60 * 1000;
     private static final long SCAN_TIME_MS = 15000;
+    /* a connection still "connecting" after this is stuck (Android 4.2 can
+     * leave it so for ever): drop it and start again, as the user would */
+    private static final long STUCK_MS = 12000;
+    private static final int MAX_UNSTICK = 2;
+    /* headphones that came in on their own (the link is up) but whose
+     * audio didn't follow: ask for the audio after this */
+    private static final long ACL_AUDIO_WAIT_MS = 3500;
 
     private static Context sCtx;
     private static Handler sMain;
@@ -74,6 +81,8 @@ public class WheelBluetooth
     private static boolean sWasPlaying;         /* playback state as last reported */
     private static long sPausedByLossAt = -1;   /* we paused because audio dropped */
     private static String sLastConnected = "";
+    private static String sWatch;               /* device a connect is under way to */
+    private static int sUnstick;
 
     /* implemented in apps/hosted/android/wheel_connect_android.c */
     private static native void nativeSinkLost();
@@ -113,6 +122,7 @@ public class WheelBluetooth
         f.addAction(BluetoothDevice.ACTION_FOUND);
         f.addAction(BluetoothDevice.ACTION_NAME_CHANGED);
         f.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        f.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         f.addAction("android.bluetooth.device.action.PAIRING_REQUEST");
         f.addAction(Intent.ACTION_SCREEN_ON);
         f.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY - 1);
@@ -176,6 +186,7 @@ public class WheelBluetooth
             return pair(addr);
         rememberLast(addr);
         sRetry = 0;
+        sUnstick = 0;
         return a2dpConnect(d);
     }
 
@@ -461,8 +472,44 @@ public class WheelBluetooth
         boolean ok = invoke(a, "connect", d);
         if (!ok)
             synchronized (WheelBluetooth.class) { sStates.remove(d.getAddress()); }
+        else
+            watch(d.getAddress());
         return ok;
     }
+
+    /* check on a connect that is under way */
+    private static void watch(String addr)
+    {
+        synchronized (WheelBluetooth.class) { sWatch = addr; }
+        sMain.removeCallbacks(sUnstickRun);
+        sMain.postDelayed(sUnstickRun, STUCK_MS);
+    }
+
+    private static final Runnable sUnstickRun = new Runnable() {
+        public void run() {
+            String addr;
+            synchronized (WheelBluetooth.class) { addr = sWatch; }
+            BluetoothA2dp a = sA2dp;
+            final BluetoothDevice d = device(addr);
+            if (a == null || d == null)
+                return;
+            int st;
+            try { st = a.getConnectionState(d); } catch (Throwable t) { return; }
+            if (st != BluetoothProfile.STATE_CONNECTING)
+                return;                       /* connected, or it gave up */
+            if (sUnstick >= MAX_UNSTICK)
+            {
+                Logger.d("WheelBluetooth: " + addr + " still connecting, leaving it");
+                synchronized (WheelBluetooth.class) { sStates.remove(addr); }
+                return;
+            }
+            sUnstick++;
+            Logger.d("WheelBluetooth: " + addr + " stuck connecting, starting again");
+            invoke(a, "disconnect", d);
+            sMain.postDelayed(new Runnable() {
+                public void run() { a2dpConnect(d); } }, 1500);
+        }
+    };
 
     private static boolean invoke(Object target, String method, BluetoothDevice arg)
     {
@@ -509,6 +556,11 @@ public class WheelBluetooth
             try {
                 if (!sA2dp.getConnectedDevices().isEmpty())
                     return; /* something is already playing our audio */
+                if (sA2dp.getConnectionState(d) == BluetoothProfile.STATE_CONNECTING)
+                {   /* the headphones are on their way in: make sure they arrive */
+                    watch(last);
+                    return;
+                }
                 if (sA2dp.getConnectionState(d) != BluetoothProfile.STATE_DISCONNECTED)
                     return;
             } catch (Throwable t) { return; }
@@ -546,7 +598,9 @@ public class WheelBluetooth
                 {
                     rememberLast(d.getAddress());
                     sRetry = 0;
+                    sUnstick = 0;
                     sMain.removeCallbacks(sReconnect);
+                    sMain.removeCallbacks(sUnstickRun);
                     boolean resume;
                     synchronized (WheelBluetooth.class) {
                         resume = sPausedByLossAt >= 0 &&
@@ -577,8 +631,28 @@ public class WheelBluetooth
                     if (!deliberate)
                     {
                         sRetry = 0;
+                        sUnstick = 0;
                         scheduleReconnect(RETRY_DELAYS_MS[0]);
                     }
+                }
+                else if (s == BluetoothProfile.STATE_DISCONNECTED
+                         && prev == BluetoothProfile.STATE_CONNECTING
+                         && d.getAddress().equals(sPrefs.getString("last", ""))
+                         && sRetry < RETRY_DELAYS_MS.length)
+                {   /* an attempt to the usual headphones failed: the next try
+                     * is already on the clock unless the retries ran out */
+                    scheduleReconnect(RETRY_DELAYS_MS[sRetry]);
+                }
+            }
+            else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action) && d != null)
+            {
+                /* the usual headphones are back (turned on): if their audio
+                 * doesn't come up by itself, ask for it */
+                if (d.getAddress().equals(sPrefs.getString("last", "")))
+                {
+                    sRetry = 0;
+                    sUnstick = 0;
+                    scheduleReconnect(ACL_AUDIO_WAIT_MS);
                 }
             }
             else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action) && d != null)

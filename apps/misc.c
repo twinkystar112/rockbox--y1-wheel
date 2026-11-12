@@ -1266,7 +1266,12 @@ int read_line(int fd, char* buffer, int buffer_size)
         return -1;
     }
 
+#ifdef APPLICATION
+    /* every read is a system call: a whole line (or several) in one */
+    unsigned char rdbuf[512];
+#else
     unsigned char rdbuf[32];
+#endif
     off_t rdbufend = 0;
     int rdbufidx = 0;
     int count = 0;

@@ -72,6 +72,15 @@
 #endif
 #define GLYPHS_TO_CACHE 256
 
+/* A hosted application has RAM to spare, and reading a glyph of a cached
+ * font from its file is seven system calls (loading the 250 glyphs a font
+ * last used: 1700). Fonts up to this size are read whole, in one call;
+ * bigger ones (the CJK sets) keep reading the glyphs they show, and only
+ * those. */
+#if defined(APPLICATION) && !defined(FONT_WHOLE_MAX)
+#define FONT_WHOLE_MAX (1024*1024)
+#endif
+
 #if MEMORYSIZE < 4
 #define FONT_HARD_LIMIT
 #endif
@@ -468,6 +477,10 @@ int font_load_ex( const char *path, size_t buf_size, int glyphs )
     if ( bufsize > MAX_FONT_SIZE )
         bufsize = MAX_FONT_SIZE;
 #endif
+#ifdef FONT_WHOLE_MAX
+    if ( file_size <= FONT_WHOLE_MAX )
+        bufsize = file_size;
+#endif
     if ( bufsize < (size_t) file_size )
         cached = true;
     else
@@ -579,7 +592,9 @@ int font_load_ex( const char *path, size_t buf_size, int glyphs )
         pf->fd_width  = open( path, O_RDONLY|O_BINARY );
         pf->fd_offset = open( path, O_RDONLY|O_BINARY );
 
+#ifndef FONT_WHOLE_MAX
         glyph_cache_load( path, pf );
+#endif
 
         /* cached font: pf->fd stays open until the font is unloaded */
         close( pf->fd_width );

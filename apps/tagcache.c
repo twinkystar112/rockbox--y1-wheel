@@ -1349,6 +1349,96 @@ long tagcache_get_numeric(const struct tagcache_search *tcs, int tag)
     return check_virtual_tags(tag, tcs->idx_id, &idx);
 }
 
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+#define TC_WALK_MAX_TAGS 6
+#define TC_WALK_CHUNK 256                 /* index entries per read */
+bool tagcache_walk(const int *tags, int ntags, tagcache_walk_cb cb, void *data)
+{
+    char *file[TC_WALK_MAX_TAGS] = { NULL };
+    long fsize[TC_WALK_MAX_TAGS] = { 0 };
+    struct index_entry *chunk = NULL;
+    const char *strs[TC_WALK_MAX_TAGS];
+    bool ok = false;
+    int masterfd = -1;
+
+    if (ntags < 0 || ntags > TC_WALK_MAX_TAGS)
+        return false;
+    while (read_lock)
+        sleep(1);
+    if (tc_stat.commit_step > 0 || !tc_stat.ready)
+        return false;
+
+    /* the string tags' files, whole: entries point into them by offset */
+    for (int i = 0; i < ntags; i++)
+    {
+        struct tagcache_header tch;
+        int fd = open_tag_fd(&tch, tags[i], false);
+        if (fd < 0)
+            goto out;
+        fsize[i] = lseek(fd, 0, SEEK_END);
+        file[i] = fsize[i] > 0 ? malloc(fsize[i] + 1) : NULL;
+        bool got = file[i] && lseek(fd, 0, SEEK_SET) == 0 &&
+                   read(fd, file[i], fsize[i]) == fsize[i];
+        close(fd);
+        if (!got)
+            goto out;
+        file[i][fsize[i]] = '\0';
+    }
+
+    struct master_header hdr;
+    masterfd = open_master_fd(&hdr, false);
+    if (masterfd < 0)
+        goto out;
+    chunk = malloc(TC_WALK_CHUNK * sizeof(struct index_entry));
+    if (!chunk)
+        goto out;
+
+    for (int base = 0; base < hdr.tch.entry_count; base += TC_WALK_CHUNK)
+    {
+        int want = MIN(TC_WALK_CHUNK, hdr.tch.entry_count - base);
+        ssize_t got = read_index_entries(masterfd, chunk, want);
+        if (got != (ssize_t)(want * sizeof(struct index_entry)))
+            goto out;
+        for (int k = 0; k < want; k++)
+        {
+            const struct index_entry *e = &chunk[k];
+            if (e->flag & FLAG_DELETED)
+                continue;
+            for (int i = 0; i < ntags; i++)
+            {
+                long seek = e->tag_seek[tags[i]];
+                strs[i] = "";
+                if (seek >= (long)sizeof(struct tagcache_header) &&
+                    seek + (long)sizeof(struct tagfile_entry) <= fsize[i])
+                {
+                    struct tagfile_entry tfe;
+                    memcpy(&tfe, file[i] + seek, sizeof(tfe));
+                    long start = seek + sizeof(struct tagfile_entry);
+                    /* the text ends at its '\0'; the rest is padding */
+                    if (tfe.tag_length > 0 && start + tfe.tag_length <= fsize[i] &&
+                        memchr(file[i] + start, '\0', tfe.tag_length))
+                        strs[i] = file[i] + start;
+                }
+            }
+            if (!cb(base + k, e->tag_seek, strs, data))
+            {
+                ok = true;
+                goto out;
+            }
+        }
+        yield();
+    }
+    ok = true;
+out:
+    if (masterfd >= 0)
+        close(masterfd);
+    free(chunk);
+    for (int i = 0; i < ntags; i++)
+        free(file[i]);
+    return ok;
+}
+#endif /* PLATFORM_HOSTED */
+
 inline static bool str_ends_with(const char *str1, const char *str2)
 {
     logf_clauses("%s %s %s", str1, __func__, str2);

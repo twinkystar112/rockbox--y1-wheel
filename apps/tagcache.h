@@ -180,6 +180,17 @@ bool tagcache_retrieve(struct tagcache_search *tcs, int idxid,
                        int tag, char *buf, long size);
 void tagcache_search_finish(struct tagcache_search *tcs);
 long tagcache_get_numeric(const struct tagcache_search *tcs, int tag);
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+/* Every live entry of the database, read in a few large blocks instead of
+ * entry by entry (in an application every read is a system call, and a
+ * whole-library walk with tagcache_search was tens of thousands of them).
+ * cb gets the entry's index, its numeric tags (values[tag], as stored)
+ * and the strings of the tags asked for, in that order ("" when missing).
+ * cb returns false to stop. False: the database isn't ready or can't be read. */
+typedef bool (*tagcache_walk_cb)(int idx_id, const int32_t *values,
+                                 const char *const *strs, void *data);
+bool tagcache_walk(const int *tags, int ntags, tagcache_walk_cb cb, void *data);
+#endif
 long tagcache_increase_serial(void);
 bool tagcache_import_changelog(void);
 bool tagcache_create_changelog(struct tagcache_search *tcs);

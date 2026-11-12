@@ -324,7 +324,7 @@ static int text_at(int f, unsigned col, int x, int y, int max_w, int align, cons
 #define DS (SC(216) & ~1)        /* the disc */
 #define SLOTS 24
 
-static long dec_buf[(DS * DS * sizeof(fb_data) + 64 * 1024) / sizeof(long)];
+static long dec_buf[(DS * DS * sizeof(fb_data) + 80 * 1024) / sizeof(long)];
 static struct mp3entry art_id3;
 
 /* the picture for a track: key gets the image file, or the track itself

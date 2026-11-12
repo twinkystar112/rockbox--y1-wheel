@@ -93,6 +93,24 @@ public class HeadphoneMonitor extends BroadcastReceiver
 
     private boolean isBluetoothA2dpConnected()
     {
+        /* ask Android directly: instant. The dumpsys below starts a process
+         * and waits for it (seconds on the Y1, at start-up and on every
+         * headphone plug) - only if this can't answer */
+        try
+        {
+            android.bluetooth.BluetoothAdapter a =
+                android.bluetooth.BluetoothAdapter.getDefaultAdapter();
+            if (a == null)
+                return false;
+            boolean connected = a.getProfileConnectionState(BluetoothProfile.A2DP)
+                                == BluetoothProfile.STATE_CONNECTED;
+            Log.d(TAG, "isBluetoothA2dpConnected: " + connected);
+            return connected;
+        }
+        catch (Throwable t)
+        {
+            Log.e(TAG, "isBluetoothA2dpConnected: " + t);
+        }
         try
         {
             Process process = Runtime.getRuntime().exec("dumpsys bluetooth_a2dp");
@@ -103,7 +121,8 @@ public class HeadphoneMonitor extends BroadcastReceiver
             boolean connected = false;
             while ((line = reader.readLine()) != null)
             {
-                if (line.contains("connected"))
+                /* "connected", not "disconnected" */
+                if (line.matches(".*(^|[^a-zA-Z])connected.*"))
                 {
                     connected = true;
                     break;

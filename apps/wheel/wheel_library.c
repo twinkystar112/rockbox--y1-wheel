@@ -183,6 +183,35 @@ static uint32_t hash_ci(const char *s)
 
 /* --------------------------- the index --------------------------- */
 
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+/* the index from the database read in big blocks (see tagcache_walk) */
+static bool walk_add(int idx_id, const int32_t *val, const char *const *s, void *data)
+{
+    (void)data;
+    if (n_lib >= MAX_TRACKS)
+        return false;
+    struct trk *t = &lib[n_lib];
+    t->idx = idx_id;
+    t->year = val[tag_year];
+    t->plays = MIN(val[tag_playcount], 65535);
+    t->lastplayed = val[tag_lastplayed];
+    t->len_ms = val[tag_length];
+    t->commit = val[tag_commitid];
+    t->rating = val[tag_rating];
+    /* s: albumartist, artist, album, genre */
+    const char *a = (!s[0][0] || !strcmp(s[0], "<Untagged>")) ? s[1] : s[0];
+    t->artist = hash_ci(a);
+    t->album = hash_ci(s[2]) ^ t->artist;
+    const char *g = strcmp(s[3], "<Untagged>") ? s[3] : "";
+    t->genre = hash_ci(g);
+    t->family = family_of(g);
+    if (t->lastplayed > max_serial) max_serial = t->lastplayed;
+    if (t->commit > max_commit) max_commit = t->commit;
+    n_lib++;
+    return true;
+}
+#endif
+
 static bool build_index(void)
 {
     if (built_tick >= 0 && TIME_BEFORE(current_tick, built_tick + HZ * 600))
@@ -190,6 +219,18 @@ static bool build_index(void)
     struct tagcache_stat *st = tagcache_get_stat();
     if (!st->ready)
         return false;
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    {
+        static const int tags[] = { tag_albumartist, tag_artist, tag_album, tag_genre };
+        n_lib = 0; max_serial = 0; max_commit = 0;
+        if (tagcache_walk(tags, 4, walk_add, NULL))
+        {
+            built_tick = current_tick;
+            return n_lib > 0;
+        }
+        /* fall back to the search below */
+    }
+#endif
     struct tagcache_search tcs;
     char buf[MAX_PATH];
     n_lib = 0; max_serial = 0; max_commit = 0;
@@ -552,6 +593,30 @@ int wheel_library_families(int *out, int max)
 }
 
 /* one pass over the database for every track in the list */
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+enum { FM_HS = 4096 };
+static bool fill_meta_one(int idx_id, const int32_t *val, const char *const *s, void *data)
+{
+    (void)idx_id;
+    struct fm { struct wheel_list *l; int16_t *slot; int missing; } *fm = data;
+    unsigned h = hash_ci(s[0]) & (FM_HS - 1);
+    while (fm->slot[h] >= 0)
+    {
+        struct wheel_track *t = &fm->l->t[fm->slot[h]];
+        if (!t->meta && !strcasecmp(t->path, s[0]))
+        {
+            strlcpy(t->title, strcmp(s[1], "<Untagged>") ? s[1] : "", sizeof(t->title));
+            strlcpy(t->artist, strcmp(s[2], "<Untagged>") ? s[2] : "", sizeof(t->artist));
+            t->len_ms = val[tag_length];
+            t->meta = true;
+            fm->missing--;
+        }
+        h = (h + 1) & (FM_HS - 1);
+    }
+    return fm->missing > 0;
+}
+#endif
+
 void wheel_list_fill_meta(struct wheel_list *l)
 {
     if (l->n <= 0 || !tagcache_get_stat()->ready)
@@ -570,6 +635,14 @@ void wheel_list_fill_meta(struct wheel_list *l)
     }
     if (!missing)
         return;
+#if (CONFIG_PLATFORM & PLATFORM_HOSTED)
+    {
+        static const int tags[] = { tag_filename, tag_title, tag_artist };
+        struct fm { struct wheel_list *l; int16_t *slot; int missing; } fm = { l, slot, missing };
+        if (tagcache_walk(tags, 3, fill_meta_one, &fm))
+            return;
+    }
+#endif
     struct tagcache_search tcs;
     char buf[MAX_PATH];
     if (!tagcache_search(&tcs, tag_filename))

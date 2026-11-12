@@ -15,9 +15,10 @@ struct wheel_art {
     char path[MAX_PATH];
 };
 
-/* room for max*max pixels plus the JPEG decoder's scratch space */
+/* room for max*max pixels plus the JPEG decoder's scratch space (its
+ * state with the read buffer, a band of the picture, three rows to scale) */
 #define WHEEL_ART_INIT(name, size)                                               \
-    static long name##_px[((size) * (size) * sizeof(fb_data) + 48*1024) / sizeof(long)]; \
+    static long name##_px[((size) * (size) * sizeof(fb_data) + 72*1024) / sizeof(long)]; \
     static struct wheel_art name = { .buf = name##_px,                           \
         .bufsize = sizeof(name##_px), .max = (size) }
 

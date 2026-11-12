@@ -327,3 +327,16 @@ sonido tras darle a Reproducir…) queda anotado con su tiempo en `.rockbox/whee
 | Paleta de la portada, Mi paleta, imagen de fondo, vinilo | `apps/wheel/wheel_palette.c` (`wheel_palette_derive`, `wheel_palette_poll`, fondos generados), `apps/gui/skin_engine/skin_backdrops.c` (`skin_backdrop_next`) |
 | Ahora suena, panel, menú, looks, rueda, reposo, arranque | `apps/wheel/wheel_custom.c`, `wps/Wheel-NP-*.wps`, `apps/wheel/wheel_letterjump.c` (sensibilidad), `apps/beep.c` (sonidos del clic), `apps/menu.c` / `apps/gui/wps.c` (reposo), `apps/main.c` (arranque) |
 | Pruebas | `utils/wheel/tests/` |
+
+## Rendimiento y Bluetooth (wheel-11)
+
+* En el Y1 cada acceso a la tarjeta es lento, así que Wheel y Rockbox leen en bloques grandes:
+  portadas (4 KB por lectura en vez de 16 bytes), fuentes enteras en memoria (hasta 1 MB; las
+  CJK siguen cargando solo lo que muestran), líneas de texto (512 bytes) y la base de datos
+  entera de una vez para «Para ti» y para abrir playlists.
+* La pantalla Playlists guarda en memoria las duraciones y tamaños; volver de Reproduciendo a la
+  lista no la vuelve a leer.
+* Bluetooth: si unos auriculares se quedan «conectando» más de 12 s, Wheel corta y vuelve a
+  conectar (hasta 2 veces). Si los auriculares de siempre se enlazan solos pero el audio no se
+  activa, Wheel lo pide a los 3,5 s. El estado de los auriculares se consulta a Android
+  directamente (antes ejecutaba `dumpsys`, lento y a veces equivocado).

@@ -31,7 +31,14 @@
 #include "bmp.h"
 
 #define HUFF_LOOKAHEAD 8 /* # of bits of lookahead */
+/* The decoder asks the file for this much at a time. On a player with its
+ * own file system that is a cheap call; in a hosted application every read
+ * is a system call, and a 600 KB cover was 37000 of them. */
+#ifdef APPLICATION
+#define JPEG_READ_BUF_SIZE 4096
+#else
 #define JPEG_READ_BUF_SIZE 16
+#endif
 struct derived_tbl
 {
     /* Basic tables: (element [0] of each array is unused) */

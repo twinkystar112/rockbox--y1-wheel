@@ -22,7 +22,12 @@
 #include "file.h"
 #include "vuprintf.h"
 
+#ifdef APPLICATION
+/* every chunk is a system call: a whole line (a playlist entry) in one */
+#define FPR_WRBUF_CKSZ 256  /* write buffer chunk size */
+#else
 #define FPR_WRBUF_CKSZ 32   /* write buffer chunk size */
+#endif
 
 struct for_fprintf {
     int fd;  /* where to store it */
